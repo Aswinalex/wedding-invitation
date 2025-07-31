@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You're Invited! - Taniya & Aswin</title>
+
+    <!-- Thumbnail / Social Media Share Tags -->
+    <meta property="og:title" content="You're Invited! - Taniya & Aswin's Wedding">
+    <meta property="og:description" content="Join us in celebrating the wedding of Taniya and Aswin on January 5th, 2026 in Thiruvalla, Kerala.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg">
+    <meta property="og:url" content="https://aswinalex.github.io/wedding-invitation/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -19,6 +28,7 @@
             background-color: #fdfaf6;
             color: #5a5a5a; /* Softer text color */
             line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scrollbar from animations */
         }
         .font-great-vibes {
             font-family: 'Great Vibes', cursive;
@@ -157,10 +167,6 @@
         .timeline-content:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .timeline-content img { border-radius: 0.5rem; margin-bottom: 1rem; transition: transform 0.3s ease; }
         .timeline-content:hover img { transform: scale(1.05); }
-        /* Animated Vine */
-        .section-title-container { position: relative; display: inline-block; }
-        .vine-svg { position: absolute; top: 50%; left: -60px; transform: translateY(-50%); width: 50px; height: 100px; stroke: #a87b6e; stroke-width: 1; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2s ease-out; }
-        .is-visible .vine-svg { stroke-dashoffset: 0; }
 
         /* Mobile-specific styles for the timeline */
         @media (max-width: 767px) {
@@ -182,6 +188,75 @@
             .timeline-item:nth-child(even) .timeline-dot {
                 left: 0;
             }
+        }
+
+        /* --- NEW ANIMATIONS --- */
+        /* Menu reveal animation */
+        .menu-list li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* Menu heading hover animation */
+        .menu-section h2 {
+            cursor: pointer;
+        }
+        .menu-section h3 {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .menu-section h3:hover {
+            transform: scale(1.05);
+            color: #8c655b; /* Darker shade */
+        }
+
+        /* Perfect Equation Animation */
+        .equation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .equation-container {
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+
+        .person-container {
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .person-container.taniya { transform: translateX(-100vw); }
+        .person-container.aswin { transform: translateX(100vw); }
+
+        .plus-sign {
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.5s 1s ease, transform 0.5s 1s cubic-bezier(0.34, 1.56, 0.64, 1); /* Delay and bounce effect */
+        }
+
+        .equation-section.is-visible .person-container.taniya {
+            transform: translateX(0);
+        }
+        .equation-section.is-visible .person-container.aswin {
+            transform: translateX(0);
+        }
+
+        .equation-section.is-visible .plus-sign {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .equation-section.is-visible .equation-container {
+            animation: pulse 2s 1.5s ease-in-out infinite; /* Delayed pulse animation */
         }
     </style>
 </head>
@@ -246,12 +321,9 @@
     </section>
     
     <!-- Menu Section -->
-    <section class="py-16 px-4 text-center fade-in-section">
+    <section class="py-16 px-4 text-center fade-in-section menu-section">
         <div class="max-w-4xl mx-auto">
-            <div class="section-title-container">
-                 <svg class="vine-svg" viewBox="0 0 100 200"><path d="M 50,0 C 50,50 20,50 20,100 C 20,150 80,150 80,200" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">The Wedding Feast</h2>
-            </div>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">The Wedding Feast</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8">A taste of Kerala to celebrate our special day. We hope you enjoy the feast!</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left text-lg">
@@ -259,7 +331,7 @@
                 <div class="space-y-6">
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Welcome Drink</h3>
-                        <ul class="space-y-1 text-gray-700">
+                        <ul class="space-y-1 text-gray-700 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Ginger lime</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Watermelon juice</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Passion fruit honey fizz</li>
@@ -267,7 +339,7 @@
                     </div>
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Starter</h3>
-                        <ul class="space-y-1 text-gray-700">
+                        <ul class="space-y-1 text-gray-700 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Veg spring rolls</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Cocktail beef samosa</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Chicken skewers</li>
@@ -275,7 +347,7 @@
                     </div>
                      <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Soups</h3>
-                        <ul class="space-y-1 text-gray-700">
+                        <ul class="space-y-1 text-gray-700 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Cream of chicken</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Sweet corn veg</li>
                         </ul>
@@ -284,7 +356,7 @@
                 <!-- Main Course -->
                 <div>
                     <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Main Course</h3>
-                    <ul class="space-y-1 text-gray-700">
+                    <ul class="space-y-1 text-gray-700 menu-list">
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Nool porotta</li>
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Ari pathiri</li>
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Beef olarthiyathu</li>
@@ -299,7 +371,7 @@
                 <div class="space-y-6">
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Thattukada</h3>
-                        <ul class="space-y-1 text-gray-700">
+                        <ul class="space-y-1 text-gray-700 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Variety of dosa (4 options)</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Kappa & Fish curry</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Chammantis</li>
@@ -309,7 +381,7 @@
                     </div>
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Dessert</h3>
-                        <ul class="space-y-1 text-gray-700">
+                        <ul class="space-y-1 text-gray-700 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Elaneer pudding</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Live jilebi</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Vanilla ice cream</li>
@@ -322,19 +394,19 @@
     </section>
 
     <!-- Our Perfect Equation Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
+    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section equation-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Perfect Equation</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8">From laser optics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div class="text-center">
+            <div class="equation-container">
+                <div class="person-container taniya text-center">
                     <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l2.387-.477a2 2 0 001.022-.547z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
                     <h3 class="text-3xl font-great-vibes mt-4">Taniya</h3>
                     <p class="font-semibold">Evolutionary Biology</p>
                 </div>
-                <div class="text-4xl font-great-vibes text-[#a87b6e]">+</div>
-                <div class="text-center">
+                <div class="plus-sign text-4xl font-great-vibes text-[#a87b6e]">+</div>
+                <div class="person-container aswin text-center">
                     <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                     <h3 class="text-3xl font-great-vibes mt-4">Aswin</h3>
                     <p class="font-semibold">Laser & Optics</p>
@@ -650,7 +722,24 @@
                     }
                 });
             }, { threshold: 0.1 });
+
             document.querySelectorAll('.fade-in-section').forEach(section => { observer.observe(section); });
+
+            // --- Wedding Feast Click Animation ---
+            const weddingFeastTitle = document.querySelector('.menu-section h2');
+            weddingFeastTitle.addEventListener('click', () => {
+                const menuLists = document.querySelectorAll('.menu-section .menu-list');
+                menuLists.forEach(list => {
+                    const menuItems = list.querySelectorAll('li');
+                    menuItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 100); // Staggered delay
+                    });
+                });
+            }, { once: true }); // This ensures the animation only runs once per click
+
 
             try {
                 // --- Firebase Initialization ---
