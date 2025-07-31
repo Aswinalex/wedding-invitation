@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <!-- Tone.js for background music -->
+    <!-- Tone.js for Audio -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <style>
         /* Custom styles for the wedding invite */
@@ -161,18 +161,31 @@
         .section-title-container { position: relative; display: inline-block; }
         .vine-svg { position: absolute; top: 50%; left: -60px; transform: translateY(-50%); width: 50px; height: 100px; stroke: #a87b6e; stroke-width: 1; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2s ease-out; }
         .is-visible .vine-svg { stroke-dashoffset: 0; }
+
+        /* Mobile-specific styles for the timeline */
+        @media (max-width: 767px) {
+            .timeline-container::before {
+                left: 8px;
+                transform: translateX(0);
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 2.5rem;
+                padding-right: 1rem;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+                text-align: left;
+            }
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 0;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
-
-    <!-- Background Music Controls -->
-    <div id="music-control" class="fixed bottom-5 right-5 z-50">
-        <button onclick="handleMusicClick()" class="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-[#a87b6e] hover:bg-white transition-all duration-300">
-            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <svg id="stop-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9h6v6H9z" /></svg>
-        </button>
-    </div>
     
     <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
@@ -190,9 +203,9 @@
     <header id="heroSection" class="hero-section text-center p-4">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h4 class="text-xl md:text-2xl mb-4 font-cormorant-garamond italic">We're getting married!</h4>
+            <h4 class="text-xl md:text-2xl mb-4 font-cormorant-garamond italic">Together with their families</h4>
             <h1 class="text-6xl md:text-8xl font-great-vibes mb-6">Taniya & Aswin</h1>
-            <p class="text-xl md:text-2xl mb-2">Daughter of Binny Mathew & Laly Binny</p>
+            <p class="text-xl md:text-2xl mb-2">Daughter of Binny & Laly Mathew</p>
             <p class="text-xl md:text-2xl mb-8">Son of Dr. Salim C Eapen & Renu Thomas</p>
         </div>
     </header>
@@ -208,12 +221,23 @@
         </div>
     </section>
 
-    <!-- Details Section -->
+    <!-- Bible Verse Section -->
     <section class="py-16 px-4 text-center fade-in-section">
+        <div class="max-w-3xl mx-auto">
+            <p class="text-2xl italic text-gray-700">"So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate."</p>
+            <p class="text-lg mt-2 text-gray-500">- Matthew 19:6</p>
+            <div class="section-divider"></div>
+            <p class="text-2xl italic text-gray-700">"അതുകൊണ്ട് അവർ മേലാൽ രണ്ടല്ല, ഒരു ജഡമത്രേ. ആകയാൽ ദൈവം യോജിപ്പിച്ചതിനെ മനുഷ്യൻ വേർപിരിക്കരുത്."</p>
+            <p class="text-lg mt-2 text-gray-500">- മത്തായി 19:6</p>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">The Ceremony & Reception</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8">We would be absolutely delighted if you could join us as we embark on our journey together as husband and wife. Your presence would make our special day even more memorable.</p>
+            <p class="text-xl mb-8">From a journey that began in Kerala and led to PhDs in Germany and Singapore, we are overjoyed to return home to celebrate the next chapter of our lives with the people we love most.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                 <div class="event-box p-8 rounded-xl shadow-lg" style="background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg'); background-size: cover; background-position: center;"><div class="event-box-overlay rounded-xl"></div><div class="event-box-content"><h3 class="text-3xl font-great-vibes mb-4">Wedding Ceremony</h3><p class="mb-2"><strong class="font-semibold">Date:</strong> January 5th, 2026</p><p class="mb-2"><strong class="font-semibold">Time:</strong> 3:00 PM</p><p class="mb-2"><strong class="font-semibold">Venue:</strong> St Thomas Mar Thoma Church</p><p class="mb-2"><strong class="font-semibold">Address:</strong> Thiruvalla, Pathanamthitta, Kerala – 689101</p><p class="text-sm text-gray-200 mt-4">Please arrive 15-30 minutes prior to the ceremony start time.</p></div></div>
                 <div class="event-box p-8 rounded-xl shadow-lg" style="background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg'); background-size: cover; background-position: center;"><div class="event-box-overlay rounded-xl"></div><div class="event-box-content"><h3 class="text-3xl font-great-vibes mb-4">Reception</h3><p class="mb-2"><strong class="font-semibold">Time:</strong> 5:30 PM – 10:00 PM</p><p class="mb-2"><strong class="font-semibold">Venue:</strong> Mor Athanasius Yohan Memorial Convention Centre</p><p class="mb-2"><strong class="font-semibold">Address:</strong> Kuttappuzha, Thiruvalla, Pathanamthitta, Kerala – 689103</p><p class="text-sm text-gray-200 mt-4">Dinner, dancing, and celebrations will continue into the evening.</p></div></div>
@@ -297,8 +321,30 @@
         </div>
     </section>
 
-    <!-- Map & Directions Section -->
+    <!-- Our Perfect Equation Section -->
     <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Perfect Equation</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8">From laser optics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="text-center">
+                    <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l2.387-.477a2 2 0 001.022-.547z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
+                    <h3 class="text-3xl font-great-vibes mt-4">Taniya</h3>
+                    <p class="font-semibold">Evolutionary Biology</p>
+                </div>
+                <div class="text-4xl font-great-vibes text-[#a87b6e]">+</div>
+                <div class="text-center">
+                    <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    <h3 class="text-3xl font-great-vibes mt-4">Aswin</h3>
+                    <p class="font-semibold">Laser & Optics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map & Directions Section -->
+    <section class="py-16 px-4 text-center fade-in-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">How to Get There</h2>
             <div class="section-divider"></div>
@@ -306,6 +352,35 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="block p-6 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"><h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Ceremony</h3><p class="font-semibold text-lg">St Thomas Mar Thoma Church</p><p class="text-gray-600">Thiruvalla, Pathanamthitta, Kerala</p><span class="mt-4 inline-block btn-primary">Get Directions</span></a>
                 <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="block p-6 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"><h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Reception</h3><p class="font-semibold text-lg">Mor Athanasius Yohan Memorial Convention Centre</p><p class="text-gray-600">Kuttappuzha, Thiruvalla, Pathanamthitta</p><span class="mt-4 inline-block btn-primary">Get Directions</span></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Local Favorites Section -->
+    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Local Favorites</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <div class="text-4xl mb-2">☕</div>
+                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Favorite Cafe</h3>
+                    <p class="font-semibold">The Daily Grind</p>
+                    <p class="text-sm text-gray-600">For the best coffee and pastries to start your day.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <div class="text-4xl mb-2">🏞️</div>
+                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Scenic Walk</h3>
+                    <p class="font-semibold">Pamba River Walk</p>
+                    <p class="text-sm text-gray-600">A beautiful and peaceful walk along the riverbanks.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <div class="text-4xl mb-2">🍽️</div>
+                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Must-Try Food</h3>
+                    <p class="font-semibold">Avees Puttu House</p>
+                    <p class="text-sm text-gray-600">For authentic and delicious Kerala cuisine.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -324,29 +399,12 @@
                     <option value="No, with regrets.">No, with regrets.</option>
                 </select>
                 <input type="number" name="Guests" placeholder="Number of guests" min="0" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <textarea name="Message" placeholder="Optional message" rows="3" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg"></textarea>
+                <textarea name="Message" placeholder="Optional message (Request a song at wedding)" rows="3" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg"></textarea>
                 <div class="text-center">
                     <button type="submit" id="rsvpSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Submit RSVP<span id="rsvpLoadingSpinner" class="loading-spinner hidden"></span></button>
                 </div>
             </form>
             <div id="rsvpMessage" class="mt-4"></div>
-        </div>
-    </section>
-    
-    <!-- Song Request Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Request a Song</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8">Got a song that will get you on the dance floor? Let us know!</p>
-            <form id="songRequestForm" class="text-left space-y-4">
-                <input type="text" name="SongName" placeholder="Song Title & Artist" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <input type="text" name="RequesterName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <div class="text-center">
-                    <button type="submit" id="songRequestSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Submit Song<span id="songRequestSpinner" class="loading-spinner hidden"></span></button>
-                </div>
-            </form>
-            <p id="songRequestMessage" class="font-semibold mt-4"></p>
         </div>
     </section>
 
@@ -386,13 +444,15 @@
     <!-- Wedding Party Section -->
     <section class="py-16 px-4 text-center fade-in-section">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Meet the Wedding Party</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Meet Our Family</h2>
             <div class="section-divider"></div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Wedding party member" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nitty</h3><p class="text-gray-600">Maid of Honor</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Wedding party member" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nevil</h3><p class="text-gray-600">Best Man</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Wedding party member" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Bincy</h3><p class="text-gray-600">Bridesmaid</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Wedding party member" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Eva</h3><p class="text-gray-600">Bridesmaid</p></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Parents of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Binny & Laly Mathew</h3><p class="text-gray-600">Parents of the Bride</p></div>
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Parents of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Dr. Salim & Renu Eapen</h3><p class="text-gray-600">Parents of the Groom</p></div>
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nevil & Bincy</h3><p class="text-gray-600">Brother & Sister-in-Law</p></div>
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nitty</h3><p class="text-gray-600">Sister of the Bride</p></div>
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Ida</h3><p class="text-gray-600">Sister of the Groom</p></div>
+                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Nieces" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Eva & Ema</h3><p class="text-gray-600">Our beloved nieces</p></div>
             </div>
         </div>
     </section>
@@ -448,11 +508,23 @@
         </div>
     </section>
 
+    <!-- Photo Gallery Teaser Section -->
+    <section class="py-16 px-4 text-center fade-in-section">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Wedding Gallery</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
+            <a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
+                Coming Soon
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-[#a87b6e] text-white py-8 px-4 text-center rounded-t-xl">
         <div class="max-w-4xl mx-auto">
             <p class="text-2xl mb-2 font-great-vibes">We can't wait to celebrate with you!</p>
-            <p class="text-sm mb-2">With love from Nevil, Nitty, Bincy, Eva, Ema & Ida</p>
+            <p class="text-sm mb-2">With love from our families</p>
             <p class="text-sm">&copy; 2026 Taniya & Aswin. All Rights Reserved.</p>
             <div class="mt-4">
                 <button id="copyUserIdBtn" class="text-xs text-white/50 hover:text-white">Copy Admin ID</button>
@@ -460,83 +532,104 @@
         </div>
     </footer>
 
+    <!-- Mute Button -->
+    <button id="muteBtn" class="fixed bottom-5 right-5 z-50 bg-white/50 p-3 rounded-full shadow-lg backdrop-blur-sm hover:bg-white/75 transition">
+        <!-- Speaker Icon -->
+        <svg id="speakerIcon" class="w-6 h-6 text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+        <!-- Muted Icon (hidden by default) -->
+        <svg id="mutedIcon" class="w-6 h-6 text-[#a87b6e] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+    </button>
+
     <script type="module">
         // --- Firebase Imports ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // --- Music State ---
-        let musicPlaying = false;
-        let pageClickMusicToggleEnabled = true;
-        let synth;
-
-        function setupMusic() {
-            const reverb = new Tone.Reverb({ decay: 4, wet: 0.4 }).toDestination();
-            synth = new Tone.PolySynth(Tone.Synth, {
-                oscillator: { type: "sine" },
-                envelope: { attack: 0.05, decay: 0.3, sustain: 0.4, release: 1.2 },
-                volume: -15
-            }).connect(reverb);
-            
-            // A melody inspired by "Amazing Grace"
-            const melody = new Tone.Sequence((time, note) => {
-                synth.triggerAttackRelease(note, "4n", time);
-            }, [
-                'G4', 'C5', 'E5', 'C5', 'E5', 'D5', 'C5', 'A4', 'G4', 
-                'G4', 'C5', 'E5', 'C5', 'E5', 'D5', 'G5', 
-                'E5', 'G5', 'E5', 'C5', 'E5', 'D5', 'C5', 'A4', 'G4', 
-                'G4', 'C5', 'E5', 'C5', 'E5', 'D5', 'C5' 
-            ], "2n");
-
-            melody.loop = true;
-            Tone.Transport.bpm.value = 70;
-        }
-
-        function updateMusicIcons() {
-            const playIcon = document.getElementById('play-icon');
-            const pauseIcon = document.getElementById('pause-icon');
-            const stopIcon = document.getElementById('stop-icon');
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.add('hidden');
-            stopIcon.classList.add('hidden');
-            if (!musicPlaying) {
-                playIcon.classList.remove('hidden');
-            } else if (pageClickMusicToggleEnabled) {
-                pauseIcon.classList.remove('hidden');
-            } else {
-                stopIcon.classList.remove('hidden');
-            }
-        }
-
-        function toggleMusic() {
-            if (Tone.context.state !== 'running') { Tone.start().then(setupMusic); }
-            if (musicPlaying) {
-                Tone.Transport.pause();
-                musicPlaying = false;
-            } else {
-                if (!synth) setupMusic();
-                Tone.Transport.start();
-                musicPlaying = true;
-            }
-            updateMusicIcons();
-        }
-
-        window.handleMusicClick = function() {
-            if (!musicPlaying) {
-                pageClickMusicToggleEnabled = true;
-                toggleMusic();
-            } else if (pageClickMusicToggleEnabled) {
-                pageClickMusicToggleEnabled = false;
-                updateMusicIcons();
-            } else {
-                pageClickMusicToggleEnabled = true;
-                toggleMusic();
-            }
-        }
-
         // --- Main Page Logic ---
         document.addEventListener('DOMContentLoaded', async () => {
+            
+            // --- Background Music ---
+            const muteBtn = document.getElementById('muteBtn');
+            const speakerIcon = document.getElementById('speakerIcon');
+            const mutedIcon = document.getElementById('mutedIcon');
+            let musicStarted = false;
+
+            // Add effects for a richer sound
+            const reverb = new Tone.Reverb({ decay: 2, preDelay: 0.01 }).toDestination();
+            const chorus = new Tone.Chorus(4, 2.5, 0.5).connect(reverb).start();
+
+            // Create a PolySynth for a piano-like sound
+            const synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: {
+                    type: "fatsawtooth",
+                    count: 3,
+                    spread: 30
+                },
+                envelope: {
+                    attack: 0.01,
+                    decay: 0.1,
+                    sustain: 0.5,
+                    release: 0.8,
+                    attackCurve: "exponential"
+                },
+            }).connect(chorus);
+            synth.volume.value = -12; // Lower the volume to be more like background music
+
+            // Define the melody of "Amazing Grace"
+            const amazingGraceMelody = [
+                { time: '0:0', note: 'G3', duration: '4n' }, { time: '0:1', note: 'C4', duration: '4n' },
+                { time: '0:2', note: 'E4', duration: '4n' }, { time: '0:3', note: 'C4', duration: '4n' },
+                { time: '1:0', note: 'E4', duration: '4n' }, { time: '1:1', note: 'D4', duration: '4n' },
+                { time: '1:2', note: 'C4', duration: '2n' }, { time: '2:0', note: 'A3', duration: '4n' },
+                { time: '2:1', note: 'G3', duration: '2n' }, { time: '3:0', note: 'G3', duration: '4n' },
+                { time: '3:1', note: 'C4', duration: '4n' }, { time: '3:2', note: 'E4', duration: '4n' },
+                { time: '3:3', note: 'C4', duration: '4n' }, { time: '4:0', note: 'E4', duration: '4n' },
+                { time: '4:1', note: 'D4', duration: '4n' }, { time: '4:2', note: 'G4', duration: '2n' },
+            ];
+
+            // Create a part, which is a collection of notes to be played by the synth
+            const melodyPart = new Tone.Part((time, value) => {
+                synth.triggerAttackRelease(value.note, value.duration, time);
+            }, amazingGraceMelody);
+
+            // Configure the melody to loop
+            melodyPart.loop = true;
+            melodyPart.loopEnd = '5m';
+            Tone.Transport.bpm.value = 80;
+
+            // Function to start the music, must be triggered by user interaction
+            const startMusic = async () => {
+                if (musicStarted) return;
+                await Tone.start();
+                melodyPart.start(0);
+                Tone.Transport.start();
+                musicStarted = true;
+            };
+
+            // Play music on the first click anywhere on the body
+            document.body.addEventListener('click', (e) => {
+                const isFormElement = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName);
+                const isMuteButton = e.target.closest('#muteBtn');
+                if (!isFormElement && !isMuteButton) {
+                    startMusic();
+                }
+            }, { once: true }); // Use { once: true } so this only fires for the very first click
+
+            // Mute button logic
+            muteBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent this click from triggering other click listeners
+                if (!musicStarted) {
+                    startMusic();
+                } else {
+                    Tone.Destination.mute = !Tone.Destination.mute;
+                }
+                // Update icon visibility based on mute state
+                speakerIcon.classList.toggle('hidden', Tone.Destination.mute);
+                mutedIcon.classList.toggle('hidden', !Tone.Destination.mute);
+            });
+
+
             // --- Countdown Timer ---
             const countdownDate = new Date("January 5, 2026 15:00:00").getTime();
             const countdownInterval = setInterval(() => {
@@ -570,7 +663,7 @@
                 const guestbookCollectionRef = collection(db, `/artifacts/${appId}/public/data/guestbook`);
                 const currentUserId = auth.currentUser.uid;
                 
-                // --- SUPERUSER ID: Replace this with your own User ID ---
+                // --- SUPERUSER ID ---
                 const superuserId = '10897990723434019604'; 
 
                 // --- Guestbook Logic ---
@@ -581,28 +674,33 @@
                 const confirmDeleteBtn = document.getElementById('confirmDelete');
                 const cancelDeleteBtn = document.getElementById('cancelDelete');
                 let messageToDeleteId = null;
-
-                // Display messages
+                
+                // NOTE: The 'orderBy' function requires a composite index in Firestore. 
+                // If you see an error in the console about a missing index, you'll need to create it in your Firebase console.
                 const q = query(guestbookCollectionRef, orderBy('timestamp', 'desc'));
+
                 onSnapshot(q, (snapshot) => {
                     guestbookDisplay.innerHTML = '';
-                    if (snapshot.empty) { guestbookDisplay.innerHTML = '<p class="text-gray-500">Be the first to leave a message!</p>'; } else {
+                    if (snapshot.empty) { 
+                        guestbookDisplay.innerHTML = '<p class="text-gray-500">Be the first to leave a message!</p>'; 
+                    } else {
                         snapshot.forEach(doc => {
                             const message = doc.data();
                             const messageEl = document.createElement('div');
                             messageEl.className = 'message relative';
                             let deleteButtonHtml = '';
-                            // Show delete button if the user is the author OR is the superuser
                             if (message.authorId === currentUserId || currentUserId === superuserId) {
                                 deleteButtonHtml = `<button data-id="${doc.id}" class="delete-btn absolute top-2 right-2 text-gray-400 hover:text-red-500 text-2xl leading-none">&times;</button>`;
                             }
-                            messageEl.innerHTML = `<p class="font-semibold text-xl text-[#a87b6e]">${message.name}</p><p class="text-gray-700 pr-6">${message.message}</p><p class="text-xs text-gray-400 mt-2">${message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleString() : 'Just now'}</p>${deleteButtonHtml}`;
+                            messageEl.innerHTML = `<p class="font-semibold text-xl text-[#a87b6e]">${message.name || 'Anonymous'}</p><p class="text-gray-700 pr-6">${message.message || ''}</p><p class="text-xs text-gray-400 mt-2">${message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleString() : 'Just now'}</p>${deleteButtonHtml}`;
                             guestbookDisplay.appendChild(messageEl);
                         });
                     }
+                }, (error) => {
+                    console.error("Error getting guestbook messages: ", error);
+                    guestbookDisplay.innerHTML = '<p class="text-red-500">Could not load messages. The required database index might be missing.</p>';
                 });
 
-                // Handle delete button clicks
                 guestbookDisplay.addEventListener('click', (e) => {
                     if (e.target.classList.contains('delete-btn')) {
                         messageToDeleteId = e.target.dataset.id;
@@ -623,24 +721,21 @@
                             await deleteDoc(doc(db, `/artifacts/${appId}/public/data/guestbook`, messageToDeleteId));
                         } catch (error) {
                             console.error("Error removing document: ", error);
-                            alert("Could not delete the message.");
                         } finally {
-                            cancelDeleteBtn.click(); // Hide modal and reset
+                            cancelDeleteBtn.click();
                         }
                     }
                 });
 
-                // Post new message
                 guestbookForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     guestbookLoadingSpinner.classList.remove('hidden');
                     try {
                         await addDoc(guestbookCollectionRef, { name: document.getElementById('guestName').value, message: document.getElementById('guestMessage').value, timestamp: serverTimestamp(), authorId: currentUserId });
                         guestbookForm.reset();
-                    } catch (error) { console.error("Error adding document: ", error); alert("There was an error posting your message."); } finally { guestbookLoadingSpinner.classList.add('hidden'); }
+                    } catch (error) { console.error("Error adding document: ", error); } finally { guestbookLoadingSpinner.classList.add('hidden'); }
                 });
 
-                // --- Admin Tool: Copy User ID ---
                 const copyUserIdBtn = document.getElementById('copyUserIdBtn');
                 copyUserIdBtn.addEventListener('click', () => {
                     const tempInput = document.createElement('input');
@@ -653,10 +748,26 @@
                     setTimeout(() => { copyUserIdBtn.textContent = 'Copy Admin ID'; }, 2000);
                 });
 
-                // --- Google Sheets Form Submission Logic ---
-                function handleFormSubmit(form, url, messageEl, spinnerEl, submitBtnEl) { /* ... same as before ... */ }
+                function handleFormSubmit(form, url, messageEl, spinnerEl, submitBtnEl) {
+                    spinnerEl.classList.remove('hidden');
+                    submitBtnEl.disabled = true;
+                    fetch(url, { method: 'POST', body: new FormData(form)})
+                        .then(response => {
+                            messageEl.textContent = "Thank you! Your response has been recorded.";
+                            messageEl.className = 'text-green-600 font-semibold mt-4';
+                            form.reset();
+                        })
+                        .catch(error => {
+                            messageEl.textContent = "Error: Could not submit the form. Please try again.";
+                            messageEl.className = 'text-red-600 font-semibold mt-4';
+                            console.error('Error!', error.message);
+                        })
+                        .finally(() => {
+                            spinnerEl.classList.add('hidden');
+                            submitBtnEl.disabled = false;
+                        });
+                }
                 
-                // --- RSVP Form ---
                 const rsvpForm = document.getElementById('rsvpForm');
                 rsvpForm.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -664,30 +775,50 @@
                     handleFormSubmit(rsvpForm, googleScriptURL, document.getElementById('rsvpMessage'), document.getElementById('rsvpLoadingSpinner'), document.getElementById('rsvpSubmitBtn'));
                 });
 
-                // --- Song Request Form ---
-                const songRequestForm = document.getElementById('songRequestForm');
-                songRequestForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwhgKz9-l3TcUuZ27i5EVk8-dGjJPIkfb3TUjbqsSaVrHF_8n0QwW0jOwMvXQCGj19Flg/exec';
-                    handleFormSubmit(songRequestForm, googleScriptURL, document.getElementById('songRequestMessage'), document.getElementById('songRequestSpinner'), document.getElementById('songRequestSubmitBtn'));
-                });
-
-                // --- AI Dress Code Advisor ---
                 const dressCodeBtn = document.getElementById('dressCodeBtn');
-                dressCodeBtn.addEventListener('click', async () => { /* ... same as before ... */ });
+                const dressCodeQuery = document.getElementById('dressCodeQuery');
+                const dressCodeResponse = document.getElementById('dressCodeResponse');
+                const dressCodeSpinner = document.getElementById('dressCodeSpinner');
+
+                dressCodeBtn.addEventListener('click', async () => {
+                    const query = dressCodeQuery.value;
+                    if (!query) {
+                        dressCodeResponse.textContent = "Please enter a question.";
+                        return;
+                    }
+                    
+                    dressCodeSpinner.classList.remove('hidden');
+                    dressCodeBtn.disabled = true;
+                    dressCodeResponse.textContent = 'Thinking...';
+
+                    setTimeout(() => {
+                        let responseText = "That's a great question! ";
+                        const lowerCaseQuery = query.toLowerCase();
+
+                        if (lowerCaseQuery.includes('saree') || lowerCaseQuery.includes('lehenga') || lowerCaseQuery.includes('kurta')) {
+                            responseText += "Traditional Indian attire like a saree, lehenga, or a smart kurta set would be absolutely perfect and fit the 'festive wear' theme beautifully.";
+                        } else if (lowerCaseQuery.includes('suit') || lowerCaseQuery.includes('blazer')) {
+                            responseText += "A suit or a blazer is a great choice for formal wear. You'll look sharp!";
+                        } else if (lowerCaseQuery.includes('dress')) {
+                            responseText += "A formal or cocktail dress is an excellent option. Festive colors or elegant fabrics would be a wonderful touch.";
+                        } else if (lowerCaseQuery.includes('jeans') || lowerCaseQuery.includes('casual')) {
+                            responseText += "The dress code is formal or festive, so we'd recommend something a bit more dressed up than jeans or casual wear. Think suits, gowns, or elegant traditional outfits.";
+                        } else {
+                            responseText += "The dress code is formal or festive wear. Think elegant evening attire, such as suits, cocktail dresses, gowns, or traditional Indian outfits like sarees and lehengas. When in doubt, it's better to be slightly overdressed than underdressed. We can't wait to see you!";
+                        }
+                        
+                        dressCodeResponse.textContent = responseText;
+                        dressCodeSpinner.classList.add('hidden');
+                        dressCodeBtn.disabled = false;
+                    }, 1500);
+                });
 
             } catch (error) {
                 console.error("Initialization or Auth Error: ", error);
-                document.getElementById('guestbookDisplay').textContent = 'Could not load guestbook.';
-                document.getElementById('rsvpForm').innerHTML = '<p class="text-red-500 text-center">Interactive features are currently unavailable.</p>';
+                document.getElementById('guestbookDisplay').innerHTML = '<p class="text-red-500 text-center">Guestbook is currently unavailable.</p>';
+                document.getElementById('guestbookForm').style.display = 'none';
+                document.getElementById('rsvpForm').innerHTML = '<p class="text-red-500 text-center">RSVP feature is currently unavailable.</p>';
             }
-
-            // --- Page-wide Music Toggle ---
-            document.body.addEventListener('click', (event) => {
-                if (pageClickMusicToggleEnabled && !event.target.closest('button, a, textarea, input')) {
-                    toggleMusic();
-                }
-            });
         });
     </script>
 </body>
