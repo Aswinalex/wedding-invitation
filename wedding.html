@@ -742,13 +742,22 @@
 
 
             try {
+                // --- Your Firebase Configuration ---
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDbZgEemDAd0-g8rCOEgkjflwgQfe2_Sew",
+                    authDomain: "wedding-aswin-taniya.firebaseapp.com",
+                    projectId: "wedding-aswin-taniya",
+                    storageBucket: "wedding-aswin-taniya.appspot.com",
+                    messagingSenderId: "310162251053",
+                    appId: "1:310162251053:web:1a24dbf68f0bd4679587a4"
+                };
+
                 // --- Firebase Initialization ---
-                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
                 const app = initializeApp(firebaseConfig);
                 const auth = getAuth(app);
                 const db = getFirestore(app);
-                if (typeof __initial_auth_token !== 'undefined') { await signInWithCustomToken(auth, __initial_auth_token); } else { await signInAnonymously(auth); }
-                const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                await signInAnonymously(auth); // Sign in users anonymously on the live site
+                const appId = 'taniya-aswin-wedding'; // A unique ID for your app's data
                 const guestbookCollectionRef = collection(db, `/artifacts/${appId}/public/data/guestbook`);
                 const currentUserId = auth.currentUser.uid;
                 
