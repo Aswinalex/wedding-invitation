@@ -159,7 +159,7 @@
         .timeline-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background-color: #d3c7b8; }
         .timeline-item { position: relative; width: 50%; padding: 1rem 2rem; box-sizing: border-box; }
         .timeline-item:nth-child(odd) { left: 0; padding-right: 4rem; text-align: right; }
-        .timeline-item:nth-child(even) { left: 50%; padding-left: 4rem; text-align: left; }
+        .timeline-item:nth-child(even) { left: 50%; padding: 1rem 4rem; text-align: left; }
         .timeline-dot { position: absolute; top: 1.5rem; width: 16px; height: 16px; background-color: #a87b6e; border: 2px solid #fdfaf6; border-radius: 50%; z-index: 1; }
         .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
         .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
@@ -242,17 +242,6 @@
         }
         .equation-section.is-visible .person-container.aswin {
             transform: translateX(0);
-        }
-
-        .equation-section.is-visible .plus-sign {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
 
         .equation-section.is-visible .equation-container {
@@ -599,7 +588,7 @@
             <p class="text-sm mb-2">With love from our families</p>
             <p class="text-sm">&copy; 2026 Taniya & Aswin. All Rights Reserved.</p>
             <div class="mt-4">
-                <button id="copyUserIdBtn" class="text-xs text-white/50 hover:text-white">Copy Admin ID</button>
+                <button id="copyUserIdBtn" class="text-xs text-white/50 hover:text-white">Copy Admin ID: <span id="userIdDisplay"></span></button>
             </div>
         </div>
     </footer>
@@ -613,10 +602,19 @@
     </button>
 
     <script type="module">
-        // --- Firebase Imports ---
+        // --- Firebase Imports (needed for Guestbook only) ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Global Firebase instances and user state ---
+        let db = null;
+        let auth = null;
+        let userId = null;
+        let isAuthReady = false;
+
+        // --- IMPORTANT: Paste your deployed Google Apps Script Web App URL here ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhgKz9-l3TcUuZ27i5EVk8-dGjJPIkfb3TUjbqsSaVrHF_8n0QwW0jOwMvXQCGj19Flg/exec";
 
         // --- Main Page Logic ---
         document.addEventListener('DOMContentLoaded', async () => {
@@ -740,55 +738,90 @@
                 });
             }, { once: true }); // This ensures the animation only runs once per click
 
-
+            // --- Firebase Initialization and Auth ---
+            // --- Inject Firebase config and app ID FIRST ---
+            window.__firebase_config = JSON.stringify({
+            apiKey: "AIzaSyDbZgEemDAd0-g8rCOEgkjflwgQfe2_Sew",
+            authDomain: "wedding-aswin-taniya.firebaseapp.com",
+            projectId: "wedding-aswin-taniya",
+            storageBucket: "wedding-aswin-taniya.firebasestorage.app",
+            messagingSenderId: "310162251053",
+            appId: "1:310162251053:web:1a24dbf68f0bd4679587a4"
+            });
+            window.__app_id = "wedding-aswin-taniya";
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
             try {
-                // --- Your Firebase Configuration ---
-                const firebaseConfig = {
-                    apiKey: "AIzaSyDbZgEemDAd0-g8rCOEgkjflwgQfe2_Sew",
-                    authDomain: "wedding-aswin-taniya.firebaseapp.com",
-                    projectId: "wedding-aswin-taniya",
-                    storageBucket: "wedding-aswin-taniya.appspot.com",
-                    messagingSenderId: "310162251053",
-                    appId: "1:310162251053:web:1a24dbf68f0bd4679587a4"
-                };
-
-                // --- Firebase Initialization ---
+    
                 const app = initializeApp(firebaseConfig);
-                const auth = getAuth(app);
-                const db = getFirestore(app);
-                await signInAnonymously(auth); // Sign in users anonymously on the live site
-                const appId = 'taniya-aswin-wedding'; // A unique ID for your app's data
-                const guestbookCollectionRef = collection(db, `/artifacts/${appId}/public/data/guestbook`);
-                const currentUserId = auth.currentUser.uid;
-                
-                // --- SUPERUSER ID ---
-                const superuserId = '10897990723434019604'; 
+                auth = getAuth(app);
+                db = getFirestore(app);
 
-                // --- Guestbook Logic ---
-                const guestbookForm = document.getElementById('guestbookForm');
-                const guestbookLoadingSpinner = document.getElementById('guestbookLoadingSpinner');
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        document.getElementById('userIdDisplay').textContent = userId;
+                        // Now that auth is ready, set up the real-time listener for the guestbook
+                        setupGuestbookListener();
+                    } else {
+                        // Attempt to sign in if not already authenticated
+                        try {
+                            const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                            if (token) {
+                                await signInWithCustomToken(auth, token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (error) {
+                            console.error("Authentication Error:", error);
+                            displayAuthError();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+                displayAuthError();
+            }
+
+            function displayAuthError() {
                 const guestbookDisplay = document.getElementById('guestbookDisplay');
-                const deleteModal = document.getElementById('deleteModal');
-                const confirmDeleteBtn = document.getElementById('confirmDelete');
-                const cancelDeleteBtn = document.getElementById('cancelDelete');
-                let messageToDeleteId = null;
-                
-                // NOTE: The 'orderBy' function requires a composite index in Firestore. 
-                // If you see an error in the console about a missing index, you'll need to create it in your Firebase console.
-                const q = query(guestbookCollectionRef, orderBy('timestamp', 'desc'));
+                const rsvpForm = document.getElementById('rsvpForm');
+                guestbookDisplay.innerHTML = '<p class="text-red-500 text-center">Guestbook is currently unavailable. Please try reloading the page.</p>';
+                document.getElementById('guestbookForm').style.display = 'none';
+                rsvpForm.innerHTML = '<p class="text-red-500 text-center">RSVP feature is currently unavailable. Please try reloading the page.</p>';
+            }
 
-                onSnapshot(q, (snapshot) => {
+            // --- Guestbook Logic with Firestore ---
+            const guestbookForm = document.getElementById('guestbookForm');
+            const guestbookLoadingSpinner = document.getElementById('guestbookLoadingSpinner');
+            const guestbookDisplay = document.getElementById('guestbookDisplay');
+            const deleteModal = document.getElementById('deleteModal');
+            const confirmDeleteBtn = document.getElementById('confirmDelete');
+            const cancelDeleteBtn = document.getElementById('cancelDelete');
+            let messageToDeleteId = null;
+            
+            function setupGuestbookListener() {
+                const guestbookCollectionRef = collection(db, `/artifacts/${appId}/public/data/guestbook`);
+                onSnapshot(guestbookCollectionRef, (snapshot) => {
                     guestbookDisplay.innerHTML = '';
-                    if (snapshot.empty) { 
+                    const messages = [];
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        messages.push({ ...data, id: doc.id });
+                    });
+
+                    messages.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
+
+                    if (messages.length === 0) { 
                         guestbookDisplay.innerHTML = '<p class="text-gray-500">Be the first to leave a message!</p>'; 
                     } else {
-                        snapshot.forEach(doc => {
-                            const message = doc.data();
+                        messages.forEach(message => {
                             const messageEl = document.createElement('div');
                             messageEl.className = 'message relative';
                             let deleteButtonHtml = '';
-                            if (message.authorId === currentUserId || currentUserId === superuserId) {
-                                deleteButtonHtml = `<button data-id="${doc.id}" class="delete-btn absolute top-2 right-2 text-gray-400 hover:text-red-500 text-2xl leading-none">&times;</button>`;
+                            if (message.userId === userId) {
+                                deleteButtonHtml = `<button data-id="${message.id}" class="delete-btn absolute top-2 right-2 text-gray-400 hover:text-red-500 text-2xl leading-none">&times;</button>`;
                             }
                             messageEl.innerHTML = `<p class="font-semibold text-xl text-[#a87b6e]">${message.name || 'Anonymous'}</p><p class="text-gray-700 pr-6">${message.message || ''}</p><p class="text-xs text-gray-400 mt-2">${message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleString() : 'Just now'}</p>${deleteButtonHtml}`;
                             guestbookDisplay.appendChild(messageEl);
@@ -796,127 +829,174 @@
                     }
                 }, (error) => {
                     console.error("Error getting guestbook messages: ", error);
-                    guestbookDisplay.innerHTML = '<p class="text-red-500">Could not load messages. The required database index might be missing.</p>';
+                    guestbookDisplay.innerHTML = '<p class="text-red-500">Could not load messages. Please try again later.</p>';
                 });
+            }
 
-                guestbookDisplay.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('delete-btn')) {
-                        messageToDeleteId = e.target.dataset.id;
-                        deleteModal.classList.remove('hidden');
-                        deleteModal.classList.add('flex');
+            guestbookDisplay.addEventListener('click', (e) => {
+                if (e.target.classList.contains('delete-btn')) {
+                    messageToDeleteId = e.target.dataset.id;
+                    deleteModal.classList.remove('hidden');
+                    deleteModal.classList.add('flex');
+                }
+            });
+            
+            cancelDeleteBtn.addEventListener('click', () => {
+                deleteModal.classList.add('hidden');
+                deleteModal.classList.remove('flex');
+                messageToDeleteId = null;
+            });
+
+            confirmDeleteBtn.addEventListener('click', async () => {
+                if (messageToDeleteId) {
+                    try {
+                        await deleteDoc(doc(db, `/artifacts/${appId}/public/data/guestbook`, messageToDeleteId));
+                    } catch (error) {
+                        console.error("Error removing document: ", error);
+                    } finally {
+                        cancelDeleteBtn.click();
                     }
-                });
-                
-                cancelDeleteBtn.addEventListener('click', () => {
-                    deleteModal.classList.add('hidden');
-                    deleteModal.classList.remove('flex');
-                    messageToDeleteId = null;
-                });
+                }
+            });
 
-                confirmDeleteBtn.addEventListener('click', async () => {
-                    if (messageToDeleteId) {
-                        try {
-                            await deleteDoc(doc(db, `/artifacts/${appId}/public/data/guestbook`, messageToDeleteId));
-                        } catch (error) {
-                            console.error("Error removing document: ", error);
-                        } finally {
-                            cancelDeleteBtn.click();
+            guestbookForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                guestbookLoadingSpinner.classList.remove('hidden');
+                try {
+                    await addDoc(collection(db, `/artifacts/${appId}/public/data/guestbook`), { name: document.getElementById('guestName').value, message: document.getElementById('guestMessage').value, timestamp: serverTimestamp(), userId: userId });
+                    guestbookForm.reset();
+                } catch (error) { console.error("Error adding document: ", error); } finally { guestbookLoadingSpinner.classList.add('hidden'); }
+            });
+
+            // --- RSVP Form Logic with Google Apps Script ---
+            const rsvpForm = document.getElementById('rsvpForm');
+            const rsvpMessage = document.getElementById('rsvpMessage');
+            const rsvpLoadingSpinner = document.getElementById('rsvpLoadingSpinner');
+            const rsvpSubmitBtn = document.getElementById('rsvpSubmitBtn');
+            
+            rsvpForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                rsvpLoadingSpinner.classList.remove('hidden');
+                rsvpSubmitBtn.disabled = true;
+
+                if (SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+                    rsvpMessage.textContent = "Please set up your Google Apps Script and paste the URL in the code.";
+                    rsvpMessage.className = 'text-red-600 font-semibold mt-4';
+                    rsvpLoadingSpinner.classList.add('hidden');
+                    rsvpSubmitBtn.disabled = false;
+                    return;
+                }
+
+                const formData = new FormData(rsvpForm);
+                const rsvpData = Object.fromEntries(formData.entries());
+                
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Required for Google Apps Script to work
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams(rsvpData)
+                    });
+
+                    // We can't check response.ok with no-cors, so we assume success
+                    // The Apps Script will handle the sheet update.
+                    rsvpMessage.textContent = "Thank you for your RSVP! We can't wait to see you.";
+                    rsvpMessage.className = 'text-green-600 font-semibold mt-4';
+                    rsvpForm.reset();
+                } catch (error) {
+                    console.error("Error submitting RSVP: ", error);
+                    rsvpMessage.textContent = "Oops! Something went wrong. Please try again.";
+                    rsvpMessage.className = 'text-red-600 font-semibold mt-4';
+                } finally {
+                    rsvpLoadingSpinner.classList.add('hidden');
+                    rsvpSubmitBtn.disabled = false;
+                }
+            });
+
+            const copyUserIdBtn = document.getElementById('copyUserIdBtn');
+            copyUserIdBtn.addEventListener('click', () => {
+                const tempInput = document.createElement('input');
+                document.body.appendChild(tempInput);
+                tempInput.value = userId;
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                copyUserIdBtn.textContent = 'Copied!';
+                setTimeout(() => { copyUserIdBtn.textContent = `Copy Admin ID: ${userId}`; }, 2000);
+            });
+
+            // --- AI Dress Code Advisor with Gemini API ---
+            const dressCodeBtn = document.getElementById('dressCodeBtn');
+            const dressCodeQuery = document.getElementById('dressCodeQuery');
+            const dressCodeResponse = document.getElementById('dressCodeResponse');
+            const dressCodeSpinner = document.getElementById('dressCodeSpinner');
+            
+            async function generateResponseWithRetry(prompt) {
+                const maxRetries = 3;
+                const baseDelay = 1000; // 1 second
+                let retries = 0;
+                
+                while (retries < maxRetries) {
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = { contents: chatHistory };
+                        const apiKey = "";
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`API call failed with status: ${response.status}`);
+                        }
+
+                        const result = await response.json();
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            return result.candidates[0].content.parts[0].text;
+                        } else {
+                            throw new Error('Unexpected API response structure.');
+                        }
+                    } catch (error) {
+                        console.error(`Attempt ${retries + 1} failed: ${error.message}`);
+                        retries++;
+                        if (retries < maxRetries) {
+                            const delay = baseDelay * Math.pow(2, retries);
+                            await new Promise(res => setTimeout(res, delay));
+                        } else {
+                            return "I'm sorry, I'm having trouble with the request. Please try again later.";
                         }
                     }
-                });
+                }
+                return "I'm sorry, I'm having trouble with the request. Please try again later.";
+            }
 
-                guestbookForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    guestbookLoadingSpinner.classList.remove('hidden');
-                    try {
-                        await addDoc(guestbookCollectionRef, { name: document.getElementById('guestName').value, message: document.getElementById('guestMessage').value, timestamp: serverTimestamp(), authorId: currentUserId });
-                        guestbookForm.reset();
-                    } catch (error) { console.error("Error adding document: ", error); } finally { guestbookLoadingSpinner.classList.add('hidden'); }
-                });
-
-                const copyUserIdBtn = document.getElementById('copyUserIdBtn');
-                copyUserIdBtn.addEventListener('click', () => {
-                    const tempInput = document.createElement('input');
-                    document.body.appendChild(tempInput);
-                    tempInput.value = currentUserId;
-                    tempInput.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(tempInput);
-                    copyUserIdBtn.textContent = 'Copied!';
-                    setTimeout(() => { copyUserIdBtn.textContent = 'Copy Admin ID'; }, 2000);
-                });
-
-                function handleFormSubmit(form, url, messageEl, spinnerEl, submitBtnEl) {
-                    spinnerEl.classList.remove('hidden');
-                    submitBtnEl.disabled = true;
-                    fetch(url, { method: 'POST', body: new FormData(form)})
-                        .then(response => {
-                            messageEl.textContent = "Thank you! Your response has been recorded.";
-                            messageEl.className = 'text-green-600 font-semibold mt-4';
-                            form.reset();
-                        })
-                        .catch(error => {
-                            messageEl.textContent = "Error: Could not submit the form. Please try again.";
-                            messageEl.className = 'text-red-600 font-semibold mt-4';
-                            console.error('Error!', error.message);
-                        })
-                        .finally(() => {
-                            spinnerEl.classList.add('hidden');
-                            submitBtnEl.disabled = false;
-                        });
+            dressCodeBtn.addEventListener('click', async () => {
+                const query = dressCodeQuery.value;
+                if (!query) {
+                    dressCodeResponse.textContent = "Please enter a question.";
+                    return;
                 }
                 
-                const rsvpForm = document.getElementById('rsvpForm');
-                rsvpForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwhgKz9-l3TcUuZ27i5EVk8-dGjJPIkfb3TUjbqsSaVrHF_8n0QwW0jOwMvXQCGj19Flg/exec';
-                    handleFormSubmit(rsvpForm, googleScriptURL, document.getElementById('rsvpMessage'), document.getElementById('rsvpLoadingSpinner'), document.getElementById('rsvpSubmitBtn'));
-                });
-
-                const dressCodeBtn = document.getElementById('dressCodeBtn');
-                const dressCodeQuery = document.getElementById('dressCodeQuery');
-                const dressCodeResponse = document.getElementById('dressCodeResponse');
-                const dressCodeSpinner = document.getElementById('dressCodeSpinner');
-
-                dressCodeBtn.addEventListener('click', async () => {
-                    const query = dressCodeQuery.value;
-                    if (!query) {
-                        dressCodeResponse.textContent = "Please enter a question.";
-                        return;
-                    }
-                    
-                    dressCodeSpinner.classList.remove('hidden');
-                    dressCodeBtn.disabled = true;
-                    dressCodeResponse.textContent = 'Thinking...';
-
-                    setTimeout(() => {
-                        let responseText = "That's a great question! ";
-                        const lowerCaseQuery = query.toLowerCase();
-
-                        if (lowerCaseQuery.includes('saree') || lowerCaseQuery.includes('lehenga') || lowerCaseQuery.includes('kurta')) {
-                            responseText += "Traditional Indian attire like a saree, lehenga, or a smart kurta set would be absolutely perfect and fit the 'festive wear' theme beautifully.";
-                        } else if (lowerCaseQuery.includes('suit') || lowerCaseQuery.includes('blazer')) {
-                            responseText += "A suit or a blazer is a great choice for formal wear. You'll look sharp!";
-                        } else if (lowerCaseQuery.includes('dress')) {
-                            responseText += "A formal or cocktail dress is an excellent option. Festive colors or elegant fabrics would be a wonderful touch.";
-                        } else if (lowerCaseQuery.includes('jeans') || lowerCaseQuery.includes('casual')) {
-                            responseText += "The dress code is formal or festive, so we'd recommend something a bit more dressed up than jeans or casual wear. Think suits, gowns, or elegant traditional outfits.";
-                        } else {
-                            responseText += "The dress code is formal or festive wear. Think elegant evening attire, such as suits, cocktail dresses, gowns, or traditional Indian outfits like sarees and lehengas. When in doubt, it's better to be slightly overdressed than underdressed. We can't wait to see you!";
-                        }
-                        
-                        dressCodeResponse.textContent = responseText;
-                        dressCodeSpinner.classList.add('hidden');
-                        dressCodeBtn.disabled = false;
-                    }, 1500);
-                });
-
-            } catch (error) {
-                console.error("Initialization or Auth Error: ", error);
-                document.getElementById('guestbookDisplay').innerHTML = '<p class="text-red-500 text-center">Guestbook is currently unavailable.</p>';
-                document.getElementById('guestbookForm').style.display = 'none';
-                document.getElementById('rsvpForm').innerHTML = '<p class="text-red-500 text-center">RSVP feature is currently unavailable.</p>';
-            }
+                dressCodeSpinner.classList.remove('hidden');
+                dressCodeBtn.disabled = true;
+                dressCodeResponse.textContent = 'Thinking...';
+                
+                const fullPrompt = `You are a helpful wedding dress code advisor for a wedding in Thiruvalla, Kerala. The dress code is "formal or festive wear". The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Keep the response concise. Here is the guest's question: "${query}"`;
+                
+                const responseText = await generateResponseWithRetry(fullPrompt);
+                
+                dressCodeResponse.textContent = responseText;
+                dressCodeSpinner.classList.add('hidden');
+                dressCodeBtn.disabled = false;
+            });
         });
     </script>
 </body>
