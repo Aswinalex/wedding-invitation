@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're  Invited! - Taniya & Aswin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tone.js for background music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        /* Custom styles for the wedding invite */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf6; /* Light cream background */
+            color: #4a4a4a; /* Dark gray text */
+            line-height: 1.6;
+        }
+        .playfair-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            /* Custom background image provided by the user */
+            background-image: url('http://googleusercontent.com/file_content/0');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; /* Ensure image doesn't repeat */
+            background-color: #d9c0b2; /* Fallback background color if image fails to load */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            display: flex; /* Ensure flex properties apply */
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative; /* For absolute positioning of overlay */
+            overflow: hidden; /* Hide overflow from image scaling */
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3); /* Dark overlay */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0,0,0,0.3); /* Dark overlay for text box */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 48rem; /* Equivalent to max-w-2xl */
+            margin: auto;
+        }
+        .section-divider {
+            border-top: 1px solid #d3c7b8; /* Soft divider line */
+            width: 80px;
+            margin: 2rem auto;
+        }
+        .btn-primary {
+            background-color: #a87b6e; /* Muted rose color */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8c655b; /* Darker rose on hover */
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #a87b6e; /* Muted rose */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Music Controls -->
+    <div id="music-control" class="fixed bottom-5 right-5 z-50">
+        setupMusic()
+        <button onclick="toggleMusic()" class="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-[#a87b6e] hover:bg-white transition-all duration-300">
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="heroSection" class="hero-section text-center p-4">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h4 class="text-xl md:text-2xl mb-4 playfair-display italic">The honor of your presence is requested at the marriage of</h4>
+            <h1 class="text-5xl md:text-7xl font-bold playfair-display mb-6">
+                Taniya
+                <span class="block text-4xl md:text-6xl my-2">&</span>
+                Aswin
+            </h1>
+            <p class="text-xl md:text-2xl mb-2 playfair-display">
+                D/o Binny Mathew & Laly Binny
+            </p>
+            <p class="text-xl md:text-2xl mb-8 playfair-display">
+                S/o Dr. Salim C Eapen & Renu Thomas
+            </p>
+            <p class="text-2xl md:text-3xl mb-8 playfair-display">
+                Together with the blessings & love of their families,
+                Taniya and Aswin invite you to join them as they celebrate their wedding.
+            </p>
+            <p class="text-xl md:text-2xl font-semibold">
+                January 5th, 2026
+            </p>
+            <p class="text-lg md:text-xl">
+                3:00 PM onwards
+            </p>
+        </div>
+    </header>
+
+    <!-- Details Section -->
+    <section class="py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold playfair-display mb-4 text-[#a87b6e]">The Ceremony & Reception</h2>
+            <div class="section-divider"></div>
+            <p class="text-lg mb-8">
+                We would be absolutely delighted if you could join us as we embark on our journey together as husband and wife. Your presence would make our special day even more memorable.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <!-- Ceremony Details -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">Wedding Ceremony</h3>
+                    <p class="mb-2">
+                        <strong class="font-medium">Date:</strong> January 5th, 2026
+                    </p>
+                    <p class="mb-2">
+                        <strong class="font-medium">Time:</strong> 3:00 PM
+                    </p>
+                    <p class="mb-2">
+                        <strong class="font-medium">Venue:</strong> St Thomas Mar Thoma Church
+                    </p>
+                    <p class="mb-2">
+                        <strong class="font-medium">Address:</strong> Thiruvalla, Pathanamthitta, Kerala – 689101
+                    </p>
+                    <p class="text-sm text-gray-600 mt-4">
+                        Please arrive 15-30 minutes prior to the ceremony start time.
+                    </p>
+                </div>
+
+                <!-- Reception Details -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">Reception</h3>
+                    <p class="mb-2">
+                        <strong class="font-medium">Time:</strong> 5:30 PM – 10:00 PM (Cocktail hour to follow ceremony)
+                    </p>
+                    <p class="mb-2">
+                        <strong class="font-medium">Venue:</strong> Mor Athanasius Yohan Memorial Convention Centre
+                    </p>
+                    <p class="mb-2">
+                        <strong class="font-medium">Address:</strong> Kuttappuzha, Thiruvalla, Pathanamthitta, Kerala – 689103
+                    </p>
+                    <p class="text-sm text-gray-600 mt-4">
+                        Dinner, dancing, and celebrations will continue into the evening.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information for International Guests Section -->
+    <section class="bg-[#f2ede8] py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold playfair-display mb-4 text-[#a87b6e]">For Our Friends from Abroad</h2>
+            <div class="section-divider"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Wedding Ceremony</h3>
+                    <p class="mb-4">
+                        It’s a Mar Thoma Christian Malayalam wedding — a peaceful church service with prayers, hymns, and blessings.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Reception</h3>
+                    <p class="mb-4">
+                        Meet & greet the couple, take photos, enjoy Kerala cuisine, and share a joyful evening. Small performances and warm wishes included!
+                    </p>
+
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Travel</h3>
+                    <p class="mb-4">
+                        Transport can be arranged from the church to the reception.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Dress Code</h3>
+                    <p class="mb-2">
+                        Formal or festive wear is appreciated.
+                    </p>
+                    <p class="mb-2">
+                        <strong>Men:</strong> suit, shirt & trousers, or try a traditional mundu.
+                    </p>
+                    <p class="mb-4">
+                        <strong>Women:</strong> saree, salwar, long dress, or any festive Indian outfit. We’re happy to help you find a saree or Indian attire if you’d like!
+                    </p>
+
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Accommodation</h3>
+                    <p class="mb-4">
+                        If you’d like help arranging accommodation before/after the wedding day, please mention this when you RSVP.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold playfair-display mb-4 text-[#a87b6e]">✨ Plus Ones</h3>
+                    <p class="mb-4">
+                        Your plus one is warmly welcome — kindly confirm when you RSVP!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-16 px-4 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl font-bold playfair-display mb-4 text-[#a87b6e]">RSVP</h2>
+            <div class="section-divider"></div>
+            <p class="text-lg mb-8">
+                Kindly respond by October 1st, 2025 so we can finalize our arrangements.
+            </p>
+            <a href="[Link to RSVP Form]" class="btn-primary inline-block text-lg font-semibold shadow-md hover:shadow-lg">
+                RSVP Now
+            </a>
+            <p class="text-sm text-gray-600 mt-4">
+                (Please click the button above to confirm your attendance)
+            </p>
+            <p class="text-sm text-gray-600 mt-2">
+                (+ your contact details here)
+            </p>
+        </div>
+    </section>
+
+    <!-- Guestbook Message Generator Section -->
+    <section class="bg-[#f2ede8] py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold playfair-display mb-4 text-[#a87b6e]">✨ Guestbook Message Generator ✨</h2>
+            <div class="section-divider"></div>
+            <p class="text-lg mb-8">
+                Need a little inspiration for your message to Taniya and Aswin? Click the button below!
+            </p>
+            <textarea id="guestbookMessage" class="w-full p-4 mb-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent resize-y min-h-[120px]" placeholder="Your generated message will appear here..." readonly></textarea>
+            <button id="generateMessageBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">
+                Generate Message
+                <span id="loadingSpinner" class="loading-spinner hidden"></span>
+            </button>
+            <p id="errorMessage" class="text-red-600 mt-4 hidden">An error occurred. Please try again later.</p>
+        </div>
+    </section>
+
+    <!-- Gallery/Love Story Section -->
+    <section class="py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold playfair-display mb-4 text-[#a87b6e]">Our Story</h2>
+            <div class="section-divider"></div>
+            <p class="text-lg mb-8">
+                Every love story is beautiful, but ours is our favorite. We can't wait to celebrate the next chapter with you!
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Gallery images updated with user's photos -->
+                <img src="http://googleusercontent.com/file_content/1" alt="Taniya and Aswin in a field of yellow flowers" class="w-full h-auto rounded-xl shadow-md object-cover aspect-square">
+                <img src="http://googleusercontent.com/file_content/2" alt="Taniya and Aswin by a lake" class="w-full h-auto rounded-xl shadow-md object-cover aspect-square">
+                <img src="http://googleusercontent.com/file_content/3" alt="Taniya and Aswin in front of the Louvre" class="w-full h-auto rounded-xl shadow-md object-cover aspect-square">
+                <img src="http://googleusercontent.com/file_content/4" alt="Taniya and Aswin embracing" class="w-full h-auto rounded-xl shadow-md object-cover aspect-square">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#a87b6e] text-white py-8 px-4 text-center rounded-t-xl">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-lg mb-2 playfair-display">We can't wait to celebrate with you!</p>
+            <p class="text-sm mb-2">With love from Nevil, Nitty, Bincy, Eva, Ema & Ida</p>
+            <p class="text-sm">&copy; 2026 Taniya & Aswin. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Background Music Logic ---
+        let musicPlaying = true;
+        let synth;
+
+        function setupMusic() {
+            // A reverb effect to give a sense of space, like in a church
+            const reverb = new Tone.Reverb({
+                decay: 4,
+                wet: 0.4
+            }).toDestination();
+
+            // A soft FM synth for a gentle, organ-like sound
+            synth = new Tone.PolySynth(Tone.FMSynth, {
+                harmonicity: 3.01,
+                modulationIndex: 14,
+                envelope: { attack: 0.2, decay: 0.3, sustain: 0.1, release: 1.2 },
+                modulation: { type: "square" },
+                modulationEnvelope: { attack: 0.01, decay: 0.5, sustain: 0.2, release: 0.1 },
+                volume: -18 // Lower volume for background music
+            }).connect(reverb);
+
+            // A sequence of chords to create a peaceful, looping melody
+            const chords = [
+                {"time": "0:0", "notes": ["C4", "E4", "G4"]},
+                {"time": "0:2", "notes": ["G4"]},
+                {"time": "1:0", "notes": ["G3", "B3", "D4"]},
+                {"time": "1:2", "notes": ["D4"]},
+                {"time": "2:0", "notes": ["A3", "C4", "E4"]},
+                {"time": "2:2", "notes": ["E4"]},
+                {"time": "3:0", "notes": ["F3", "A3", "C4"]},
+                {"time": "3:2", "notes": ["C4"]},
+            ];
+
+            const part = new Tone.Part((time, value) => {
+                synth.triggerAttackRelease(value.notes, "1n", time);
+            }, chords).start(0);
+
+            part.loop = true;
+            part.loopEnd = "4m"; // Loop every 4 measures
+            Tone.Transport.bpm.value = 75;
+        }
+        
+        function toggleMusic() {
+            // Start Tone.js context if not already started (required by browsers)
+            if (Tone.context.state !== 'running') {
+                Tone.start().then(setupMusic);
+            }
+
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+
+            if (musicPlaying) {
+                Tone.Transport.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                if (!synth) { // If music hasn't been set up yet
+                    setupMusic();
+                }
+                Tone.Transport.start();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+
+        // --- Guestbook and other page logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateMessageBtn = document.getElementById('generateMessageBtn');
+            const guestbookMessageTextarea = document.getElementById('guestbookMessage');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Event listener for Guestbook Message Generator
+            generateMessageBtn.addEventListener('click', async () => {
+                guestbookMessageTextarea.value = ''; // Clear previous message
+                errorMessage.classList.add('hidden'); // Hide any previous error
+                loadingSpinner.classList.remove('hidden'); // Show loading spinner
+                generateMessageBtn.disabled = true; // Disable button during generation
+
+                try {
+                    let chatHistory = [];
+                    const prompt = "Generate a heartfelt and concise wedding guestbook message for a couple named Taniya and Aswin. Make it warm and joyful, suitable for friends or family.";
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will automatically provide the API key at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        guestbookMessageTextarea.value = text;
+                    } else {
+                        guestbookMessageTextarea.value = "Could not generate a message. Please try again.";
+                        errorMessage.classList.remove('hidden');
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    console.error("Error generating message:", error);
+                    guestbookMessageTextarea.value = "Failed to generate message. Please check your connection or try again later.";
+                    errorMessage.classList.remove('hidden');
+                } finally {
+                    loadingSpinner.classList.add('hidden'); // Hide loading spinner
+                    generateMessageBtn.disabled = false; // Re-enable button
+                }
+            });
+        });
+    </script>
+</body>
+</html>
