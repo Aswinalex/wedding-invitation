@@ -18,82 +18,86 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- Tone.js for Audio -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <style>
         /* Custom styles for the wedding invite */
+        .object-cover {
+            object-fit: cover;
+        }
         body {
-            font-family: 'Cormorant Garamond', serif; /* New elegant font */
-            background-color: #fdfaf6;
-            color: #5a5a5a; /* Softer text color */
+            font-family: 'Poppins', sans-serif;
+            background-color:#0d4b4ff1 ; /* Navy */
+            color: #f2ede8; /* Blush/Ivory */
             line-height: 1.7;
-            overflow-x: hidden; /* Prevent horizontal scrollbar from animations */
+            overflow-x: hidden;
+        }
+        .bible-verse-ml {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
         }
         .font-great-vibes {
             font-family: 'Great Vibes', cursive;
         }
         .hero-section {
-            background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg');
-            background-size: 110%; /* Start slightly zoomed in for Ken Burns */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #d9c0b2;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            background: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg') center center/cover no-repeat;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(33,158,158,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             position: relative;
             overflow: hidden;
-            background-attachment: fixed; /* Parallax effect */
-            animation: kenburns 20s ease-out infinite; /* Ken Burns effect */
+            background-attachment: fixed;
+            animation: kenburns 80s ease-out infinite;
         }
-        @keyframes kenburns {
-            0% { background-size: 110%; background-position: center center; }
-            50% { background-size: 120%; background-position: center top; }
-            100% { background-size: 110%; background-position: center center; }
-        }
+        /* Optionally, make the overlay less opaque to reveal more of the image: */
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Golden hour gradient */
-            background: linear-gradient(to top, rgba(80, 48, 32, 0.4), rgba(242, 188, 133, 0.2));
+            background: linear-gradient(120deg, rgba(33,158,158,0.3) 0%, rgba(255,126,95,0.1) 100%);
             z-index: 1;
+            
         }
         .hero-content {
             position: relative;
             z-index: 2;
-            background-color: rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,184,140,0.18) 100%);
             padding: 2rem;
             border-radius: 0.75rem;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px) saturate(120%);
+            border: 1.5px solid rgba(255,126,95,0.25);
             max-width: 48rem;
             margin: auto;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
         .section-divider {
-            border-top: 1px solid #d3c7b8;
+            border-top: 2px solid #ffd700; /* Gold */
             width: 80px;
             margin: 2rem auto;
         }
         .btn-primary {
-            background-color: #a87b6e;
-            color: white;
+            background-color: #ffd700;
+            color: #14213d;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(33,158,158,0.1);
+            font-weight: 600;
+            border: none;
+            backdrop-filter: blur(4px);
         }
         .btn-primary:hover {
-            background-color: #8c655b;
+            background: linear-gradient(90deg, #ffb88c 0%, #ff7e5f 100%);
+            color: #219e9e;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 20px rgba(33,158,158,0.15);
         }
         .loading-spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #a87b6e;
+            border-top: 4px solid #274690;
             border-radius: 50%;
             width: 24px;
             height: 24px;
@@ -102,6 +106,24 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+        @keyframes kenburns {
+            0% {
+                background-size: 100%;
+                background-position: center center;
+            }
+            40% {
+                background-size: 125%;
+                background-position: top right;
+            }
+            60% {
+                background-size: 125%;
+                background-position: top right;
+            }
+            100% {
+                background-size: 100%;
+                background-position: center center;
+            }
+        }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -109,33 +131,35 @@
         .event-box {
             position: relative;
             overflow: hidden;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(33,158,158,0.7);
+            background: linear-gradient(120deg, rgba(33,158,158,0.85) 0%, rgba(56,182,182,0.85) 100%);
+            backdrop-filter: blur(8px) saturate(120%);
         }
         .event-box-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+            background: linear-gradient(120deg, rgba(33,158,158,0.5) 0%, rgba(255,126,95,0.2) 100%);
             z-index: 1;
             transition: background-color 0.3s ease;
-        }
-        .event-box:hover .event-box-overlay {
-            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
         }
         .event-box-content {
             position: relative;
             z-index: 2;
         }
         #guestbookDisplay {
-            background-color: #fff;
-            border: 1px solid #d3c7b8;
+            background: linear-gradient(120deg, rgba(33,158,158,0.7) 0%, rgba(255,184,140,0.2) 100%);
+            border: 1px solid #ff7e5f;
             border-radius: 0.5rem;
             padding: 1.5rem;
             text-align: left;
             min-height: 150px;
+            color: #fff;
+            backdrop-filter: blur(6px);
         }
         #guestbookDisplay .message {
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2b3a67;
             padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
@@ -147,26 +171,26 @@
         /* For scroll animations */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(60px) scale(0.97);
+            transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 3s cubic-bezier(0.4,0,0.2,1);
+            will-change: opacity, transform;
+            background-color: transparent !important;
         }
         .fade-in-section.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
         /* Timeline Styles */
         .timeline-container { position: relative; padding: 2rem 0; }
-        .timeline-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background-color: #d3c7b8; }
+        .timeline-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background-color: #ff7e5f; /* Coral */ }
         .timeline-item { position: relative; width: 50%; padding: 1rem 2rem; box-sizing: border-box; }
         .timeline-item:nth-child(odd) { left: 0; padding-right: 4rem; text-align: right; }
         .timeline-item:nth-child(even) { left: 50%; padding: 1rem 4rem; text-align: left; }
-        .timeline-dot { position: absolute; top: 1.5rem; width: 16px; height: 16px; background-color: #a87b6e; border: 2px solid #fdfaf6; border-radius: 50%; z-index: 1; }
+        .timeline-dot { position: absolute; top: 1.5rem; width: 16px; height: 16px; background-color: #ffb88c; /* Light coral */ border: 2px solid #fff; border-radius: 50%; z-index: 1; }
         .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
         .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
-        .timeline-content { background-color: #fff; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #d3c7b8; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .timeline-content:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .timeline-content img { border-radius: 0.5rem; margin-bottom: 1rem; transition: transform 0.3s ease; }
-        .timeline-content:hover img { transform: scale(1.05); }
+        .timeline-content { background: linear-gradient(120deg, #800000 0%, rgba(255,184,140,0.18) 100%); padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #ff7e5f; /* Coral */ transition: transform 0.3s ease, box-shadow 0.3s ease; color: #fff; }
+        .timeline-content:hover { box-shadow: 0 10px 20px rgba(255,184,140,0.15); }
 
         /* Mobile-specific styles for the timeline */
         @media (max-width: 767px) {
@@ -195,7 +219,7 @@
         .menu-list li {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition: opacity 2s ease-out, transform 2s ease-out;
         }
 
         /* Menu heading hover animation */
@@ -207,7 +231,7 @@
         }
         .menu-section h3:hover {
             transform: scale(1.05);
-            color: #8c655b; /* Darker shade */
+            color: #ffb88c;
         }
 
         /* Perfect Equation Animation */
@@ -217,6 +241,10 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
+        }
+        .wedding-video {
+            max-width: 100%;
+            height: auto;
         }
         @media (min-width: 768px) {
             .equation-container {
@@ -236,6 +264,10 @@
             transform: scale(0);
             transition: opacity 0.5s 1s ease, transform 0.5s 1s cubic-bezier(0.34, 1.56, 0.64, 1); /* Delay and bounce effect */
         }
+        .equation-section.is-visible .plus-sign {
+            opacity: 1;
+            transform: scale(1);
+        }
 
         .equation-section.is-visible .person-container.taniya {
             transform: translateX(0);
@@ -246,6 +278,48 @@
 
         .equation-section.is-visible .equation-container {
             animation: pulse 2s 1.5s ease-in-out infinite; /* Delayed pulse animation */
+        }
+
+        /* --- Add or update these styles in your <style> block or external CSS file --- */
+        .menu-section,
+        .equation-section,
+        .bg-wedding-section {
+            background: linear-gradient(to top,  rgba(255,184,140,0.18) 100%) !important;
+            backdrop-filter: blur(8px) saturate(120%);
+        }
+        .bg-\[\#a87b6e\], .bg-\[\#945240\] {
+            background-color: #f2b5b0 !important; /* Blush */
+        }
+        .text-[#a87b6e], .text-[#945240] {
+            color: #ffd700 !important; /* Gold */
+        }
+        footer {
+            background-color: #14213d;
+            color: #ffd700;
+        }
+        footer .text-2xl {
+            color: #fff;
+        }
+        footer .text-sm {
+            color: #fff;
+        }
+        .btn-primary, .focus\:ring-\[\#a87b6e\], .focus\:ring-\[\#945240\] {
+            background: linear-gradient(90deg, #ff7e5f 0%, #ffb88c 100%) !important;
+            color: #219e9e !important;
+            border-color: #ff7e5f !important;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: 2px solid #ff7e5f !important;
+            border-color: #ff7e5f !important;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff7e5f;
+        }
+        ::-webkit-scrollbar-track {
+            background: #219e9e;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
         }
     </style>
 </head>
@@ -267,60 +341,128 @@
     <header id="heroSection" class="hero-section text-center p-4">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h4 class="text-xl md:text-2xl mb-4 font-cormorant-garamond italic">Together with their families</h4>
-            <h1 class="text-6xl md:text-8xl font-great-vibes mb-6">Taniya & Aswin</h1>
-            <p class="text-xl md:text-2xl mb-2">Daughter of Binny & Laly Mathew</p>
-            <p class="text-xl md:text-2xl mb-8">Son of Dr. Salim C Eapen & Renu Thomas</p>
+            <p class="text-lg md:text-5xl mb-4 font-great-vibes" style="color: #0D4B4F;">
+                Together with their families
+            </p>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes" style="color: #800000;">Taniya</h1>
+            <p class="text-xl md:text-4xl mb-2 font-great-vibes" style="color: #0D4B4F;">
+                Daughter of Mr. Binny Vadakedathu and Mrs. Laly Binny
+            </p>
+            
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes" style="color: #800000;">Aswin</h1>
+            <p class="text-xl md:text-4xl mb-2 font-great-vibes" style="color: #0D4B4F;">
+                Son of Dr. Salim C Eapen & Mrs. Renu Thomas
+            </p>
+            <p class="text-xl md:text-4xl mt-6 font-great-vibes" style="color: #800000;">
+                Invite you to join them in celebrating their love
+            </p>
         </div>
     </header>
 
     <!-- Countdown Timer Section -->
-    <section class="bg-[#a87b6e] text-white py-8 px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4">Counting down to the big day!</h2>
+    <section class="py-8 px-4 text-center" style="background: linear-gradient(to bottom, #8b9a15 50%, #ddd5d4  100%); color: #14213d;">
+        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4" style="color: #800000;">Counting down to the big day!</h2>
         <div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
-            <div><div id="days" class="text-4xl md:text-6xl font-semibold">00</div><div class="text-sm uppercase tracking-wider">Days</div></div>
-            <div><div id="hours" class="text-4xl md:text-6xl font-semibold">00</div><div class="text-sm uppercase tracking-wider">Hours</div></div>
-            <div><div id="minutes" class="text-4xl md:text-6xl font-semibold">00</div><div class="text-sm uppercase tracking-wider">Minutes</div></div>
-            <div><div id="seconds" class="text-4xl md:text-6xl font-semibold">00</div><div class="text-sm uppercase tracking-wider">Seconds</div></div>
+            <div>
+                <div id="days" class="text-4xl md:text-6xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #0D4B4F; text-shadow: 1px 1px 0 #ffd700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #0D4B4F;">Days</div>
+            </div>
+            <div>
+                <div id="hours" class="text-4xl md:text-6xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #0D4B4F; text-shadow: 1px 1px 0 #ffd700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #0D4B4F;">Hours</div>
+            </div>
+            <div>
+                <div id="minutes" class="text-4xl md:text-6xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #0D4B4F; text-shadow: 1px 1px 0 #ffd700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #0D4B4F;">Minutes</div>
+            </div>
+            <div>
+                <div id="seconds" class="text-4xl md:text-6xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #0D4B4F; text-shadow: 1px 1px 0 #ffd700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #0D4B4F;">Seconds</div>
+            </div>
         </div>
     </section>
 
     <!-- Bible Verse Section -->
-    <section class="py-16 px-4 text-center fade-in-section">
-        <div class="max-w-3xl mx-auto">
-            <p class="text-2xl italic text-gray-700">"So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate."</p>
-            <p class="text-lg mt-2 text-gray-500">- Matthew 19:6</p>
-            <div class="section-divider"></div>
-            <p class="text-2xl italic text-gray-700">"അതുകൊണ്ട് അവർ മേലാൽ രണ്ടല്ല, ഒരു ജഡമത്രേ. ആകയാൽ ദൈവം യോജിപ്പിച്ചതിനെ മനുഷ്യൻ വേർപിരിക്കരുത്."</p>
-            <p class="text-lg mt-2 text-gray-500">- മത്തായി 19:6</p>
-        </div>
-    </section>
-
-    <!-- Details Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">The Ceremony & Reception</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8">From a journey that began in Kerala and led to PhDs in Germany and Singapore, we are overjoyed to return home to celebrate the next chapter of our lives with the people we love most.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div class="event-box p-8 rounded-xl shadow-lg" style="background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg'); background-size: cover; background-position: center;"><div class="event-box-overlay rounded-xl"></div><div class="event-box-content"><h3 class="text-3xl font-great-vibes mb-4">Wedding Ceremony</h3><p class="mb-2"><strong class="font-semibold">Date:</strong> January 5th, 2026</p><p class="mb-2"><strong class="font-semibold">Time:</strong> 3:00 PM</p><p class="mb-2"><strong class="font-semibold">Venue:</strong> St Thomas Mar Thoma Church</p><p class="mb-2"><strong class="font-semibold">Address:</strong> Thiruvalla, Pathanamthitta, Kerala – 689101</p><p class="text-sm text-gray-200 mt-4">Please arrive 15-30 minutes prior to the ceremony start time.</p></div></div>
-                <div class="event-box p-8 rounded-xl shadow-lg" style="background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg'); background-size: cover; background-position: center;"><div class="event-box-overlay rounded-xl"></div><div class="event-box-content"><h3 class="text-3xl font-great-vibes mb-4">Reception</h3><p class="mb-2"><strong class="font-semibold">Time:</strong> 5:30 PM – 10:00 PM</p><p class="mb-2"><strong class="font-semibold">Venue:</strong> Mor Athanasius Yohan Memorial Convention Centre</p><p class="mb-2"><strong class="font-semibold">Address:</strong> Kuttappuzha, Thiruvalla, Pathanamthitta, Kerala – 689103</p><p class="text-sm text-gray-200 mt-4">Dinner, dancing, and celebrations will continue into the evening.</p></div></div>
+    <section class="py-16 px-4 text-center" style="background: linear-gradient(to bottom,  #ddd5d4  70%, #f2b5b0 100%);">
+        <div class="max-w-3xl mx-auto relative z-10">
+            <!-- Glassy overlay -->
+            <div style="
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                border-radius: 1rem;
+                background: linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,184,140,0.18) 100%);
+                backdrop-filter: blur(16px) saturate(120%);
+                -webkit-backdrop-filter: blur(16px) saturate(120%);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            "></div>
+            <div class="relative z-10 bg-transparent rounded-xl p-8 shadow-lg">
+                <p class="text-2xl italic" style="color: #0D4B4F; font-family: 'Poppins', sans-serif;">"So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate."</p>
+                <p class="text-lg mt-2" style="color: #0D4B4F; font-family: 'Poppins', sans-serif;">- Matthew 19:6</p>
+                <div class="section-divider"></div>
+                <p class="text-2xl italic bible-verse-ml"><span lang="ml" style="color:#800000;">"അതുകൊണ്ട് അവർ മേലാൽ രണ്ടല്ല, ഒരു ജഡമത്രേ. ആകയാൽ ദൈവം യോജിപ്പിച്ചതിനെ മനുഷ്യൻ വേർപിരിക്കരുത്."</span></p>
+                <p class="text-lg mt-2" style="color: #de483a; font-family: 'Poppins', sans-serif;">- മത്തായി 19:6</p>
             </div>
         </div>
     </section>
-    
-    <!-- Menu Section -->
-    <section class="py-16 px-4 text-center fade-in-section menu-section">
+
+    <!-- Details Section (Ceremony & Reception with Directions) -->
+    <section class="bg-wedding-section py-16 px-4 text-center" style="background: linear-gradient(to bottom,  #f2b5b0 50%, #d1d7d7 100%);">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">The Wedding Feast</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#800000]">The Ceremony & Reception</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8">A taste of Kerala to celebrate our special day. We hope you enjoy the feast!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <p class="text-xl text-[#800000]">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+                <p class="text-xl text-[#800000]">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+            </div>
+            <div class="flex flex-row flex-wrap gap-8 justify-center items-stretch">
+                <!-- Ceremony -->
+                <div class="flex-1 flex flex-col items-center">
+                    <div class="event-box p-0 rounded-xl shadow-lg w-full overflow-hidden" style="background:none;">
+                        <div class="relative w-full">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="w-full h-64 object-cover rounded-xl" />
+                            <div class="event-box-overlay rounded-xl absolute inset-0" style="backdrop-filter: blur(2px); background: linear-gradient(120deg, rgba(33,158,158,0.25) 0%, rgba(255,126,95,0.08) 100%);"></div>
+                            <div class="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
+                                <h3 class="text-3xl font-great-vibes mb-2 text-white drop-shadow-lg">Wedding Ceremony</h3>
+                                <p class="mb-1 text-white font-semibold drop-shadow-lg">January 5th, 2026 &bull; 3:00 PM</p>
+                                <p class="mb-1 text-white drop-shadow-lg">St Thomas Mar Thoma Church</p>
+                                <p class="mb-1 text-white drop-shadow-lg">Thiruvalla, Kerala</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block" style="color:#111 !important;">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reception -->
+                <div class="flex-1 flex flex-col items-center">
+                    <div class="event-box p-0 rounded-xl shadow-lg w-full overflow-hidden" style="background:none;">
+                        <div class="relative w-full">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="w-full h-64 object-cover rounded-xl" />
+                            <div class="event-box-overlay rounded-xl absolute inset-0" style="backdrop-filter: blur(2px); background: linear-gradient(120deg, rgba(33,158,158,0.25) 0%, rgba(255,126,95,0.08) 100%);"></div>
+                            <div class="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
+                                <h3 class="text-3xl font-great-vibes mb-2 text-white drop-shadow-lg">Reception</h3>
+                                <p class="mb-1 text-white font-semibold drop-shadow-lg">January 5th, 2026 &bull; 5:30 PM – 10:00 PM</p>
+                                <p class="mb-1 text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
+                                <p class="mb-1 text-white drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block" style="color:#111 !important;">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Menu Section -->
+    <section class="py-16 px-4 text-center menu-section" style="background: linear-gradient(to bottom, #d1d7d7 20%,#f2b5b0 100%);>
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#800000]">The Wedding Feast</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8 text-[#800000]">A taste of Kerala to celebrate our special day. We hope you enjoy the feast!</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left text-lg">
                 <!-- Welcome Drinks & Starters -->
                 <div class="space-y-6">
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Welcome Drink</h3>
-                        <ul class="space-y-1 text-gray-700 menu-list">
+                        <ul class="space-y-1 text-yellow-200 menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Ginger lime</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Watermelon juice</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Passion fruit honey fizz</li>
@@ -328,7 +470,7 @@
                     </div>
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Starter</h3>
-                        <ul class="space-y-1 text-gray-700 menu-list">
+                        <ul class="space-y-1 text-yellow-200  menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Veg spring rolls</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Cocktail beef samosa</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Chicken skewers</li>
@@ -336,7 +478,7 @@
                     </div>
                      <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Soups</h3>
-                        <ul class="space-y-1 text-gray-700 menu-list">
+                        <ul class="space-y-1 text-yellow-200  menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Cream of chicken</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Sweet corn veg</li>
                         </ul>
@@ -345,7 +487,7 @@
                 <!-- Main Course -->
                 <div>
                     <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Main Course</h3>
-                    <ul class="space-y-1 text-gray-700 menu-list">
+                    <ul class="space-y-1 text-yellow-200  menu-list">
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Nool porotta</li>
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Ari pathiri</li>
                         <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Beef olarthiyathu</li>
@@ -360,7 +502,7 @@
                 <div class="space-y-6">
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Thattukada</h3>
-                        <ul class="space-y-1 text-gray-700 menu-list">
+                        <ul class="space-y-1 text-yellow-200  menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Variety of dosa (4 options)</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Kappa & Fish curry</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Chammantis</li>
@@ -370,7 +512,7 @@
                     </div>
                     <div>
                         <h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Dessert</h3>
-                        <ul class="space-y-1 text-gray-700 menu-list">
+                        <ul class="space-y-1 text-yellow-200  menu-list">
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Elaneer pudding</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Live jilebi</li>
                             <li><span class="text-[#a87b6e] mr-2">&#10042;</span>Vanilla ice cream</li>
@@ -383,64 +525,157 @@
     </section>
 
     <!-- Our Perfect Equation Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section equation-section">
+    <section class="py-16 px-4 text-center equation-section" style="background: linear-gradient(to bottom, #f2b5b0 0%, #ffffff 100%);">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Perfect Equation</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#800000]">Our Perfect Equation</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8">From laser optics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
+            <p class="text-xl mb-8" style="color: #0D4B4F;">From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
             <div class="equation-container">
-                <div class="person-container taniya text-center">
-                    <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l2.387-.477a2 2 0 001.022-.547z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
-                    <h3 class="text-3xl font-great-vibes mt-4">Taniya</h3>
-                    <p class="font-semibold">Evolutionary Biology</p>
+                <div class="person-container">
+                    <video controls class="mx-auto mt-8 rounded shadow-lg" style="max-width: 100%; height: auto;" playsinline>
+                        <source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
+                        Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
+                    </video>
                 </div>
-                <div class="plus-sign text-4xl font-great-vibes text-[#a87b6e]">+</div>
-                <div class="person-container aswin text-center">
-                    <svg class="w-24 h-24 mx-auto text-[#a87b6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                    <h3 class="text-3xl font-great-vibes mt-4">Aswin</h3>
-                    <p class="font-semibold">Laser & Optics</p>
-                </div>
+                
             </div>
         </div>
     </section>
 
-    <!-- Map & Directions Section -->
-    <section class="py-16 px-4 text-center fade-in-section">
+    <!-- Our Story Timeline Section -->
+    <section class="py-16 px-4 text-center" style="background: linear-gradient(to bottom, #ffffff 0%, #f2b5b0 100%);">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">How to Get There</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Story</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8">We can't wait to see you! Here are the locations for our special day.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="block p-6 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"><h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Ceremony</h3><p class="font-semibold text-lg">St Thomas Mar Thoma Church</p><p class="text-gray-600">Thiruvalla, Pathanamthitta, Kerala</p><span class="mt-4 inline-block btn-primary">Get Directions</span></a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="block p-6 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"><h3 class="text-3xl font-great-vibes mb-2 text-[#a87b6e]">Reception</h3><p class="font-semibold text-lg">Mor Athanasius Yohan Memorial Convention Centre</p><p class="text-gray-600">Kuttappuzha, Thiruvalla, Pathanamthitta</p><span class="mt-4 inline-block btn-primary">Get Directions</span></a>
+            <p class="text-xl mb-8" style="color: #000;">Some of our favorite memories together so far.</p>
+            <div class="timeline-container">
+                <!-- Timeline Item 1 -->
+                    <div class="timeline-item fade-in-section">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg" alt="Taniya and Aswin in front of the Louvre">
+                            <h3 class="text-3xl font-great-vibes text-[#0D4B4F]">A Parisian Adventure</h3>
+                            <p class="text-sm text-[#0D4B4F] mb-2">April 2025</p>
+                            <p>Exploring the streets of Paris and making memories that will last a lifetime, right in front of the iconic Louvre.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item fade-in-section">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg" alt="Taniya and Aswin embracing">
+                            <h3 class="text-3xl font-great-vibes text-[#0D4B4F]">Mountain Views</h3>
+                            <p class="text-sm text-[#0D4B4F] mb-2">April 2025</p>
+                            <p>Nothing beats a warm hug with a breathtaking view. A perfect day spent together in the beauty of nature.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item fade-in-section">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg" alt="Taniya and Aswin by a lake">
+                            <h3 class="text-3xl font-great-vibes text-[#0D4B4F]">Lakeside Serenity</h3>
+                            <p class="text-sm text-[#0D4B4F] mb-2">April 2025</p>
+                            <p>A quiet, peaceful afternoon by the lake, just enjoying each other's company and the calm surroundings.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item fade-in-section">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg" alt="Taniya and Aswin in a field of yellow flowers">
+                            <h3 class="text-3xl font-great-vibes text-[#0D4B4F]">Golden Hour</h3>
+                            <p class="text-sm text-[#0D4B4F] mb-2">April 2025</p>
+                            <p>Laughter and sunshine in a field of gold. A happy moment that perfectly captures our love.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- Wedding Party Section -->
+        <section class="py-16 px-4 text-center" style="background: linear-gradient(to bottom, #f2ede8 0%, #f2b5b0 100%);">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-5xl font-great-vibes mb-4 text-[#0D4B4F]">Meet Our Family</h2>
+                <div class="section-divider"></div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Parents of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Mr. Binny & Mrs. Laly</h3><p class="text-[#0D4B4F]">Parents of the Bride</p></div>
+                    <div class="text-center"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/appa_amma.jpg" alt="Parents of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Dr. Salim & Mrs. Renu </h3><p class="text-[#0D4B4F]">Parents of the Groom</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Nevil & Bincy</h3><p class="text-[#0D4B4F]">Brother & Sister-in-Law</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Dr. Nitty Sara</h3><p class="text-[#0D4B4F]">Sister of the Bride</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Ida</h3><p class="text-[#0D4B4F]">Sister of the Groom</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Nieces" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-[#0D4B4F]">Eva & Ema</h3><p class="text-[#0D4B4F]">Our beloved nieces</p></div>
+                </div>
+            </div>
+        </section>
     
     <!-- Local Favorites Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Local Favorites</h2>
+        <!-- Local Favorites Section -->
+    <section class="bg-[#0D4B4F] py-16 px-4 text-center" style="background: linear-gradient(to bottom, #f2ede8 0%, #f2b5b0 100%);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#0D4B4F]">Our Local Favorites</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <p class="text-xl mb-8 text-[#0D4B4F]">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+
+            <!-- Grid of attractions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <!-- Uptown Shack -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Uptown+Shack" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2">☕</div>
-                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Favorite Cafe</h3>
-                    <p class="font-semibold">The Daily Grind</p>
-                    <p class="text-sm text-gray-600">For the best coffee and pastries to start your day.</p>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Favorite Rooftop Cafe</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Uptown Shack</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">For a rooftop shack dining experience</p>
+                    <a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
                 </div>
+
+                <!-- Pamba River Walk -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Pamba+River+Walk" alt="Pamba River Walk" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2">🏞️</div>
-                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Scenic Walk</h3>
-                    <p class="font-semibold">Pamba River Walk</p>
-                    <p class="text-sm text-gray-600">A beautiful and peaceful walk along the riverbanks.</p>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Scenic Walk</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Pamba River Walk</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">A beautiful and peaceful walk along the riverbanks.</p>
+                    <a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
                 </div>
+
+                <!-- Avees Puttu House -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2">🍽️</div>
-                    <h3 class="text-2xl font-great-vibes text-[#a87b6e]">Must-Try Food</h3>
-                    <p class="font-semibold">Avees Puttu House</p>
-                    <p class="text-sm text-gray-600">For authentic and delicious Kerala cuisine.</p>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Must-Try Food</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Avees Puttu House</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">For authentic and delicious Kerala cuisine.</p>
+                    <a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
+                </div>
+
+                <!-- Bhoothakuzhy Para -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Bhoothakuzhy+Para" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2">🪨</div>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Hidden Gem</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Bhoothakuzhy Para</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
+                    <a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
+                </div>
+
+                <!-- Vengal Viewpoint -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Vengal+Viewpoint" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2">🌅</div>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Sunset Spot</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Vengal Viewpoint</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
+                    <a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
+                </div>
+
+                <!-- Aruvikuzhy Waterfalls -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2">💧</div>
+                    <h3 class="text-2xl font-great-vibes text-[#0D4B4F]">Waterfall Wonder</h3>
+                    <p class="font-semibold text-[#0D4B4F]">Aruvikuzhy Waterfalls</p>
+                    <p class="text-sm text-[#0D4B4F] mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+                    <a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="text-sm text-blue-600 underline">View on Map</a>
                 </div>
             </div>
         </div>
@@ -449,47 +684,47 @@
     <!-- RSVP Section -->
     <section class="py-16 px-4 text-center fade-in-section">
         <div class="max-w-2xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">RSVP</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
-            <form id="rsvpForm" class="text-left space-y-4">
-                <input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <select name="Attending" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                    <option value="" disabled selected>Will you be attending?</option>
-                    <option value="Yes, with pleasure!">Yes, with pleasure!</option>
-                    <option value="No, with regrets.">No, with regrets.</option>
-                </select>
-                <input type="number" name="Guests" placeholder="Number of guests" min="0" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <textarea name="Message" placeholder="Optional message (Request a song at wedding)" rows="3" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg"></textarea>
-                <div class="text-center">
-                    <button type="submit" id="rsvpSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Submit RSVP<span id="rsvpLoadingSpinner" class="loading-spinner hidden"></span></button>
-                </div>
-            </form>
-            <div id="rsvpMessage" class="mt-4"></div>
+        <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">RSVP</h2>
+        <div class="section-divider"></div>
+        <p class="text-xl mb-8">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
+        <form id="rsvpForm" class="text-left space-y-4">
+            <input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black">
+            <select name="Attending" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black" title="Attendance selection">
+            <option value="" disabled selected>Will you be attending?</option>
+            <option value="Yes, with pleasure!">Yes, with pleasure!</option>
+            <option value="No, with regrets.">No, with regrets.</option>
+            </select>
+            <input type="number" name="Guests" placeholder="Number of guests" min="0" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black">
+            <textarea name="Message" placeholder="Optional message (Request a song at wedding)" rows="3" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black"></textarea>
+            <div class="text-center">
+            <button type="submit" id="rsvpSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Submit RSVP<span id="rsvpLoadingSpinner" class="loading-spinner hidden"></span></button>
+            </div>
+        </form>
+        <div id="rsvpMessage" class="mt-4"></div>
         </div>
     </section>
 
     <!-- Guestbook Section -->
     <section class="py-16 px-4 text-center fade-in-section">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Guestbook</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8">Leave a message for the happy couple!</p>
-            <form id="guestbookForm" class="text-left space-y-4 mb-8">
-                <input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg">
-                <textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg"></textarea>
-                <div class="text-center">
-                    <button type="submit" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Post Message<span id="guestbookLoadingSpinner" class="loading-spinner hidden"></span></button>
-                </div>
-            </form>
-            <div id="guestbookDisplay" class="space-y-4"><p class="text-gray-500">Loading messages...</p></div>
+        <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Guestbook</h2>
+        <div class="section-divider"></div>
+        <p class="text-xl mb-8">Leave a message for the happy couple!</p>
+        <form id="guestbookForm" class="text-left space-y-4 mb-8">
+            <input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black">
+            <textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#a87b6e] focus:border-transparent text-lg text-black"></textarea>
+            <div class="text-center">
+            <button type="submit" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Post Message<span id="guestbookLoadingSpinner" class="loading-spinner hidden"></span></button>
+            </div>
+        </form>
+        <div id="guestbookDisplay" class="space-y-4"><p class="text-gray-500">Loading messages...</p></div>
         </div>
     </section>
 
     <!-- AI Dress Code Advisor Section -->
     <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
         <div class="max-w-2xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">AI Dress Code Advisor</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Dress Code Advisor</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8">Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.</p>
             <div class="space-y-4 text-left">
@@ -497,74 +732,7 @@
                 <div class="text-center">
                     <button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
                 </div>
-                <div id="dressCodeResponse" class="p-4 bg-white rounded-lg border border-gray-200 min-h-[50px] text-gray-600 text-lg">Your answer will appear here...</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Party Section -->
-    <section class="py-16 px-4 text-center fade-in-section">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Meet Our Family</h2>
-            <div class="section-divider"></div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Parents of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Binny & Laly Mathew</h3><p class="text-gray-600">Parents of the Bride</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Parents of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Dr. Salim & Renu Eapen</h3><p class="text-gray-600">Parents of the Groom</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nevil & Bincy</h3><p class="text-gray-600">Brother & Sister-in-Law</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Bride" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Nitty</h3><p class="text-gray-600">Sister of the Bride</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Sister of the Groom" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Ida</h3><p class="text-gray-600">Sister of the Groom</p></div>
-                <div class="text-center"><img src="https://placehold.co/300x300/d3c7b8/4a4a4a?text=Photo" alt="Nieces" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4">Eva & Ema</h3><p class="text-gray-600">Our beloved nieces</p></div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Our Story Timeline Section -->
-    <section class="bg-[#f2ede8] py-16 px-4 text-center fade-in-section">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-[#a87b6e]">Our Story</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8">A few of our favorite moments on the journey to today.</p>
-            <div class="timeline-container">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item fade-in-section">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg" alt="Taniya and Aswin in front of the Louvre">
-                        <h3 class="text-3xl font-great-vibes text-[#a87b6e]">A Parisian Adventure</h3>
-                        <p class="text-sm text-gray-500 mb-2">April 2025</p>
-                        <p>Exploring the streets of Paris and making memories that will last a lifetime, right in front of the iconic Louvre.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item fade-in-section">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg" alt="Taniya and Aswin embracing">
-                        <h3 class="text-3xl font-great-vibes text-[#a87b6e]">Mountain Views</h3>
-                        <p class="text-sm text-gray-500 mb-2">April 2025</p>
-                        <p>Nothing beats a warm hug with a breathtaking view. A perfect day spent together in the beauty of nature.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item fade-in-section">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg" alt="Taniya and Aswin by a lake">
-                        <h3 class="text-3xl font-great-vibes text-[#a87b6e]">Lakeside Serenity</h3>
-                        <p class="text-sm text-gray-500 mb-2">April 2025</p>
-                        <p>A quiet, peaceful afternoon by the lake, just enjoying each other's company and the calm surroundings.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item fade-in-section">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg" alt="Taniya and Aswin in a field of yellow flowers">
-                        <h3 class="text-3xl font-great-vibes text-[#a87b6e]">Golden Hour</h3>
-                        <p class="text-sm text-gray-500 mb-2">April 2025</p>
-                        <p>Laughter and sunshine in a field of gold. A happy moment that perfectly captures our love.</p>
-                    </div>
-                </div>
+                <div id="dressCodeResponse" class="p-4 bg-white rounded-lg border border-black min-h-[50px] text-gray-600 text-lg">Your answer will appear here...</div>
             </div>
         </div>
     </section>
@@ -717,11 +885,26 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        // Autoplay video if present in this section
+                        const video = entry.target.querySelector('video');
+                        if (video && video.paused) {
+                            // Try to play the video (may require user interaction depending on browser)
+                            video.play().catch(() => {});
+                        }
+                    } else {
+                        entry.target.classList.remove('is-visible');
+                        // Optionally pause video when out of view
+                        const video = entry.target.querySelector('video');
+                        if (video && !video.paused) {
+                            video.pause();
+                        }
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-in-section').forEach(section => { observer.observe(section); });
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
 
             // --- Wedding Feast Click Animation ---
             const weddingFeastTitle = document.querySelector('.menu-section h2');
