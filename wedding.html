@@ -125,6 +125,59 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+                /* ...existing code... */
+        .equation-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 60vh;
+            width: 100%;
+            text-align: center;
+        }
+        .equation-section .video-bg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+            position: relative;
+            z-index: 1;
+        }
+        .equation-section .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(13, 75, 79, 0.3);
+            border-radius: 1rem;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .equation-section .hero-content {
+            position: relative;
+            z-index: 3;
+            margin-top: 0px;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(13, 75, 79, 0.7);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+        }
+        /* Responsive for mobile */
+        @media (max-width: px) {
+            .equation-section .video-bg {
+                max-height: 300px;
+            }
+            .equation-section .hero-content {
+                margin-top: -30px;
+                padding: 1rem;
+            }
+        }
+        /* ...existing code... */
         @keyframes kenburns {
             0% {
                 background-size: 100%;
@@ -329,6 +382,36 @@
             border-color: #fff;
         }
         .text-black { color: white; }
+        @media (max-width: 640px) {
+            .py-16 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            .px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        /* 4. Carousel Height: Reduce height on mobile */
+        @media (max-width: 640px) {
+            .photo-carousel {
+                height: 40vh !important;
+                min-height: 200px;
+            }
+        }
+
+        /* 5. Responsive Heading Sizes: Use smaller headings on mobile */
+        @media (max-width: 640px) {
+            .text-6xl, .text-8xl, .text-5xl {
+                font-size: 2rem !important;
+                line-height: 2.5rem !important;
+            }
+            .text-4xl, .text-3xl {
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -371,20 +454,20 @@
         <h2 class="text-3xl md:text-4xl font-great-vibes mb-4" style="color: #FFD700;">Counting down to the big day!</h2>
         <div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
             <div>
-                <div id="days" class="text-4xl md:text-6xl font-semibold text-white">00</div>
-                <div class="text-sm uppercase tracking-wider text-white">Days</div>
+                <div id="days" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Days</div>
             </div>
             <div>
-                <div id="hours" class="text-4xl md:text-6xl font-semibold text-white">00</div>
-                <div class="text-sm uppercase tracking-wider text-white">Hours</div>
+                <div id="hours" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Hours</div>
             </div>
             <div>
-                <div id="minutes" class="text-4xl md:text-6xl font-semibold text-white">00</div>
-                <div class="text-sm uppercase tracking-wider text-white">Minutes</div>
+                <div id="minutes" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Minutes</div>
             </div>
             <div>
-                <div id="seconds" class="text-4xl md:text-6xl font-semibold text-white">00</div>
-                <div class="text-sm uppercase tracking-wider text-white">Seconds</div>
+                <div id="seconds" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Seconds</div>
             </div>
         </div>
     </section>
@@ -498,7 +581,7 @@
     </section>
 
     <!-- Our Perfect Equation Section -->
-    <section class="equation-section fade-in-section">
+    <section class="equation-section fade-in-section" style="border: none; box-shadow: none;"></section>
         <video 
             class="video-bg" 
             autoplay 
@@ -510,7 +593,7 @@
             Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
         </video>
         <div class="overlay"></div>
-        <div class="hero-content text-center py-16 px-4">
+        <div class="hero-content text-center py-16 px-4" style="border: none; box-shadow: none;">
             <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Perfect Equation</h2>
             <div class="section-divider"></div>
             <p class="text-xl text-white">From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
@@ -903,9 +986,33 @@
                 { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg?raw=true", alt: "Taniya and Aswin", caption: "A New Chapter: Carrying her on his back here, and in his heart for a lifetime to come." },
                 { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_06e88a40.jpg?raw=true", alt: "Taniya and Aswin at Fort Kochi", caption: "Cherished Smiles: Enjoying a beautiful day together at Fort Kochi Beach, making memories by the sea." },
                 { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg?raw=true", alt: "Taniya and Aswin holding hands", caption: "Together Always: Hand in hand, we walk towards our forever, ready for all of life's beautiful adventures." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg?raw=true", alt: "Timeline 8", caption: "Sweet Moments: Our first movie together: Barroz, starring Mohanlal. The film may have flopped, but we loved every moment spent together." },
+                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg?raw=true", alt: "Timeline 8", caption: "Our first Movie together : Barroz, starring Mohanlal. The film may have flopped, but we loved every moment spent together (and the popcorn was great too!)." },
                 { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg?raw=true", alt: "Timeline 9", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." }
             ];
+
+            // Make carousel caption boxes larger for longer messages
+            const carouselCaptionStyle = document.createElement('style');
+            carouselCaptionStyle.innerHTML = `
+                .carousel-caption {
+                    min-width: 320px;
+                    max-width: 98vw;
+                    width: 600px;
+                    min-height: 100px;
+                    font-size: 0.8rem;
+                    padding: 2rem 2.5rem;
+                    line-height: 1.8;
+                    word-break: break-word;
+                }
+                @media (max-width: 800px) {
+                    .carousel-caption {
+                        width: 95vw;
+                        min-width: 0;
+                        padding: 1.2rem 0.8rem;
+                        font-size: 1rem;
+                    }
+                }
+            `;
+            document.head.appendChild(carouselCaptionStyle);
 
             let currentSlide = 0;
             const intervalTime = 5000;
