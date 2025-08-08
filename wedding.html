@@ -32,14 +32,12 @@
         .object-cover {
             object-fit: cover;
         }
-        .bible-verse-ml {
-            font-family: 'Poppins', sans-serif;
-        }
+        
         .font-great-vibes {
             font-family: 'Great Vibes', cursive;
         }
         .hero-section {
-            background: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg') center center/cover no-repeat;
+            background: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg') center 35%/cover no-repeat;
             color: #fff;
             text-shadow: 2px 2px 8px rgba(33,158,158,0.4);
             display: flex;
@@ -49,15 +47,8 @@
             position: relative;
             overflow: hidden;
             background-attachment: fixed;
-            animation: kenburns 80s ease-out infinite;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            animation: efficient-kenburns 80s ease-out infinite;
+            transition: transform 80s ease-in-out;
         }
         .hero-content {
             position: relative;
@@ -66,10 +57,92 @@
             padding: 2rem;
             border-radius: 0.75rem;
             backdrop-filter: none;
+            -webkit-backdrop-filter: none;
             border: 1.5px solid rgba(255, 255, 255, 0.25);
             max-width: 48rem;
             margin: auto;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        /* Mobile-specific Ken Burns effect */
+        @media (max-width: 640px) {
+            .hero-section {
+            animation: kenburns-mobile 30s ease-out infinite !important;
+            background-position: center bottom;
+            }
+            @keyframes kenburns-mobile {
+            0% {
+                background-size: 120%;
+                background-position: center bottom;
+            }
+            40% {
+                background-size: 140%;
+                background-position: center top;
+            }
+            60% {
+                background-size: 140%;
+                background-position: center top;
+            }
+            100% {
+                background-size: 120%;
+                background-position: center bottom;
+            }
+            }
+        }
+
+        /* Responsive for desktop */
+        @media (min-width: 641px) and (max-width: 1000px) {
+            .hero-section {
+            animation: kenburns-desktop 80s ease-out infinite !important;
+            background-position: center 35%;
+            }
+            @keyframes kenburns-desktop {
+            0% {
+                background-size: 105%;
+                background-position: center 35%;
+            }
+            40% {
+                background-size: 112%;
+                background-position: center 45%;
+            }
+            60% {
+                background-size: 112%;
+                background-position: center 45%;
+            }
+            100% {
+                background-size: 105%;
+                background-position: center 35%;
+            }
+            }
+        }
+        @media (min-width: 1000px) {
+            .hero-section {
+            animation: kenburns-desktop 80s ease-out infinite !important;
+            background-position: center 35%;
+            }
+            @keyframes kenburns-desktop {
+            0% {
+                background-size: 60%;
+                background-position: center 35%;
+            }
+            40% {
+                background-size: 100%;
+                background-position: center 45%;
+            }
+            60% {
+                background-size: 100%;
+                background-position: center 45%;
+            }
+            100% {
+                background-size: 60%;
+                background-position: center 35%;
+            }
+            }
+        }
+        .bible-verse-ml {
+            font-family: 'Poppins', sans-serif;
+        }
+        .animate-flip {
+            animation: flip-number 0.5s ease-in-out;
         }
         .section-divider {
             position: relative;
@@ -107,6 +180,7 @@
             font-weight: 600;
             border: none;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
         .btn-primary:hover {
             background: #E6C200;
@@ -125,7 +199,6 @@
             vertical-align: middle;
             margin-left: 10px;
         }
-                /* ...existing code... */
         .equation-section {
             display: flex;
             flex-direction: column;
@@ -139,20 +212,13 @@
         .equation-section .video-bg {
             display: block;
             margin: 0 auto;
-            max-width: 100%;
-            max-height: 400px;
+            width: 100%;
+            height: auto;
             border-radius: 1rem;
             box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
             position: relative;
             z-index: 1;
-        }
-        .equation-section .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(13, 75, 79, 0.3);
-            border-radius: 1rem;
-            z-index: 2;
-            pointer-events: none;
+            object-fit: contain;
         }
         .equation-section .hero-content {
             position: relative;
@@ -166,9 +232,11 @@
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
         /* Responsive for mobile */
-        @media (max-width: px) {
+        @media (max-width: 800px) {
             .equation-section .video-bg {
                 max-height: 300px;
             }
@@ -177,81 +245,89 @@
                 padding: 1rem;
             }
         }
-        /* ...existing code... */
-        @keyframes kenburns {
-            0% {
-                background-size: 100%;
-                background-position: center center;
-            }
-            40% {
-                background-size: 125%;
-                background-position: top right;
-            }
-            60% {
-                background-size: 125%;
-                background-position: top right;
-            }
-            100% {
-                background-size: 100%;
-                background-position: center center;
+        @media (max-width: 800px) {
+            .equation-section .video-bg {
+            width: 100vw !important;
+            min-width: 100vw !important;
+            max-width: 100vw !important;
+            left: 1%;
+            right: 1%;
+            margin-left: 0vw;
+            margin-right: 0vw;
+            position: relative;
+            display: block;
+            object-fit: contain;
+            z-index: 3;
+            border-radius: 0 !important;
             }
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes pulse-divider {
-            0%, 100% { transform: scaleX(1); opacity: 1; }
-            50% { transform: scaleX(1.05); opacity: 0.8; }
-        }
-        @keyframes flip-number {
-            0% { transform: rotateX(0); }
-            50% { transform: rotateX(90deg); }
-            100% { transform: rotateX(0); }
-        }
-        .animate-flip {
-            animation: flip-number 0.5s ease-in-out;
-        }
+        
         .event-box {
             position: relative;
             overflow: hidden;
             color: #fff;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
             background-color: #1A6367;
-            backdrop-filter: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 0;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .event-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
         }
         .event-box-overlay {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: transparent;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(26,99,103,0.8));
             z-index: 1;
-            transition: background-color 0.3s ease;
-            backdrop-filter: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
         }
         .event-box-content {
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            gap: 0.75rem;
         }
-        #guestbookDisplay {
-            background-color: #1A6367;
-            border: 1px solid #FFD700;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            text-align: left;
-            min-height: 150px;
-            color: white;
-            backdrop-filter: none;
+        
+        .event-box img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+            display: block;
         }
-        #guestbookDisplay .message {
-            border-bottom: 1px solid #FFD700;
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
+
+        .ceremony-reception-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
-        #guestbookDisplay .message:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+
+        @media (min-width: 640px) {
+            .ceremony-reception-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+        
         /* For scroll animations */
         .fade-in-section {
             opacity: 0;
@@ -264,69 +340,73 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
-        /* New Photo Carousel Styles */
-        .photo-carousel {
+
+        /* --- Masonry Grid with uniform height and hover effect --- */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .masonry-item {
             position: relative;
-            height: 80vh;
-            max-height: 800px;
             overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            background-color: #1A6367;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .carousel-item {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1.5s ease-in-out;
-            opacity: 0;
-        }
-        .carousel-item.active {
-            opacity: 1;
-        }
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .carousel-caption {
-            position: absolute;
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 90%;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 1rem 2rem;
             border-radius: 0.5rem;
-            text-align: center;
-            z-index: 10;
-        }
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 20;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             cursor: pointer;
+            width: 100%;
+        }
+        .masonry-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        /* UPDATED: Removed fixed height for responsive images */
+        .masonry-item img {
+            width: 100%;
+            height: auto; /* Automatically adjust height based on width */
+            max-height: 300px; /* Prevents extremely tall images on desktop */
+            object-fit: contain;
+            display: block;
+        }
+        .masonry-caption {
+            background-color: rgba(13, 75, 79, 0.7);
             padding: 1rem;
-            border-radius: 50%;
-            font-size: 2rem;
-            transition: background-color 0.3s ease;
+            text-align: center;
         }
-        .carousel-control:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .masonry-item img {
+            width: 100%;
+            height: auto; /* Automatically adjust height based on width */
+            max-height: 600px; /* Prevents extremely tall images on desktop */
+            object-fit: cover;
+            display: block;
+            }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .masonry-item img {
+            width: 100%;
+            height: auto; /* Automatically adjust height based on width */
+            max-height: 600px; /* Prevents extremely tall images on desktop */
+            object-fit: cover;
+            display: block;
+            }
         }
-        .carousel-control.left { left: 2%; }
-        .carousel-control.right { right: 2%; }
-        /* End of New Photo Carousel Styles */
+        /* --- End of Masonry Grid styles --- */
+        
+        /* --- Hover effect for Meet Our Family section --- */
+        .family-member-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .family-member-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
 
         .text-dark { color: #FFD700; }
         .text-light { color: white; }
@@ -339,7 +419,7 @@
         .local-favorites-section > div > div {
             border-color: #1A6367;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: #125356;
+            background-color: #0D4B4F;
         }
         .local-favorites-section > div > div:hover {
             transform: translateY(-5px);
@@ -348,13 +428,6 @@
         .local-favorites-section a {
             color: #800000;
             font-weight: bold;
-        }
-        footer {
-            background-color: #0D4B4F;
-            color: white;
-        }
-        footer .text-2xl, footer .text-sm, footer .text-xs {
-            color: white;
         }
         .bg-white {
             background-color: #1A6367;
@@ -382,6 +455,34 @@
             border-color: #fff;
         }
         .text-black { color: white; }
+        #guestbookDisplay {
+            background-color: #1A6367;
+            border: 1px solid #FFD700;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: left;
+            min-height: 150px;
+            color: white;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        #guestbookDisplay .message {
+            border-bottom: 1px solid #FFD700;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        #guestbookDisplay .message:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+
+        
+        
+        
+        
+        
         @media (max-width: 640px) {
             .py-16 {
                 padding-top: 2rem !important;
@@ -390,14 +491,6 @@
             .px-4 {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
-            }
-        }
-
-        /* 4. Carousel Height: Reduce height on mobile */
-        @media (max-width: 640px) {
-            .photo-carousel {
-                height: 40vh !important;
-                min-height: 200px;
             }
         }
 
@@ -412,12 +505,39 @@
                 line-height: 2rem !important;
             }
         }
+
+        
+        
+        
+        
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse-divider {
+            0%, 100% { transform: scaleX(1); opacity: 1; }
+            50% { transform: scaleX(1.05); opacity: 0.8; }
+        }
+        @keyframes flip-number {
+            0% { transform: rotateX(0); }
+            50% { transform: rotateX(90deg); }
+            100% { transform: rotateX(0); }
+        }
+        
+        footer {
+            background-color: #0D4B4F;
+            color: white;
+        }
+        footer .text-2xl, footer .text-sm, footer .text-xs {
+            color: white;
+        }
     </style>
 </head>
 <body class="antialiased">
     
     <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
         <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
             <h3 class="text-lg font-semibold mb-4 text-dark">Are you sure?</h3>
             <p class="text-gray-600 mb-6">Do you really want to delete this message? This action cannot be undone.</p>
@@ -430,44 +550,43 @@
 
     <!-- Hero Section -->
     <header id="heroSection" class="hero-section text-center p-4">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
                 Together with our families
             </p>
             <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-white">Taniya</h1>
             <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
-                Daughter of Mr. Binny Vadakedathu and Mrs. Laly Binny
+                Daughter of Mr. Binny Mathew and Mrs. Laly Binny
             </p>
 
             <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-white">Aswin</h1>
             <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
                 Son of Dr. Salim C Eapen & Mrs. Renu Thomas
             </p>
-            <p class="text-xl md:text-4xl mt-6 font-great-vibes text-white"></p>
+            <p class="text-xl md:text-4xl mt-6 font-great-vibes text-white">
                 Invite you to join us in celebrating our love
             </p>
         </div>
     </header>
     <!-- Countdown Timer Section -->
     <section class="py-8 px-4 text-center bg-dark text-white">
-        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4" style="color: #FFD700;">Counting down to the big day!</h2>
+        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4" style="color: #ff7b00;">Counting down to the big day!</h2>
         <div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
             <div>
-                <div id="days" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Days</div>
+                <div id="days" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Days</div>
             </div>
             <div>
-                <div id="hours" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Hours</div>
+                <div id="hours" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Hours</div>
             </div>
             <div>
-                <div id="minutes" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Minutes</div>
+                <div id="minutes" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Minutes</div>
             </div>
             <div>
-                <div id="seconds" class="text-4xl md:text-6xl font-semibold" style="color: #FFD700;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #FFD700;">Seconds</div>
+                <div id="seconds" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
+                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Seconds</div>
             </div>
         </div>
     </section>
@@ -482,16 +601,16 @@
                 z-index: 0;
                 border-radius: 1rem;
                 background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
                 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             "></div>
             <div class="relative z-10 bg-transparent rounded-xl p-8 shadow-lg">
-                <p class="text-2xl italic text-white" style="font-family: 'Poppins', sans-serif;">"So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate."</p>
-                <p class="text-lg mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- Matthew 19:6</p>
+                <p class="text-2xl italic text-white" style="font-family: 'Poppins', sans-serif;">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
+                <p class="text-lg mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- Colossians 3:14</p>
                 <div class="section-divider"></div>
-                <p class="text-2xl italic bible-verse-ml"><span lang="ml" class="text-white">"അതുകൊണ്ട് അവർ മേലാൽ രണ്ടല്ല, ഒരു ജഡമത്രേ. ആകയാൽ ദൈവം യോജിപ്പിച്ചതിനെ മനുഷ്യൻ വേർപിരിക്കരുത്."</span></p>
-                <p class="text-lg mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- മത്തായി 19:6</p>
+                <p class="text-2xl italic bible-verse-ml"><span lang="ml" class="text-white">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+                <p class="text-lg mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- കൊലോസ്യർ 3:14</p>
             </div>
         </div>
     </section>
@@ -501,73 +620,61 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-white">The Ceremony & Reception</h2>
             <div class="section-divider"></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <p class="text-xl text-white">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
-                <p class="text-xl text-white">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
-            </div>
-            <div class="flex flex-row flex-wrap gap-8 justify-center items-stretch">
+            <div class="ceremony-reception-grid">
                 <!-- Ceremony -->
-                <div class="flex-1 flex flex-col items-center">
-                    <div class="event-box p-0 rounded-xl shadow-lg w-full overflow-hidden" style="background:none;">
-                        <div class="relative w-full">
-                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="w-full h-64 object-cover rounded-xl" />
-                            <div class="event-box-overlay rounded-xl absolute inset-0" style="backdrop-filter: none; background-color: rgba(13, 75, 79, 0.7);"></div>
-                            <div class="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
-                                <h3 class="text-3xl font-great-vibes mb-2 text-white drop-shadow-lg">Wedding Ceremony</h3>
-                                <p class="mb-1 text-white font-semibold drop-shadow-lg">January 5th, 2026 • 3:00 PM</p>
-                                <p class="mb-1 text-white drop-shadow-lg">St Thomas Mar Thoma Church</p>
-                                <p class="mb-1 text-white drop-shadow-lg">Thiruvalla, Kerala</p>
-                                <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
-                            </div>
+                <div>
+                    <p class="text-base md:text-xl text-white mb-4">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+                    <div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
+                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
+                        <div class="event-box-content">
+                            <h3 class="text-3xl md:text-4xl font-great-vibes mb-2 text-white drop-shadow-lg">Wedding Ceremony</h3>
+                            <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 3:00 PM</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg">St Thomas Mar Thoma Church</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg">Thiruvalla, Kerala</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
                         </div>
                     </div>
                 </div>
                 <!-- Reception -->
-                <div class="flex-1 flex flex-col items-center">
-                    <div class="event-box p-0 rounded-xl shadow-lg w-full overflow-hidden" style="background:none;">
-                        <div class="relative w-full">
-                            <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="w-full h-64 object-cover rounded-xl" />
-                            <div class="event-box-overlay rounded-xl absolute inset-0" style="backdrop-filter: none; background-color: rgba(13, 75, 79, 0.7);"></div>
-                            <div class="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
-                                <h3 class="text-3xl font-great-vibes mb-2 text-white drop-shadow-lg">Reception</h3>
-                                <p class="mb-1 text-white font-semibold drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
-                                <p class="mb-1 text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
-                                <p class="mb-1 text-white drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
-                            </div>
+                <div>
+                    <p class="text-base md:text-xl text-white mb-4">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+                    <div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
+                        <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
+                        <div class="event-box-content">
+                            <h3 class="text-3xl md:text-4xl font-great-vibes mb-2 text-white drop-shadow-lg">Reception</h3>
+                            <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
                         </div>
                     </div>
                 </div>
-                <!-- Collapsible Travel Directions -->
-                <div class="w-full md:w-auto max-w-2xl mx-auto mt-8 text-left"></div>
-                    <button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-                        class="w-full text-xl font-semibold text-white bg-dark hover:bg-dark/80 transition p-4 rounded-xl shadow-md text-left">
-                        🚗✈️ How to Get to Thiruvalla (Tap to Expand)
-                    </button>
-
-                    <div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner text-white">
-                        <h3 class="text-2xl font-great-vibes text-white mb-4 text-center">Getting to Thiruvalla</h3>
-
-                        <div class="mb-4">
-                            <h4 class="text-lg font-semibold text-white mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
-                            <ul class="list-disc pl-5 text-white text-md">
-                                <li><strong>Taxi:</strong> ~1.5 hours (₹2,200–₹2,700). Pre-book or use Uber Intercity.</li>
-                                <li><strong>Train:</strong> Take a cab (~30 min) to Aluva station, then a train to Thiruvalla (~2–2.5 hrs).</li>
-                                <li><strong>Bus:</strong> KSRTC buses to Kottayam, then to Thiruvalla (total ~3 hours).</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="text-lg font-semibold text-white mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
-                            <ul class="list-disc pl-5 text-white text-md">
-                                <li><strong>Taxi:</strong> ~2.5–3 hours (₹3,000–₹3,800). GoZo, Savaari, or Uber Intercity are reliable.</li>
-                                <li><strong>Train:</strong> Short ride to Trivandrum Central, then train to Thiruvalla (~2.5 hrs).</li>
-                                <li><strong>Bus:</strong> Regular KSRTC buses to Thiruvalla (~4 hours, budget-friendly).</li>
-                            </ul>
-                        </div>
+            </div>
+            <!-- Collapsible Travel Directions -->
+            <div class="w-full md:w-auto max-w-2xl mx-auto mt-8 text-left">
+                <button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
+                    class="w-full text-xl font-semibold text-white bg-dark hover:bg-dark/80 transition p-4 rounded-xl shadow-md text-left">
+                    🚗✈️ How to Get to Thiruvalla (Tap to Expand)
+                </button>
+                <div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner text-white" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+                    <h3 class="text-2xl font-great-vibes text-white mb-4 text-center">Getting to Thiruvalla</h3>
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-white mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
+                        <ul class="list-disc pl-5 text-white text-md">
+                            <li><strong>Taxi:</strong> ~1.5 hours (₹2,200–₹2,700). Pre-book or use Uber Intercity.</li>
+                            <li><strong>Train:</strong> Take a cab (~30 min) to Aluva station, then a train to Thiruvalla (~2–2.5 hrs).</li>
+                            <li><strong>Bus:</strong> KSRTC buses to Kottayam, then to Thiruvalla (total ~3 hours).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-white mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
+                        <ul class="list-disc pl-5 text-white text-md">
+                            <li><strong>Taxi:</strong> ~2.5–3 hours (₹3,000–₹3,800). GoZo, Savaari, or Uber Intercity are reliable.</li>
+                            <li><strong>Train:</strong> Short ride to Trivandrum Central, then train to Thiruvalla (~2.5 hrs).</li>
+                            <li><strong>Bus:</strong> Regular KSRTC buses to Thiruvalla (~4 hours, budget-friendly).</li>
+                        </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -576,12 +683,18 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-white">The Wedding Feast</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8 text-white">A taste of Kerala to celebrate our special day. We hope you enjoy the feast!</p>
+            <p class="text-xl mb-8 text-white">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
         </div>
     </section>
 
     <!-- Our Perfect Equation Section -->
-    <section class="equation-section fade-in-section" style="border: none; box-shadow: none;"></section>
+    <section class="equation-section fade-in-section" style="border: none; box-shadow: none;">
+        
+        <div class="hero-content text-center py-16 px-4" style="border: none; box-shadow: none;">
+            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Perfect Equation</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-white">From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
+        </div>
         <video 
             class="video-bg" 
             autoplay 
@@ -592,24 +705,16 @@
             <source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
             Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
         </video>
-        <div class="overlay"></div>
-        <div class="hero-content text-center py-16 px-4" style="border: none; box-shadow: none;">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Perfect Equation</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl text-white">From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
-        </div>
     </section>
 
-    <!-- Our Story Timeline Section -->
+    <!-- Our Story Section (Now a dynamic grid with pop-up modals) -->
     <section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Story</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8 text-white">Some of our favorite memories together so far.</p>
-            <div id="photo-carousel" class="photo-carousel">
-                <!-- Photos will be dynamically inserted here -->
-                <div class="carousel-control left" onclick="changeSlide(-1)">&#10094;</div>
-                <div class="carousel-control right" onclick="changeSlide(1)">&#10095;</div>
+            <div id="masonry-grid" class="masonry-grid">
+                <!-- Photo grid items will be dynamically inserted here by JavaScript -->
             </div>
         </div>
     </section>
@@ -620,14 +725,14 @@
             <h2 class="text-5xl font-great-vibes mb-4 text-white">Meet Our Family</h2>
             <div class="section-divider"></div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="text-center">
+                <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
                         <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Binny & Mrs. Laly</h3>
                     <p class="text-white">Parents of the Bride</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
                         <img 
                             src="https://github.com/Aswinalex/wedding-invitation/blob/main/appa_amma_2.jpg?raw=true" 
@@ -638,8 +743,8 @@
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Salim & Mrs. Renu </h3>
                     <p class="text-white">Parents of the Groom</p>
                 </div>
-                <div class="text-center"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Nevil & Bincy</h3><p class="text-white">Brother & Sister-in-Law</p></div>
-                <div class="text-center flex flex-col items-center">
+                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Nevil & Mrs. Bincy</h3><p class="text-white">Brother & Sister-in-Law</p></div>
+                <div class="text-center flex flex-col items-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
                         <img 
                             src="https://github.com/Aswinalex/wedding-invitation/blob/main/Nitty.jpg?raw=true" 
@@ -650,8 +755,8 @@
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Nitty Sara</h3>
                     <p class="text-white">Sister of the Bride</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #1A6367;">
+                <div class="text-center family-member-card">
+                    <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #0D4B4F;">
                         <img 
                             src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/ida.jpg?raw=true" 
                             alt="Ida" 
@@ -662,83 +767,13 @@
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Ida</h3>
                     <p class="text-white">Sister of the Groom</p>
                 </div>
-                <div class="text-center"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3><p class="text-white">Our beloved nieces</p>
+                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3><p class="text-white">Our beloved nieces</p>
             </div>
             </div>
         </div>
     </section>
     
-    <!-- Local Favorites Section -->
-    <section class="py-16 px-4 text-center local-favorites-section fade-in-section">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Local Favorites</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-8 text-white">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
-
-            <!-- Grid of attractions -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                <!-- Uptown Shack -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;;">
-                    <img src="https://github.com/Aswinalex/wedding-invitation/blob/main/uptowwn%20shack.webp?raw=true" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">☕</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Favorite Rooftop Cafe</h3>
-                    <p class="font-semibold text-black">Uptown Shack</p>
-                    <p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
-                    <a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-
-                <!-- Pamba River Walk -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;">
-                    <img src="https://github.com/Aswinalex/wedding-invitation/blob/main/pampa.webp?raw=true" alt="Pamba River Walk" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">🏞️</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Scenic Walk</h3>
-                    <p class="font-semibold text-black">Pamba River Walk</p>
-                    <p class="text-sm text-black mb-2">A beautiful and peaceful walk along the riverbanks.</p>
-                    <a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-
-                <!-- Avees Puttu House -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;">
-                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">🍽️</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Must-Try Food</h3>
-                    <p class="font-semibold text-black">Avees Puttu House</p>
-                    <p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
-                    <a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-
-                <!-- Bhoothakuzhy Para -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;">
-                    <img src="https://github.com/Aswinalex/wedding-invitation/blob/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">🪨</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Hidden Gem</h3>
-                    <p class="font-semibold text-black">Bhoothakuzhy Para</p>
-                    <p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-                    <a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-
-                <!-- Vengal Viewpoint -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;">
-                    <img src="https://github.com/Aswinalex/wedding-invitation/blob/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">🌅</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Sunset Spot</h3>
-                    <p class="font-semibold text-black">Vengal Viewpoint</p>
-                    <p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-                    <a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-
-                <!-- Aruvikuzhy Waterfalls -->
-                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #e3de84;">
-                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
-                    <div class="text-4xl mb-2 text-black">💧</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Waterfall Wonder</h3>
-                    <p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
-                    <p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-                    <a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- RSVP Section -->
     <section class="py-16 px-4 text-center rsvp-section fade-in-section">
@@ -795,6 +830,77 @@
             </div>
         </div>
     </section>
+    <!-- Local Favorites Section -->
+    <section class="py-16 px-4 text-center local-favorites-section fade-in-section">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Local Favorites</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8 text-white">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+
+            <!-- Grid of attractions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <!-- Uptown Shack -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">☕</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Favorite Rooftop Cafe</h3>
+                    <p class="font-semibold text-black">Uptown Shack</p>
+                    <p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
+                    <a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+
+                <!-- Pamba River Walk -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pampa.webp" alt="Pamba River Walk" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">🏞️</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Scenic Walk</h3>
+                    <p class="font-semibold text-black">Pamba River Walk</p>
+                    <p class="text-sm text-black mb-2">A beautiful and peaceful walk along the riverbanks.</p>
+                    <a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+
+                <!-- Avees Puttu House -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">🍽️</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Must-Try Food</h3>
+                    <p class="font-semibold text-black">Avees Puttu House</p>
+                    <p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
+                    <a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+
+                <!-- Bhoothakuzhy Para -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">🪨</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Hidden Gem</h3>
+                    <p class="font-semibold text-black">Bhoothakuzhy Para</p>
+                    <p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
+                    <a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+
+                <!-- Vengal Viewpoint -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">🌅</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Sunset Spot</h3>
+                    <p class="font-semibold text-black">Vengal Viewpoint</p>
+                    <p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
+                    <a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+
+                <!-- Aruvikuzhy Waterfalls -->
+                <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+                    <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
+                    <div class="text-4xl mb-2 text-black">💧</div>
+                    <h3 class="text-2xl font-great-vibes text-black">Waterfall Wonder</h3>
+                    <p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
+                    <p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+                    <a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Photo Gallery Teaser Section -->
     <section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
@@ -821,7 +927,7 @@
     </footer>
 
     <!-- Music Control Bar - A new, persistent element at the bottom of the page -->
-    <div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-70 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg">
+    <div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-70 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
         <button id="playPauseBtn" class="bg-yellow-400 text-black p-2 rounded-full shadow-md hover:bg-yellow-500 transition">
             <!-- Play icon -->
             <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -976,100 +1082,55 @@
                 observer.observe(section);
             });
 
-            // --- Photo Carousel Logic ---
-            const carouselContainer = document.getElementById('photo-carousel');
+            // --- Our Story Masonry Grid Logic ---
+            const masonryGrid = document.getElementById('masonry-grid');
+            // Reordered photos for better storytelling flow
             const photos = [
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", alt: "Taniya and Aswin in front of the Louvre", caption: "A Parisian Adventure: Our love story began its Parisian chapter right here, with art and history as our backdrop." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", alt: "Taniya and Aswin embracing", caption: "Mountain Views: Lost in a moment, surrounded by nature's grandeur and a love that feels just as vast." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: Finding serenity and joy in the quiet moments we share, with the world fading away." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", alt: "Taniya and Aswin in a field of yellow flowers", caption: "Golden Hour: In a field of golden blooms, our hearts danced to the same rhythm. A perfect picture of our happiness." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg?raw=true", alt: "Taniya and Aswin", caption: "A New Chapter: Carrying her on his back here, and in his heart for a lifetime to come." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_06e88a40.jpg?raw=true", alt: "Taniya and Aswin at Fort Kochi", caption: "Cherished Smiles: Enjoying a beautiful day together at Fort Kochi Beach, making memories by the sea." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg?raw=true", alt: "Taniya and Aswin holding hands", caption: "Together Always: Hand in hand, we walk towards our forever, ready for all of life's beautiful adventures." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg?raw=true", alt: "Timeline 8", caption: "Our first Movie together : Barroz, starring Mohanlal. The film may have flopped, but we loved every moment spent together (and the popcorn was great too!)." },
-                { src: "https://github.com/Aswinalex/wedding-invitation/blob/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg?raw=true", alt: "Timeline 9", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." }
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", alt: "Taniya and Aswin in a field of yellow flowers", caption: "Golden Hour: Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm. This picture captures our pure joy.", objectPosition: 'bottom bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", alt: "Taniya and Aswin in front of the Louvre", caption: "A Parisian Adventure: In Paris, the city of love, our own love story began. With the Louvre as our backdrop, every moment felt like a masterpiece.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", alt: "Taniya and Aswin embracing", caption: "Mountain Views: Finding our own world in the heart of nature, surrounded by mountains and a love that feels as grand as the scenery." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", alt: "Taniya and Aswin", caption: "A New Chapter: This is where our new chapter begins. Carrying her on his back, he promises to carry her in his heart forever." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", alt: "Taniya and Aswin holding hands", caption: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", alt: "Metro", caption: "Our German metro adventure!: Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes.", objectPosition: 'center bottom' }
             ];
 
-            // Make carousel caption boxes larger for longer messages
-            const carouselCaptionStyle = document.createElement('style');
-            carouselCaptionStyle.innerHTML = `
-                .carousel-caption {
-                    min-width: 320px;
-                    max-width: 98vw;
-                    width: 600px;
-                    min-height: 100px;
-                    font-size: 0.8rem;
-                    padding: 2rem 2.5rem;
-                    line-height: 1.8;
-                    word-break: break-word;
-                }
-                @media (max-width: 800px) {
-                    .carousel-caption {
-                        width: 95vw;
-                        min-width: 0;
-                        padding: 1.2rem 0.8rem;
-                        font-size: 1rem;
-                    }
-                }
-            `;
-            document.head.appendChild(carouselCaptionStyle);
-
-            let currentSlide = 0;
-            const intervalTime = 5000;
-            let carouselInterval;
-
-            const renderCarousel = () => {
-                carouselContainer.innerHTML = '';
+            const renderMasonryGrid = () => {
+                masonryGrid.innerHTML = '';
                 photos.forEach((photo, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = `carousel-item ${index === currentSlide ? 'active' : ''}`;
-                    
+                    const item = document.createElement('div');
+                    item.className = 'masonry-item';
+
                     const img = document.createElement('img');
                     img.src = photo.src;
                     img.alt = photo.alt;
-                    img.className = 'carousel-image';
+                    img.className = 'w-full h-auto object-cover rounded-md';
+                    img.loading = 'lazy';
                     
-                    const caption = document.createElement('div');
-                    caption.className = 'carousel-caption';
-                    caption.innerHTML = `<h3 class="text-3xl font-great-vibes text-white mt-4">${photo.caption.split(':')[0]}</h3><p class="text-white">${photo.caption.split(':')[1]}</p>`;
-                    
-                    slide.appendChild(img);
-                    slide.appendChild(caption);
-                    carouselContainer.appendChild(slide);
+                    if (photo.objectPosition) {
+                        img.style.objectPosition = photo.objectPosition;
+                    }
+
+                    const captionBox = document.createElement('div');
+                    captionBox.className = 'masonry-caption text-sm text-white/90 rounded-b-md';
+                    captionBox.innerHTML = `
+                        <p class="font-semibold text-white">${photo.caption.split(':')[0]}</p>
+                        <p class="text-white text-xs mt-1">${photo.caption.split(':')[1]}</p>
+                    `;
+
+                    item.appendChild(img);
+                    item.appendChild(captionBox);
+                    masonryGrid.appendChild(item);
                 });
-
-                const leftControl = document.createElement('button');
-                leftControl.className = 'carousel-control left';
-                leftControl.innerHTML = '&#10094;';
-                leftControl.onclick = () => changeSlide(-1);
-                carouselContainer.appendChild(leftControl);
-
-                const rightControl = document.createElement('button');
-                rightControl.className = 'carousel-control right';
-                rightControl.innerHTML = '&#10095;';
-                rightControl.onclick = () => changeSlide(1);
-                carouselContainer.appendChild(rightControl);
-
-                startAutoSlide();
             };
 
-            const changeSlide = (direction) => {
-                currentSlide = (currentSlide + direction + photos.length) % photos.length;
-                renderCarousel();
-            };
+            renderMasonryGrid();
 
-            const startAutoSlide = () => {
-                clearInterval(carouselInterval);
-                carouselInterval = setInterval(() => {
-                    changeSlide(1);
-                }, intervalTime);
-            };
-
-            renderCarousel();
-
-            // Reset auto-slide on user interaction
-            carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-            carouselContainer.addEventListener('mouseleave', () => startAutoSlide());
 
             // --- Firebase Initialization and Auth ---
             // --- Inject Firebase config and app ID FIRST ---
@@ -1138,11 +1199,11 @@
                     rsvpSubmitBtn.disabled = true;
 
                     // if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwhgKz9-l3TcUuZ27i5EVk8-dGjJPIkfb3TUjbqsSaVrHF_8n0QwW0jOwMvXQCGj19Flg/exec") {
-                    //     rsvpMessage.textContent = "Please set up your Google Apps Script and paste the URL in the code.";
-                    //     rsvpMessage.className = 'text-white font-semibold mt-4';
-                    //     rsvpLoadingSpinner.classList.add('hidden');
-                    //     rsvpSubmitBtn.disabled = false;
-                    //     return;
+                    //  rsvpMessage.textContent = "Please set up your Google Apps Script and paste the URL in the code.";
+                    //  rsvpMessage.className = 'text-white font-semibold mt-4';
+                    //  rsvpLoadingSpinner.classList.add('hidden');
+                    //  rsvpSubmitBtn.disabled = false;
+                    //  return;
                     // }
 
                     const formData = new FormData(rsvpForm);
@@ -1296,7 +1357,7 @@
                         let chatHistory = [];
                         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                         const payload = { contents: chatHistory };
-                        const apiKey = "AIzaSyAmYcJ6WMP71I6vFYN4R4yPHAJQZUAEZg0";
+                        const apiKey = "AIzaSyC75y_X7I9dYq5ecxEhxFdN7BOuOTAkc38";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                         
                         const response = await fetch(apiUrl, {
