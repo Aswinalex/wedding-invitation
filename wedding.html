@@ -400,62 +400,209 @@
             transform: translateY(0) scale(1);
         }
 
-        /* --- Masonry Grid with uniform height and hover effect --- */
-        .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
+        /* === Story Timeline Shimmer (background only) === */
+
+      /* Container already defined earlier:
+      .story-item-inner { ... } */
+      /* Enhanced Green-Themed Shimmer (bi-directional continuous - slowed) */
+      .story-image-wrap {
+        position: relative;
+        border-radius: 0.9rem;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .story-image-wrap::before,
+      .story-image-wrap::after { content: none !important; }
+
+      .story-item-inner {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Sweeping green shimmer (slower: duration increased from 7s to 14s) */
+      .story-item-inner::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* Full-cover tinted base + a soft moving highlight band */
+        background:
+          linear-gradient(115deg,
+            rgba(13,75,79,0.18) 0%,
+            rgba(26,99,103,0.22) 20%,
+            rgba(79,184,189,0.55) 48%,
+            rgba(26,99,103,0.30) 75%,
+            rgba(13,75,79,0.20) 100%);
+        background-size: 180% 100%;
+        animation: story-card-shimmer 16s linear infinite;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.75;
+        /* Subtle blur to smooth highlight */
+        filter: blur(0.5px);
+        will-change: background-position;
+      }
+
+      /* Reduced travel so edges stay covered (no exposure of bare bg) */
+      @keyframes story-card-shimmer {
+        0%   { background-position: 0% 0;   }
+        50%  { background-position: 40% 0;  }
+        100% { background-position: 0% 0;   }
+      }
+
+      .story-item-inner > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Gradient border accent (green spectrum) */
+      .story-item-inner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 1rem;
+        background: linear-gradient(145deg,
+          rgba(79,184,189,0.10),
+          rgba(47,138,144,0.55),
+          rgba(168,236,238,0.10));
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 2;
+        opacity: .72;
+      }
+
+      @keyframes story-card-shimmer {
+        0%   { background-position: -60% 0; opacity: .65; }
+        40%  { opacity: .92; }
+        100% { background-position: 220% 0; opacity: .70; }
+      }
+
+      .story-image-wrap img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+        filter: none;
+        mix-blend-mode: normal;
+      }
+
+      /* --- Story Timeline Styles (green theme) --- */
+      .story-timeline {
+        position: relative;
+        margin: 2rem auto 0;
+        max-width: 820px;
+        padding: 0 1rem;
+      }
+      .story-timeline::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 50%;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0) 0%,
+          #0D4B4F 12%,
+          #1A6367 28%,
+          #4FB8BD 50%,
+          #1A6367 72%,
+          #0D4B4F 88%,
+          rgba(255,255,255,0) 100%);
+        transform: translateX(-50%);
+        opacity: 0.55;
+        filter: drop-shadow(0 0 4px rgba(79,184,189,0.55));
+      }
+      .story-item {
+        position: relative;
+        width: 100%;
+        margin: 3.5rem 0;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity .9s cubic-bezier(.25,.6,.3,1),
+        transform 1.2s cubic-bezier(.25,.6,.3,1);
+      }
+      .story-item.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .story-item-inner {
+        background: rgba(13,75,79,0.70);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 8px 24px -6px rgba(0,0,0,0.45);
+        backdrop-filter: blur(4px);
+      }
+      .story-item img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        max-height: 520px;
+      }
+      .story-caption {
+        padding: 1rem 1.25rem 1.2rem;
+        text-align: center;
+      }
+      .story-caption h3 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        margin: 0 0 .55rem;
+        background: linear-gradient(90deg,#4FB8BD,#2F8A90,#A8ECEE);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 0 4px 18px rgba(79,184,189,0.35);
+      }
+      .story-caption p {
+        font-size: .9rem;
+        line-height: 1.45;
+        margin: 0;
+        color: #fff;
+        opacity: .92;
+      }
+
+      @media (min-width: 760px) {
+        .story-item:nth-child(odd)  .story-item-inner { margin-left: calc(50% + 1.4rem); width: 46%; }
+        .story-item:nth-child(even) .story-item-inner { margin-right: calc(50% + 1.4rem); width: 46%; }
+        .story-item::after {
+          content: '';
+          position: absolute;
+        top: 36px;
+        left: 50%;
+          transform: translateX(-50%);
+          width: 18px; height: 18px;
+          background: radial-gradient(circle at 35% 35%, #d6f8f9, #4FB8BD 60%, #0D4B4F 100%);
+          border: 3px solid #fff;
+          border-radius: 50%;
+          box-shadow:
+        0 0 0 5px rgba(79,184,189,0.25),
+        0 0 14px 4px rgba(79,184,189,0.55),
+        0 6px 14px rgba(0,0,0,0.45);
         }
-        .masonry-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            cursor: pointer;
-            width: 100%;
+      }
+      @media (max-width: 759px) {
+        .story-timeline::before { left: 10px; transform: none; }
+        .story-item-inner { margin-left: 2.25rem; }
+        .story-item::after {
+          content:''; position:absolute;
+          left:10px; top:24px;
+          width:14px; height:14px;
+          background: radial-gradient(circle at 35% 35%, #d6f8f9, #4FB8BD 60%, #0D4B4F 100%);
+          border:2px solid #fff;
+          border-radius:50%;
+          box-shadow:
+        0 0 0 4px rgba(79,184,189,0.25),
+        0 0 10px 2px rgba(79,184,189,0.55);
         }
-        .masonry-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-        /* UPDATED: Removed fixed height for responsive images */
-        .masonry-item img {
-            width: 100%;
-            height: auto; /* Automatically adjust height based on width */
-            max-height: 300px; /* Prevents extremely tall images on desktop */
-            object-fit: contain;
-            display: block;
-        }
-        .masonry-caption {
-            background-color: rgba(13, 75, 79, 0.7);
-            padding: 1rem;
-            text-align: center;
-        }
-        @media (min-width: 640px) {
-            .masonry-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .masonry-item img {
-            width: 100%;
-            height: auto; /* Automatically adjust height based on width */
-            max-height: 600px; /* Prevents extremely tall images on desktop */
-            object-fit: cover;
-            display: block;
-            }
-        @media (min-width: 1024px) {
-            .masonry-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .masonry-item img {
-            width: 100%;
-            height: auto; /* Automatically adjust height based on width */
-            max-height: 600px; /* Prevents extremely tall images on desktop */
-            object-fit: cover;
-            display: block;
-            }
-        }
-        /* --- End of Masonry Grid styles --- */
+      }
+
+/* --- End Story Timeline Styles --- */
         
         /* --- Hover effect for Meet Our Family section --- */
         .family-member-card {
@@ -723,7 +870,7 @@
             <!-- Collapsible Travel Directions -->
             <div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
                 <button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-                    class="w-full text-xl font-semibold text-red-400 bg-dark hover:bg-dark/100 transition p-4 rounded-xl shadow-md text-left">
+                    class="w-full text-xl font-semibold text-white bg-dark hover:bg-dark/100 transition p-4 rounded-xl shadow-md text-left">
                     ✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
                 </button>
                 <div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner text-white" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
@@ -765,9 +912,7 @@
             <p class="text-xl mb-8 text-white">
             From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.
             </p>
-            <p class="text-xl mb-8 text-white mt-6">
-            She treats mutations like plot twists; he persuades stubborn photons to line up straight. Together we run a lifelong study with no control group, excellent replication potential, low noise, high signal—and a manuscript currently under joyful peer review (aka the wedding).
-            </p>
+            
         </div>
         <video 
             class="video-bg" 
@@ -782,17 +927,14 @@
     </section>
 
     <!-- Our Story Section (Now a dynamic grid with pop-up modals) -->
-    <section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Story</h2>
-            <div class="section-divider"></div>
-            <p class="text-xl mb-4 text-white">What began a year and a half ago as a respectful family introduction gently outgrew every stereotype of an arranged match—turning into late–night conversations, shared nerdy tangents, quiet prayers, and a friendship that chose love freely.</p>
-            <p class="text-xl mb-8 text-white">No hurried checklist, no formality of strangers—just two hearts learning each other’s rhythms with patience and trust, until what was arranged became something beautifully intentional and deeply their own.</p>
-            <div id="masonry-grid" class="masonry-grid">
-                <!-- Photo grid items will be dynamically inserted here by JavaScript -->
-            </div>
-        </div>
-    </section>
+    <section id="ourStory" class="py-16 px-4 text-center bg-wedding-section fade-in-section">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Story</h2>
+    <div class="section-divider"></div>
+    <p class="text-xl mb-8 text-white">Moments that shaped our journey—unfolding as you scroll.</p>
+    <div id="storyTimeline" class="story-timeline"></div>
+  </div>
+</section>
 
     <!-- Wedding Party Section -->
     <section class="py-16 px-4 text-center wedding-party-section fade-in-section">
@@ -805,7 +947,7 @@
                         <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Binny & Mrs. Laly</h3>
-                    <p class=" text-red-400">Parents of the Bride</p>
+                    <p class=" text-gray-400">Parents of the Bride</p>
                 </div>
                 <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
@@ -816,11 +958,11 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Salim & Mrs. Renu </h3>
-                    <p class="text-red-400">Parents of the Groom</p>
+                    <p class="text-gray-400">Parents of the Groom</p>
                 </div>
                 <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Nevil & Mrs. Bincy</h3>
-                    <p class="text-red-400">Brother & Sister-in-Law</p></div>
+                    <p class="text-gray-400">Brother & Sister-in-Law</p></div>
                 <div class="text-center flex flex-col items-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
                         <img 
@@ -830,7 +972,7 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Nitty Sara</h3>
-                    <p class="text-red-400">Sister of the Bride</p>
+                    <p class="text-gray-400">Sister of the Bride</p>
                 </div>
                 <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #0D4B4F;">
@@ -842,11 +984,11 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Ida</h3>
-                    <p class="text-red-400">Sister of the Groom</p>
+                    <p class="text-gray-400">Sister of the Groom</p>
                 </div>
                 <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3>
-                    <p class="text-red-400">Our beloved nieces</p>
+                    <p class="text-gray-400">Our beloved nieces</p>
             </div>
             </div>
         </div>
@@ -1181,56 +1323,55 @@
                 observer.observe(section);
             });
 
-            // --- Our Story Masonry Grid Logic ---
-            const masonryGrid = document.getElementById('masonry-grid');
-            // Reordered photos for better storytelling flow
-            const photos = [
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", alt: "Taniya and Aswin embracing", caption: "Mountain Views: Finding our own world in the heart of nature, surrounded by mountains and a love that feels as grand as the scenery." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", alt: "Taniya and Aswin in front of the Louvre", caption: "A Parisian Adventure: In Paris, the city of love, our own love story began. With the Louvre as our backdrop, every moment felt like a masterpiece.", objectPosition: 'center bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", alt: "Metro", caption: "Our German metro adventure!: Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes.", objectPosition: 'center bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", alt: "Taniya and Aswin in a field of yellow flowers", caption: "Golden Hour: Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm. This picture captures our pure joy.", objectPosition: 'bottom bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", alt: "Taniya and Aswin", caption: "A New Chapter: This is where our new chapter begins. Carrying her on his back, he promises to carry her in his heart forever." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", alt: "Taniya and Aswin holding hands", caption: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever.", objectPosition: 'center bottom' },
-                /* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
-                 */
+
+            // --- Story Timeline Logic ---
+            const storyTimelineEl = document.getElementById('storyTimeline');
+            const storyItemsData = [
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", title: "Mountain Views", text: "Surrounded by mountains and a love that feels as grand as the scenery." },
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", title: "Parisian Adventure", text: "With the Louvre as our backdrop, every moment felt like a masterpiece." },
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", title: "Golden Hour", text: "Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm." },
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", title: "Metro Adventure", text: "Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes."},
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", title: "A New Chapter", text: "Carrying her on his back, he promises to carry her in his heart forever." },
+              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", title: "Together Always", text: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever." }
+              /* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
+                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
+                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
+                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
+                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },
+                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
+                            */
             ];
 
-            const renderMasonryGrid = () => 
-            {
-                masonryGrid.innerHTML = '';
-                photos.forEach((photo, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'masonry-item';
-
-                    const img = document.createElement('img');
-                    img.src = photo.src;
-                    img.alt = photo.alt;
-                    img.className = 'w-full h-auto object-cover rounded-md';
-                    img.loading = 'lazy';
-                    
-                    if (photo.objectPosition) {
-                        img.style.objectPosition = photo.objectPosition;
-                    }
-
-                    const captionBox = document.createElement('div');
-                    captionBox.className = 'masonry-caption text-sm text-white rounded-b-md';
-                    captionBox.innerHTML = `
-                        <p class="font-great-vibes text-2xl text-red-600">${photo.caption.split(':')[0]}</p>
-                        <p class="text-white text-xs mt-1">${photo.caption.split(':')[1]}</p>
-                    `;
-
-                    item.appendChild(img);
-                    item.appendChild(captionBox);
-                    masonryGrid.appendChild(item);
+            function renderStoryTimeline() {
+              storyTimelineEl.innerHTML = '';
+              storyItemsData.forEach((item, i) => {
+                const el = document.createElement('div');
+                el.className = 'story-item';
+                el.innerHTML = `
+                  <div class="story-item-inner">
+                    <div class="story-image-wrap">
+                      <img src="${item.src}" alt="${item.title}">
+                    </div>
+                    <div class="story-caption">
+                      <h3>${item.title}</h3>
+                      <p>${item.text}</p>
+                    </div>
+                  </div>`;
+                storyTimelineEl.appendChild(el);
+              });
+              // Observe after insertion
+              const tObserver = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                  if (e.isIntersecting) {
+                    e.target.classList.add('is-visible');
+                    tObserver.unobserve(e.target);
+                  }
                 });
-            };
-
-            renderMasonryGrid();
+              }, { threshold: 0.25 });
+            
+              document.querySelectorAll('.story-item').forEach(el => tObserver.observe(el));
+            }
+            renderStoryTimeline();
 
 
             // --- Firebase Initialization and Auth ---
@@ -1489,7 +1630,7 @@
                     dressCodeBtn.disabled = true;
                     dressCodeResponse.textContent = 'Thinking...';
 
-                    const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive wear with groom's side preferrably in shades of green and girl's side in pastel shades or white". The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in roughly 150-200 words.  Please format the response clearly .Here is the guest's question: "${query}"`;
+                    const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive wear with preferrably pastel shades". The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in roughly 150-200 words.  Please format the response clearly .Here is the guest's question: "${query}"`;
 
                     const responseText = await callGeminiWithRetry(fullPrompt);
                     
@@ -1520,7 +1661,7 @@
                     generateItineraryBtn.disabled = true;
                     itineraryResponse.textContent = 'Creating your itinerary...';
 
-                    const fullPrompt = `You are a knowledgeable travel agent for Kerala, India. User is in Thiruvalla, Kerala, for the wedding between Taniya and Aswin on January 5th, 2026. The wedding ceremony is at St Thomas Mar Thoma Church in Thiruvalla, Kerala and starts at 3pm in the afternoon and will be followed by a reception at Mor Athanasius Yohan Memorial Convention Centre Kuttappuzha, Thiruvalla  and starts at 5.30pm and go till late night.  You are employed by Taniya and Aswin to help you enjoy Kerala to its fullest. Based on the user's interests, create a detailed day-by-day itinerary for a trip lasting ${days} days , starting on ${date} taking into account the christian marriage on 5th January. The itinerary should be easy to follow and include local, authentic recommendations. The user's interests are: "${interests}". Please format the response clearly with headings for each day.`;
+                    const fullPrompt = `You are a knowledgeable travel agent for Kerala, India. User is in Thiruvalla, Kerala, for the wedding between Taniya and Aswin on January 5th, 2026. The wedding ceremony is at St Thomas Mar Thoma Church in Thiruvalla, Kerala and starts at 3pm in the afternoon and will be followed by a reception at Mor Athanasius Yohan Memorial Convention Centre Kuttappuzha, Thiruvalla  and starts at 5.30pm and go till late night.  You are employed by Taniya and Aswin to help you enjoy Kerala to its fullest. There are no pre-wedding festivities. Dont mention this anywhere in the answer. The transportation and stays are self-paid. Don't mention it in the answer unless user asks specifically.  Based on the user's interests, create a detailed day-by-day itinerary for a trip lasting ${days} days , starting on ${date} taking into account the christian marriage on 5th January. The itinerary should be easy to follow and include local, authentic recommendations. The user's interests are: "${interests}". Please format the response clearly with headings for each day.`;
                     const responseText = await callGeminiWithRetry(fullPrompt);
                     
                     itineraryResponse.textContent = responseText;
