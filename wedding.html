@@ -26,7 +26,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #0D4B4F;
             color: white;
-            line-height: 1.7;
+            line-height: 1.8; /* Increased line-height for better readability */
             overflow-x: hidden;
         }
         .object-cover {
@@ -97,19 +97,19 @@
             }
             @keyframes kenburns-desktop {
             0% {
-                background-size: 105%;
+                background-size: 80%;
                 background-position: center 35%;
             }
             40% {
-                background-size: 112%;
+                background-size: 100%;
                 background-position: center 45%;
             }
             60% {
-                background-size: 112%;
+                background-size: 100%;
                 background-position: center 45%;
             }
             100% {
-                background-size: 105%;
+                background-size: 80%;
                 background-position: center 35%;
             }
             }
@@ -141,52 +141,99 @@
         .bible-verse-ml {
             font-family: 'Poppins', sans-serif;
         }
-        .animate-flip {
-            animation: flip-number 0.5s ease-in-out;
-        }
+        
+        /* Enhanced Section Divider */
         .section-divider {
+            --accent: #B22222;
+            --accent-soft: #ff9c9c;
             position: relative;
-            width: 100%;
+            width: clamp(200px, 55%, 520px);
+            height: 44px;
+            margin: 2.75rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 2rem auto;
-            animation: pulse-divider 2s infinite ease-in-out;
+            isolation: isolate;
         }
         .section-divider::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #FFD700;
-            z-index: 0;
+            inset: 0;
+            top: 50%;
+            height: 5px;
+            transform: translateY(-50%);
+            background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255,255,255,0.05) 6%,
+          var(--accent) 18%,
+          var(--accent-soft) 50%,
+          var(--accent) 82%,
+          rgba(255,255,255,0.05) 94%,
+          transparent 100%
+            );
+            background-size: 220% 100%;
+            animation: divider-shimmer 7s linear infinite;
+            filter: drop-shadow(0 0 4px rgba(178,34,34,0.35));
+            border-radius: 2px;
         }
-        .section-divider::after {
-            content: '';
-            font-size: 2rem;
-            color: #FFD700;
-            background-color: #0D4B4F;
-            padding: 0 10px;
-            position: relative;
-            z-index: 1;
+        
+        @keyframes divider-shimmer {
+            0% { background-position: 0 0; }
+            100% { background-position: 220% 0; }
         }
+        @keyframes divider-float {
+            0%,100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -52%) scale(1.04); }
+        }
+
+        @media (max-width: 640px) {
+            .section-divider {
+          width: clamp(160px, 70%, 360px);
+          margin: 2rem auto;
+            }
+            .section-divider::after {
+          width: 34px;
+          height: 34px;
+          background-size: 60%;
+            }
+        }
+        
         .btn-primary {
-            background-color: #FFD700;
-            color: #0D4B4F;
+            background-color: #B2222265;
+            color: #ffffff;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); /* Updated gold accent shadow */
             font-weight: 600;
             border: none;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
         .btn-primary:hover {
-            background: #E6C200;
-            color: #0D4B4F;
+            background: #B22222ab;
+            color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        .btn-directions {
+            background-color: #B2222265;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            font-weight: 600;
+            border: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .btn-directions:hover {
+            background: #B22222ab;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
         .loading-spinner {
             border: 4px solid #f3f3f3;
@@ -236,7 +283,7 @@
             -webkit-backdrop-filter: blur(4px);
         }
         /* Responsive for mobile */
-        @media (max-width: 800px) {
+        @media (max-width: 500px) {
             .equation-section .video-bg {
                 max-height: 300px;
             }
@@ -245,7 +292,7 @@
                 padding: 1rem;
             }
         }
-        @media (max-width: 800px) {
+        @media (max-width: 640px) {
             .equation-section .video-bg {
             width: 100vw !important;
             min-width: 100vw !important;
@@ -322,12 +369,24 @@
             gap: 2rem;
         }
 
-        @media (min-width: 640px) {
-            .ceremony-reception-grid {
-                grid-template-columns: repeat(2, 1fr);
+        
+        .animate-flip {
+            animation: flip-number 1s ease-in-out;
+        }
+        @media (max-width: 640px) {
+            #countdown {
+                display: grid !important;
+                color:#e9f504
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 1rem !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                font-size: 1.2rem !important;
+            }
+            #countdown > div {
+                min-width: 0 !important;
             }
         }
-        
         /* For scroll animations */
         .fade-in-section {
             opacity: 0;
@@ -420,13 +479,14 @@
             border-color: #1A6367;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: #0D4B4F;
+            border-radius: 1rem; /* Added border-radius for consistency */
         }
         .local-favorites-section > div > div:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(56, 54, 46, 0.3);
         }
         .local-favorites-section a {
-            color: #800000;
+            color: text-red-400;
             font-weight: bold;
         }
         .bg-white {
@@ -436,13 +496,13 @@
             background-color: #1A6367;
         }
         .text-gray-700 {
-            color: #FFD700;
+            color: #D4AF37; /* Lighter gold */
         }
         .text-gray-600 {
             color: #ccc;
         }
         .text-red-600 {
-            background-color: #FFD700;
+            
             color: #0D4B4F;
         }
         .text-green-600 {
@@ -457,7 +517,7 @@
         .text-black { color: white; }
         #guestbookDisplay {
             background-color: #1A6367;
-            border: 1px solid #FFD700;
+            border: 1px solid #D4AF37; /* Updated gold border color */
             border-radius: 0.5rem;
             padding: 1.5rem;
             text-align: left;
@@ -467,7 +527,7 @@
             -webkit-backdrop-filter: none;
         }
         #guestbookDisplay .message {
-            border-bottom: 1px solid #FFD700;
+            border-bottom: 1px solid #D4AF37; /* Updated gold border color */
             padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
@@ -515,9 +575,10 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        @keyframes pulse-divider {
-            0%, 100% { transform: scaleX(1); opacity: 1; }
-            50% { transform: scaleX(1.05); opacity: 0.8; }
+        /* More subtle pulse animation for divider */
+        @keyframes subtle-pulse-divider {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
         @keyframes flip-number {
             0% { transform: rotateX(0); }
@@ -554,12 +615,12 @@
             <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
                 Together with our families
             </p>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-white">Taniya</h1>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-red-400">Taniya</h1>
             <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
                 Daughter of Mr. Binny Mathew and Mrs. Laly Binny
             </p>
 
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-white">Aswin</h1>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-red-400">Aswin</h1>
             <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
                 Son of Dr. Salim C Eapen & Mrs. Renu Thomas
             </p>
@@ -569,24 +630,25 @@
         </div>
     </header>
     <!-- Countdown Timer Section -->
-    <section class="py-8 px-4 text-center bg-dark text-white">
-        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4" style="color: #ff7b00;">Counting down to the big day!</h2>
+    <section class="py-8 px-4 text-center bg-dark text-black ">
+        <!-- Replaced gold with a new, class-based color for consistency -->
+        <h2 class="text-3xl md:text-4xl font-great-vibes mb-4 text-[#e9f504]">Counting down to the big day!</h2>
         <div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
             <div>
-                <div id="days" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Days</div>
+                <div id="days" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
+                <div class="text-sm uppercase tracking-wider text-[#e9f504]">Days</div>
             </div>
             <div>
-                <div id="hours" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Hours</div>
+                <div id="hours" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
+                <div class="text-sm uppercase tracking-wider text-[#e9f504]">Hours</div>
             </div>
             <div>
-                <div id="minutes" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Minutes</div>
+                <div id="minutes" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
+                <div class="text-sm uppercase tracking-wider text-[#e9f504]">Minutes</div>
             </div>
             <div>
-                <div id="seconds" class="text-4xl md:text-6xl font-semibold font-great-vibes" style="color: #ff7b00;">00</div>
-                <div class="text-sm uppercase tracking-wider" style="color: #ff7b00;">Seconds</div>
+                <div id="seconds" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
+                <div class="text-sm uppercase tracking-wider text-[#e9f504]">Seconds</div>
             </div>
         </div>
     </section>
@@ -618,7 +680,7 @@
     <!-- Details Section (Ceremony & Reception with Directions) -->
     <section class="bg-wedding-section py-16 px-4 text-center fade-in-section">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">The Ceremony & Reception</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">The Ceremony & Reception</h2>
             <div class="section-divider"></div>
             <div class="ceremony-reception-grid">
                 <!-- Ceremony -->
@@ -626,12 +688,15 @@
                     <p class="text-base md:text-xl text-white mb-4">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
                     <div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
                         <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
-                        <div class="event-box-content">
-                            <h3 class="text-3xl md:text-4xl font-great-vibes mb-2 text-white drop-shadow-lg">Wedding Ceremony</h3>
-                            <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 3:00 PM</p>
-                            <p class="text-lg md:text-xl text-white drop-shadow-lg">St Thomas Mar Thoma Church</p>
-                            <p class="text-lg md:text-xl text-white drop-shadow-lg">Thiruvalla, Kerala</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
+                        <!-- Overlay for text clarity -->
+                        <div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
+                        <div class="event-box-content" style="position: relative; z-index: 2;">
+                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-4 text-red-600 drop-shadow-lg">Wedding Ceremony</h3>
+                            <div class="mb-4"></div>
+                            <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg mb-2">St Thomas Mar Thoma Church</p>
+                            <p class="text-lg md:text-xl text-white drop-shadow-lg mb-4">Thiruvalla, Kerala</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-directions mt-3 inline-block">Get Directions</a>
                         </div>
                     </div>
                 </div>
@@ -640,24 +705,29 @@
                     <p class="text-base md:text-xl text-white mb-4">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
                     <div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
                         <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
-                        <div class="event-box-content">
-                            <h3 class="text-3xl md:text-4xl font-great-vibes mb-2 text-white drop-shadow-lg">Reception</h3>
+                        <!-- Overlay for text clarity -->
+                        <div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
+
+                        <div class="event-box-content" style="position: relative; z-index: 2;">
+                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-2 text-red-600 drop-shadow-lg">Reception</h3>
+                            <div class="mb-2"></div>
                             <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
                             <p class="text-lg md:text-xl text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
                             <p class="text-lg md:text-xl text-white drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
+                            <div class="mb-2"></div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-directions mt-3 inline-block">Get Directions</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Collapsible Travel Directions -->
-            <div class="w-full md:w-auto max-w-2xl mx-auto mt-8 text-left">
+            <div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
                 <button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-                    class="w-full text-xl font-semibold text-white bg-dark hover:bg-dark/80 transition p-4 rounded-xl shadow-md text-left">
-                    🚗✈️ How to Get to Thiruvalla (Tap to Expand)
+                    class="w-full text-xl font-semibold text-red-400 bg-dark hover:bg-dark/100 transition p-4 rounded-xl shadow-md text-left">
+                    ✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
                 </button>
                 <div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner text-white" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
-                    <h3 class="text-2xl font-great-vibes text-white mb-4 text-center">Getting to Thiruvalla</h3>
+                    
                     <div class="mb-4">
                         <h4 class="text-lg font-semibold text-white mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
                         <ul class="list-disc pl-5 text-white text-md">
@@ -681,7 +751,7 @@
     <!-- Menu Section -->
     <section class="py-16 px-4 text-center menu-section fade-in-section">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">The Wedding Feast</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">The Wedding Feast</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8 text-white">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
         </div>
@@ -689,11 +759,15 @@
 
     <!-- Our Perfect Equation Section -->
     <section class="equation-section fade-in-section" style="border: none; box-shadow: none;">
-        
         <div class="hero-content text-center py-16 px-4" style="border: none; box-shadow: none;">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Perfect Equation</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Perfect Equation</h2>
             <div class="section-divider"></div>
-            <p class="text-xl text-white">From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.</p>
+            <p class="text-xl mb-8 text-white">
+            From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.
+            </p>
+            <p class="text-xl mb-8 text-white mt-6">
+            She treats mutations like plot twists; he persuades stubborn photons to line up straight. Together we run a lifelong study with no control group, excellent replication potential, low noise, high signal—and a manuscript currently under joyful peer review (aka the wedding).
+            </p>
         </div>
         <video 
             class="video-bg" 
@@ -710,9 +784,10 @@
     <!-- Our Story Section (Now a dynamic grid with pop-up modals) -->
     <section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Story</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Story</h2>
             <div class="section-divider"></div>
-            <p class="text-xl mb-8 text-white">Some of our favorite memories together so far.</p>
+            <p class="text-xl mb-4 text-white">What began a year and a half ago as a respectful family introduction gently outgrew every stereotype of an arranged match—turning into late–night conversations, shared nerdy tangents, quiet prayers, and a friendship that chose love freely.</p>
+            <p class="text-xl mb-8 text-white">No hurried checklist, no formality of strangers—just two hearts learning each other’s rhythms with patience and trust, until what was arranged became something beautifully intentional and deeply their own.</p>
             <div id="masonry-grid" class="masonry-grid">
                 <!-- Photo grid items will be dynamically inserted here by JavaScript -->
             </div>
@@ -722,7 +797,7 @@
     <!-- Wedding Party Section -->
     <section class="py-16 px-4 text-center wedding-party-section fade-in-section">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Meet Our Family</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Meet Our Family</h2>
             <div class="section-divider"></div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
                 <div class="text-center family-member-card">
@@ -730,7 +805,7 @@
                         <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Binny & Mrs. Laly</h3>
-                    <p class="text-white">Parents of the Bride</p>
+                    <p class=" text-red-400">Parents of the Bride</p>
                 </div>
                 <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
@@ -741,9 +816,11 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Salim & Mrs. Renu </h3>
-                    <p class="text-white">Parents of the Groom</p>
+                    <p class="text-red-400">Parents of the Groom</p>
                 </div>
-                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Nevil & Mrs. Bincy</h3><p class="text-white">Brother & Sister-in-Law</p></div>
+                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+                    <h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Nevil & Mrs. Bincy</h3>
+                    <p class="text-red-400">Brother & Sister-in-Law</p></div>
                 <div class="text-center flex flex-col items-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
                         <img 
@@ -753,7 +830,7 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Nitty Sara</h3>
-                    <p class="text-white">Sister of the Bride</p>
+                    <p class="text-red-400">Sister of the Bride</p>
                 </div>
                 <div class="text-center family-member-card">
                     <div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #0D4B4F;">
@@ -765,9 +842,11 @@
                         >
                     </div>
                     <h3 class="text-2xl font-great-vibes mt-4 text-white">Ida</h3>
-                    <p class="text-white">Sister of the Groom</p>
+                    <p class="text-red-400">Sister of the Groom</p>
                 </div>
-                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"><h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3><p class="text-white">Our beloved nieces</p>
+                <div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+                    <h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3>
+                    <p class="text-red-400">Our beloved nieces</p>
             </div>
             </div>
         </div>
@@ -778,12 +857,12 @@
     <!-- RSVP Section -->
     <section class="py-16 px-4 text-center rsvp-section fade-in-section">
         <div class="max-w-2xl mx-auto">
-        <h2 class="text-5xl font-great-vibes mb-4 text-white">RSVP</h2>
+        <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">RSVP</h2>
         <div class="section-divider"></div>
         <p class="text-xl mb-8 text-white">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
         <form id="rsvpForm" class="text-left space-y-4">
-            <input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-            <select name="Attending" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white" title="Attendance selection">
+            <input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white">
+            <select name="Attending" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white" title="Attendance selection">
             <option value="" disabled selected>Will you be attending?</option>
             <option value="Yes, with pleasure!">Yes, with pleasure!</option>
             <option value="No, with regrets.">No, with regrets.</option>
@@ -801,12 +880,12 @@
     <!-- Guestbook Section -->
     <section class="py-16 px-4 text-center guestbook-section fade-in-section">
         <div class="max-w-4xl mx-auto">
-        <h2 class="text-5xl font-great-vibes mb-4 text-white">Guestbook</h2>
+        <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Guestbook</h2>
         <div class="section-divider"></div>
         <p class="text-xl mb-8 text-white">Leave a message for the happy couple!</p>
         <form id="guestbookForm" class="text-left space-y-4 mb-8">
-            <input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-            <textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white"></textarea>
+            <input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
+            <textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white"></textarea>
             <div class="text-center">
             <button type="submit" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Post Message<span id="guestbookLoadingSpinner" class="loading-spinner hidden"></span></button>
             </div>
@@ -818,11 +897,11 @@
     <!-- AI Dress Code Advisor Section -->
     <section class="py-16 px-4 text-center dresscode-section fade-in-section">
         <div class="max-w-2xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Dress Code Advisor</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Dress Code Advisor</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8 text-white">Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.</p>
             <div class="space-y-4 text-left">
-                <input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+                <input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
                 <div class="text-center">
                     <button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
                 </div>
@@ -830,10 +909,27 @@
             </div>
         </div>
     </section>
+    <!-- Gemini Travel Itinerary Section -->
+    <section class="py-16 px-4 text-center dresscode-section fade-in-section">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl mb-8 text-white">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
+            <div class="space-y-4 text-left">
+                <input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+                <input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+                <input type="date" id="travelDate" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+                <div class="text-center">
+                    <button id="generateItineraryBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Create My Itinerary<span id="itinerarySpinner" class="loading-spinner hidden"></span></button>
+                </div>
+                <div id="itineraryResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] text-white text-lg whitespace-pre-wrap">Your itinerary will be generated here...</div>
+            </div>
+        </div>
+    </section>
     <!-- Local Favorites Section -->
     <section class="py-16 px-4 text-center local-favorites-section fade-in-section">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Local Favorites</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Local Favorites</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8 text-white">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
 
@@ -843,60 +939,60 @@
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">☕</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Favorite Rooftop Cafe</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Favorite Rooftop Cafe</h3>
                     <p class="font-semibold text-black">Uptown Shack</p>
                     <p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
-                    <a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
                 </div>
 
                 <!-- Pamba River Walk -->
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pampa.webp" alt="Pamba River Walk" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">🏞️</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Scenic Walk</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Scenic Walk</h3>
                     <p class="font-semibold text-black">Pamba River Walk</p>
                     <p class="text-sm text-black mb-2">A beautiful and peaceful walk along the riverbanks.</p>
-                    <a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
                 </div>
 
                 <!-- Avees Puttu House -->
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">🍽️</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Must-Try Food</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Must-Try Food</h3>
                     <p class="font-semibold text-black">Avees Puttu House</p>
                     <p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
-                    <a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
                 </div>
 
                 <!-- Bhoothakuzhy Para -->
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">🪨</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Hidden Gem</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Hidden Gem</h3>
                     <p class="font-semibold text-black">Bhoothakuzhy Para</p>
                     <p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-                    <a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
                 </div>
 
                 <!-- Vengal Viewpoint -->
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">🌅</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Sunset Spot</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Sunset Spot</h3>
                     <p class="font-semibold text-black">Vengal Viewpoint</p>
                     <p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-                    <a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
                 </div>
 
                 <!-- Aruvikuzhy Waterfalls -->
                 <div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
                     <img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
                     <div class="text-4xl mb-2 text-black">💧</div>
-                    <h3 class="text-2xl font-great-vibes text-black">Waterfall Wonder</h3>
+                    <h3 class="text-2xl font-great-vibes text-red-400">Waterfall Wonder</h3>
                     <p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
                     <p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-                    <a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="text-sm text-[#800000] font-bold underline">View on Map</a>
+                    <a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class=" text-red-400 font-bold underline">View on Map</a>
                 </div>
             </div>
         </div>
@@ -905,7 +1001,7 @@
     <!-- Photo Gallery Teaser Section -->
     <section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
         <div class="max-w-2xl mx-auto">
-            <h2 class="text-5xl font-great-vibes mb-4 text-white">Our Wedding Gallery</h2>
+            <h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Wedding Gallery</h2>
             <div class="section-divider"></div>
             <p class="text-xl mb-8 text-white">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
             <a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
@@ -928,7 +1024,7 @@
 
     <!-- Music Control Bar - A new, persistent element at the bottom of the page -->
     <div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-70 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-        <button id="playPauseBtn" class="bg-yellow-400 text-black p-2 rounded-full shadow-md hover:bg-yellow-500 transition">
+        <button id="playPauseBtn" class="btn-primary text-white p-2 rounded-full shadow-md hover:btn-primary transition">
             <!-- Play icon -->
             <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4.004a1 1 0 001.555.832l3.444-2.002a1 1 0 000-1.664l-3.444-2.002z" clip-rule="evenodd" />
@@ -948,9 +1044,9 @@
 
     <script type="module">
         // --- Firebase Imports (needed for Guestbook only) ---
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- Global Firebase instances and user state ---
         let db = null;
@@ -959,8 +1055,7 @@
         let isAuthReady = false;
 
         // --- IMPORTANT: Paste your deployed Google Apps Script Web App URL here ---
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhgKz9-l3TcUuZ27i5EVk8-dGjJPIkfb3TUjbqsSaVrHF_8n0QwW0jOwMvXQCGj19Flg/exec";
-
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
         // --- Main Page Logic ---
         document.addEventListener('DOMContentLoaded', async () => {
             
@@ -1028,14 +1123,18 @@
                 seconds: document.getElementById('seconds'),
             };
 
+            // This function has been updated for better reliability on all devices.
             const animateNumber = (element, newValue) => {
                 const oldValue = element.textContent;
                 if (oldValue !== newValue) {
+                    // Update the text content immediately
+                    element.textContent = newValue;
+                    // Trigger the animation and remove the class after a short delay
+                    // This is more robust than waiting for the 'animationend' event
                     element.classList.add('animate-flip');
-                    element.addEventListener('animationend', () => {
+                    setTimeout(() => {
                         element.classList.remove('animate-flip');
-                        element.textContent = newValue;
-                    }, { once: true });
+                    }, 500); // The duration matches the CSS animation duration
                 }
             };
             
@@ -1048,14 +1147,14 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
-                animateNumber(numberElements.days, days);
-                animateNumber(numberElements.hours, hours);
-                animateNumber(numberElements.minutes, minutes);
-                animateNumber(numberElements.seconds, seconds);
-                
                 if (distance < 0) { 
                     clearInterval(countdownInterval); 
                     document.getElementById('countdown').innerHTML = "<p class='col-span-4 text-2xl'>The day is here!</p>"; 
+                } else {
+                    animateNumber(numberElements.days, days);
+                    animateNumber(numberElements.hours, hours);
+                    animateNumber(numberElements.minutes, minutes);
+                    animateNumber(numberElements.seconds, seconds);
                 }
             }, 1000);
 
@@ -1086,21 +1185,23 @@
             const masonryGrid = document.getElementById('masonry-grid');
             // Reordered photos for better storytelling flow
             const photos = [
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", alt: "Taniya and Aswin in a field of yellow flowers", caption: "Golden Hour: Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm. This picture captures our pure joy.", objectPosition: 'bottom bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", alt: "Taniya and Aswin in front of the Louvre", caption: "A Parisian Adventure: In Paris, the city of love, our own love story began. With the Louvre as our backdrop, every moment felt like a masterpiece.", objectPosition: 'center bottom' },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", alt: "Taniya and Aswin embracing", caption: "Mountain Views: Finding our own world in the heart of nature, surrounded by mountains and a love that feels as grand as the scenery." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", alt: "Taniya and Aswin in front of the Louvre", caption: "A Parisian Adventure: In Paris, the city of love, our own love story began. With the Louvre as our backdrop, every moment felt like a masterpiece.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", alt: "Metro", caption: "Our German metro adventure!: Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", alt: "Taniya and Aswin in a field of yellow flowers", caption: "Golden Hour: Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm. This picture captures our pure joy.", objectPosition: 'bottom bottom' },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", alt: "Taniya and Aswin", caption: "A New Chapter: This is where our new chapter begins. Carrying her on his back, he promises to carry her in his heart forever." },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", alt: "Taniya and Aswin holding hands", caption: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever.", objectPosition: 'center bottom' },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
+                /* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },
-                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", alt: "Metro", caption: "Our German metro adventure!: Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes.", objectPosition: 'center bottom' }
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
+                 */
             ];
 
-            const renderMasonryGrid = () => {
+            const renderMasonryGrid = () => 
+            {
                 masonryGrid.innerHTML = '';
                 photos.forEach((photo, index) => {
                     const item = document.createElement('div');
@@ -1117,9 +1218,9 @@
                     }
 
                     const captionBox = document.createElement('div');
-                    captionBox.className = 'masonry-caption text-sm text-white/90 rounded-b-md';
+                    captionBox.className = 'masonry-caption text-sm text-white rounded-b-md';
                     captionBox.innerHTML = `
-                        <p class="font-semibold text-white">${photo.caption.split(':')[0]}</p>
+                        <p class="font-great-vibes text-2xl text-red-600">${photo.caption.split(':')[0]}</p>
                         <p class="text-white text-xs mt-1">${photo.caption.split(':')[1]}</p>
                     `;
 
@@ -1212,26 +1313,30 @@
                     try {
                         const response = await fetch(SCRIPT_URL, {
                             method: 'POST',
-                            mode: 'no-cors', // Required for Google Apps Script to work
+                            /* mode: 'no-cors', // Required for Google Apps Script to work */
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
                             },
                             body: new URLSearchParams(rsvpData)
                         });
-
-                        // We can't check response.ok with no-cors, so we assume success
-                        // The Apps Script will handle the sheet update.
-                        rsvpMessage.textContent = "Thank you for your RSVP! We can't wait to see you.";
+                        const raw = await response.text();
+                        if (!response.ok) throw new Error('HTTP ' + response.status + ' ' + raw.slice(0,120));
+                        let json = {};
+                        try { json = JSON.parse(raw); } catch {
+                          throw new Error('Bad JSON: ' + raw.slice(0,80));
+                        }
+                        if (!json.success) throw new Error(json.error || 'Server reported failure');
+                        rsvpMessage.textContent = 'RSVP received! Thank you.';
                         rsvpMessage.className = 'text-green-600 font-semibold mt-4';
                         rsvpForm.reset();
-                    } catch (error) {
+                      } catch (error) {
                         console.error("Error submitting RSVP: ", error);
-                        rsvpMessage.textContent = "Oops! Something went wrong. Please try again.";
+                        rsvpMessage.textContent = 'Error: ' + error.message;
                         rsvpMessage.className = 'text-red-600 font-semibold mt-4';
-                    } finally {
+                      } finally {
                         rsvpLoadingSpinner.classList.add('hidden');
                         rsvpSubmitBtn.disabled = false;
-                    }
+                      }
                 });
             }
 
@@ -1341,56 +1446,36 @@
                 });
             }
 
+            /* // --- Gemini API helper function with exponential backoff --- */
+            
+            
+            async function callGeminiWithRetry(prompt, maxRetries = 3, baseDelay = 1000) {
+              const endpoint = "https://us-central1-wedding-aswin-taniya.cloudfunctions.net/geminiProxy";
+              for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                  const res = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt })
+                  });
+                  if (!res.ok) throw new Error("Proxy status " + res.status);
+                  const data = await res.json();
+                  const text = data.text || data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                  if (!text) throw new Error("Empty payload");
+                  return text;
+                } catch (e) {
+                  console.error("Gemini attempt", attempt + 1, "failed:", e);
+                  if (attempt === maxRetries - 1) return "Service temporarily unavailable. Please try again in a minute.";
+                  await new Promise(r => setTimeout(r, baseDelay * Math.pow(2, attempt)));
+                }
+              }
+}
+
             // --- AI Dress Code Advisor with Gemini API ---
             const dressCodeBtn = document.getElementById('dressCodeBtn');
             const dressCodeQuery = document.getElementById('dressCodeQuery');
             const dressCodeResponse = document.getElementById('dressCodeResponse');
             const dressCodeSpinner = document.getElementById('dressCodeSpinner');
-            
-            async function generateResponseWithRetry(prompt) {
-                const maxRetries = 3;
-                const baseDelay = 1000;
-                let retries = 0;
-                
-                while (retries < maxRetries) {
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = { contents: chatHistory };
-                        const apiKey = "AIzaSyC75y_X7I9dYq5ecxEhxFdN7BOuOTAkc38";
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                        
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (!response.ok) {
-                            throw new Error(`API call failed with status: ${response.status}`);
-                        }
-
-                        const result = await response.json();
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            return result.candidates[0].content.parts[0].text;
-                        } else {
-                            throw new Error('Unexpected API response structure.');
-                        }
-                    } catch (error) {
-                        console.error(`Attempt ${retries + 1} failed: ${error.message}`);
-                        retries++;
-                        if (retries < maxRetries) {
-                            const delay = baseDelay * Math.pow(2, retries);
-                            await new Promise(res => setTimeout(res, delay));
-                        } else {
-                            return "I'm sorry, I'm having trouble with the request. Please try again later.";
-                        }
-                    }
-                }
-                return "I'm sorry, I'm having trouble with the request. Please try again later.";
-            }
 
             if (dressCodeBtn) {
                 dressCodeBtn.addEventListener('click', async () => {
@@ -1403,16 +1488,47 @@
                     dressCodeSpinner.classList.remove('hidden');
                     dressCodeBtn.disabled = true;
                     dressCodeResponse.textContent = 'Thinking...';
-                    
-                    const fullPrompt = `You are a helpful wedding dress code advisor for a wedding in Thiruvalla, Kerala. The dress code is "formal or festive wear". The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Keep the response concise. Here is the guest's question: "${query}"`;
-                    
-                    const responseText = await generateResponseWithRetry(fullPrompt);
+
+                    const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive wear with groom's side preferrably in shades of green and girl's side in pastel shades or white". The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in roughly 150-200 words.  Please format the response clearly .Here is the guest's question: "${query}"`;
+
+                    const responseText = await callGeminiWithRetry(fullPrompt);
                     
                     dressCodeResponse.textContent = responseText;
                     dressCodeSpinner.classList.add('hidden');
                     dressCodeBtn.disabled = false;
                 });
             }
+            // --- New Gemini Travel Itinerary Logic ---
+            const generateItineraryBtn = document.getElementById('generateItineraryBtn');
+            const travelInterests = document.getElementById('travelInterests');
+            const travelDays = document.getElementById('travelDays');
+            const travelDate = document.getElementById('travelDate');
+            const itineraryResponse = document.getElementById('itineraryResponse');
+            const itinerarySpinner = document.getElementById('itinerarySpinner');
+            
+            if (generateItineraryBtn) {
+                generateItineraryBtn.addEventListener('click', async () => {
+                    const interests = travelInterests.value;
+                    const days = travelDays.value;
+                    const date = travelDate.value;
+                    if (!interests || !days || days < 1 || !date) {
+                        itineraryResponse.textContent = "Please enter your interests, the number of days, and your arrival date in Kerala.";
+                        return;
+                    }
+                    
+                    itinerarySpinner.classList.remove('hidden');
+                    generateItineraryBtn.disabled = true;
+                    itineraryResponse.textContent = 'Creating your itinerary...';
+
+                    const fullPrompt = `You are a knowledgeable travel agent for Kerala, India. User is in Thiruvalla, Kerala, for the wedding between Taniya and Aswin on January 5th, 2026. The wedding ceremony is at St Thomas Mar Thoma Church in Thiruvalla, Kerala and starts at 3pm in the afternoon and will be followed by a reception at Mor Athanasius Yohan Memorial Convention Centre Kuttappuzha, Thiruvalla  and starts at 5.30pm and go till late night.  You are employed by Taniya and Aswin to help you enjoy Kerala to its fullest. Based on the user's interests, create a detailed day-by-day itinerary for a trip lasting ${days} days , starting on ${date} taking into account the christian marriage on 5th January. The itinerary should be easy to follow and include local, authentic recommendations. The user's interests are: "${interests}". Please format the response clearly with headings for each day.`;
+                    const responseText = await callGeminiWithRetry(fullPrompt);
+                    
+                    itineraryResponse.textContent = responseText;
+                    itinerarySpinner.classList.add('hidden');
+                    generateItineraryBtn.disabled = false;
+                });
+            }
+
         });
     </script>
 </body>
