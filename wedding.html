@@ -37,22 +37,31 @@
             font-family: 'Great Vibes', cursive;
         }
         .hero-section {
-            background: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg') center 35%/cover no-repeat;
-            color: #fff;
-            text-shadow: 2px 2px 8px rgba(33,158,158,0.4);
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            position: relative;
             overflow: hidden;
-            background-attachment: fixed;
-            animation: efficient-kenburns 80s ease-out infinite;
-            transition: transform 80s ease-in-out;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(33,158,158,0.4);
+            /* Removed background image & Ken Burns animation */
+            background: #0D4B4F;
         }
+        .hero-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(1) contrast(1.2);
+        }
+
+        
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* stays above video */
             background-color: rgba(13, 75, 79, 0.7);
             padding: 2rem;
             border-radius: 0.75rem;
@@ -391,13 +400,41 @@
         .fade-in-section {
             opacity: 0;
             transform: translateY(60px) scale(0.97);
-            transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 3s cubic-bezier(0.4,0,0.2,1);
+            transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 2.4s cubic-bezier(0.4,0,0.2,1);
             will-change: opacity, transform;
             background-color: transparent !important;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0) scale(1);
+        }
+
+        /* Make the effect more subtle on small screens */
+        @media (max-width: 640px) {
+            .fade-in-section {
+            transform: translateY(24px) scale(0.985);
+            transition: opacity 1.1s ease, transform 1.4s ease;
+            }
+            .fade-in-section.is-visible {
+            transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Extra subtle on very narrow devices */
+        @media (max-width: 420px) {
+            .fade-in-section {
+            transform: translateY(18px) scale(0.992);
+            transition: opacity 0.9s ease, transform 1.1s ease;
+            }
+        }
+
+        /* Accessibility: minimize motion if user prefers */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in-section,
+            .fade-in-section.is-visible {
+            transform: none !important;
+            transition: opacity 0.6s ease;
+            }
         }
 
         /* === Story Timeline Shimmer (background only) === */
@@ -420,40 +457,55 @@
       }
 
       /* Sweeping green shimmer (slower: duration increased from 7s to 14s) */
-      .story-item-inner::after {
+    .story-item-inner::after {
         content: '';
         position: absolute;
         inset: 0;
-        /* Full-cover tinted base + a soft moving highlight band */
+      /* Stronger multi‑layer gradient + bright glint layer */
         background:
-          linear-gradient(115deg,
-            rgba(13,75,79,0.18) 0%,
-            rgba(26,99,103,0.22) 20%,
-            rgba(79,184,189,0.55) 48%,
-            rgba(26,99,103,0.30) 75%,
-            rgba(13,75,79,0.20) 100%);
-        background-size: 180% 100%;
-        animation: story-card-shimmer 16s linear infinite;
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.65), rgba(255,255,255,0) 50%),
+        radial-gradient(circle at 25% 30%, rgba(229, 236, 138, 0.959), rgba(26, 250, 145, 0.575) 60%),
+        radial-gradient(circle at 75% 70%, rgba(255,255,255,0.40), rgba(255,255,255,0) 65%);
+      
+        background-size: 320% 100%, 180% 180%, 200% 200%;
+        background-blend-mode: screen, lighten, lighten;
+        animation: story-card-shimmer 10s linear infinite, story-card-pulse 3s ease-in-out infinite;
         mix-blend-mode: screen;
         pointer-events: none;
         z-index: 0;
-        opacity: 0.75;
-        /* Subtle blur to smooth highlight */
-        filter: blur(0.5px);
-        will-change: background-position;
-      }
+        opacity: 0.72;
+        filter: blur(0.35px) saturate(115%);
+        will-change: background-position, opacity;
+    }
 
-      /* Reduced travel so edges stay covered (no exposure of bare bg) */
-      @keyframes story-card-shimmer {
-        0%   { background-position: 0% 0;   }
-        50%  { background-position: 40% 0;  }
-        100% { background-position: 0% 0;   }
-      }
+    @keyframes story-card-shimmer {
+      0%   { background-position: 0% 0,    20% 30%, 80% 70%; }
+      25%  { background-position: 40% 0,   30% 35%, 60% 60%; }
+      50%  { background-position: 80% 0,   45% 40%, 40% 50%; }
+      75%  { background-position: 40% 0,   60% 55%, 55% 60%; }
+      100% { background-position: 0% 0,    20% 30%, 80% 70%; }
+    }
 
-      .story-item-inner > * {
-        position: relative;
-        z-index: 1;
+    @keyframes story-card-pulse {
+      0%,100% { opacity: 0.22; }
+      50%     { opacity: 0.45; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .story-item-inner::after {
+        animation: story-card-pulse 6s ease-in-out infinite;
+        background-size: 160% 100%, 140% 140%, 150% 150%;
+        background-position: 25% 0, 25% 30%, 70% 65%;
       }
+    }
+
+    /* > * selects every direct child element of .story-item-inner
+       Giving them position: relative lets z-index work, keeping them
+       above the animated ::after shimmer layer (z-index:0) */
+    .story-item-inner > * {
+      position: relative;
+      z-index: 1;
+    }
 
       /* Gradient border accent (green spectrum) */
       .story-item-inner::before {
@@ -476,11 +528,7 @@
         opacity: .72;
       }
 
-      @keyframes story-card-shimmer {
-        0%   { background-position: -60% 0; opacity: .65; }
-        40%  { opacity: .92; }
-        100% { background-position: 220% 0; opacity: .70; }
-      }
+      
 
       .story-image-wrap img {
         display: block;
@@ -554,7 +602,7 @@
         font-family: 'Great Vibes', cursive;
         font-size: 2rem;
         margin: 0 0 .55rem;
-        background: linear-gradient(90deg,#4FB8BD,#2F8A90,#A8ECEE);
+        background: linear-gradient(90deg,#e0d312,#1fc596,#A8ECEE);
         -webkit-background-clip: text;
         color: transparent;
         text-shadow: 0 4px 18px rgba(79,184,189,0.35);
@@ -758,23 +806,33 @@
 
     <!-- Hero Section -->
     <header id="heroSection" class="hero-section text-center p-4">
-        <div class="hero-content">
-            <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
-                Together with our families
-            </p>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-red-400">Taniya</h1>
-            <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
-                Daughter of Mr. Binny Mathew and Mrs. Laly Binny
-            </p>
-
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-red-400">Aswin</h1>
-            <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
-                Son of Dr. Salim C Eapen & Mrs. Renu Thomas
-            </p>
-            <p class="text-xl md:text-4xl mt-6 font-great-vibes text-white">
-                Invite you to join us in celebrating our love
-            </p>
-        </div>
+      <video
+        id="heroVideo"
+        class="hero-bg-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="https://github.com/Aswinalex/wedding-invitation/blob/main/Video_Generation_with_Romantic_Voice.mp4?raw=true" type="video/mp4">
+      </video>
+      <div class="hero-content">
+          <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
+              Together with our families
+          </p>
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-[#00FFFF]">Taniya</h1>
+          <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
+              Daughter of Mr. Binny Mathew and Mrs. Laly Binny
+          </p>
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-[#FF00FF]">Aswin</h1>
+          <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
+              Son of Dr. Salim C Eapen & Mrs. Renu Thomas
+          </p>
+          <p class="text-xl md:text-4xl mt-6 font-great-vibes text-white">
+              Invite you to join us in celebrating our love
+          </p>
+      </div>
     </header>
     <!-- Countdown Timer Section -->
     <section class="py-8 px-4 text-center bg-dark text-black ">
@@ -838,7 +896,7 @@
                         <!-- Overlay for text clarity -->
                         <div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
                         <div class="event-box-content" style="position: relative; z-index: 2;">
-                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-4 text-red-600 drop-shadow-lg">Wedding Ceremony</h3>
+                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-4 text-[#e9f504] drop-shadow-lg">Wedding Ceremony</h3>
                             <div class="mb-4"></div>
                             <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
                             <p class="text-lg md:text-xl text-white drop-shadow-lg mb-2">St Thomas Mar Thoma Church</p>
@@ -856,7 +914,7 @@
                         <div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 
                         <div class="event-box-content" style="position: relative; z-index: 2;">
-                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-2 text-red-600 drop-shadow-lg">Reception</h3>
+                            <h3 class="text-6xl md:text-6xl font-great-vibes mb-2 text-[#e9f504] drop-shadow-lg">Reception</h3>
                             <div class="mb-2"></div>
                             <p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
                             <p class="text-lg md:text-xl text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
@@ -1327,18 +1385,18 @@
             // --- Story Timeline Logic ---
             const storyTimelineEl = document.getElementById('storyTimeline');
             const storyItemsData = [
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", title: "Mountain Views", text: "Surrounded by mountains and a love that feels as grand as the scenery." },
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", title: "Parisian Adventure", text: "With the Louvre as our backdrop, every moment felt like a masterpiece." },
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", title: "Golden Hour", text: "Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm." },
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", title: "Metro Adventure", text: "Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes."},
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", title: "A New Chapter", text: "Carrying her on his back, he promises to carry her in his heart forever." },
-              { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", title: "Together Always", text: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever." }
-              /* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
-                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
-                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
-                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
-                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },
-                            { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", title: "Mountain Views", text: "Surrounded by mountains and a love that feels as grand as the scenery." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", title: "Parisian Adventure", text: "With the Louvre as our backdrop, every moment felt like a masterpiece." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", title: "Golden Hour", text: "Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm." },
+            //   { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", title: "Metro Adventure", text: "Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes."},
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", title: "Our first Movie together", text: "Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent together was." },  
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", title: "A New Chapter", text: "Carrying her on his back, he promises to carry her in his heart forever." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", title: "Together Always", text: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever." }
+                /* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", alt: "Car journey", caption: "Forever Starts Here: Our very first car journey together—filled with dreams of the road ahead." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
+                { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
                             */
             ];
 
