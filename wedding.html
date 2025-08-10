@@ -821,11 +821,29 @@
           <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
               Together with our families
           </p>
-          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-[#00FFFF]">Taniya</h1>
+          <!-- Added glow styles -->
+          <style>
+            @keyframes neonPulse {
+              0%,100% { text-shadow: 0 0 6px currentColor, 0 0 14px currentColor, 0 0 28px currentColor; filter: brightness(1); }
+              50% { text-shadow: 0 0 10px currentColor, 0 0 26px currentColor, 0 0 46px currentColor; filter: brightness(1.15); }
+            }
+            .glow-cyan {
+              color: #00FFFF;
+              text-shadow: 0 0 6px #00ffff, 0 0 14px #00ffffaa, 0 0 28px #00ffff77;
+              animation: neonPulse 3.2s ease-in-out infinite;
+            }
+            .glow-magenta {
+              color: #FF00FF;
+              text-shadow: 0 0 6px #ff00ff, 0 0 14px #ff00ffaa, 0 0 28px #ff00ff77;
+              animation: neonPulse 3.2s ease-in-out infinite;
+              animation-delay: 1.6s;
+            }
+          </style>
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes glow-cyan">Taniya</h1>
           <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
               Daughter of Mr. Binny Mathew and Mrs. Laly Binny
           </p>
-          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-[#FF00FF]">Aswin</h1>
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes glow-magenta">Aswin</h1>
           <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
               Son of Dr. Salim C Eapen & Mrs. Renu Thomas
           </p>
