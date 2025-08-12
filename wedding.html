@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>You're Invited! - Taniya & Aswin</title>
 
@@ -18,244 +18,89 @@
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
-	
-	<style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Helvetica&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
 		/* Custom styles for the wedding invite */
+		:root {
+			--bg_col: #d4cdba; /* Defines a global primary color */
+			--bg_col_trans: #d4cdbab1;
+			--shadow_col: #44340d;
+			--border_col: #b3933a;
+			--text_col: #b3933a;
+			--divider-highlight: #ffd700;
+			--divider-shadow: #44340d;
+
+
+			}	
 		body {
-			font-family: 'Poppins', sans-serif;
-			background-color: #0d4b4f;
-			color: white;
+			font-family: 'Poppins', 'Great Vibes', 'Helvetica', 'Montserrat', sans-serif;
+			background-color: var(--bg_col);/* Beige color */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-size: 100px 100px;
+            background-blend-mode: multiply;
+			color: rgb(0, 0, 0);
 			line-height: 1.8; /* Increased line-height for better readability */
 			overflow-x: hidden;
 		}
-		.object-cover {
-			object-fit: cover;
-		}
-		
-		.font-great-vibes {
-			font-family: 'Great Vibes', cursive;
-		}
-		.hero-section {
+		/* Hero section */
+        .hero-section {
 			position: relative;
-			min-height: 100vh;
+			min-height: 90vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			overflow: hidden;
 			color: #fff;
-			text-shadow: 2px 2px 8px rgba(33,158,158,0.4);
-			/* Removed background image & Ken Burns animation */
-			background: #0D4B4F;
+			text-shadow: 2px 2px 8px var(--shadow_col);
+			/* background: #4c5831; */
 		}
-		.hero-bg-video {
-			position: absolute;
-			inset: 0;
+        .heroImage {
 			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			z-index: 0;
-			filter: brightness(1) contrast(1.2);
+			max-width: 100%;
+			height: auto;
+			max-height: 80vh; /* Adjust as needed for desktop */
+			object-fit: contain;
 		}
-
-		
-		.hero-content {
+		@media (max-width: 500px) {
+			.heroImage {
+				max-height: 60vh; /* Adjust as needed for mobile */
+			}
+		}
+        .hero-content {
 			position: relative;
-			z-index: 2; /* stays above video */
-			background-color: rgba(4, 40, 112, 0.7);
+			z-index: 2; 
+			background-color: var(--bg_col_trans);
+			max-height: 80vh;
 			padding: 2rem;
 			border-radius: 0.75rem;
 			backdrop-filter: none;
 			-webkit-backdrop-filter: none;
-			border: 1.5px solid rgba(255, 255, 255, 0.25);
-			max-width: 48rem;
+			border: 1.5px solid var(--border_col);
+			max-width: 40rem;
 			margin: auto;
-			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-		}
-		
-		.bible-verse-ml {
-			font-family: 'Poppins', sans-serif;
-		}
-		
-		/* Enhanced Section Divider */
-		.section-divider {
-			--accent: #B22222;
-			--accent-soft: #ff9c9c;
-			position: relative;
-			width: clamp(200px, 55%, 520px);
-			height: 44px;
-			margin: 2.75rem auto;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			isolation: isolate;
-		}
-		.section-divider::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			top: 50%;
-			height: 5px;
-			transform: translateY(-50%);
-			background: linear-gradient(
-		  90deg,
-		  transparent 0%,
-		  rgba(255,255,255,0.05) 6%,
-		  var(--accent) 18%,
-		  var(--accent-soft) 50%,
-		  var(--accent) 82%,
-		  rgba(255,255,255,0.05) 94%,
-		  transparent 100%
-			);
-			background-size: 220% 100%;
-			animation: divider-shimmer 7s linear infinite;
-			filter: drop-shadow(0 0 4px rgba(178,34,34,0.35));
-			border-radius: 2px;
-		}
-		
-		@keyframes divider-shimmer {
-			0% { background-position: 0 0; }
-			100% { background-position: 220% 0; }
-		}
-		@keyframes divider-float {
-			0%,100% { transform: translate(-50%, -50%) scale(1); }
-			50% { transform: translate(-50%, -52%) scale(1.04); }
-		}
+			box-shadow: 10px 5px 0px 0 var(--shadow_col);
+			overflow: hidden;
 
-		@media (max-width: 640px) {
-			.section-divider {
-		  width: clamp(160px, 70%, 360px);
-		  margin: 2rem auto;
-			}
-			.section-divider::after {
-		  width: 34px;
-		  height: 34px;
-		  background-size: 60%;
-			}
+		} 
+        /* Countdown */
+        .animate-flip {
+			animation: flip-number 1s ease-in-out;
 		}
-		
-		.btn-primary {
-			background-color: #B2222265;
-			color: #ffffff;
-			padding: 0.75rem 1.5rem;
-			border-radius: 9999px;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); /* Updated gold accent shadow */
-			font-weight: 600;
-			border: none;
-			backdrop-filter: blur(4px);
-			-webkit-backdrop-filter: blur(4px);
-		}
-		.btn-primary:hover {
-			background: #B22222ab;
-			color: #ffffff;
-			transform: translateY(-2px);
-			box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-		}
-		.btn-directions {
-			background-color: #B2222265;
-			color: #ffffff;
-			padding: 0.75rem 1.5rem;
-			border-radius: 9999px;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-			font-weight: 600;
-			border: none;
-			backdrop-filter: blur(4px);
-			-webkit-backdrop-filter: blur(4px);
-		}
-		.btn-directions:hover {
-			background: #B22222ab;
-			color: #ffffff;
-			transform: translateY(-2px);
-			box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-		}
-		.loading-spinner {
-			border: 4px solid #f3f3f3;
-			border-top: 4px solid #274690;
-			border-radius: 50%;
-			width: 24px;
-			height: 24px;
-			animation: spin 1s linear infinite;
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 10px;
-		}
-		.equation-section {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			min-height: 60vh;
-			width: 100%;
-			text-align: center;
-		}
-		.equation-section .video-bg {
-			display: block;
-			margin: 0 auto;
-			width: 100%;
-			height: auto;
-			border-radius: 1rem;
-			box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
-			position: relative;
-			z-index: 1;
-			object-fit: contain;
-		}
-		.equation-section .hero-content {
-			position: relative;
-			z-index: 3;
-			margin-top: 0px;
-			width: 100%;
-			max-width: 700px;
-			margin-left: auto;
-			margin-right: auto;
-			background: rgba(13, 75, 79, 0.7);
-			border-radius: 1rem;
-			padding: 2rem;
-			box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
-			backdrop-filter: blur(4px);
-			-webkit-backdrop-filter: blur(4px);
-		}
-		/* Responsive for mobile */
-		@media (max-width: 500px) {
-			.equation-section .video-bg {
-				max-height: 300px;
-			}
-			.equation-section .hero-content {
-				margin-top: -30px;
-				padding: 1rem;
-			}
-		}
-		@media (max-width: 640px) {
-			.equation-section .video-bg {
-			width: 100vw !important;
-			min-width: 100vw !important;
-			max-width: 100vw !important;
-			left: 1%;
-			right: 1%;
-			margin-left: 0vw;
-			margin-right: 0vw;
-			position: relative;
-			display: block;
-			object-fit: contain;
-			z-index: 3;
-			border-radius: 0 !important;
-			}
-		}
-		
+        
+        /* Event section */
 		.event-box {
 			position: relative;
 			overflow: hidden;
 			color: #fff;
-			text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-			background-color: #1A6367;
+			text-shadow: 1px 1px 3px var(--shadow_col);
+			background-color: var(--bg_col);
 			backdrop-filter: blur(4px);
 			-webkit-backdrop-filter: blur(4px);
 			padding: 0;
 			border-radius: 1rem;
-			border: 1px solid rgba(255,255,255,0.1);
-			box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+			border: 1px solid var(--border_col);
+			box-shadow: 0 8px 32px var(--shadow_col);
 			transition: transform 0.3s ease, box-shadow 0.3s ease;
 			min-height: 400px;
 			display: flex;
@@ -265,12 +110,14 @@
 		}
 		.event-box:hover {
 			transform: translateY(-5px);
-			box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+			box-shadow: 0 12px 40px var(--shadow_col);
+			border: 1px solid var(--border_col);
+
 		}
 		.event-box-overlay {
 			position: absolute;
 			inset: 0;
-			background: linear-gradient(to bottom, transparent, rgba(26,99,103,0.8));
+			background: linear-gradient(to bottom, transparent, var(--bg_col));
 			z-index: 1;
 			transition: opacity 0.3s ease;
 			backdrop-filter: blur(2px);
@@ -303,25 +150,116 @@
 			grid-template-columns: 1fr;
 			gap: 2rem;
 		}
+        /* Equation section */
+        .equation-section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			min-height: 100vh;
+			background-color: black;
+			width: 100%;
+			
+			text-align: center;
+		}
+		.equation-section .video-bg {
+			display: block;
+			margin: 0 auto;
+			background: black;
 
+			width: 100%;
+			height: auto;
+			
+			
+			
+
+			position: relative;
+			z-index: 1;
+			object-fit: contain;
+		}
+		/* for mobile */ */
+		@media screen and (max-width: 500px) {
+            .equation-section .video-bg {
+			width: 100vw !important;
+			min-width: 100vw !important;
+			max-width: 100vw !important;
+			left: 1%;
+			right: 1%;
+			margin-left: 0vw;
+			margin-right: 0vw;
+			position: relative;
+			display: block;
+			object-fit: contain;
+			z-index: 3;
+			background-color: black;
+			border-radius: 0 !important;
+            max-height: 300px;
+			}
+			.equation-section .hero-content {
+				margin-top: -30px;
+				background-color: black;
+
+				
+			}
+		}
 		
-		.animate-flip {
-			animation: flip-number 1s ease-in-out;
+		
+        
+        /* Wedding party section */
+        .family-member-card {
+			transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+			cursor: pointer;
 		}
-		@media (max-width: 640px) {
-			#countdown {
-				display: grid !important;
-				color:#e9f504
-				grid-template-columns: repeat(4, 1fr) !important;
-				gap: 1rem !important;
-				width: 100% !important;
-				max-width: 100vw !important;
-				font-size: 1.2rem !important;
-			}
-			#countdown > div {
-				min-width: 0 !important;
-			}
+		.family-member-card:hover {
+			transform: scale(1.05);
+			box-shadow: 0 10px 20px var(--shadow_col);
+			border: 1px solid var(--border_col);
 		}
+        .menu-section, .rsvp-section, .guestbook-section, .dresscode-section, .local-favorites-section, .wedding-party-section {
+			background-color: var(--bg_col);
+			border: 1px solid var(--border_col);
+			border-radius: 1rem;
+			box-shadow: 0 8px 32px 0 var(--shadow_col);
+		}
+        
+        /* Guestbook section */
+
+        #guestbookDisplay {
+			background-color: var(--bg_col);
+			border: 1px solid var(--border_col);
+			box-shadow: 0 8px 32px 0 var(--shadow_col);
+			border-radius: 0.5rem;
+			padding: 1.5rem;
+			text-align: left;
+			min-height: 150px;
+			color: rgb(5, 5, 5);
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+		}
+		#guestbookDisplay .message {
+			border-bottom: 1px solid var(--border_col);
+			color: black;
+
+			padding-bottom: 1rem;
+			margin-bottom: 1rem;
+		}
+		#guestbookDisplay .message:last-child {
+			border-bottom: none;
+			color: rgba(0, 0, 0, 0.965);
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+        /* Local favourites section */
+        
+		.local-favorites-section > div > div:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 30px var(--shadow_col);
+			border: 1px solid var(--border_col);
+
+		}
+		
+
 		/* For scroll animations */
 		.fade-in-section {
 			opacity: 0;
@@ -336,7 +274,7 @@
 		}
 
 		/* Make the effect more subtle on small screens */
-		@media (max-width: 640px) {
+		@media (max-width: 500px) {
 			.fade-in-section {
 			transform: translateY(24px) scale(0.985);
 			transition: opacity 1.1s ease, transform 1.4s ease;
@@ -345,326 +283,190 @@
 			transform: translateY(0) scale(1);
 			}
 		}
-
-		/* Extra subtle on very narrow devices */
-		@media (max-width: 420px) {
-			.fade-in-section {
-			transform: translateY(18px) scale(0.992);
-			transition: opacity 0.9s ease, transform 1.1s ease;
-			}
+        
+        /* Enhanced Section Divider */
+		.section-divider {
+			--divider-base: var(--bg_col);
+			--divider-highlight: rgba(255, 255, 255, 0.8);
+			--divider-shadow: rgba(0, 0, 0, 0.4);
+			--divider-accent: var(--text_col);
+			--divider-shimmer1: var(--bg_col);
+			--divider-shimmer2: var(--text_col);
+			--divider-shimmer3: var(--shadow_col);
+			position: relative;
+			width: clamp(200px, 55%, 520px);
+			height: 40px;
+			margin: 2.75rem auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			isolation: isolate;
 		}
-
-		/* Accessibility: minimize motion if user prefers */
-		@media (prefers-reduced-motion: reduce) {
-			.fade-in-section,
-			.fade-in-section.is-visible {
-			transform: none !important;
-			transition: opacity 0.6s ease;
-			}
+		.section-divider::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			background: transparent;
+			clip-path: path('M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30');
+			filter: drop-shadow(-2px -2px 4px var(--divider-highlight))
+					drop-shadow(2px 2px 4px var(--divider-shadow));
 		}
-
-		/* === Story Timeline Shimmer (background only) === */
-
-	  /* Container already defined earlier:
-	  .story-item-inner { ... } */
-	  /* Enhanced Green-Themed Shimmer (bi-directional continuous - slowed) */
-	  .story-image-wrap {
-		position: relative;
-		border-radius: 0.9rem;
-		overflow: hidden;
-		isolation: isolate;
-	  }
-	  .story-image-wrap::before,
-	  .story-image-wrap::after { content: none !important; }
-
-	  .story-item-inner {
-		position: relative;
-		overflow: hidden;
-	  }
-
-	  /* Sweeping green shimmer (slower: duration increased from 7s to 14s) */
-	.story-item-inner::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-	  /* Stronger multi‑layer gradient + bright glint layer */
-		background:
-		radial-gradient(circle at 20% 20%, rgba(255,255,255,0.65), rgba(255,255,255,0) 50%),
-		radial-gradient(circle at 25% 30%, rgba(229, 236, 138, 0.959), rgba(26, 250, 145, 0.575) 60%),
-		radial-gradient(circle at 75% 70%, rgba(255,255,255,0.40), rgba(255,255,255,0) 65%);
-	  
-		background-size: 320% 100%, 180% 180%, 200% 200%;
-		background-blend-mode: screen, lighten, lighten;
-		animation: story-card-shimmer 10s linear infinite, story-card-pulse 3s ease-in-out infinite;
-		mix-blend-mode: screen;
-		pointer-events: none;
-		z-index: 0;
-		opacity: 0.72;
-		filter: blur(0.35px) saturate(115%);
-		will-change: background-position, opacity;
-	}
-
-	@keyframes story-card-shimmer {
-	  0%   { background-position: 0% 0,    20% 30%, 80% 70%; }
-	  25%  { background-position: 40% 0,   30% 35%, 60% 60%; }
-	  50%  { background-position: 80% 0,   45% 40%, 40% 50%; }
-	  75%  { background-position: 40% 0,   60% 55%, 55% 60%; }
-	  100% { background-position: 0% 0,    20% 30%, 80% 70%; }
-	}
-
-	@keyframes story-card-pulse {
-	  0%,100% { opacity: 0.22; }
-	  50%     { opacity: 0.45; }
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-	  .story-item-inner::after {
-		animation: story-card-pulse 6s ease-in-out infinite;
-		background-size: 160% 100%, 140% 140%, 150% 150%;
-		background-position: 25% 0, 25% 30%, 70% 65%;
-	  }
-	}
-
-	/* > * selects every direct child element of .story-item-inner
-	   Giving them position: relative lets z-index work, keeping them
-	   above the animated ::after shimmer layer (z-index:0) */
-	.story-item-inner > * {
-	  position: relative;
-	  z-index: 1;
-	}
-
-	  /* Gradient border accent (green spectrum) */
-	  .story-item-inner::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		padding: 2px;
-		border-radius: 1rem;
-		background: linear-gradient(145deg,
-		  rgba(79,184,189,0.10),
-		  rgba(47,138,144,0.55),
-		  rgba(168,236,238,0.10));
-		-webkit-mask:
-		  linear-gradient(#000 0 0) content-box,
-		  linear-gradient(#000 0 0);
-		-webkit-mask-composite: xor;
-		mask-composite: exclude;
-		pointer-events: none;
-		z-index: 2;
-		opacity: .72;
-	  }
-
-	  
-
-	  .story-image-wrap img {
-		display: block;
-		width: 100%;
-		height: auto;
-		object-fit: cover;
-		position: relative;
-		z-index: 1;
-		filter: none;
-		mix-blend-mode: normal;
-	  }
-
-	  /* --- Story Timeline Styles (green theme) --- */
-	  .story-timeline {
-		position: relative;
-		margin: 2rem auto 0;
-		max-width: 820px;
-		padding: 0 1rem;
-	  }
-	  .story-timeline::before {
-		content: '';
-		position: absolute;
-		top: 0; bottom: 0;
-		left: 50%;
-		width: 3px;
-		background: linear-gradient(
-		  to bottom,
-		  rgba(255,255,255,0) 0%,
-		  #0D4B4F 12%,
-		  #1A6367 28%,
-		  #4FB8BD 50%,
-		  #1A6367 72%,
-		  #0D4B4F 88%,
-		  rgba(255,255,255,0) 100%);
-		transform: translateX(-50%);
-		opacity: 0.55;
-		filter: drop-shadow(0 0 4px rgba(79,184,189,0.55));
-	  }
-	  .story-item {
-		position: relative;
-		width: 100%;
-		margin: 3.5rem 0;
-		opacity: 0;
-		transform: translateY(50px);
-		transition: opacity .9s cubic-bezier(.25,.6,.3,1),
-		transform 1.2s cubic-bezier(.25,.6,.3,1);
-	  }
-	  .story-item.is-visible {
-		opacity: 1;
-		transform: translateY(0);
-	  }
-	  .story-item-inner {
-		background: rgba(13,75,79,0.70);
-		border: 1px solid rgba(255,255,255,0.18);
-		border-radius: 1rem;
-		overflow: hidden;
-		box-shadow: 0 8px 24px -6px rgba(0,0,0,0.45);
-		backdrop-filter: blur(4px);
-	  }
-	  .story-item img {
-		width: 100%;
-		display: block;
-		object-fit: cover;
-		max-height: 520px;
-	  }
-	  .story-caption {
-		padding: 1rem 1.25rem 1.2rem;
-		text-align: center;
-	  }
-	  .story-caption h3 {
-		font-family: 'Great Vibes', cursive;
-		font-size: 2rem;
-		margin: 0 0 .55rem;
-		background: linear-gradient(90deg,#e0d312,#1fc596,#A8ECEE);
-		-webkit-background-clip: text;
-		color: transparent;
-		text-shadow: 0 4px 18px rgba(79,184,189,0.35);
-	  }
-	  .story-caption p {
-		font-size: .9rem;
-		line-height: 1.45;
-		margin: 0;
-		color: #fff;
-		opacity: .92;
-	  }
-
-	  @media (min-width: 760px) {
-		.story-item:nth-child(odd)  .story-item-inner { margin-left: calc(50% + 1.4rem); width: 46%; }
-		.story-item:nth-child(even) .story-item-inner { margin-right: calc(50% + 1.4rem); width: 46%; }
-		.story-item::after {
-		  content: '';
-		  position: absolute;
-		top: 36px;
-		left: 50%;
-		  transform: translateX(-50%);
-		  width: 18px; height: 18px;
-		  background: radial-gradient(circle at 35% 35%, #d6f8f9, #4FB8BD 60%, #0D4B4F 100%);
-		  border: 3px solid #fff;
-		  border-radius: 50%;
-		  box-shadow:
-		0 0 0 5px rgba(79,184,189,0.25),
-		0 0 14px 4px rgba(79,184,189,0.55),
-		0 6px 14px rgba(0,0,0,0.45);
+		.section-divider::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			background: linear-gradient(90deg,
+				transparent 0%,
+				var(--divider-shimmer1) 20%,
+				var(--divider-shimmer2) 35%,
+				var(--divider-shimmer3) 50%,
+				var(--divider-shimmer2) 65%,
+				var(--divider-shimmer1) 80%,
+				transparent 100%
+			);
+			background-size: 50% 100%;
+			animation: divider-shimmer 15s ease-in-out infinite;
+			clip-path: path('M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30');
+			opacity: 0.6;
 		}
-	  }
-	  @media (max-width: 759px) {
-		.story-timeline::before { left: 10px; transform: none; }
-		.story-item-inner { margin-left: 2.25rem; }
-		.story-item::after {
-		  content:''; position:absolute;
-		  left:10px; top:24px;
-		  width:14px; height:14px;
-		  background: radial-gradient(circle at 35% 35%, #d6f8f9, #4FB8BD 60%, #0D4B4F 100%);
-		  border:2px solid #fff;
-		  border-radius:50%;
-		  box-shadow:
-		0 0 0 4px rgba(79,184,189,0.25),
-		0 0 10px 2px rgba(79,184,189,0.55);
-		}
-	  }
-
-/* --- End Story Timeline Styles --- */
-		
-		/* --- Hover effect for Meet Our Family section --- */
-		.family-member-card {
-			transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-			cursor: pointer;
-		}
-		.family-member-card:hover {
-			transform: scale(1.05);
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-		}
-
-		.text-dark { color: #FFD700; }
-		.text-light { color: white; }
-		.menu-section, .rsvp-section, .guestbook-section, .dresscode-section, .local-favorites-section, .wedding-party-section, .bg-wedding-section {
-			background-color: #1A6367;
-		}
-		.menu-section .menu-content {
-			background-color: #1A6367;
-		}
-		.local-favorites-section > div > div {
-			border-color: #1A6367;
-			transition: transform 0.3s ease, box-shadow 0.3s ease;
-			background-color: #0D4B4F;
-			border-radius: 1rem; /* Added border-radius for consistency */
-		}
-		.local-favorites-section > div > div:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 15px 30px rgba(56, 54, 46, 0.3);
-		}
-		.local-favorites-section a {
-			color: text-red-400;
-			font-weight: bold;
-		}
-		.bg-white {
-			background-color: #1A6367;
-		}
-		.bg-gray-200 {
-			background-color: #1A6367;
-		}
-		.text-gray-700 {
-			color: #D4AF37; /* Lighter gold */
-		}
-		.text-gray-600 {
-			color: #ccc;
-		}
-		.text-red-600 {
-			
-			color: #0D4B4F;
-		}
-		.text-green-600 {
-			color: #38a169;
-		}
-		.border-gray-300 {
-			border-color: white;
-		}
-		.border-dark\/20 {
-			border-color: #fff;
-		}
-		.text-black { color: white; }
-		#guestbookDisplay {
-			background-color: #1A6367;
-			border: 1px solid #D4AF37; /* Updated gold border color */
-			border-radius: 0.5rem;
-			padding: 1.5rem;
-			text-align: left;
-			min-height: 150px;
-			color: white;
-			backdrop-filter: none;
-			-webkit-backdrop-filter: none;
-		}
-		#guestbookDisplay .message {
-			border-bottom: 1px solid #D4AF37; /* Updated gold border color */
-			padding-bottom: 1rem;
-			margin-bottom: 1rem;
-		}
-		#guestbookDisplay .message:last-child {
-			border-bottom: none;
-			margin-bottom: 0;
-			padding-bottom: 0;
+        @media (max-width: 500px) {
+			.section-divider {
+		        width: clamp(160px, 70%, 360px);
+		        margin: 2rem auto;
+				height: 40px;
+		    }
 		}
 		
+		@keyframes divider-shimmer {
+			0% { background-position: -200% 0; }
+			100% { background-position: 200% 0; }
+		}
+		
+        /* buttons */
+        .btn-primary {
+			background-color: var(--shadow_col);
 
-		
-		
-		
-		
-		
-		@media (max-width: 640px) {
+			color: #ffffff;
+			padding: 0.75rem 1.5rem;
+			border-radius: 9999px;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 15px var(--shadow_col); /* Updated gold accent shadow */
+			font-weight: 600;
+			border: none;
+			backdrop-filter: blur(4px);
+			-webkit-backdrop-filter: blur(4px);
+		}
+		.btn-primary:hover {
+			background: var(--border_col);
+			color: #ffffff;
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px var(--shadow_col);
+		}
+        .loading-spinner {
+			border: 4px solid var(--border_col);
+			border-top: 4px solid var(--border_col);
+			border-radius: 50%;
+			width: 24px;
+			height: 24px;
+			animation: spin 1s linear infinite;
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 10px;
+		}
+        
+        .object-cover {
+			object-fit: cover;
+		}
+        .font-great-vibes {
+            color: var(--text_col);
+
+            font-family: 'Great Vibes', cursive;
+            /* Add glazing effect with text-shadow */
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 255, 255, 0.3),
+                2px 2px 4px rgba(0, 0, 0, 0.4);
+            /* Add subtle shine animation */
+            animation: shine 2s infinite;
+        }
+		.font-great-vibes-eqn {
+            color: #ffffff;
+            font-family: 'Great Vibes', cursive;
+            /* Add glazing effect with text-shadow */
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.6),
+                0 0 10px rgba(0, 255, 255, 0.4),
+                1px 1px 2px rgba(0, 255, 255, 0.3);
+            /* Add color transition animation */
+            animation: colorTransition 5s ease-in-out infinite;
+        }
+
+        @keyframes colorTransition {
+            0% {
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(0, 255, 255, 0.8),
+                    1px 1px 8px rgba(0, 255, 255, 0.6);
+            }
+            50% {
+                text-shadow:
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(255, 0, 255, 0.8),
+                    1px 1px 8px rgba(255, 0, 255, 0.6);
+            }
+            100% {
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(0, 255, 255, 0.8),
+                    1px 1px 8px rgba(0, 255, 255, 0.6);
+            }
+        }
+        .font-helvetica {
+            color: #000000;
+            text-align: justify;
+            font-family: 'Helvetica', sans-serif;
+        }
+		/* Bible verse */
+		.bible-verse-ml {
+			color: #000000;
+			font-family: 'Helvetica', sans-serif;
+
+		}
+        .font-montserrat {
+            color: #fcfcfc;
+
+			font-family: 'Montserrat', sans-serif;
+		}
+        /* New: embossed/engraved text that blends with your beige + grain background */
+        .font-embossed-on-beige {
+        color: var(--text_col); /* same as page background so the "surface" matches */
+        letter-spacing: 0.5px; /* tiny spacing helps the bevel read cleanly */
+
+        /* light hit from top-left + shadow bottom-right (subtle, over grain) */
+        text-shadow:
+            -1px -1px 1px rgba(255, 255, 255, 0.55), /* highlight (top-left) */
+            1px  1px 1px rgba(0,   0,   0,   0.28); /* shadow (bottom-right) */
+        }
+
+        /* Optional New: slightly deeper cut if the grain is strong */
+        .font-embossed-on-beige.deep {
+        text-shadow:
+            -2px -2px 2px rgba(255, 255, 255, 0.45), /* stronger highlight */
+            2px  2px 2px rgba(0,   0,   0,   0.25); /* stronger shadow */
+        }
+
+        /* Optional New: raised (opposite of engraved) – flip directions */
+        .font-embossed-on-beige.raised {
+        text-shadow:
+            1px  1px 1px rgba(255, 255, 255, 0.55), /* highlight now bottom-right */
+            -1px -1px 1px rgba(0,   0,   0,   0.28); /* shadow now top-left */
+        }
+
+
+        @media (max-width: 500px) {
 			.py-16 {
 				padding-top: 2rem !important;
 				padding-bottom: 2rem !important;
@@ -674,33 +476,83 @@
 				padding-right: 1rem !important;
 			}
 		}
-
 		/* 5. Responsive Heading Sizes: Use smaller headings on mobile */
-		@media (max-width: 640px) {
+		@media (max-width: 500px) {
 			.text-6xl, .text-8xl, .text-5xl {
-				font-size: 2rem !important;
+				font-size: 2.5rem !important;
 				line-height: 2.5rem !important;
+			}
+			.text-4xl, .text-3xl {
+				font-size: 1.5rem !important;
+				line-height: 1.7rem !important;
+			}
+			.text-2xl {
+				font-size: 1rem !important;
+				line-height: 1.2rem !important;
+			}
+			.text-xl {
+				font-size: 0.7rem !important;
+				line-height: 0.9rem !important;
+			}
+		}
+
+		@media (min-width: 501px) and (max-width: 800px) {
+			.text-6xl, .text-8xl, .text-5xl {
+				font-size: 3rem !important;
+				line-height: 4rem !important;
 			}
 			.text-4xl, .text-3xl {
 				font-size: 1.5rem !important;
 				line-height: 2rem !important;
 			}
-		}
+			 .text-2xl {
+				font-size: 1rem !important;
+				line-height: 1rem !important;
+			}
+			.text-xl {
+				font-size: 1rem !important;
+				line-height: 1.5rem !important;
+			}
 
+		}
+		@media (min-width: 801px) {
+			.text-6xl, .text-8xl, .text-5xl {
+				font-size: 4rem !important;
+				line-height: 4rem !important;
+			}
+			.text-4xl, .text-3xl {
+				font-size: 2rem !important;
+				line-height: 2.5rem !important;
+			}
+			.text-2xl {
+				font-size: 1.5rem !important;
+				line-height: 1.8rem !important;
+			}
+			.text-xl {
+				font-size: 1.6rem !important;
+				line-height: 2rem !important;
+			}
+		}
 		
+
+        
+        .bg-white {background-color: #1A6367;}
+		.bg-gray-200 {background-color: #1A6367;}
+        .text-dark { color: #FFD700; }
+		.text-light { color: white; }
+        .text-black { color: rgb(0, 0, 0); }
+		.text-gray-700 {color: #D4AF37; /* Lighter gold */}
+		.text-gray-600 {color: #ccc;}
+		.text-red-600 {color: #4c5831;}
+		.text-green-600 {color: #38a169;}
+		.border-gray-300 {border-color: white;}
+		.border-dark\/20 {border-color: #fff;}
 		
-		
-		
-		
-		@keyframes spin {
+        @keyframes spin {
 			0% { transform: rotate(0deg); }
 			100% { transform: rotate(360deg); }
 		}
-		/* More subtle pulse animation for divider */
-		@keyframes subtle-pulse-divider {
-			0%, 100% { opacity: 1; }
-			50% { opacity: 0.6; }
-		}
+		
 		@keyframes flip-number {
 			0% { transform: rotateX(0); }
 			50% { transform: rotateX(90deg); }
@@ -708,182 +560,137 @@
 		}
 		
 		footer {
-			background-color: #0D4B4F;
+			background-color: var(--bg_col_trans);
 			color: white;
 		}
 		footer .text-2xl, footer .text-sm, footer .text-xs {
-			color: white;
+			color: rgb(0, 0, 0);
 		}
-	</style>
+    </style>
 	
 </head>
-<body class="antialiased">
-	
-	<!-- Delete Confirmation Modal -->
-	<div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
-		<div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
-			<h3 class="text-lg font-semibold mb-4 text-dark">Are you sure?</h3>
-			<p class="text-gray-600 mb-6">Do you really want to delete this message? This action cannot be undone.</p>
-			<div class="flex justify-center gap-4">
-				<button id="cancelDelete" class="px-6 py-2 rounded-full text-gray-700 bg-gray-200 hover:bg-gray-300">Cancel</button>
-				<button id="confirmDelete" class="px-6 py-2 rounded-full text-white bg-red-600 hover:bg-red-700">Delete</button>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Hero Section -->
-	<header id="heroSection" class="hero-section text-center p-4">
-		
-      <video
-        id="heroVideo"
-        class="hero-bg-video"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-      >
-	  <!-- https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/20250810_2202_Starry%20Heart%20Sky_simple_compose_01k2a4n0v5efjt5vh9syd7z6p5.mp4
-	  https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/20250810_2252_Dreamy%20Starry%20Night_simple_compose_01k2a7f0evf6697n7yxm3we44p.gif
-	  https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/20250810_2252_Dreamy%20Starry%20Night_simple_compose_01k2a7f0evf6697n7yxm3we44p.mp4
-	  https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Romantic_Night_Sky_Video_Generation.mp4
-	  https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4 -->
-        <source src=" https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Romantic_Night_Sky_Video_Generation.mp4" type="video/mp4">
-      </video>
 
-      <!-- Add script to control video playback -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const video = document.getElementById('heroVideo');
-          
-          // Set playback rate to 0.5x speed
-          video.playbackRate = 0.5;
-          
-          // When video ends, play it in reverse
-          video.addEventListener('ended', function() {
-            // Pause at the end
-            video.pause();
-            
-            // Set current time to end
-            video.currentTime = video.duration;
-            
-            // Play in reverse by decreasing currentTime
-            let reverseInterval = setInterval(function() {
-              if(video.currentTime <= 0) {
-                // When reaching start, clear interval and play forward again
-                clearInterval(reverseInterval);
-                video.play();
-              } else {
-                video.currentTime -= 0.03; // Adjust this value to control reverse speed
-              }
-            }, 30);
-          });
-        });
-      </script>
-	  <div class="hero-content">
-		  <p class="text-lg md:text-5xl mb-4 font-great-vibes text-white">
-			  Together with our families
-		  </p>
-		 
-		  <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-gray-400">Taniya</h1>
-		  <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
-			  Daughter of Mr. Binny Mathew and Mrs. Laly Binny
-		  </p>
-		  <h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes text-gray-400">Aswin</h1>
-		  <p class="text-xl md:text-4xl mb-2 font-great-vibes text-white">
-			  Son of Dr. Salim C Eapen & Mrs. Renu Thomas
-		  </p>
-		  <p class="text-xl md:text-4xl mt-6 font-great-vibes text-white">
-			  Invite you to join us in celebrating our love
-		  </p>
-	  </div>
-	</header>
-	<!-- Countdown Timer Section -->
-	<section class="py-8 px-4 text-center bg-dark text-black ">
+<body class="antialiased">
+    	<!-- Hero Section -->
+    <header id="heroSection" class="hero-section text-center">
+        <!-- <div class="relative w-screen h-screen">
+            <img id="heroImage" 
+            class="w-full h-full" 
+            style="object-fit: cover; position: relative; top: 0; left: 0;" 
+            src="" 
+            alt="Wedding Invitation">
+            <div class="absolute inset-0  opacity-50"></div> 	
+        </div> -->
+		<div class="hero-content">
+			<p class="text-3xl md:text-5xl mb-4 font-embossed-on-beige raised ">
+				Together with our families
+			</p>
+			<h1 class="text-6xl md:text-4xl font-bold mb-6 font-great-vibes ">Taniya</h1>
+			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised ">
+				Daughter of Mr. Binny Mathew and Mrs. Laly Binny
+			</p>
+			<h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes ">Aswin</h1>
+			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised ">
+				Son of Dr. Salim C Eapen & Mrs. Renu Thomas
+			</p>
+			<p class="text-3xl md:text-4xl mt-6 font-embossed-on-beige raised ">
+
+				Invite you to join us in celebrating our love
+			</p>
+		</div>
+        
+    </header>
+<!-- Countdown Timer Section -->
+	<section class="py-8 px-4 text-center ">
 		<!-- Replaced gold with a new, class-based color for consistency -->
-		<h2 class="text-3xl md:text-4xl font-great-vibes mb-4 text-[#e9f504]">Counting down to the big day!</h2>
+		<h2 class="text-6xl md:text-4xl font-great-vibes mb-4 ">Counting down to the big day!</h2>
+
+
 		<div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
 			<div>
-				<div id="days" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
-				<div class="text-sm uppercase tracking-wider text-[#e9f504]">Days</div>
+				<div id="days" class="text-6xl md:text-6xl font-great-vibes ">00</div>
+				<div class="font-semibold uppercase tracking-wider font-great-vibes">Days</div>
 			</div>
 			<div>
-				<div id="hours" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
-				<div class="text-sm uppercase tracking-wider text-[#e9f504]">Hours</div>
+				<div id="hours" class="text-6xl md:text-6xl  font-great-vibes ">00</div>
+				<div class=" font-semibold uppercase tracking-wider font-great-vibes ">Hours</div>
 			</div>
 			<div>
-				<div id="minutes" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
-				<div class="text-sm uppercase tracking-wider text-[#e9f504]">Minutes</div>
+				<div id="minutes" class="text-6xl md:text-6xl font-great-vibes ">00</div>
+				<div class=" font-semibold uppercase tracking-wider font-great-vibes">Minutes</div>
 			</div>
 			<div>
-				<div id="seconds" class="text-4xl md:text-6xl font-semibold font-great-vibes text-[#e9f504]">00</div>
-				<div class="text-sm uppercase tracking-wider text-[#e9f504]">Seconds</div>
+				<div id="seconds" class="text-6xl md:text-6xl  font-great-vibes ">00</div>
+				<div class=" font-semibold uppercase tracking-wider font-great-vibes">Seconds</div>	
 			</div>
 		</div>
 	</section>
-
 	<!-- Bible Verse Section -->
-	<section class="py-8 px-4 text-center bg-wedding-section fade-in-section">
+	<section class="py-8 px-4 text-center fade-in-section">
 		<div class="max-w-xl mx-auto relative z-10">
 			<!-- Glassy overlay -->
 			<div style="
 				position: absolute;
 				inset: 0;
 				z-index: 0;
-				border-radius: 0.75rem;
 				background: rgba(255, 255, 255, 0.1);
 				backdrop-filter: blur(4px);
 				-webkit-backdrop-filter: blur(4px);
-				box-shadow: 0 6px 24px 0 rgba(31, 38, 135, 0.15);
+				box-shadow: 10px 10px 0 0 var(--shadow_col);
+				border: 1px solid var(--border_col);
+				border-radius: 0.75rem;
+
+
 			"></div>
 			<div class="relative z-10 bg-transparent rounded-xl p-4 shadow-lg">
-				<p class="text-lg italic text-white" style="font-family: 'Poppins', sans-serif;">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
-				<p class="text-sm mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- Colossians 3:14</p>
+				<p class="text-lg italic text-2xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
+				<p class=" mt-2  font-semibold font-embossed-on-beige raised"> - Colossians 3:14</p>  
 				<div class="section-divider"></div>
-				<p class="text-lg italic bible-verse-ml"><span lang="ml" class="text-white">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
-				<p class="text-sm mt-2 text-white" style="font-family: 'Poppins', sans-serif;">- കൊലോസ്യർ 3:14</p>
+				<p class="text-lg italic  text-2xl bible-verse-ml"><span lang="ml" class="text-helvetica">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+				<p class=" mt-2  font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
 			</div>
 		</div>
 	</section>
-
 	<!-- Details Section (Ceremony & Reception with Directions) -->
-	<section class="bg-wedding-section py-16 px-4 text-center fade-in-section">
+	<section class=" py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">The Ceremony & Reception</h2>
+			<h2 class="text-5xl font-embossed-on-beige raised mb-4 drop-shadow-lg">The Ceremony & Reception</h2>
+
 			<div class="section-divider"></div>
 			<div class="ceremony-reception-grid">
 				<!-- Ceremony -->
 				<div>
-					<p class="text-base md:text-xl text-white mb-4">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+					<p class="text-base text-3xl md:text-xl font-helvetica mb-4">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;">
-							<h3 class="text-6xl md:text-6xl font-great-vibes mb-4 text-[#e9f504] drop-shadow-lg">Wedding Ceremony</h3>
+							<h3 class="text-6xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
+
 							<div class="mb-4"></div>
-							<p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
-							<p class="text-lg md:text-xl text-white drop-shadow-lg mb-2">St Thomas Mar Thoma Church</p>
-							<p class="text-lg md:text-xl text-white drop-shadow-lg mb-4">Thiruvalla, Kerala</p>
-							<a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-directions mt-3 inline-block">Get Directions</a>
+							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl font-montserrat mb-2">St Thomas Mar Thoma Church</p>
+							<p class="text-lg text-3xl font-montserrat  mb-4">Thiruvalla, Kerala</p>
+							<a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
 						</div>
 					</div>
 				</div>
 				<!-- Reception -->
 				<div>
-					<p class="text-base md:text-xl text-white mb-4">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+					<p class="text-base text-3xl md:text-xl font-helvetica mb-4">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
-
-						<div class="event-box-content" style="position: relative; z-index: 2;">
-							<h3 class="text-6xl md:text-6xl font-great-vibes mb-2 text-[#e9f504] drop-shadow-lg">Reception</h3>
+						<div class="event-box-content" style="position: relative; z-index: 2;"></div>
+							<h3 class="text-6xl md:text-6xl font-montserrat mb-2 drop-shadow-lg">Reception</h3>
 							<div class="mb-2"></div>
-							<p class="text-lg md:text-xl font-semibold text-white drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
-							<p class="text-lg md:text-xl text-white drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
-							<p class="text-lg md:text-xl text-white drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
+							<p class="text-lg text-3xl md:text-xl font-semibold  drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl   drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
+							<p class="text-lg text-3xl   drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
 							<div class="mb-2"></div>
-							<a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-directions mt-3 inline-block">Get Directions</a>
+							<a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
 						</div>
 					</div>
 				</div>
@@ -891,22 +698,22 @@
 			<!-- Collapsible Travel Directions -->
 			<div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
 				<button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-					class="w-full text-xl font-semibold text-white bg-dark hover:bg-dark/100 transition p-4 rounded-xl shadow-md text-left">
+					class="w-full text-xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
 					✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
 				</button>
-				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner text-white" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner font-helvetica" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
 					
 					<div class="mb-4">
-						<h4 class="text-lg font-semibold text-white mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
-						<ul class="list-disc pl-5 text-white text-md">
+						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
+						<ul class="list-disc pl-5 font-helvetica text-md">
 							<li><strong>Taxi:</strong> ~1.5 hours (₹2,200–₹2,700). Pre-book or use Uber Intercity.</li>
 							<li><strong>Train:</strong> Take a cab (~30 min) to Aluva station, then a train to Thiruvalla (~2–2.5 hrs).</li>
 							<li><strong>Bus:</strong> KSRTC buses to Kottayam, then to Thiruvalla (total ~3 hours).</li>
 						</ul>
 					</div>
 					<div>
-						<h4 class="text-lg font-semibold text-white mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
-						<ul class="list-disc pl-5 text-white text-md">
+						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
+						<ul class="list-disc pl-5 font-helvetica text-md">
 							<li><strong>Taxi:</strong> ~2.5–3 hours (₹3,000–₹3,800). GoZo, Savaari, or Uber Intercity are reliable.</li>
 							<li><strong>Train:</strong> Short ride to Trivandrum Central, then train to Thiruvalla (~2.5 hrs).</li>
 							<li><strong>Bus:</strong> Regular KSRTC buses to Thiruvalla (~4 hours, budget-friendly).</li>
@@ -916,60 +723,85 @@
 			</div>
 		</div>
 	</section>
+
 	<!-- Menu Section -->
-	<section class="py-16 px-4 text-center menu-section fade-in-section">
+	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">The Wedding Feast</h2>
+			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">The Wedding Feast</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
+			<p class="text-4xl mb-8 font-helvetica">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
 		</div>
 	</section>
 
 	<!-- Our Perfect Equation Section -->
-	<section class="equation-section fade-in-section" style="border: none; box-shadow: none;">
-		<div class="hero-content text-center py-16 px-4" style="border: none; box-shadow: none;">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Perfect Equation</h2>
+	<section class="equation-section fade-in-section" style="border: none; box-shadow: none; background: linear-gradient(to bottom, black, #080c12); position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
+		<!-- Enhanced sparkling texture overlay -->
+		<div style="position: absolute; inset: 0; z-index: 1; 
+			background-image: 
+				radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,1) 50%, rgba(0,0,0,0)),
+				radial-gradient(3px 3px at 40px 70px, rgba(255,255,255,0.95) 50%, rgba(0,0,0,0)),
+				radial-gradient(3px 3px at 50px 160px, rgba(255,255,255,0.9) 50%, rgba(0,0,0,0)),
+				radial-gradient(3px 3px at 90px 40px, rgba(255,255,255,0.85) 50%, rgba(0,0,0,0)),
+				radial-gradient(3px 3px at 130px 80px, rgba(255,255,255,0.8) 50%, rgba(0,0,0,0)),
+				radial-gradient(3px 3px at 160px 120px, rgba(255,255,255,0.75) 50%, rgba(0,0,0,0));
+			background-repeat: repeat;
+			background-size: 200px 200px;
+			animation: sparkle 8s linear infinite;
+			pointer-events: none;
+			opacity: 0.4;
+			filter: blur(0.5px) brightness(1.2);"></div>
+
+		<div class="py-16 px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
+			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg" style="color: white;">Our Perfect Equation</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">
-			From laser physics to evolutionary biology, our worlds collided to create the perfect chemistry.
-			</p>
-			
+			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
+				<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/photo4.png" 
+					alt="Our Story" 
+					class="shadow-lg"
+					style="width: 100vw; height: 100%; object-fit: cover; position: relative; z-index: 2;">
+			</div>
 		</div>
 		
-		<video 
-			class="video-bg" 
-			autoplay 
-			muted 
-			loop 
-			playsinline
-		>
-			<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
-			Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
-		</video>
+		<div class="relative w-screen" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8)); z-index: 2;">
+			<div class="absolute bottom-0 left-0 right-0 text-xl text-center font-great-vibes-eqn z-10 py-4 px-2"
+				style="text-shadow: 2px 2px 4px;">
+				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
+			</div>
+			<video 
+				class="video-bg w-screen h-screen object-cover"
+				autoplay 
+				muted 
+				loop 
+				playsinline
+				style="position: relative; z-index: 1; width: 100vw; margin: 0; padding: 0;"
+			>
+				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
+				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
+			</video>
+		</div>
+
+		<style>
+			@keyframes sparkle {
+				from { background-position: 0 0; }
+				to { background-position: -200px -200px; }
+			}
+		</style>
 	</section>
 
-	<!-- Our Story Section (Now a dynamic grid with pop-up modals) -->
-	<section id="ourStory" class="py-16 px-4 text-center bg-wedding-section fade-in-section">
-  <div class="max-w-4xl mx-auto">
-	<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Story</h2>
-	<div class="section-divider"></div>
-	<p class="text-xl mb-8 text-white">Moments that shaped our journey—unfolding as you scroll.</p>
-	<div id="storyTimeline" class="story-timeline"></div>
-  </div>
-</section>
-
-	<!-- Wedding Party Section -->
-	<section class="py-16 px-4 text-center wedding-party-section fade-in-section">
+    <!-- Wedding Party Section -->
+	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-5xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Meet Our Family</h2>
+			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">Meet Our Family</h2>
+
 			<div class="section-divider"></div>
 			<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
 					</div>
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Binny & Mrs. Laly</h3>
-					<p class=" text-gray-400">Parents of the Bride</p>
+					<h3 class="text-2xl  mt-4 font-montserrat text-black font-semibold ">Mr. Binny & Mrs. Laly</h3>
+
+					<p class=" font-montserrat text-gray-600 font-semibold">Parents of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
@@ -979,12 +811,13 @@
 							class="object-cover w-full h-full"
 						>
 					</div>
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Salim & Mrs. Renu </h3>
-					<p class="text-gray-400">Parents of the Groom</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Salim & Mrs. Renu </h3>
+					<p class=" font-montserrat text-gray-600 font-semibold">Parents of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Mr. Nevil & Mrs. Bincy</h3>
-					<p class="text-gray-400">Brother & Sister-in-Law</p></div>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Mr. Nevil & Mrs. Bincy</h3>
+					<p class=" font-montserrat text-gray-600 font-semibold">Brother & Sister-in-Law</p></div>
+
 				<div class="text-center flex flex-col items-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
 						<img 
@@ -993,11 +826,11 @@
 							class="object-cover w-full h-full"
 						>
 					</div>
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Dr. Nitty Sara</h3>
-					<p class="text-gray-400">Sister of the Bride</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Nitty Sara</h3>
+					<p class=" font-montserrat text-gray-600 font-semibold">Sister of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
-					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #0D4B4F;">
+					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #4c5831;">
 						<img 
 							src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/ida.jpg?raw=true" 
 							alt="Ida" 
@@ -1005,12 +838,12 @@
 							style="transform: scale(0.8);"
 						>
 					</div>
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Ida</h3>
-					<p class="text-gray-400">Sister of the Groom</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Ida</h3>
+					<p class=" font-montserrat text-gray-600 font-semibold">Sister of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
-					<h3 class="text-2xl font-great-vibes mt-4 text-white">Eva & Ema</h3>
-					<p class="text-gray-400">Our beloved nieces</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Eva & Ema</h3>
+					<p class=" font-montserrat text-gray-600 font-semibold">Our beloved nieces</p>
 			</div>
 			</div>
 		</div>
@@ -1019,11 +852,12 @@
 	
 
 	<!-- RSVP Section -->
-	<section class="py-16 px-4 text-center rsvp-section fade-in-section">
+	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-2xl mx-auto">
-		<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">RSVP</h2>
+		<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">RSVP</h2>
 		<div class="section-divider"></div>
-		<p class="text-xl mb-8 text-white">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
+		<p class="text-2xl mb-8 font-montserrat text-black ">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
+
 		<form id="rsvpForm" class="text-left space-y-4">
 			<input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white">
 			<select name="Attending" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white" title="Attendance selection">
@@ -1032,7 +866,7 @@
 			<option value="No, with regrets.">No, with regrets.</option>
 			</select>
 			<input type="number" name="Guests" placeholder="Number of guests" min="0" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-			<textarea name="Message" placeholder="Optional message (Let us know if we have to arrange your accomodation either on 4th or 5th Jan or both)" rows="3" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white"></textarea>
+			<textarea name="Message" placeholder="Optional message (Do let us know if we have to arrange your accomodation either on 4th or 5th Jan or both)" rows="3" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white"></textarea>
 			<div class="text-center">
 			<button type="submit" id="rsvpSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Submit RSVP<span id="rsvpLoadingSpinner" class="loading-spinner hidden"></span></button>
 			</div>
@@ -1042,11 +876,11 @@
 	</section>
 
 	<!-- Guestbook Section -->
-	<section class="py-16 px-4 text-center guestbook-section fade-in-section">
+	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-		<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Guestbook</h2>
+		<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Guestbook</h2>
 		<div class="section-divider"></div>
-		<p class="text-xl mb-8 text-white">Leave a message for the happy couple!</p>
+		<p class="text-2xl mb-8 text-black">Leave a message for the happy couple!</p>
 		<form id="guestbookForm" class="text-left space-y-4 mb-8">
 			<input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
 			<textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white"></textarea>
@@ -1054,31 +888,81 @@
 			<button type="submit" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Post Message<span id="guestbookLoadingSpinner" class="loading-spinner hidden"></span></button>
 			</div>
 		</form>
-		<div id="guestbookDisplay" class="space-y-4 bg-dark p-6 rounded-lg text-white"><p class="text-white">Loading messages...</p></div>
+		<div id="guestbookDisplay" class="space-y-4  p-6 rounded-lg font-helvetica text-black"><p class="font-helvetica">Loading messages...</p></div>
 		</div>
 	</section>
 
 	<!-- AI Dress Code Advisor Section -->
-	<section class="py-16 px-4 text-center dresscode-section fade-in-section">
+	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Dress Code Advisor</h2>
+			<h2 class="text-5xl font-great-vibes mb-4 font-great-vibes drop-shadow-lg">Dress Code Advisor</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.</p>
-			<div class="space-y-4 text-left">
-				<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
-				<div class="text-center">
-					<button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
+			<p class="text-2xl mb-8 text-black">Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.</p>
+				<!-- Color Grid Container -->
+				<div class="relative w-full">
+					<div id="colorOverlay" class="absolute inset-0 w-screen left-[50%] right-[50%] -translate-x-1/2 bg-black/0 backdrop-blur-sm transition-colors duration-300"></div>
+					<div class="relative z-10 grid grid-cols-3 gap-6 mt-8 max-w-md mx-auto p-6">
+						<!-- Lavender Shades -->
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #E6E6FA; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#E6E6FA';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #B57EDC; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#B57EDC';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #967BB6; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#967BB6';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						
+						<!-- Maroon Shades -->
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #800000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#800000';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #660000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#660000';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #4D0000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#4D0000';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						
+						<!-- Mauve Shades -->
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #E0B0FF; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#E0B0FF';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #D473D4; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#D473D4';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
+							style="background-color: #673147 ; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#673147';"
+							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+					</div>
 				</div>
-				<div id="dressCodeResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] text-white text-lg">Your answer will appear here...</div>
+
+				<div class="relative z-10 space-y-4 text-left p-6">
+					<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
+					<div class="text-center">
+						<button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
+					</div>
+					<div id="dressCodeResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] font-helvetica text-lg">Your answer will appear here...</div>
+				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Gemini Travel Itinerary Section -->
-	<section class="py-16 px-4 text-center dresscode-section fade-in-section">
+	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
+			<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
+			<p class="text-2xl mb-8 text-black">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
 			<div class="space-y-4 text-left">
 				<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
 				<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
@@ -1086,107 +970,119 @@
 				<div class="text-center">
 					<button id="generateItineraryBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Create My Itinerary<span id="itinerarySpinner" class="loading-spinner hidden"></span></button>
 				</div>
-				<div id="itineraryResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] text-white text-lg whitespace-pre-wrap">Your itinerary will be generated here...</div>
+				<div id="itineraryResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] font-helvetica text-lg whitespace-pre-wrap">Your itinerary will be generated here...</div>
 			</div>
 		</div>
 	</section>
 	<!-- Local Favorites Section -->
-	<section class="py-16 px-4 text-center local-favorites-section fade-in-section">
+	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-6xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Local Favorites</h2>
+			<h2 class="text-5xl mb-4 font-great-vibes drop-shadow-lg">Our Local Favorites</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+			<p class="text-2xl mb-8 text-black">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
 
 			<!-- Grid of attractions -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
 				<!-- Uptown Shack -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;;">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color:var(--bg_col_trans);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">☕</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Favorite Rooftop Cafe</h3>
+					<h3 class="text-2xl font-montserrat text-gray-900">Favorite Rooftop Cafe</h3>
 					<p class="font-semibold text-black">Uptown Shack</p>
 					<p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
-					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
+					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 
-				<!-- Pamba River Walk -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pampa.webp" alt="Pamba River Walk" class="w-full h-48 object-cover rounded-md mb-4">
+				<!-- Alappuzha Houseboat -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/houseboat.jpeg" alt="Alappuzha Houseboat" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🏞️</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Scenic Walk</h3>
-					<p class="font-semibold text-black">Pamba River Walk</p>
-					<p class="text-sm text-black mb-2">A beautiful and peaceful walk along the riverbanks.</p>
-					<a href="https://www.google.com/maps?q=Pamba+River+Walk+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
+					<h3 class="text-2xl font-montserrat text-gray-900">Boat ride</h3>
+					<p class="font-semibold text-black">Alappuzha Houseboat</p>
+					<p class="text-sm text-black mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
+					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 
 				<!-- Avees Puttu House -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🍽️</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Must-Try Food</h3>
+					<h3 class="text-2xl font-montserrat text-gray-900">Must-Try Food</h3>
 					<p class="font-semibold text-black">Avees Puttu House</p>
 					<p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
-					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
+					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 
 				<!-- Bhoothakuzhy Para -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🪨</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Hidden Gem</h3>
+					<h3 class="text-2xl font-montserrat text-gray-900">Hidden Gem</h3>
 					<p class="font-semibold text-black">Bhoothakuzhy Para</p>
 					<p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
+					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 
 				<!-- Vengal Viewpoint -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🌅</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Sunset Spot</h3>
+					<h3 class="text-2xl font-montserrat text-gray-900">Sunset Spot</h3>
 					<p class="font-semibold text-black">Vengal Viewpoint</p>
 					<p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="text-red-400 font-bold underline">View on Map</a>
+					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 
 				<!-- Aruvikuzhy Waterfalls -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center" style="background-color: #0d59529e;">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">💧</div>
-					<h3 class="text-2xl font-great-vibes text-red-400">Waterfall Wonder</h3>
+					<h3 class="text-2xl font-montserrat text-gray-900">Waterfall Wonder</h3>
 					<p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
 					<p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class=" text-red-400 font-bold underline">View on Map</a>
+					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Photo Gallery Teaser Section -->
-	<section class="py-16 px-4 text-center bg-wedding-section fade-in-section">
+	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 text-white drop-shadow-lg">Our Wedding Gallery</h2>
+			<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Our Wedding Gallery</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl mb-8 text-white">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
+			<p class="text-2xl mb-8 text-black">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
 			<a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
 				Coming Soon
 			</a>
 		</div>
 	</section>
 
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+		<div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
+			<h3 class="text-lg font-semibold mb-4 text-dark">Are you sure?</h3>
+			<p class="text-gray-600 mb-6">Do you really want to delete this message? This action cannot be undone.</p>
+			<div class="flex justify-center gap-4">
+				<button id="cancelDelete" class="px-6 py-2 rounded-full text-gray-700 bg-gray-200 hover:bg-gray-300">Cancel</button>
+				<button id="confirmDelete" class="px-6 py-2 rounded-full text-white bg-red-600 hover:bg-red-700">Delete</button>
+			</div>
+		</div>
+	</div>
+
 	<!-- Footer -->
-	<footer class="bg-[#0D4B4F] text-white py-8 px-4 text-center rounded-t-xl">
+	<footer class="bg-[var(--bg_col_trans)] font-helvetica py-8 px-4 text-center rounded-t-xl">
 		<div class="max-w-4xl mx-auto">
-			<p class="text-2xl mb-2 font-great-vibes text-white">We can't wait to celebrate with you!</p>
-			<p class="text-sm mb-2 text-white">With love from our families</p>
-			<p class="text-sm text-white">© 2026 Taniya & Aswin. All Rights Reserved.</p>
+			<p class="text-2xl mb-2 font-montserrat text-black">We can't wait to celebrate with you!</p>
+			<p class="text-sm mb-2 text-black">With love from our families</p>
+			<p class="text-sm text-black">© 2026 Taniya & Aswin. All Rights Reserved.</p>
 			<div class="mt-4">
-				<button id="copyUserIdBtn" class="text-xs text-white/50 hover:text-white">Copy Admin ID: <span id="userIdDisplay"></span></button>
+				<button id="copyUserIdBtn" class="text-xs text-black/50 hover:text-black">Copy Admin ID: <span id="userIdDisplay"></span></button>
 			</div>
 		</div>
 	</footer>
 
-	<!-- Music Control Bar - A new, persistent element at the bottom of the page -->
+    <!-- Music Control Bar - A new, persistent element at the bottom of the page -->
 	<div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-70 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
 		<button id="playPauseBtn" class="btn-primary text-white p-2 rounded-full shadow-md hover:btn-primary transition">
 			<!-- Play icon -->
@@ -1206,8 +1102,9 @@
 		</button>
 	</div>
 
-	<script type="module">
-		// --- Firebase Imports (needed for Guestbook only) ---
+    <script type="module">
+
+        // --- Firebase Imports (needed for Guestbook only) ---
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 		import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 		import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -1220,8 +1117,8 @@
 
 		// --- IMPORTANT: Paste your deployed Google Apps Script Web App URL here ---
 		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
-		// --- Main Page Logic ---
-		document.addEventListener('DOMContentLoaded', async () => {
+		
+        document.addEventListener('DOMContentLoaded', async () => {
 			
 			// --- Background Music (MP3) ---
 			const playPauseBtn = document.getElementById('playPauseBtn');
@@ -1335,13 +1232,13 @@
 			// Initialize countdown and update every second
 			updateCountdown();
 			const countdownInterval = setInterval(updateCountdown, 1000);
-
-			// --- Scroll Animations ---
+        
+            // --- Scroll Animations ---
 			/**
 			 * Sets up intersection observer for fade-in animations and video autoplay
 			 * Controls visibility classes and video playback based on viewport visibility
 			 */
-			function setupScrollAnimations() {
+            function setupScrollAnimations() {
 				const animationOptions = { 
 					threshold: 0.1,
 					rootMargin: '0px'
@@ -1385,75 +1282,7 @@
 			// Initialize scroll animations
 			const scrollObserver = setupScrollAnimations();
 
-
-			// --- Story Timeline Logic ---
-			const storyTimelineEl = document.getElementById('storyTimeline');
-			const storyItemsData = [
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg", title: "Mountain Views", text: "Surrounded by mountains and a love that feels as grand as the scenery." },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG20250425153546.jpg", title: "Parisian Adventure", text: "With the Louvre as our backdrop, every moment felt like a masterpiece." },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.54_ed92f7d9.jpg", title: "Car journey", text: "Our very first car journey together—filled with dreams of the road ahead." },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg", title: "Golden Hour", text: "Bathed in the glow of the golden hour, we found our hearts beating to the same rhythm." },
-			//   { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.52_5091d856.jpg", title: "Metro Adventure", text: "Lost in the bustle of the German metro, we found everything we needed right there, in each other's eyes."},
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", title: "Our first Movie together", text: "Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster 😛, but every second spent together was." },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg", title: "A New Chapter", text: "Carrying her on his back, he promises to carry her in his heart forever." },
-				// { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.56.58_9a005fbc.jpg", title: "Together Always", text: "Together Always: Hand in hand, we walked toward a future of beautiful adventures, together forever." }
-				/* { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_d10a8b64.jpg", alt: "Movie", caption: "Our first Movie together: Our first movie date, watching 'Barroz' with Mohanlal. The movie might not have been a blockbuster, but every second spent with you was.", objectPosition: 'center bottom' },
-				
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.15.41_027a3b70.jpg", alt: "Taniya and Aswin Rhine riveron the back", caption: "Germany's Rhine River: On the banks of the Rhine in Germany, we began to dream of a lifetime of adventures together." },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.18.53_23600209.jpg", alt: "Pennukaanal scenes", caption: "Pennukaanal scenes: The 'Pennukaanal' ceremony: a beautiful beginning where two families became one, filled with tradition and love.", objectPosition: 'center bottom' },
-				{ src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2015.57.00_d4b99e94.jpg", alt: "Elegant", caption: "Elegance and love intertwined: A new story unfolds: two hearts intertwined, celebrating a love that is both elegant and real." },                 { src: "https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250429-WA0030.jpg", alt: "Taniya and Aswin by a lake", caption: "Lakeside Serenity: A serene moment by the lake, where our joy is the only sound and our love is the only view that matters.", objectPosition: 'center top' },
-							*/
-			];
-
-			/**
-			 * Renders the story timeline with animation on scroll
-			 * Creates story items from the data array and adds intersection observer
-			 * for revealing animations
-			 */
-			function renderStoryTimeline() {
-			  // Clear existing content
-			  storyTimelineEl.innerHTML = '';
-			  
-			  // Create document fragment for better performance
-			  const fragment = document.createDocumentFragment();
-			  
-			  // Create each story item
-			  storyItemsData.forEach((item) => {
-				const el = document.createElement('div');
-				el.className = 'story-item';
-				el.innerHTML = `
-				  <div class="story-item-inner">
-					<div class="story-image-wrap">
-					  <img src="${item.src}" alt="${item.title}" loading="lazy">
-					</div>
-					<div class="story-caption">
-					  <h3>${item.title}</h3>
-					  <p>${item.text}</p>
-					</div>
-				  </div>`;
-				fragment.appendChild(el);
-			  });
-			  
-			  // Add all items to DOM at once (more efficient)
-			  storyTimelineEl.appendChild(fragment);
-			  
-			  // Setup intersection observer for animation
-			  const tObserver = new IntersectionObserver(entries => {
-				entries.forEach(entry => {
-				  if (entry.isIntersecting) {
-					entry.target.classList.add('is-visible');
-					tObserver.unobserve(entry.target);
-				  }
-				});
-			  }, { threshold: 0.25, rootMargin: '0px' });
-			
-			  // Observe all story items
-			  document.querySelectorAll('.story-item').forEach(el => tObserver.observe(el));
-			}
-			renderStoryTimeline();
-
-
-			// --- Firebase Initialization and Auth ---
+            // --- Firebase Initialization and Auth ---
 			// --- Inject Firebase config and app ID FIRST ---
 			window.__firebase_config = JSON.stringify({
 			apiKey: "AIzaSyBpQgp3IPkxMMJAmTy4LRdjFFv5cOdUoyY",
@@ -1468,47 +1297,46 @@
 			const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 			const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
 			
-			try {
-				const app = initializeApp(firebaseConfig);
-				auth = getAuth(app);
-				db = getFirestore(app);
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
 
-				onAuthStateChanged(auth, async (user) => {
-					if (user) {
-						userId = user.uid;
-						isAuthReady = true;
-						document.getElementById('userIdDisplay').textContent = userId;
-						setupGuestbookListener();
-					} else {
-						try {
-							await signInAnonymously(auth);
-						} catch (error) {
-							console.error("Authentication Error:", error);
-							displayAuthError();
-						}
-					}
-				});
-			} catch (error) {
-				console.error("Firebase Initialization Error:", error);
-				displayAuthError();
-			}
-
-			function displayAuthError() {
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        document.getElementById('userIdDisplay').textContent = userId;
+                        setupGuestbookListener();
+                    } else {
+                        try {
+                            await signInAnonymously(auth);
+                        } catch (error) {
+                            console.error("Authentication Error:", error);
+                            displayAuthError();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+                displayAuthError();
+            }
+            function displayAuthError() {
 				const guestbookDisplay = document.getElementById('guestbookDisplay');
 				const rsvpForm = document.getElementById('rsvpForm');
 				if (guestbookDisplay) {
-					guestbookDisplay.innerHTML = '<p class="text-white text-center">Guestbook is currently unavailable. Please try reloading the page.</p>';
+					guestbookDisplay.innerHTML = '<p class="text-black text-center">Guestbook is currently unavailable. Please try reloading the page.</p>';
 				}
 				const guestbookForm = document.getElementById('guestbookForm');
 				if (guestbookForm) {
 					guestbookForm.style.display = 'none';
 				}
 				if (rsvpForm) {
-					rsvpForm.innerHTML = '<p class="text-white text-center">RSVP feature is currently unavailable. Please try reloading the page.</p>';
+					rsvpForm.innerHTML = '<p class="text-black text-center">RSVP feature is currently unavailable. Please try reloading the page.</p>';
 				}
 			}
 
-			// --- RSVP Form Logic with Google Apps Script ---
+            // --- RSVP Form Logic with Google Apps Script ---
 			/**
 			 * RSVP form functionality using Google Apps Script
 			 * Handles form submission and response handling
@@ -1677,9 +1505,9 @@
 						: 'Just now';
 					
 					messageEl.innerHTML = `
-						<p class="font-semibold text-xl text-white">${message.name || 'Anonymous'}</p>
-						<p class="text-white pr-6">${message.message || ''}</p>
-						<p class="text-xs text-white/70 mt-2">${timestamp}</p>
+						<p class="font-semibold text-xl font-helvetica">${message.name || 'Anonymous'}</p>
+						<p class="font-helvetica pr-6">${message.message || ''}</p>
+						<p class="text-xs text-black/70 mt-2">${timestamp}</p>
 						${deleteButtonHtml}
 					`;
 					
@@ -1715,7 +1543,7 @@
 					elements.display.appendChild(fragment);
 				};
 				
-				/**
+                /**
 				 * Sets up real-time listener for guestbook messages
 				 */
 				const setupGuestbookListener = () => {
@@ -1734,10 +1562,11 @@
 					}, (error) => {
 						console.error("Error getting guestbook messages: ", error);
 						if (elements.display) {
-							elements.display.innerHTML = '<p class="text-white">Could not load messages. Please try again later.</p>';
+							elements.display.innerHTML = '<p class="text-black">Could not load messages. Please try again later.</p>';
 						}
 					});
 				};
+				
 				
 				/**
 				 * Shows the delete confirmation modal
@@ -1834,12 +1663,13 @@
 				};
 				
 				return { init };
-			})();
+            })();
+			
 			
 			// Initialize guestbook
 			GuestbookManager.init();
 
-			/**
+            /**
 			 * User ID copy functionality
 			 * Allows copying the user ID to clipboard for admin purposes
 			 */
@@ -2004,7 +1834,7 @@
 				 * @returns {Promise<string>} - The generated advice
 				 */
 				const generateAdvice = async (query) => {
-					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". The families come in shades of lavender, mauve or green.These colours can be suggested in a very subtle manner. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
+					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". The families come in shades of lavender, mauve or maroon.These colours can be suggested in a very subtle manner. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
 					
 					return await GeminiAPI.callWithRetry(fullPrompt);
 				};
@@ -2077,9 +1907,10 @@
 					generateItineraryBtn.disabled = false;
 				});
 			}
+        });
 
-		});
+        
+
 	</script>
 </body>
 </html>
-
