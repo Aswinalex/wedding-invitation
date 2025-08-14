@@ -18,23 +18,25 @@
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Helvetica&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <style>
 		/* Custom styles for the wedding invite */
 		:root {
-			--bg_col: #d4cdba; /* Defines a global primary color */
-			--bg_col_trans: #d4cdbab1;
+			--bg_col:  #9CAF88; /* Defines a global primary color */
+			--bg_col_trans: #f3f8f642;
 			--shadow_col: #44340d;
 			--border_col: #b3933a;
-			--text_col: #b3933a;
+			--text_col: #eaeaea;
 			--divider-highlight: #ffd700;
 			--divider-shadow: #44340d;
 
 
 			}	
+		
+
 		body {
-			font-family: 'Poppins', 'Great Vibes', 'Helvetica', 'Montserrat', sans-serif;
+			font-family: 'Allura', 'Helvetica', 'Montserrat';
 			background-color: var(--bg_col);/* Beige color */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             background-size: 100px 100px;
@@ -83,6 +85,23 @@
 			overflow: hidden;
 
 		} 
+		/* NEW: petite fleur divider */
+		.invite-divider{ 
+		width:1.75rem; height:1.75rem; margin:1.25rem auto 0; display:block; opacity:.9;
+		fill:#9b8060;
+		}
+
+		/* NEW: ornate SVG corners (4 clones positioned) */
+		.corner{ 
+		position:absolute; width:88px; height:88px; opacity:.9; 
+		fill:#d8c4ad; stroke:#9b8060; stroke-width:2;
+		filter: drop-shadow(0 2px 1px rgba(0,0,0,.15));
+		}
+		.corner.tl{ top:-10px; left:-10px; transform:rotate(0deg); }
+		.corner.tr{ top:-10px; right:-10px; transform:scaleX(-1); }
+		.corner.bl{ bottom:-10px; left:-10px; transform:scaleY(-1); }
+		.corner.br{ bottom:-10px; right:-10px; transform:scale(-1,-1); }
+		
         /* Countdown */
         .animate-flip {
 			animation: flip-number 1s ease-in-out;
@@ -379,22 +398,22 @@
         .object-cover {
 			object-fit: cover;
 		}
-        .font-great-vibes {
+        .font-allura {
             color: var(--text_col);
 
-            font-family: 'Great Vibes', cursive;
+			font-family: 'Allura', cursive !important;
             /* Add glazing effect with text-shadow */
-            text-shadow: 
+            /* text-shadow: 
                 0 0 10px rgba(255, 255, 255, 0.8),
                 0 0 20px rgba(255, 255, 255, 0.5),
                 0 0 30px rgba(255, 255, 255, 0.3),
                 2px 2px 4px rgba(0, 0, 0, 0.4);
             /* Add subtle shine animation */
-            animation: shine 2s infinite;
+            /* animation: shine 2s infinite; */
         }
-		.font-great-vibes-eqn {
+		.font-allura-eqn {
             color: #ffffff;
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Allura', cursive;
             /* Add glazing effect with text-shadow */
             text-shadow: 
                 0 0 5px rgba(255, 255, 255, 0.6),
@@ -478,7 +497,11 @@
 		}
 		/* 5. Responsive Heading Sizes: Use smaller headings on mobile */
 		@media (max-width: 500px) {
-			.text-6xl, .text-8xl, .text-5xl {
+			 .text-5xl {
+				font-size: 2rem !important;
+				line-height: 2rem !important;
+			}
+			.text-6xl {
 				font-size: 2.5rem !important;
 				line-height: 2.5rem !important;
 			}
@@ -581,24 +604,52 @@
             alt="Wedding Invitation">
             <div class="absolute inset-0  opacity-50"></div> 	
         </div> -->
-		<div class="hero-content">
-			<p class="text-3xl md:text-5xl mb-4 font-embossed-on-beige raised ">
+		<div
+			class="hero-content"
+			onmouseenter="this.style.setProperty('--img-scale','1.08');this.style.setProperty('--dx1','-6px');this.style.setProperty('--dx2','6px');this.style.setProperty('--dy','-4px');"
+			onmouseleave="this.style.setProperty('--img-scale','1');this.style.setProperty('--dx1','0px');this.style.setProperty('--dx2','0px');this.style.setProperty('--dy','0px');"
+			style="
+				--hero-img-w: clamp(140px, 22vw, 280px);
+				--hero-img-gap: 1rem;
+				--hero-img-x: 1rem;
+				--hero-img-y: 1rem;
+				--hero-img-x2: calc(var(--hero-img-x)  + var(--hero-img-gap));
+				--img-scale: 1;
+				--dx1: 0px;  /* drift for first image on hover */
+				--dx2: 0px;  /* drift for second image on hover */
+				--dy: 0px;   /* vertical drift on hover */
+
+				background:
+					linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(35, 31, 31, 0.55)),
+					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png_mirror.png'),
+					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png');
+				background-repeat: no-repeat, no-repeat, no-repeat;
+				background-size:
+					cover,
+					calc(var(--hero-img-w) * var(--img-scale)) auto,
+					calc(var(--hero-img-w) * var(--img-scale)) auto;
+				background-position:
+					center,
+					right calc(var(--hero-img-x) + var(--dx1)) ,
+					left calc(var(--hero-img-x2) + var(--dx2)) top calc(var(--hero-img-y) + var(--dy));
+				transition: background-position 300ms ease, background-size 300ms ease;
+			"
+		>
+			<p class="text-3xl md:text-5xl mb-4 font-embossed-on-beige raised">
 				Together with our families
 			</p>
-			<h1 class="text-6xl md:text-4xl font-bold mb-6 font-great-vibes ">Taniya</h1>
-			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised ">
+			<h1 class="text-6xl md:text-4xl font-bold mb-6 font-allura">Taniya</h1>
+			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised">
 				Daughter of Mr. Binny Mathew and Mrs. Laly Binny
 			</p>
-			<h1 class="text-6xl md:text-8xl font-bold mb-6 font-great-vibes ">Aswin</h1>
-			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised ">
+			<h1 class="text-6xl md:text-8xl font-bold mb-6 font-allura">Aswin</h1>
+			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised">
 				Son of Dr. Salim C Eapen & Mrs. Renu Thomas
 			</p>
-			<p class="text-3xl md:text-4xl mt-6 font-embossed-on-beige raised ">
-
+			<p class="text-3xl md:text-4xl mt-6 font-embossed-on-beige raised">
 				Invite you to join us in celebrating our love
 			</p>
 		</div>
-        
     </header>
 <!-- Countdown Timer Section -->
 	<section class="py-8 px-4 text-center ">
@@ -654,7 +705,7 @@
 	<!-- Details Section (Ceremony & Reception with Directions) -->
 	<section class=" py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-5xl font-embossed-on-beige raised mb-4 drop-shadow-lg">The Ceremony & Reception</h2>
+			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">The Ceremony & Reception</h2>
 
 			<div class="section-divider"></div>
 			<div class="ceremony-reception-grid">
@@ -666,7 +717,7 @@
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;">
-							<h3 class="text-6xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
+							<h3 class="text-4xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
 
 							<div class="mb-4"></div>
 							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
@@ -698,7 +749,7 @@
 			<!-- Collapsible Travel Directions -->
 			<div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
 				<button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-					class="w-full text-xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
+					class="w-full text-2xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
 					✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
 				</button>
 				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner font-helvetica" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
@@ -734,9 +785,9 @@
 	</section>
 
 	<!-- Our Perfect Equation Section -->
-	<section class="equation-section fade-in-section" style="border: none; box-shadow: none; background: linear-gradient(to bottom, black, #080c12); position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
+	<section class="equation-section fade-in-section" style="border: none; box-shadow: none;  position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
 		<!-- Enhanced sparkling texture overlay -->
-		<div style="position: absolute; inset: 0; z-index: 1; 
+		<!--<div style="position: absolute; inset: 0; z-index: 1; 
 			background-image: 
 				radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,1) 50%, rgba(0,0,0,0)),
 				radial-gradient(3px 3px at 40px 70px, rgba(255,255,255,0.95) 50%, rgba(0,0,0,0)),
@@ -749,24 +800,16 @@
 			animation: sparkle 8s linear infinite;
 			pointer-events: none;
 			opacity: 0.4;
-			filter: blur(0.5px) brightness(1.2);"></div>
+			filter: blur(0.5px) brightness(1.2);"></div>-->
 
 		<div class="py-16 px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
-			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg" style="color: white;">Our Perfect Equation</h2>
+			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg" ">Our Perfect Equation</h2>
 			<div class="section-divider"></div>
-			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
-				<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/photo4.png" 
-					alt="Our Story" 
-					class="shadow-lg"
-					style="width: 100vw; height: 100%; object-fit: cover; position: relative; z-index: 2;">
-			</div>
+			
 		</div>
 		
 		<div class="relative w-screen" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8)); z-index: 2;">
-			<div class="absolute bottom-0 left-0 right-0 text-xl text-center font-great-vibes-eqn z-10 py-4 px-2"
-				style="text-shadow: 2px 2px 4px;">
-				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
-			</div>
+			
 			<video 
 				class="video-bg w-screen h-screen object-cover"
 				autoplay 
@@ -778,6 +821,62 @@
 				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
 				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 			</video>
+			<div class="absolute top-0 left-0 right-0 text-xl text-center font-allura-eqn z-10 py-4 px-2"
+				style="text-shadow: 2px 2px 4px;">
+				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
+			</div>
+			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
+				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
+				<div class="relative w-full flex justify-center items-center py-8">
+					<!-- Vertical timeline line (centered) -->
+					<div style="
+						position:absolute;
+						top:0; bottom:0;
+						width:3px;
+						background:linear-gradient(to bottom,rgba(255,255,255,0.25),var(--border_col),rgba(0,0,0,0.45));
+						left:50%; transform:translateX(-50%);
+						opacity:.45;
+						pointer-events:none;
+					"></div>
+
+					<!-- Framed box -->
+					<div style="
+						--frame-gap:14px;
+						position:relative;
+						background:rgba(0,0,0,0.32);
+						border:2px solid var(--border_col);
+						box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+						border-radius:16px;
+						padding:var(--frame-gap);
+						backdrop-filter:blur(4px);
+						-webkit-backdrop-filter:blur(4px);
+						max-width:680px;
+						width:72vw;
+						z-index:2;
+						overflow:hidden;
+					">
+						<!-- Corner accents -->
+						<span style="position:absolute; inset:0; pointer-events:none;">
+							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+						</span>
+
+						<!-- Image with equal visual gap (uses the padding only) -->
+						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
+							 alt="Our Story"
+							 style="
+								display:block;
+								width:100%;
+								height:auto;
+								object-fit:contain;
+								border-radius:10px;
+								box-shadow:0 3px 10px rgba(0,0,0,0.5);
+								">
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<style>
@@ -897,54 +996,46 @@
 		<div class="max-w-2xl mx-auto">
 			<h2 class="text-5xl font-great-vibes mb-4 font-great-vibes drop-shadow-lg">Dress Code Advisor</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 text-black">Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.</p>
+			<p class="text-2xl mb-8 text-black">
+				Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
+				<span class="block mt-4">
+					Optional colour muse: our Velvet Twilight Palette—shades of dreamy lavender, gentle to deep greens, mauves, and rich maroons. We'd love to see you in any shades of these, but you are free to wear what makes you feel your best.
+				</span>
+			</p>
 				<!-- Color Grid Container -->
-				<div class="relative w-full">
-					<div id="colorOverlay" class="absolute inset-0 w-screen left-[50%] right-[50%] -translate-x-1/2 bg-black/0 backdrop-blur-sm transition-colors duration-300"></div>
-					<div class="relative z-10 grid grid-cols-3 gap-6 mt-8 max-w-md mx-auto p-6">
-						<!-- Lavender Shades -->
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #E6E6FA; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#E6E6FA';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #B57EDC; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#B57EDC';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #967BB6; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#967BB6';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						
-						<!-- Maroon Shades -->
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #800000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#800000';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #660000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#660000';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #4D0000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#4D0000';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						
-						<!-- Mauve Shades -->
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #E0B0FF; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#E0B0FF';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #D473D4; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#D473D4';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
-						<div class="w-24 h-24 rounded-full mx-auto transform transition-transform hover:scale-110 hover:shadow-lg cursor-pointer color-circle" 
-							style="background-color: #673147 ; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-							onmouseover="document.getElementById('colorOverlay').style.backgroundColor = '#673147';"
-							onmouseout="document.getElementById('colorOverlay').style.backgroundColor = 'var(--bg-color)';"></div>
+				<!-- Velvet Twilight single rectangular palette (gradient only, no visible code text) -->
+				<div class="mt-8">
+					
+						<div class="velvet-gradient w-full h-full"></div>
+						<!-- Soft sheen overlay -->
+						<div class="pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay bg-[radial-gradient(circle_at_25%_35%,rgba(255,255,255,0.9),transparent_60%),radial-gradient(circle_at_70%_65%,rgba(255,255,255,0.7),transparent_65%)]"></div>
 					</div>
+				</div>
+
+				<style>
+				.velvet-gradient{
+					background:linear-gradient(90deg,
+						#f8f5fd 0%,#f2ecfb 3%,#e9ddf7 6%,#ddcff2 9%,#d2c2ed 12%,#c7b5e8 15%,#bba7e3 18%,#b099df 20%,#a58bda 21.5%,#9879d3 23%,#8967ca 24.5%,#7a56bd 26%,
+						#c2ccb9 27.5%,#b5c4ad 29.5%,#a8bb9a 31.5%,#99b18b 34%,#89a77c 37%,#749267 40%,#5f7d55 43%,#4f6b49 45.5%,#435a42 47.5%,
+						#d2bcc9 50.5%,#c6aab9 52.5%,#bb98aa 54.5%,#b0869c 56.5%,#a4728a 58.5%,#965f7a 60.5%,#864d69 62.5%,#743f58 64.5%,
+						#a23647 67.5%,#952a3d 70.5%,#892335 73.5%,#7c1f30 76.5%,#6d1b2a 80.5%,#5c1523 84.5%,#4b101d 89%,#390b16 93%,#2b070f 100%);
+					position:relative;
+				}
+				.velvet-gradient::after{
+					content:"";
+					position:absolute;
+					inset:0;
+					background:
+						repeating-linear-gradient(0deg,rgba(255,255,255,0.05) 0 2px,transparent 2px 4px),
+						repeating-linear-gradient(90deg,rgba(0,0,0,0.04) 0 3px,transparent 3px 6px);
+					mix-blend-mode:overlay;
+					opacity:.35;
+					pointer-events:none;
+				}
+				@media (max-width:500px){
+					.velvet-gradient{height:9rem;}
+				}
+				</style>
 				</div>
 
 				<div class="relative z-10 space-y-4 text-left p-6">
@@ -1834,7 +1925,7 @@
 				 * @returns {Promise<string>} - The generated advice
 				 */
 				const generateAdvice = async (query) => {
-					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". The families come in shades of lavender, mauve or maroon.These colours can be suggested in a very subtle manner. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
+					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". The families come in shades of lavender, mauve or green.These colours can be suggested in a very subtle manner. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
 					
 					return await GeminiAPI.callWithRetry(fullPrompt);
 				};
