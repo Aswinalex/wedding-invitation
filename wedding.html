@@ -23,14 +23,21 @@
     <style>
 		/* Custom styles for the wedding invite */
 		:root {
-			--bg_col:  #9CAF88; /* Defines a global primary color */
-			--bg_col_trans: #f3f8f642;
-			--shadow_col: #44340d;
+			--bg_col:  #376b47; /* Defines a global primary color */
+			--bg_col_trans: #80dfb942;
+			--shadow_col: #4e5626;
 			--border_col: #b3933a;
-			--text_col: #eaeaea;
+			--text_col: #C894B8;
+			--text_col_2: #cdbc1d;
+			--text_col_3: #94962f;
 			--divider-highlight: #ffd700;
 			--divider-shadow: #44340d;
-
+			--large_font_size: 3rem;
+			--medium_font_size: 2.5rem;
+			--small_font_size: 2rem;
+			--large_line_height: 3rem;
+			--medium_line_height: 2.5rem;
+			--small_line_height: 2rem;
 
 			}	
 		
@@ -38,9 +45,14 @@
 		body {
 			font-family: 'Allura', 'Helvetica', 'Montserrat';
 			background-color: var(--bg_col);/* Beige color */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 100px 100px;
-            background-blend-mode: multiply;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' seed='3' stitchTiles='stitch' result='n1'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='2' seed='97' stitchTiles='stitch' result='n2'/%3E%3CfeBlend in='n1' in2='n2' mode='multiply' result='n'/%3E%3CfeColorMatrix in='n' type='saturate' values='0' result='g'/%3E%3CfeComponentTransfer in='g'%3E%3CfeFuncR type='linear' slope='2.4' intercept='-0.2'/%3E%3CfeFuncG type='linear' slope='2.4' intercept='-0.2'/%3E%3CfeFuncB type='linear' slope='2.4' intercept='-0.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 150px 150px;
+			/* background-blend-mode values:
+				normal, multiply, screen, overlay, darken, lighten, color-dodge, color-burn,
+				hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity
+				(You can also provide a comma-separated list to match multiple background layers)
+			*/
+			background-blend-mode: multiply;
 			color: rgb(0, 0, 0);
 			line-height: 1.8; /* Increased line-height for better readability */
 			overflow-x: hidden;
@@ -69,38 +81,25 @@
 				max-height: 60vh; /* Adjust as needed for mobile */
 			}
 		}
-        .hero-content {
-			position: relative;
-			z-index: 2; 
-			background-color: var(--bg_col_trans);
-			max-height: 80vh;
-			padding: 2rem;
-			border-radius: 0.75rem;
-			backdrop-filter: none;
-			-webkit-backdrop-filter: none;
-			border: 1.5px solid var(--border_col);
-			max-width: 40rem;
-			margin: auto;
-			box-shadow: 10px 5px 0px 0 var(--shadow_col);
-			overflow: hidden;
+		.hero-content {
+				position: relative;
+				z-index: 2; 
+				background-color: var(--bg_col_trans);
+				/* Increased size */
+				width: min(90vw, 90rem);
+				max-width: 100rem;
+				min-height: 60vh;
+				max-height: 80vh;
 
-		} 
-		/* NEW: petite fleur divider */
-		.invite-divider{ 
-		width:1.75rem; height:1.75rem; margin:1.25rem auto 0; display:block; opacity:.9;
-		fill:#9b8060;
-		}
-
-		/* NEW: ornate SVG corners (4 clones positioned) */
-		.corner{ 
-		position:absolute; width:88px; height:88px; opacity:.9; 
-		fill:#d8c4ad; stroke:#9b8060; stroke-width:2;
-		filter: drop-shadow(0 2px 1px rgba(0,0,0,.15));
-		}
-		.corner.tl{ top:-10px; left:-10px; transform:rotate(0deg); }
-		.corner.tr{ top:-10px; right:-10px; transform:scaleX(-1); }
-		.corner.bl{ bottom:-10px; left:-10px; transform:scaleY(-1); }
-		.corner.br{ bottom:-10px; right:-10px; transform:scale(-1,-1); }
+				padding: 2rem;
+				border-radius: 0.75rem;
+				backdrop-filter: none;
+				-webkit-backdrop-filter: none;
+				border: 1.5px solid var(--border_col);
+				margin: auto;
+				box-shadow: 10px 5px 0px 0 var(--shadow_col);
+				overflow: hidden;
+			} 
 		
         /* Countdown */
         .animate-flip {
@@ -305,12 +304,12 @@
         
         /* Enhanced Section Divider */
 		.section-divider {
-			--divider-base: var(--bg_col);
+			--divider-base: var(--text_col);
 			--divider-highlight: rgba(255, 255, 255, 0.8);
 			--divider-shadow: rgba(0, 0, 0, 0.4);
-			--divider-accent: var(--text_col);
-			--divider-shimmer1: var(--bg_col);
-			--divider-shimmer2: var(--text_col);
+			--divider-accent: var(--text_col_2);
+			--divider-shimmer1: var(--text_col_2);
+			--divider-shimmer2: var(--text_col_3);
 			--divider-shimmer3: var(--shadow_col);
 			position: relative;
 			width: clamp(200px, 55%, 520px);
@@ -366,7 +365,7 @@
         /* buttons */
         .btn-primary {
 			background-color: var(--shadow_col);
-
+			font-family: 'Helvetica', sans-serif;
 			color: #ffffff;
 			padding: 0.75rem 1.5rem;
 			border-radius: 9999px;
@@ -413,7 +412,8 @@
         }
 		.font-allura-eqn {
             color: #ffffff;
-            font-family: 'Allura', cursive;
+            font-family: 'Helvetica', sans-serif;
+
             /* Add glazing effect with text-shadow */
             text-shadow: 
                 0 0 5px rgba(255, 255, 255, 0.6),
@@ -452,7 +452,7 @@
 		.bible-verse-ml {
 			color: #000000;
 			font-family: 'Helvetica', sans-serif;
-
+			line-height: 130%;
 		}
         .font-montserrat {
             color: #fcfcfc;
@@ -461,7 +461,8 @@
 		}
         /* New: embossed/engraved text that blends with your beige + grain background */
         .font-embossed-on-beige {
-        color: var(--text_col); /* same as page background so the "surface" matches */
+		font-family: 'Helvetica'; 
+        color: var(--text_col_3); /* same as page background so the "surface" matches */
         letter-spacing: 0.5px; /* tiny spacing helps the bevel read cleanly */
 
         /* light hit from top-left + shadow bottom-right (subtle, over grain) */
@@ -480,8 +481,8 @@
         /* Optional New: raised (opposite of engraved) – flip directions */
         .font-embossed-on-beige.raised {
         text-shadow:
-            1px  1px 1px rgba(255, 255, 255, 0.55), /* highlight now bottom-right */
-            -1px -1px 1px rgba(0,   0,   0,   0.28); /* shadow now top-left */
+            1px  1px 1px rgba(255, 255, 255, 0.95), /* highlight now bottom-right */
+            -2px -2px 1px rgba(0,   0,   0,   0.28); /* shadow now top-left */
         }
 
 
@@ -497,63 +498,107 @@
 		}
 		/* 5. Responsive Heading Sizes: Use smaller headings on mobile */
 		@media (max-width: 500px) {
-			 .text-5xl {
-				font-size: 2rem !important;
-				line-height: 2rem !important;
+			.text-8xl {
+				font-size: calc(var(--small_font_size) * 1.6) !important;
+				line-height: calc(var(--small_line_height) * 1.2) !important;
+			}
+			.text-7xl {
+				font-size: calc(var(--small_font_size) * 1.3 ) !important;
+				line-height: calc(var(--small_line_height) * 1.3 ) !important;
 			}
 			.text-6xl {
-				font-size: 2.5rem !important;
-				line-height: 2.5rem !important;
+				font-size: var(--small_font_size) !important;
+				line-height: var(--small_line_height) !important;
 			}
-			.text-4xl, .text-3xl {
-				font-size: 1.5rem !important;
-				line-height: 1.7rem !important;
+			.text-5xl {
+				font-size: calc(var(--small_font_size) - 0.5rem) !important;
+				line-height: calc(var(--small_line_height) - 0.5rem) !important;
+			}
+			.text-4xl {
+				font-size: calc(var(--small_font_size) - 0.8rem) !important;
+				line-height: calc(var(--small_line_height) - 0.8rem) !important;
+			}
+			.text-3xl {
+				font-size: calc(var(--small_font_size) - 1rem) !important;
+				line-height: calc(var(--small_line_height) - 1rem) !important;
 			}
 			.text-2xl {
-				font-size: 1rem !important;
-				line-height: 1.2rem !important;
+				font-size: calc(var(--small_font_size) - 1.3rem) !important;
+				line-height: calc(var(--small_line_height) - 1.3rem) !important;
 			}
 			.text-xl {
-				font-size: 0.7rem !important;
-				line-height: 0.9rem !important;
+				font-size: calc(var(--small_font_size) - 1.8rem) !important;
+				line-height: calc(var(--small_line_height) - 1.8rem) !important;
 			}
 		}
 
 		@media (min-width: 501px) and (max-width: 800px) {
-			.text-6xl, .text-8xl, .text-5xl {
-				font-size: 3rem !important;
-				line-height: 4rem !important;
+			.text-8xl {
+				font-size: calc(var(--medium_font_size) * 1.6) !important;
+				line-height: calc(var(--medium_line_height) * 1.2) !important;
 			}
-			.text-4xl, .text-3xl {
-				font-size: 1.5rem !important;
-				line-height: 2rem !important;
+			.text-7xl {
+				font-size: calc(var(--medium_font_size) * 1.3 ) !important;
+				line-height: calc(var(--medium_line_height) * 1.3 ) !important;
 			}
-			 .text-2xl {
-				font-size: 1rem !important;
-				line-height: 1rem !important;
+			.text-6xl {
+				font-size: var(--medium_font_size) !important;
+				line-height: var(--medium_line_height) !important;
+			}
+			.text-5xl {
+				font-size: calc(var(--medium_font_size) - 0.5rem) !important;
+				line-height: calc(var(--medium_line_height) - 0.5rem) !important;
+			}
+			.text-4xl {
+				font-size: calc(var(--medium_font_size) - 0.8rem) !important;
+				line-height: calc(var(--medium_line_height) - 0.8rem) !important;
+			}
+			.text-3xl {
+				font-size: calc(var(--medium_font_size) - 1rem) !important;
+				line-height: calc(var(--medium_line_height) - 1rem) !important;
+			}
+			.text-2xl {
+				font-size: calc(var(--medium_font_size) - 1.3rem) !important;
+				line-height: calc(var(--medium_line_height) - 1.3rem) !important;
 			}
 			.text-xl {
-				font-size: 1rem !important;
-				line-height: 1.5rem !important;
+				font-size: calc(var(--medium_font_size) - 1.8rem) !important;
+				line-height: calc(var(--medium_line_height) - 1.8rem) !important;
 			}
 
 		}
 		@media (min-width: 801px) {
-			.text-6xl, .text-8xl, .text-5xl {
-				font-size: 4rem !important;
-				line-height: 4rem !important;
+			.text-8xl {
+				font-size: calc(var(--large_font_size) * 1.6) !important;
+				line-height: calc(var(--large_line_height) * 1.2) !important;
 			}
-			.text-4xl, .text-3xl {
-				font-size: 2rem !important;
-				line-height: 2.5rem !important;
+			.text-7xl {
+				font-size: calc(var(--large_font_size) * 1.3 ) !important;
+				line-height: calc(var(--large_line_height) * 1.3 ) !important;
+			}
+			.text-6xl {
+				font-size: var(--large_font_size) !important;
+				line-height: var(--large_line_height) !important;
+			}
+			.text-5xl {
+				font-size: calc(var(--large_font_size) - 0.5rem) !important;
+				line-height: calc(var(--large_line_height) - 0.5rem) !important;
+			}
+			.text-4xl {
+				font-size: calc(var(--large_font_size) - 0.8rem) !important;
+				line-height: calc(var(--large_line_height) - 0.8rem) !important;
+			}
+			.text-3xl {
+				font-size: calc(var(--large_font_size) - 1rem) !important;
+				line-height: calc(var(--large_line_height) - 1rem) !important;
 			}
 			.text-2xl {
-				font-size: 1.5rem !important;
-				line-height: 1.8rem !important;
+				font-size: calc(var(--large_font_size) - 1.3rem) !important;
+				line-height: calc(var(--large_line_height) - 1.3rem) !important;
 			}
 			.text-xl {
-				font-size: 1.6rem !important;
-				line-height: 2rem !important;
+				font-size: calc(var(--large_font_size) - 1.8rem) !important;
+				line-height: calc(var(--large_line_height) - 1.8rem) !important;
 			}
 		}
 		
@@ -606,23 +651,23 @@
         </div> -->
 		<div
 			class="hero-content"
-			onmouseenter="this.style.setProperty('--img-scale','1.08');this.style.setProperty('--dx1','-6px');this.style.setProperty('--dx2','6px');this.style.setProperty('--dy','-4px');"
-			onmouseleave="this.style.setProperty('--img-scale','1');this.style.setProperty('--dx1','0px');this.style.setProperty('--dx2','0px');this.style.setProperty('--dy','0px');"
+			onmouseenter="this.style.setProperty('--img-scale','1.0');this.style.setProperty('--dx1','6px');this.style.setProperty('--dx2','6px');this.style.setProperty('--dy','-4px');"
+			onmouseleave="this.style.setProperty('--img-scale','0.8');this.style.setProperty('--dx1','0px');this.style.setProperty('--dx2','0px');this.style.setProperty('--dy','0px');"
 			style="
 				--hero-img-w: clamp(140px, 22vw, 280px);
-				--hero-img-gap: 1rem;
-				--hero-img-x: 1rem;
-				--hero-img-y: 1rem;
-				--hero-img-x2: calc(var(--hero-img-x)  + var(--hero-img-gap));
-				--img-scale: 1;
+				--hero-img-gap: 4px;
+				--hero-img-x: 0rem;
+				--hero-img-y: -0.5rem;
+				--hero-img-x2: calc(var(--hero-img-x)  - var(--hero-img-gap));
+				--img-scale: 0.8;
 				--dx1: 0px;  /* drift for first image on hover */
 				--dx2: 0px;  /* drift for second image on hover */
-				--dy: 0px;   /* vertical drift on hover */
+				--dy: 1px;   /* vertical drift on hover */
 
 				background:
-					linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(35, 31, 31, 0.55)),
-					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png_mirror.png'),
-					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png');
+					radial-gradient(circle at center, rgba(35, 31, 31, 0.65) 0%, rgba(35, 31, 31, 0.4) 45%, rgba(255, 255, 255, 0.35) 90%),
+					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png'),
+					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png_mirror.png');
 				background-repeat: no-repeat, no-repeat, no-repeat;
 				background-size:
 					cover,
@@ -630,23 +675,23 @@
 					calc(var(--hero-img-w) * var(--img-scale)) auto;
 				background-position:
 					center,
-					right calc(var(--hero-img-x) + var(--dx1)) ,
-					left calc(var(--hero-img-x2) + var(--dx2)) top calc(var(--hero-img-y) + var(--dy));
+					left calc(var(--hero-img-x) + var(--dx1)) top calc(var(--hero-img-y) + var(--dy)) ,
+					right calc(var(--hero-img-x2) + var(--dx2)) top calc(var(--hero-img-y) + var(--dy));
 				transition: background-position 300ms ease, background-size 300ms ease;
 			"
 		>
-			<p class="text-3xl md:text-5xl mb-4 font-embossed-on-beige raised">
+			<p class="text-5xl md:text-4xl py-4 mb-4  font-embossed-on-beige raised">
 				Together with our families
 			</p>
-			<h1 class="text-6xl md:text-4xl font-bold mb-6 font-allura">Taniya</h1>
-			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised">
+			<h1 class="text-7xl md:text-4xl font-bold mb-2 font-allura">Taniya</h1>
+			<p class="text-4xl md:text-4xl mb-6 font-embossed-on-beige raised">
 				Daughter of Mr. Binny Mathew and Mrs. Laly Binny
 			</p>
-			<h1 class="text-6xl md:text-8xl font-bold mb-6 font-allura">Aswin</h1>
-			<p class="text-2xl md:text-4xl mb-2 font-embossed-on-beige raised">
+			<h1 class="text-7xl md:text-8xl font-bold mb-2 font-allura">Aswin</h1>
+			<p class="text-3xl md:text-4xl font-embossed-on-beige raised">
 				Son of Dr. Salim C Eapen & Mrs. Renu Thomas
 			</p>
-			<p class="text-3xl md:text-4xl mt-6 font-embossed-on-beige raised">
+			<p class="text-2xl md:text-4xl py-4 font-embossed-on-beige raised">
 				Invite you to join us in celebrating our love
 			</p>
 		</div>
@@ -659,20 +704,20 @@
 
 		<div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
 			<div>
-				<div id="days" class="text-6xl md:text-6xl font-great-vibes ">00</div>
-				<div class="font-semibold uppercase tracking-wider font-great-vibes">Days</div>
+				<div id="days" class="text-6xl md:text-6xl text-black font-allura  ">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-allura">Days</div>
 			</div>
 			<div>
-				<div id="hours" class="text-6xl md:text-6xl  font-great-vibes ">00</div>
-				<div class=" font-semibold uppercase tracking-wider font-great-vibes ">Hours</div>
+				<div id="hours" class="text-6xl md:text-6xl text-black font-allura">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-allura">Hours</div>
 			</div>
 			<div>
-				<div id="minutes" class="text-6xl md:text-6xl font-great-vibes ">00</div>
-				<div class=" font-semibold uppercase tracking-wider font-great-vibes">Minutes</div>
+				<div id="minutes" class="text-6xl md:text-6xl text-black font-allura">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-allura">Minutes</div>
 			</div>
 			<div>
-				<div id="seconds" class="text-6xl md:text-6xl  font-great-vibes ">00</div>
-				<div class=" font-semibold uppercase tracking-wider font-great-vibes">Seconds</div>	
+				<div id="seconds" class="text-6xl md:text-6xl text-black font-allura">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-allura">Seconds</div>
 			</div>
 		</div>
 	</section>
@@ -694,34 +739,34 @@
 
 			"></div>
 			<div class="relative z-10 bg-transparent rounded-xl p-4 shadow-lg">
-				<p class="text-lg italic text-2xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
-				<p class=" mt-2  font-semibold font-embossed-on-beige raised"> - Colossians 3:14</p>  
+				<p class="italic text-3xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
+				<p class=" mt-5 mb-2 text-3xl font-semibold font-embossed-on-beige raised"> - Colossians 3:14</p>
 				<div class="section-divider"></div>
-				<p class="text-lg italic  text-2xl bible-verse-ml"><span lang="ml" class="text-helvetica">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
-				<p class=" mt-2  font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
+				<p class=" font-semibold bible-verse-ml"><span lang="ml" class="text-helvetica">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+				<p class=" mt-5 mb-2 text-3xl font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
 			</div>
 		</div>
 	</section>
 	<!-- Details Section (Ceremony & Reception with Directions) -->
 	<section class=" py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">The Ceremony & Reception</h2>
+			<h2 class="text-6xl font-allura text-black  drop-shadow-lg">The Ceremony & Reception</h2>
 
 			<div class="section-divider"></div>
 			<div class="ceremony-reception-grid">
 				<!-- Ceremony -->
 				<div>
-					<p class="text-base text-3xl md:text-xl font-helvetica mb-4">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+					<p class=" text-3xl md:text-xl font-helvetica mb-8">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;">
-							<h3 class="text-4xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
+							<h3 class="text-6xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
 
 							<div class="mb-4"></div>
-							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat drop-shadow-lg mb-2">January 5th, 2026 • 3:00 PM</p>
-							<p class="text-lg text-3xl md:text-xl font-montserrat mb-2">St Thomas Mar Thoma Church</p>
+							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat drop-shadow-lg mb-4">January 5th, 2026 • 3:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl font-montserrat mb-2 drop-shadow-lg">St Thomas Mar Thoma Church</p>
 							<p class="text-lg text-3xl font-montserrat  mb-4">Thiruvalla, Kerala</p>
 							<a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
 						</div>
@@ -729,17 +774,17 @@
 				</div>
 				<!-- Reception -->
 				<div>
-					<p class="text-base text-3xl md:text-xl font-helvetica mb-4">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+					<p class="  text-3xl md:text-xl font-helvetica mb-8">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;"></div>
-							<h3 class="text-6xl md:text-6xl font-montserrat mb-2 drop-shadow-lg">Reception</h3>
+							<h3 class="text-6xl md:text-6xl font-montserrat  mb-4 drop-shadow-lg">Reception</h3>
 							<div class="mb-2"></div>
-							<p class="text-lg text-3xl md:text-xl font-semibold  drop-shadow-lg">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
-							<p class="text-lg text-3xl md:text-xl   drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
-							<p class="text-lg text-3xl   drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
+							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat drop-shadow-lg mb-4">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl   font-montserrat mb-2 drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
+							<p class="text-lg text-3xl   font-montserrat mb-4 drop-shadow-lg">Kuttappuzha, Thiruvalla</p>
 							<div class="mb-2"></div>
 							<a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
 						</div>
@@ -749,7 +794,7 @@
 			<!-- Collapsible Travel Directions -->
 			<div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
 				<button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-					class="w-full text-2xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
+					class="w-full text-3xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
 					✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
 				</button>
 				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner font-helvetica" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
@@ -778,7 +823,7 @@
 	<!-- Menu Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">The Wedding Feast</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">The Wedding Feast</h2>
 			<div class="section-divider"></div>
 			<p class="text-4xl mb-8 font-helvetica">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
 		</div>
@@ -803,7 +848,7 @@
 			filter: blur(0.5px) brightness(1.2);"></div>-->
 
 		<div class="py-16 px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
-			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg" ">Our Perfect Equation</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Perfect Equation</h2>
 			<div class="section-divider"></div>
 			
 		</div>
@@ -821,7 +866,7 @@
 				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
 				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 			</video>
-			<div class="absolute top-0 left-0 right-0 text-xl text-center font-allura-eqn z-10 py-4 px-2"
+			<div class="absolute top-0 left-0 right-0 text-2xl text-center font-allura-eqn z-10 py-4 px-2"
 				style="text-shadow: 2px 2px 4px;">
 				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
 			</div>
@@ -840,7 +885,45 @@
 					"></div>
 
 					<!-- Framed box -->
-					<div style="
+					<style>
+						.timeline-frame {
+							transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+							will-change: transform;
+						}
+						.timeline-frame:hover {
+							transform: translateY(-8px) scale(1.02);
+							box-shadow: 0 12px 36px -8px rgba(0,0,0,.7), 0 0 0 4px rgba(255,255,255,.06), 0 0 18px var(--border_col);
+						}
+						.timeline-frame img {
+							transition: transform .6s cubic-bezier(.2,.6,.2,1), filter .6s ease;
+						}
+						.timeline-frame:hover img {
+							transform: scale(1.1);
+							filter: saturate(1.5);
+						}
+						.timeline-frame .shine {
+							position:absolute;
+							inset:0;
+							background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 50%, transparent 100%);
+							transform: translateX(-120%) skewX(-20deg);
+							opacity:0;
+							pointer-events:none;
+						}
+						.timeline-frame:hover .shine {
+							animation: sweep 4s ease forwards;
+							opacity: 0.8;;
+						}
+						@keyframes sweep {
+							to { transform: translateX(120%) skewX(-20deg); }
+						}
+						@media (hover: none) {
+							.timeline-frame:hover { transform: none; }
+							.timeline-frame:hover img { transform: none; }
+							.timeline-frame .shine { display: none; }
+						}
+					</style>
+
+					<div class="timeline-frame" style="
 						--frame-gap:14px;
 						position:relative;
 						background:rgba(0,0,0,0.32);
@@ -850,7 +933,7 @@
 						padding:var(--frame-gap);
 						backdrop-filter:blur(4px);
 						-webkit-backdrop-filter:blur(4px);
-						max-width:680px;
+						max-width:380px;
 						width:72vw;
 						z-index:2;
 						overflow:hidden;
@@ -863,17 +946,20 @@
 							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 						</span>
 
-						<!-- Image with equal visual gap (uses the padding only) -->
+						<!-- Sweep shine -->
+						<span class="shine"></span>
+
+						<!-- Image -->
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
-							 alt="Our Story"
-							 style="
+							alt="Our Story"
+							style="
 								display:block;
 								width:100%;
 								height:auto;
 								object-fit:contain;
 								border-radius:10px;
 								box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
+						">
 					</div>
 				</div>
 			</div>
@@ -882,7 +968,7 @@
 		<style>
 			@keyframes sparkle {
 				from { background-position: 0 0; }
-				to { background-position: -200px -200px; }
+				to { background-position: -500px -500px; }
 			}
 		</style>
 	</section>
@@ -890,7 +976,7 @@
     <!-- Wedding Party Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-5xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 drop-shadow-lg">Meet Our Family</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Meet Our Family</h2>
 
 			<div class="section-divider"></div>
 			<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -898,9 +984,9 @@
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
 					</div>
-					<h3 class="text-2xl  mt-4 font-montserrat text-black font-semibold ">Mr. Binny & Mrs. Laly</h3>
+					<h3 class="text-2xl  mt-4 font-montserrat text-black  ">Mr. Binny Mathew & Mrs. Laly Binny</h3>
 
-					<p class=" font-montserrat text-gray-600 font-semibold">Parents of the Bride</p>
+					<p class=" font-allura text-black  ">Parents of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
@@ -911,11 +997,11 @@
 						>
 					</div>
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Salim & Mrs. Renu </h3>
-					<p class=" font-montserrat text-gray-600 font-semibold">Parents of the Groom</p>
+					<p class=" font-allura text-black">Parents of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
-					<h3 class="text-2xl font-montserrat mt-4 text-black">Mr. Nevil & Mrs. Bincy</h3>
-					<p class=" font-montserrat text-gray-600 font-semibold">Brother & Sister-in-Law</p></div>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Mr. Nevil Mathew & Mrs. Bincy Nevil</h3>
+					<p class=" font-allura text-black">Brother & Sister-in-Law</p></div>
 
 				<div class="text-center flex flex-col items-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
@@ -926,7 +1012,7 @@
 						>
 					</div>
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Nitty Sara</h3>
-					<p class=" font-montserrat text-gray-600 font-semibold">Sister of the Bride</p>
+					<p class=" font-allura text-black">Sister of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #4c5831;">
@@ -937,12 +1023,12 @@
 							style="transform: scale(0.8);"
 						>
 					</div>
-					<h3 class="text-2xl font-montserrat mt-4 text-black">Ida</h3>
-					<p class=" font-montserrat text-gray-600 font-semibold">Sister of the Groom</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Ida Mariam Eapen</h3>
+					<p class=" font-allura text-black">Sister of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Eva & Ema</h3>
-					<p class=" font-montserrat text-gray-600 font-semibold">Our beloved nieces</p>
+					<p class=" font-allura text-black">Our beloved nieces</p>
 			</div>
 			</div>
 		</div>
@@ -953,7 +1039,7 @@
 	<!-- RSVP Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-2xl mx-auto">
-		<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">RSVP</h2>
+		<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">RSVP</h2>
 		<div class="section-divider"></div>
 		<p class="text-2xl mb-8 font-montserrat text-black ">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
 
@@ -977,7 +1063,7 @@
 	<!-- Guestbook Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-		<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Guestbook</h2>
+		<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Guestbook</h2>
 		<div class="section-divider"></div>
 		<p class="text-2xl mb-8 text-black">Leave a message for the happy couple!</p>
 		<form id="guestbookForm" class="text-left space-y-4 mb-8">
@@ -994,9 +1080,9 @@
 	<!-- AI Dress Code Advisor Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4 font-great-vibes drop-shadow-lg">Dress Code Advisor</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Dress Code Advisor</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 text-black">
+			<p class="text-2xl mb-8 font-helvetica text-black">
 				Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
 				<span class="block mt-4">
 					Optional colour muse: our Velvet Twilight Palette—shades of dreamy lavender, gentle to deep greens, mauves, and rich maroons. We'd love to see you in any shades of these, but you are free to wear what makes you feel your best.
@@ -1051,9 +1137,9 @@
 	<!-- Gemini Travel Itinerary Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 text-black">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
+			<p class="text-2xl mb-8 font-helvetica ">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
 			<div class="space-y-4 text-left">
 				<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
 				<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
@@ -1068,9 +1154,9 @@
 	<!-- Local Favorites Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-6xl mx-auto">
-			<h2 class="text-5xl mb-4 font-great-vibes drop-shadow-lg">Our Local Favorites</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Local Favorites</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 text-black">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+			<p class="text-2xl mb-8 font-helvetica text-black">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
 
 			<!-- Grid of attractions -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -1081,7 +1167,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Favorite Rooftop Cafe</h3>
 					<p class="font-semibold text-black">Uptown Shack</p>
 					<p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
-					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Alappuzha Houseboat -->
@@ -1091,7 +1177,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Boat ride</h3>
 					<p class="font-semibold text-black">Alappuzha Houseboat</p>
 					<p class="text-sm text-black mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
-					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Avees Puttu House -->
@@ -1101,7 +1187,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Must-Try Food</h3>
 					<p class="font-semibold text-black">Avees Puttu House</p>
 					<p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
-					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Bhoothakuzhy Para -->
@@ -1111,7 +1197,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Hidden Gem</h3>
 					<p class="font-semibold text-black">Bhoothakuzhy Para</p>
 					<p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Vengal Viewpoint -->
@@ -1121,7 +1207,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Sunset Spot</h3>
 					<p class="font-semibold text-black">Vengal Viewpoint</p>
 					<p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Aruvikuzhy Waterfalls -->
@@ -1131,7 +1217,7 @@
 					<h3 class="text-2xl font-montserrat text-gray-900">Waterfall Wonder</h3>
 					<p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
 					<p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold underline" style="color:var(--border_col);">View on Map</a>
+					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 			</div>
 		</div>
@@ -1140,9 +1226,9 @@
 	<!-- Photo Gallery Teaser Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-5xl font-great-vibes mb-4  drop-shadow-lg">Our Wedding Gallery</h2>
+			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Wedding Gallery</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 text-black">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
+			<p class="text-2xl mb-8 font-helvetica text-black">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
 			<a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
 				Coming Soon
 			</a>
@@ -1164,7 +1250,7 @@
 	<!-- Footer -->
 	<footer class="bg-[var(--bg_col_trans)] font-helvetica py-8 px-4 text-center rounded-t-xl">
 		<div class="max-w-4xl mx-auto">
-			<p class="text-2xl mb-2 font-montserrat text-black">We can't wait to celebrate with you!</p>
+			<p class="text-6xl font-allura text-black mb-4 drop-shadow-lg">We can't wait to celebrate with you!</p>
 			<p class="text-sm mb-2 text-black">With love from our families</p>
 			<p class="text-sm text-black">© 2026 Taniya & Aswin. All Rights Reserved.</p>
 			<div class="mt-4">
