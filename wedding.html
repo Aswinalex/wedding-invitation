@@ -95,11 +95,12 @@
 				border-radius: 0.75rem;
 				backdrop-filter: none;
 				-webkit-backdrop-filter: none;
-				border: 1.5px solid var(--border_col);
+				border: 3px solid var(--border_col);
 				margin: auto;
 				box-shadow: 10px 5px 0px 0 var(--shadow_col);
 				overflow: hidden;
-			} 
+			}
+			
 		
         /* Countdown */
         .animate-flip {
@@ -314,7 +315,7 @@
 			position: relative;
 			width: clamp(200px, 55%, 520px);
 			height: 40px;
-			margin: 2.75rem auto;
+			margin: 1% auto;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -324,7 +325,7 @@
 			content: '';
 			position: absolute;
 			inset: 0;
-			height: 100%;
+			height: 10%;
 			background: transparent;
 			clip-path: path('M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30');
 			filter: drop-shadow(-2px -2px 4px var(--divider-highlight))
@@ -352,7 +353,7 @@
         @media (max-width: 500px) {
 			.section-divider {
 		        width: clamp(160px, 70%, 360px);
-		        margin: 2rem auto;
+		        margin: 1rem auto;
 				height: 40px;
 		    }
 		}
@@ -364,7 +365,7 @@
 		
         /* buttons */
         .btn-primary {
-			background-color: var(--shadow_col);
+			background-color: var(--text_col_3);
 			font-family: 'Helvetica', sans-serif;
 			color: #ffffff;
 			padding: 0.75rem 1.5rem;
@@ -377,7 +378,7 @@
 			-webkit-backdrop-filter: blur(4px);
 		}
 		.btn-primary:hover {
-			background: var(--border_col);
+			background: var(--text_col_2);
 			color: #ffffff;
 			transform: translateY(-2px);
 			box-shadow: 0 6px 20px var(--shadow_col);
@@ -499,106 +500,106 @@
 		/* 5. Responsive Heading Sizes: Use smaller headings on mobile */
 		@media (max-width: 500px) {
 			.text-8xl {
-				font-size: calc(var(--small_font_size) * 1.6) !important;
-				line-height: calc(var(--small_line_height) * 1.2) !important;
+				font-size: calc(var(--small_font_size) * 1.6) ;
+				line-height: calc(var(--small_line_height) * 1.2);
 			}
 			.text-7xl {
-				font-size: calc(var(--small_font_size) * 1.3 ) !important;
-				line-height: calc(var(--small_line_height) * 1.3 ) !important;
+				font-size: calc(var(--small_font_size) * 1.3 ) ;
+				line-height: calc(var(--small_line_height) * 1.3 ) ;
 			}
 			.text-6xl {
-				font-size: var(--small_font_size) !important;
-				line-height: var(--small_line_height) !important;
+				font-size: var(--small_font_size);
+				line-height: var(--small_line_height);
 			}
 			.text-5xl {
-				font-size: calc(var(--small_font_size) - 0.5rem) !important;
-				line-height: calc(var(--small_line_height) - 0.5rem) !important;
+				font-size: calc(var(--small_font_size) - 0.5rem);
+				line-height: calc(var(--small_line_height) - 0.5rem);
 			}
 			.text-4xl {
-				font-size: calc(var(--small_font_size) - 0.8rem) !important;
-				line-height: calc(var(--small_line_height) - 0.8rem) !important;
+				font-size: calc(var(--small_font_size) - 0.8rem);
+				line-height: calc(var(--small_line_height) - 0.8rem);
 			}
 			.text-3xl {
-				font-size: calc(var(--small_font_size) - 1rem) !important;
-				line-height: calc(var(--small_line_height) - 1rem) !important;
+				font-size: calc(var(--small_font_size) - 1rem);
+				line-height: calc(var(--small_line_height) - 1rem);
 			}
 			.text-2xl {
-				font-size: calc(var(--small_font_size) - 1.3rem) !important;
-				line-height: calc(var(--small_line_height) - 1.3rem) !important;
+				font-size: calc(var(--small_font_size) - 1.3rem);
+				line-height: calc(var(--small_line_height) - 1.3rem);
 			}
 			.text-xl {
-				font-size: calc(var(--small_font_size) - 1.8rem) !important;
-				line-height: calc(var(--small_line_height) - 1.8rem) !important;
+				font-size: calc(var(--small_font_size) - 1.5rem);
+				line-height: calc(var(--small_line_height) - 1.5rem);
 			}
 		}
 
 		@media (min-width: 501px) and (max-width: 800px) {
 			.text-8xl {
-				font-size: calc(var(--medium_font_size) * 1.6) !important;
-				line-height: calc(var(--medium_line_height) * 1.2) !important;
+				font-size: calc(var(--medium_font_size) * 1.6) ;
+				line-height: calc(var(--medium_line_height) * 1.2) ;
 			}
 			.text-7xl {
-				font-size: calc(var(--medium_font_size) * 1.3 ) !important;
-				line-height: calc(var(--medium_line_height) * 1.3 ) !important;
+				font-size: calc(var(--medium_font_size) * 1.3 ) ;
+				line-height: calc(var(--medium_line_height) * 1.3 ) ;
 			}
 			.text-6xl {
-				font-size: var(--medium_font_size) !important;
-				line-height: var(--medium_line_height) !important;
+				font-size: var(--medium_font_size) ;
+				line-height: var(--medium_line_height) ;
 			}
 			.text-5xl {
-				font-size: calc(var(--medium_font_size) - 0.5rem) !important;
-				line-height: calc(var(--medium_line_height) - 0.5rem) !important;
+				font-size: calc(var(--medium_font_size) - 0.5rem);
+				line-height: calc(var(--medium_line_height) - 0.5rem);
 			}
 			.text-4xl {
-				font-size: calc(var(--medium_font_size) - 0.8rem) !important;
-				line-height: calc(var(--medium_line_height) - 0.8rem) !important;
+				font-size: calc(var(--medium_font_size) - 0.8rem);
+				line-height: calc(var(--medium_line_height) - 0.8rem);
 			}
 			.text-3xl {
-				font-size: calc(var(--medium_font_size) - 1rem) !important;
-				line-height: calc(var(--medium_line_height) - 1rem) !important;
+				font-size: calc(var(--medium_font_size) - 1.4rem);
+				line-height: calc(var(--medium_line_height) - 1rem);
 			}
 			.text-2xl {
-				font-size: calc(var(--medium_font_size) - 1.3rem) !important;
-				line-height: calc(var(--medium_line_height) - 1.3rem) !important;
+				font-size: calc(var(--medium_font_size) - 1.3rem);
+				line-height: calc(var(--medium_line_height) - 1.3rem);
 			}
 			.text-xl {
-				font-size: calc(var(--medium_font_size) - 1.8rem) !important;
-				line-height: calc(var(--medium_line_height) - 1.8rem) !important;
+				font-size: calc(var(--medium_font_size) - 1.8rem);
+				line-height: calc(var(--medium_line_height) - 1.8rem);
 			}
 
 		}
 		@media (min-width: 801px) {
 			.text-8xl {
-				font-size: calc(var(--large_font_size) * 1.6) !important;
-				line-height: calc(var(--large_line_height) * 1.2) !important;
+				font-size: calc(var(--large_font_size) * 1.6) ;
+				line-height: calc(var(--large_line_height) * 1.2) ;
 			}
 			.text-7xl {
-				font-size: calc(var(--large_font_size) * 1.3 ) !important;
-				line-height: calc(var(--large_line_height) * 1.3 ) !important;
+				font-size: calc(var(--large_font_size) * 1.5) ;
+				line-height: calc(var(--large_line_height) * 1.3) ;
 			}
 			.text-6xl {
-				font-size: var(--large_font_size) !important;
-				line-height: var(--large_line_height) !important;
+				font-size: var(--large_font_size) ;
+				line-height: var(--large_line_height) ;
 			}
 			.text-5xl {
-				font-size: calc(var(--large_font_size) - 0.5rem) !important;
-				line-height: calc(var(--large_line_height) - 0.5rem) !important;
+				font-size: calc(var(--large_font_size) - 0.5rem) ;
+				line-height: calc(var(--large_line_height) - 0.5rem) ;
 			}
 			.text-4xl {
-				font-size: calc(var(--large_font_size) - 0.8rem) !important;
-				line-height: calc(var(--large_line_height) - 0.8rem) !important;
+				font-size: calc(var(--large_font_size) - 0.8rem) ;
+				line-height: calc(var(--large_line_height) - 0.8rem) ;
 			}
 			.text-3xl {
-				font-size: calc(var(--large_font_size) - 1rem) !important;
-				line-height: calc(var(--large_line_height) - 1rem) !important;
+				font-size: calc(var(--large_font_size) - 1rem);
+				line-height: calc(var(--large_line_height) - 1rem);
 			}
 			.text-2xl {
-				font-size: calc(var(--large_font_size) - 1.3rem) !important;
-				line-height: calc(var(--large_line_height) - 1.3rem) !important;
+				font-size: calc(var(--large_font_size) - 1.1rem);
+				line-height: calc(var(--large_line_height) - 1.1rem);
 			}
 			.text-xl {
-				font-size: calc(var(--large_font_size) - 1.8rem) !important;
-				line-height: calc(var(--large_line_height) - 1.8rem) !important;
+				font-size: calc(var(--large_font_size) - 1.2rem) ;
+				line-height: calc(var(--large_line_height) - 1.2rem);
 			}
 		}
 		
@@ -640,17 +641,47 @@
 
 <body class="antialiased">
     	<!-- Hero Section -->
-    <header id="heroSection" class="hero-section text-center">
-        <!-- <div class="relative w-screen h-screen">
-            <img id="heroImage" 
-            class="w-full h-full" 
-            style="object-fit: cover; position: relative; top: 0; left: 0;" 
-            src="" 
-            alt="Wedding Invitation">
-            <div class="absolute inset-0  opacity-50"></div> 	
-        </div> -->
+	<style>
+		/* Animated shiny glow that moves along the hero-content border */
+		.hero-content.glow-border {
+			position: relative;
+			isolation: isolate;
+		}
+		
+
+		/* Subtle diagonal shimmer sliding along the border */
+		.hero-content.glow-border::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: linear-gradient(360deg, transparent 45%, rgba(235, 232, 5, 0.968) 50%, transparent 70%);
+			background-size: 400% 400%;
+			animation: shine-slide 8s ease-in-out infinite;
+			-webkit-mask:
+				linear-gradient(#000 0 0) content-box,
+				linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
+			padding: 4px; /* visible border band thickness */
+			pointer-events: none;
+			opacity: 0.6;
+		}
+
+		@keyframes shine-slide {
+			0%   { background-position: 200% 0; }
+			100% { background-position: -200% 100%; }
+		}
+
+		@media (max-width: 500px){
+			.hero-content.glow-border::before { inset: -3px; padding: 3px; }
+			.hero-content.glow-border::after  { padding: 2px; }
+		}
+	</style>
+
+	<header id="heroSection" class="hero-section text-center">
 		<div
-			class="hero-content"
+			class="hero-content glow-border"
 			onmouseenter="this.style.setProperty('--img-scale','1.0');this.style.setProperty('--dx1','6px');this.style.setProperty('--dx2','6px');this.style.setProperty('--dy','-4px');"
 			onmouseleave="this.style.setProperty('--img-scale','0.8');this.style.setProperty('--dx1','0px');this.style.setProperty('--dx2','0px');this.style.setProperty('--dy','0px');"
 			style="
@@ -660,42 +691,42 @@
 				--hero-img-y: -0.5rem;
 				--hero-img-x2: calc(var(--hero-img-x)  - var(--hero-img-gap));
 				--img-scale: 0.8;
-				--dx1: 0px;  /* drift for first image on hover */
-				--dx2: 0px;  /* drift for second image on hover */
-				--dy: 1px;   /* vertical drift on hover */
-
+				--dx1: 0px;
+				--dx2: 0px;
+				--dy: 1px;
+				z-index: 5;
 				background:
-					radial-gradient(circle at center, rgba(35, 31, 31, 0.65) 0%, rgba(35, 31, 31, 0.4) 45%, rgba(255, 255, 255, 0.35) 90%),
 					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png'),
-					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png_mirror.png');
+					url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gemini_Generated_Image_kv4lqtkv4lqtkv4l.png_mirror.png'),
+					radial-gradient(circle at center, var(--bg_col_trans) 0%, var(--bg_col) 45%, var(--bg_col_trans) 200%);
 				background-repeat: no-repeat, no-repeat, no-repeat;
 				background-size:
-					cover,
 					calc(var(--hero-img-w) * var(--img-scale)) auto,
-					calc(var(--hero-img-w) * var(--img-scale)) auto;
+					calc(var(--hero-img-w) * var(--img-scale)) auto,
+					cover;
 				background-position:
-					center,
-					left calc(var(--hero-img-x) + var(--dx1)) top calc(var(--hero-img-y) + var(--dy)) ,
-					right calc(var(--hero-img-x2) + var(--dx2)) top calc(var(--hero-img-y) + var(--dy));
+					left calc(var(--hero-img-x) + var(--dx1)) top calc(var(--hero-img-y) + var(--dy)),
+					right calc(var(--hero-img-x2) + var(--dx2)) top calc(var(--hero-img-y) + var(--dy)),
+					center;
 				transition: background-position 300ms ease, background-size 300ms ease;
 			"
 		>
-			<p class="text-5xl md:text-4xl py-4 mb-4  font-embossed-on-beige raised">
+			<p class="text-3xl md:text-4xl py-4 mb-4  font-embossed-on-beige raised">
 				Together with our families
 			</p>
-			<h1 class="text-7xl md:text-4xl font-bold mb-2 font-allura">Taniya</h1>
-			<p class="text-4xl md:text-4xl mb-6 font-embossed-on-beige raised">
+			<h1 class="text-7xl md:text-7xl font-bold mb-2 font-allura">Taniya</h1>
+			<p class="text-2xl md:text-2xl mb-6 font-embossed-on-beige raised">
 				Daughter of Mr. Binny Mathew and Mrs. Laly Binny
 			</p>
-			<h1 class="text-7xl md:text-8xl font-bold mb-2 font-allura">Aswin</h1>
-			<p class="text-3xl md:text-4xl font-embossed-on-beige raised">
+			<h1 class="text-7xl md:text-7xl font-bold mb-2 font-allura">Aswin</h1>
+			<p class="text-2xl md:text-2xl font-embossed-on-beige raised">
 				Son of Dr. Salim C Eapen & Mrs. Renu Thomas
 			</p>
-			<p class="text-2xl md:text-4xl py-4 font-embossed-on-beige raised">
+			<p class="text-xl md:text-2xl py-4 font-embossed-on-beige raised">
 				Invite you to join us in celebrating our love
 			</p>
 		</div>
-    </header>
+	</header>
 <!-- Countdown Timer Section -->
 	<section class="py-8 px-4 text-center ">
 		<!-- Replaced gold with a new, class-based color for consistency -->
@@ -739,30 +770,30 @@
 
 			"></div>
 			<div class="relative z-10 bg-transparent rounded-xl p-4 shadow-lg">
-				<p class="italic text-3xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
-				<p class=" mt-5 mb-2 text-3xl font-semibold font-embossed-on-beige raised"> - Colossians 3:14</p>
+				<p class="italic text-2xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
+				<p class=" mt-5 mb-1 text-2xl font-embossed-on-beige raised"> - Colossians 3:14</p>
 				<div class="section-divider"></div>
-				<p class=" font-semibold bible-verse-ml"><span lang="ml" class="text-helvetica">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
-				<p class=" mt-5 mb-2 text-3xl font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
+				<p class=" text-xl mt-6 bible-verse-ml"><span lang="ml">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+				<p class=" mt-5 mb-2 text-xl font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
 			</div>
 		</div>
 	</section>
 	<!-- Details Section (Ceremony & Reception with Directions) -->
 	<section class=" py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-6xl font-allura text-black  drop-shadow-lg">The Ceremony & Reception</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised drop-shadow-lg">The Ceremony & Reception</h2>
 
 			<div class="section-divider"></div>
 			<div class="ceremony-reception-grid">
 				<!-- Ceremony -->
 				<div>
-					<p class=" text-3xl md:text-xl font-helvetica mb-8">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+					<p class=" text-2xl md:text-xl font-helvetica mb-8">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;">
-							<h3 class="text-6xl md:text-6xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
+							<h3 class="text-4xl md:text-4xl font-montserrat mb-4 drop-shadow-lg">Wedding Ceremony</h3>
 
 							<div class="mb-4"></div>
 							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat drop-shadow-lg mb-4">January 5th, 2026 • 3:00 PM</p>
@@ -774,13 +805,13 @@
 				</div>
 				<!-- Reception -->
 				<div>
-					<p class="  text-3xl md:text-xl font-helvetica mb-8">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+					<p class="  text-2xl md:text-2xl font-helvetica mb-8">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
 					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
 						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
 						<!-- Overlay for text clarity -->
 						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
 						<div class="event-box-content" style="position: relative; z-index: 2;"></div>
-							<h3 class="text-6xl md:text-6xl font-montserrat  mb-4 drop-shadow-lg">Reception</h3>
+							<h3 class="text-4xl md:text-4xl font-montserrat  mb-4 drop-shadow-lg">Reception</h3>
 							<div class="mb-2"></div>
 							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat drop-shadow-lg mb-4">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
 							<p class="text-lg text-3xl md:text-xl   font-montserrat mb-2 drop-shadow-lg">Mor Athanasius Yohan Memorial Convention Centre</p>
@@ -794,7 +825,7 @@
 			<!-- Collapsible Travel Directions -->
 			<div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
 				<button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
-					class="w-full text-3xl font-semibold font-helvetica transition p-4 rounded-xl shadow-md text-left">
+					class="w-full text-2xl font-helvetica transition p-4 rounded-xl shadow-md text-left">
 					✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
 				</button>
 				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner font-helvetica" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
@@ -823,37 +854,23 @@
 	<!-- Menu Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-4xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">The Wedding Feast</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">The Wedding Feast</h2>
 			<div class="section-divider"></div>
-			<p class="text-4xl mb-8 font-helvetica">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
+			<p class=" text-2xl md:text-2xl font-helvetica mb-8">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
 		</div>
 	</section>
 
 	<!-- Our Perfect Equation Section -->
 	<section class="equation-section fade-in-section" style="border: none; box-shadow: none;  position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
-		<!-- Enhanced sparkling texture overlay -->
-		<!--<div style="position: absolute; inset: 0; z-index: 1; 
-			background-image: 
-				radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,1) 50%, rgba(0,0,0,0)),
-				radial-gradient(3px 3px at 40px 70px, rgba(255,255,255,0.95) 50%, rgba(0,0,0,0)),
-				radial-gradient(3px 3px at 50px 160px, rgba(255,255,255,0.9) 50%, rgba(0,0,0,0)),
-				radial-gradient(3px 3px at 90px 40px, rgba(255,255,255,0.85) 50%, rgba(0,0,0,0)),
-				radial-gradient(3px 3px at 130px 80px, rgba(255,255,255,0.8) 50%, rgba(0,0,0,0)),
-				radial-gradient(3px 3px at 160px 120px, rgba(255,255,255,0.75) 50%, rgba(0,0,0,0));
-			background-repeat: repeat;
-			background-size: 200px 200px;
-			animation: sparkle 8s linear infinite;
-			pointer-events: none;
-			opacity: 0.4;
-			filter: blur(0.5px) brightness(1.2);"></div>-->
+		
 
-		<div class="py-16 px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Perfect Equation</h2>
+		<div class=" px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Perfect Equation</h2>
 			<div class="section-divider"></div>
 			
 		</div>
 		
-		<div class="relative w-screen" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8)); z-index: 2;">
+		<div class="relative w-screen" style="background: linear-gradient(to top, transparent, rgb(0, 0, 0)); z-index: 2;">
 			
 			<video 
 				class="video-bg w-screen h-screen object-cover"
@@ -866,40 +883,24 @@
 				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
 				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 			</video>
-			<div class="absolute top-0 left-0 right-0 text-2xl text-center font-allura-eqn z-10 py-4 px-2"
+			<div class="absolute right-0 text-xl text-center font-allura-eqn z-10 px-2 bg-black"
 				style="text-shadow: 2px 2px 4px;">
 				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
 			</div>
 			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
 				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
 				<div class="relative w-full flex justify-center items-center py-8">
-					<!-- Vertical timeline line (centered) -->
-					<div style="
-						position:absolute;
-						top:0; bottom:0;
-						width:3px;
-						background:linear-gradient(to bottom,rgba(255,255,255,0.25),var(--border_col),rgba(0,0,0,0.45));
-						left:50%; transform:translateX(-50%);
-						opacity:.45;
-						pointer-events:none;
-					"></div>
+					
 
 					<!-- Framed box -->
 					<style>
-						.timeline-frame {
-							transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s ease, border-color .35s ease, filter .35s ease;
-							will-change: transform;
-						}
-						.timeline-frame:hover {
-							transform: translateY(-8px) scale(1.02);
-							box-shadow: 0 12px 36px -8px rgba(0,0,0,.7), 0 0 0 4px rgba(255,255,255,.06), 0 0 18px var(--border_col);
-						}
+						
 						.timeline-frame img {
-							transition: transform .6s cubic-bezier(.2,.6,.2,1), filter .6s ease;
+							transition: transform 2s cubic-bezier(.2,.6,.2,1), filter 2s ease;
 						}
 						.timeline-frame:hover img {
 							transform: scale(1.1);
-							filter: saturate(1.5);
+							filter: saturate(1.2) brightness(1.2);
 						}
 						.timeline-frame .shine {
 							position:absolute;
@@ -964,19 +965,12 @@
 				</div>
 			</div>
 		</div>
-
-		<style>
-			@keyframes sparkle {
-				from { background-position: 0 0; }
-				to { background-position: -500px -500px; }
-			}
-		</style>
 	</section>
 
     <!-- Wedding Party Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-5xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Meet Our Family</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Meet Our Family</h2>
 
 			<div class="section-divider"></div>
 			<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -986,7 +980,7 @@
 					</div>
 					<h3 class="text-2xl  mt-4 font-montserrat text-black  ">Mr. Binny Mathew & Mrs. Laly Binny</h3>
 
-					<p class=" font-allura text-black  ">Parents of the Bride</p>
+					<p class=" font-embossed-on-beige text-black">Parents of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
@@ -996,12 +990,12 @@
 							class="object-cover w-full h-full"
 						>
 					</div>
-					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Salim & Mrs. Renu </h3>
-					<p class=" font-allura text-black">Parents of the Groom</p>
+					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Salim C Eapen & Mrs. Renu Thomas</h3>
+					<p class=" font-embossed-on-beige text-black">Parents of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Mr. Nevil Mathew & Mrs. Bincy Nevil</h3>
-					<p class=" font-allura text-black">Brother & Sister-in-Law</p></div>
+					<p class=" font-embossed-on-beige text-black">Brother & Sister-in-Law</p></div>
 
 				<div class="text-center flex flex-col items-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
@@ -1012,7 +1006,7 @@
 						>
 					</div>
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Dr. Nitty Sara</h3>
-					<p class=" font-allura text-black">Sister of the Bride</p>
+					<p class=" font-embossed-on-beige text-black">Sister of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
 					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #4c5831;">
@@ -1024,11 +1018,11 @@
 						>
 					</div>
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Ida Mariam Eapen</h3>
-					<p class=" font-allura text-black">Sister of the Groom</p>
+					<p class=" font-embossed-on-beige text-black">Sister of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
 					<h3 class="text-2xl font-montserrat mt-4 text-black">Eva & Ema</h3>
-					<p class=" font-allura text-black">Our beloved nieces</p>
+					<p class=" font-embossed-on-beige text-black">Our beloved nieces</p>
 			</div>
 			</div>
 		</div>
@@ -1039,11 +1033,11 @@
 	<!-- RSVP Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-2xl mx-auto">
-		<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">RSVP</h2>
+		<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">RSVP</h2>
 		<div class="section-divider"></div>
-		<p class="text-2xl mb-8 font-montserrat text-black ">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
+		<p class="text-2xl md:text-2xl font-helvetica mb-8 ">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
 
-		<form id="rsvpForm" class="text-left space-y-4">
+		<form id="rsvpForm" class="text-left font-helvetica space-y-4">
 			<input type="text" name="Name" placeholder="Your Name(s)" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white">
 			<select name="Attending" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-gray-400 bg-white" title="Attendance selection">
 			<option value="" disabled selected>Will you be attending?</option>
@@ -1063,10 +1057,10 @@
 	<!-- Guestbook Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-4xl mx-auto">
-		<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Guestbook</h2>
+		<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Guestbook</h2>
 		<div class="section-divider"></div>
-		<p class="text-2xl mb-8 text-black">Leave a message for the happy couple!</p>
-		<form id="guestbookForm" class="text-left space-y-4 mb-8">
+		<p class="text-2xl md:text-2xl font-helvetica mb-8">Leave a message for the happy couple!</p>
+		<form id="guestbookForm" class="text-left font-helvetica space-y-4 mb-8">
 			<input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
 			<textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white"></textarea>
 			<div class="text-center">
@@ -1080,52 +1074,115 @@
 	<!-- AI Dress Code Advisor Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Dress Code Advisor</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Dress Code Advisor</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 font-helvetica text-black">
+			<p class="text-2xl md:text-2xl font-helvetica mb-8">
 				Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
 				<span class="block mt-4">
 					Optional colour muse: our Velvet Twilight Palette—shades of dreamy lavender, gentle to deep greens, mauves, and rich maroons. We'd love to see you in any shades of these, but you are free to wear what makes you feel your best.
 				</span>
 			</p>
-				<!-- Color Grid Container -->
-				<!-- Velvet Twilight single rectangular palette (gradient only, no visible code text) -->
-				<div class="mt-8">
-					
-						<div class="velvet-gradient w-full h-full"></div>
-						<!-- Soft sheen overlay -->
-						<div class="pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay bg-[radial-gradient(circle_at_25%_35%,rgba(255,255,255,0.9),transparent_60%),radial-gradient(circle_at_70%_65%,rgba(255,255,255,0.7),transparent_65%)]"></div>
+				<!-- 2x2 Palette Grid -->
+				<div id="paletteContainer" class="relative mt-8 rounded-xl border border-white/20 overflow-hidden">
+					<!-- Background that changes on hover -->
+					<div id="paletteBg" class="absolute inset-0 transition-all duration-500 pointer-events-none"
+						style="background: var(--bg_col_trans);"></div>
+
+					<!-- Cards -->
+					<div class="relative z-10 grid grid-cols-2 gap-4 p-4">
+						<button type="button" class="shade-card card-lavender" data-bg="#a58bda" aria-label="Lavender palette"></button>
+						<button type="button" class="shade-card card-green" data-bg="#5f7d55" aria-label="Deep greens palette"></button>
+						<button type="button" class="shade-card card-mauve" data-bg="#a4728a" aria-label="Mauves palette"></button>
+						<button type="button" class="shade-card card-maroon" data-bg="#7c1f30" aria-label="Rich maroons palette"></button>
 					</div>
 				</div>
 
 				<style>
-				.velvet-gradient{
-					background:linear-gradient(90deg,
-						#f8f5fd 0%,#f2ecfb 3%,#e9ddf7 6%,#ddcff2 9%,#d2c2ed 12%,#c7b5e8 15%,#bba7e3 18%,#b099df 20%,#a58bda 21.5%,#9879d3 23%,#8967ca 24.5%,#7a56bd 26%,
-						#c2ccb9 27.5%,#b5c4ad 29.5%,#a8bb9a 31.5%,#99b18b 34%,#89a77c 37%,#749267 40%,#5f7d55 43%,#4f6b49 45.5%,#435a42 47.5%,
-						#d2bcc9 50.5%,#c6aab9 52.5%,#bb98aa 54.5%,#b0869c 56.5%,#a4728a 58.5%,#965f7a 60.5%,#864d69 62.5%,#743f58 64.5%,
-						#a23647 67.5%,#952a3d 70.5%,#892335 73.5%,#7c1f30 76.5%,#6d1b2a 80.5%,#5c1523 84.5%,#4b101d 89%,#390b16 93%,#2b070f 100%);
-					position:relative;
-				}
-				.velvet-gradient::after{
-					content:"";
-					position:absolute;
-					inset:0;
-					background:
-						repeating-linear-gradient(0deg,rgba(255,255,255,0.05) 0 2px,transparent 2px 4px),
-						repeating-linear-gradient(90deg,rgba(0,0,0,0.04) 0 3px,transparent 3px 6px);
-					mix-blend-mode:overlay;
-					opacity:.35;
-					pointer-events:none;
-				}
-				@media (max-width:500px){
-					.velvet-gradient{height:9rem;}
-				}
+					.shade-card {
+						min-height: 120px;
+						border-radius: 0.75rem;
+						border: 1px solid var(--border_col);
+						box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+						transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+					}
+					.shade-card:hover,
+					.shade-card:focus-visible {
+						transform: translateY(-2px) scale(1.02);
+						box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+						outline: none;
+					}
+
+					/* Continuous shade variations per card */
+					.card-lavender {
+						background: linear-gradient(135deg,
+							#f8f5fd 0%,
+							#e9ddf7 25%,
+							#c7b5e8 55%,
+							#b099df 75%,
+							#8967ca 100%);
+					}
+					.card-green {
+						background: linear-gradient(135deg,
+							#c2ccb9 0%,
+							#a8bb9a 30%,
+							#89a77c 55%,
+							#5f7d55 75%,
+							#2f4a3a 100%);
+					}
+					.card-mauve {
+						background: linear-gradient(135deg,
+							#f4e6ef 0%,
+							#dcb3c4 30%,
+							#b9869c 55%,
+							#a4728a 75%,
+							#7b4f66 100%);
+					}
+					.card-maroon {
+						background: linear-gradient(135deg,
+							#f0d6d9 0%,
+							#d2939b 28%,
+							#b65e68 55%,
+							#7c1f30 78%,
+							#4b101d 100%);
+					}
+
+					@media (max-width: 500px) {
+						.shade-card { min-height: 96px; }
+					}
 				</style>
-				</div>
+
+				<script>
+					(() => {
+						const container = document.getElementById('paletteContainer');
+						const bg = document.getElementById('paletteBg');
+						if (!container || !bg) return;
+
+						const defaultBg = 'var(--bg_col_trans)';
+						const cards = container.querySelectorAll('.shade-card');
+
+						const setBg = (hex) => {
+							// Soft, glossy backdrop using the selected color
+							bg.style.background = `
+								radial-gradient(1200px 600px at 20% 15%, rgba(255,255,255,0.10), transparent 45%),
+								radial-gradient(900px 500px at 80% 85%, rgba(255,255,255,0.08), transparent 50%),
+								${hex}
+							`;
+						};
+
+						cards.forEach(card => {
+							card.addEventListener('mouseenter', () => setBg(card.dataset.bg));
+							card.addEventListener('focus', () => setBg(card.dataset.bg));
+						});
+
+						container.addEventListener('mouseleave', () => { bg.style.background = defaultBg; });
+						container.addEventListener('focusout', (e) => {
+							if (!container.contains(e.relatedTarget)) bg.style.background = defaultBg;
+						});
+					})();
+				</script>
 
 				<div class="relative z-10 space-y-4 text-left p-6">
-					<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
+					<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full font-helvetica rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
 					<div class="text-center">
 						<button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
 					</div>
@@ -1137,13 +1194,13 @@
 	<!-- Gemini Travel Itinerary Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 font-helvetica ">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
+			<p class="text-2xl md:text-2xl font-helvetica mb-8 ">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
 			<div class="space-y-4 text-left">
-				<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-				<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-				<input type="date" id="travelDate" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+				<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+				<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+				<input type="date" id="travelDate" required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
 				<div class="text-center">
 					<button id="generateItineraryBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Create My Itinerary<span id="itinerarySpinner" class="loading-spinner hidden"></span></button>
 				</div>
@@ -1154,9 +1211,9 @@
 	<!-- Local Favorites Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-6xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Local Favorites</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Local Favorites</h2>
 			<div class="section-divider"></div>
-			<p class="text-2xl mb-8 font-helvetica text-black">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+			<p class="text-2xl md:text-2xl font-helvetica mb-8">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
 
 			<!-- Grid of attractions -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -1165,9 +1222,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">☕</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Favorite Rooftop Cafe</h3>
-					<p class="font-semibold text-black">Uptown Shack</p>
-					<p class="text-sm text-black mb-2">For a rooftop shack dining experience</p>
-					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Uptown Shack</p>
+					<p class="text-sm font-montserrat mb-2">For a rooftop shack dining experience</p>
+					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold font-montserrat " style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Alappuzha Houseboat -->
@@ -1175,9 +1232,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/houseboat.jpeg" alt="Alappuzha Houseboat" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🏞️</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Boat ride</h3>
-					<p class="font-semibold text-black">Alappuzha Houseboat</p>
-					<p class="text-sm text-black mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
-					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Alappuzha Houseboat</p>
+					<p class="text-sm font-montserrat mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
+					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold font-montserrat" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Avees Puttu House -->
@@ -1185,9 +1242,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🍽️</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Must-Try Food</h3>
-					<p class="font-semibold text-black">Avees Puttu House</p>
-					<p class="text-sm text-black mb-2">For authentic and delicious Kerala cuisine.</p>
-					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Avees Puttu House</p>
+					<p class="text-sm font-montserrat  mb-2">For authentic and delicious Kerala cuisine.</p>
+					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold font-montserrat" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Bhoothakuzhy Para -->
@@ -1195,9 +1252,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🪨</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Hidden Gem</h3>
-					<p class="font-semibold text-black">Bhoothakuzhy Para</p>
-					<p class="text-sm text-black mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Bhoothakuzhy Para</p>
+					<p class="text-sm font-montserrat  mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
+					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold font-montserrat" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Vengal Viewpoint -->
@@ -1205,9 +1262,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🌅</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Sunset Spot</h3>
-					<p class="font-semibold text-black">Vengal Viewpoint</p>
-					<p class="text-sm text-black mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Vengal Viewpoint</p>
+					<p class="text-sm font-montserrat  mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
+					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold font-montserrat" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 
 				<!-- Aruvikuzhy Waterfalls -->
@@ -1215,9 +1272,9 @@
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">💧</div>
 					<h3 class="text-2xl font-montserrat text-gray-900">Waterfall Wonder</h3>
-					<p class="font-semibold text-black">Aruvikuzhy Waterfalls</p>
-					<p class="text-sm text-black mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold underline" style="color:var(--text_col_2);">View on Map</a>
+					<p class="font-semibold font-montserrat text-black">Aruvikuzhy Waterfalls</p>
+					<p class="text-sm font-montserrat  mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold font-montserrat" style="color:var(--text_col_2);">View on Map</a>
 				</div>
 			</div>
 		</div>
@@ -1226,7 +1283,7 @@
 	<!-- Photo Gallery Teaser Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-6xl font-allura text-black mb-4 drop-shadow-lg">Our Wedding Gallery</h2>
+			<h2 class="text-6xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Wedding Gallery</h2>
 			<div class="section-divider"></div>
 			<p class="text-2xl mb-8 font-helvetica text-black">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
 			<a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
@@ -1238,11 +1295,11 @@
     <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
 		<div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
-			<h3 class="text-lg font-semibold mb-4 text-dark">Are you sure?</h3>
-			<p class="text-gray-600 mb-6">Do you really want to delete this message? This action cannot be undone.</p>
+			<h3 class="text-lg font-helvetica font-semibold mb-4 text-dark">Are you sure?</h3>
+			<p class="font-helvetica mb-6">Do you really want to delete this message? This action cannot be undone.</p>
 			<div class="flex justify-center gap-4">
-				<button id="cancelDelete" class="px-6 py-2 rounded-full text-gray-700 bg-gray-200 hover:bg-gray-300">Cancel</button>
-				<button id="confirmDelete" class="px-6 py-2 rounded-full text-white bg-red-600 hover:bg-red-700">Delete</button>
+				<button id="cancelDelete" class="px-6 py-2 rounded-full font-helvetica text-gray-700 bg-gray-200 hover:bg-gray-300">Cancel</button>
+				<button id="confirmDelete" class="px-6 py-2 rounded-full font-helvetica text-white bg-red-600 hover:bg-red-700">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -1250,7 +1307,7 @@
 	<!-- Footer -->
 	<footer class="bg-[var(--bg_col_trans)] font-helvetica py-8 px-4 text-center rounded-t-xl">
 		<div class="max-w-4xl mx-auto">
-			<p class="text-6xl font-allura text-black mb-4 drop-shadow-lg">We can't wait to celebrate with you!</p>
+			<p class="text-4xl font-allura text-black mb-4 drop-shadow-lg">We can't wait to celebrate with you!</p>
 			<p class="text-sm mb-2 text-black">With love from our families</p>
 			<p class="text-sm text-black">© 2026 Taniya & Aswin. All Rights Reserved.</p>
 			<div class="mt-4">
