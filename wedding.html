@@ -24,8 +24,9 @@
 		/* Custom styles for the wedding invite */
 		:root {
 			--bg_col:  #327119; /* Defines a global primary color */
-			--bg_col_trans: #37ba233e;
-			--bg_col_trans_2: #4293351d;
+			--bg_col_trans: #48983a54;
+			--bg_col_trans_2: #81a07c18;
+			--bg_col_trans_3: #69b55e76;
 			--shadow_col: #4e5626;
 			--border_col: #ecd391;
 			--text_col: #143e1b;
@@ -77,7 +78,7 @@
 		.hero-content {
 				position: relative;
 				z-index: 2; 
-				background-color: var(--bg_col_trans);
+				background-color: var(--bg_col_trans_2);
 				/* Increased size */
 				width: min(100%, 100%);
 				max-width: 100rem;
@@ -358,7 +359,7 @@
 		
         /* buttons */
         .btn-primary {
-			background-color: var(--bg_col_trans);
+			background-color: var(--bg_col_trans_3);
 			font-family: 'Helvetica', sans-serif;
 			color: #ffffff;
 			padding: 0.75rem 1.5rem;
@@ -584,7 +585,7 @@
 				width: 80%;
 			}
 		</style><div class="hero-content glow-border">
-			<p class="text-2xl md:text-2xl ml-3 font-semibold font-montserrat">
+			<p class="text-xl md:text-xl mt-12 ml-3 font-semibold font-montserrat">
 				Together with our families
 			</p>
 			<h1 class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura">Taniya</h1>
@@ -595,7 +596,7 @@
 			<p class="text-xl md:text-2xl mb-4 font-montserrat">
 				S/o Dr. Salim C Eapen & Mrs. Renu Thomas
 			</p>
-			<p class="text-xl italic font-embossed-on-beige raised" style="color:#ae8d35; text-shadow: 0 0 6px rgba(236,211,145,0.9), 0 0 14px rgba(236,211,145,0.7), 0 0 24px rgba(236,211,145,0.5);">
+			<p class="text-xl  font-semibold font-montserrat">
 							Invite you to join us in celebrating our love
 			</p>
 		</div>
@@ -603,7 +604,7 @@
 <!-- Countdown Timer Section -->
 	<section class="py-8 px-4 text-center ">
 		<!-- Replaced gold with a new, class-based color for consistency -->
-		<h2 class="text-4xl md:text-4xl mr-8 mb-4 font-allura ">Counting down to the big day!</h2>
+		<h2 class="text-4xl md:text-4xl mr-4 mb-4 font-allura ">Counting down to the big day!</h2>
 
 
 		<div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
@@ -636,7 +637,7 @@
 				background: rgba(255, 255, 255, 0.1);
 				backdrop-filter: blur(4px);
 				-webkit-backdrop-filter: blur(4px);
-				box-shadow: 10px 10px 0 0 var(--shadow_col);
+				box-shadow: 5px 5px 0 0 var(--shadow_col);
 				border: 1px solid var(--border_col);
 				border-radius: 0.75rem;
 
@@ -646,7 +647,7 @@
 				<p class="italic text-xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
 				<p class=" mt-5 mb-1 text-2xl font-embossed-on-beige raised"> - Colossians 3:14</p>
 				<div class="section-divider"></div>
-				<p class=" text-smmt-6 bible-verse-ml"><span lang="ml">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+				<p class=" text-sm bible-verse-ml"><span lang="ml">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
 				<p class=" mt-5 mb-2 text-xl font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
 			</div>
 		</div>
@@ -756,14 +757,15 @@
 				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" type="video/mp4">
 				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 			</video>
-			<div class="absolute right-0 text-xl text-center font-allura-eqn z-10 px-2 bg-black"
+			<div class="text-xl text-center font-allura-eqn z-10 bg-black"
 				style="text-shadow: 2px 2px 4px;">
-				FROM LASER PHYSICS TO MOLECULAR BIOLOGY, OUR WORLDS COLLIDED TO CREATE THE PERFECT CHEMISTRY.
+				From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
+
 			</div>
 			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
 				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
-				<div class="relative w-full flex justify-center items-center py-8 mt-24">
-					
+				<div class="relative w-full flex justify-center items-center mt-8">
+
 					<!-- Framed box -->
 					<style>
 						.timeline-frame img {
@@ -818,7 +820,7 @@
 							padding:var(--frame-gap);
 							backdrop-filter:blur(4px);
 							-webkit-backdrop-filter:blur(4px);
-							max-width: 280px;
+							max-width: 325px;
 							width: 60vw;
 							z-index:2;
 							overflow: hidden;
@@ -966,12 +968,18 @@
 		<div class="max-w-2xl mx-auto">
 			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Dress Code Advisor</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl md:text-xl font-montserrat mb-8">
-				Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
-				<span class="block mt-4">
+			
+				<p class="text-xl md:text-xl font-montserrat mb-8">
 					Our wedding palette -in various shades of lavenders, greens, maroons and mauves. We'd love to see you in these,but feel free to wear what makes you feel your best!
-				</span>
-			</p>
+				</p>
+				<img
+					src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pallete_3.png"
+					alt="Wedding palette: shades of lavender, green, mauve, and maroon"
+					class="block mx-auto my-4 rounded-xl shadow-lg border h-auto"
+					style="border-color: var(--border_col); width: 260px;"
+				/>
+
+				
 				<!-- 2x2 Palette Grid (striped swatches; hover each stripe to preview that shade) -->
 				<div id="paletteContainer" class="relative mt-8 rounded-xl border border-white/20 overflow-hidden">
 					<!-- Background that changes on hover -->
@@ -1085,6 +1093,9 @@
 						});
 					})();
 				</script>
+				<p class="text-xl md:text-xl mt-6 font-montserrat mb-4">
+					Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
+				</p>
 
 				<div class="relative z-10 space-y-4 text-left p-6">
 					<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full font-helvetica rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
@@ -1122,18 +1133,10 @@
 
 			<!-- Grid of attractions -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-				<!-- Uptown Shack -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color:var(--bg_col_trans);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">☕</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);>Favorite Rooftop Cafe</h3>
-					<p class="font-semibold font-montserrat text-black">Uptown Shack</p>
-					<p class="text-sm font-montserrat mb-2">For a rooftop shack dining experience</p>
-					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
-				</div>
+				
 
 				<!-- Alappuzha Houseboat -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/houseboat.jpeg" alt="Alappuzha Houseboat" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🏞️</div>
 					<h3 class="text-2xl font-montserrat font-semibold"style="color:var(--text_col);">Boat ride</h3>
@@ -1142,8 +1145,39 @@
 					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
 
+				
+
+				<!-- Bhoothakuzhy Para -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gavi%2C_Kerala.jpg" alt="Gavi forest ride" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🪨</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Hidden Gem</h3>
+					<p class="font-semibold font-montserrat text-black">Gavi forest ride</p>
+					<p class="text-sm font-montserrat  mb-2">A quiet scenic ride perfect for nature lovers and photo ops.</p>
+					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Vengal Viewpoint -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Vagamon_2.jpg" alt="Vagamon Verdant hills" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🌅</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Misty Meadows</h3>
+					<p class="font-semibold font-montserrat text-black">Vagamon Muttakunnu</p>
+					<p class="text-sm font-montserrat  mb-2">Catch stunning panoramic views over the hills.</p>
+					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Aruvikuzhy Waterfalls -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">💧</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Waterfall Wonder</h3>
+					<p class="font-semibold font-montserrat text-black">Aruvikuzhy Waterfalls</p>
+					<p class="text-sm font-montserrat  mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
 				<!-- Avees Puttu House -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
 					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🍽️</div>
 					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Must-Try Food</h3>
@@ -1151,35 +1185,14 @@
 					<p class="text-sm font-montserrat  mb-2">For authentic and delicious Kerala cuisine.</p>
 					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
-
-				<!-- Bhoothakuzhy Para -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bhoothakuzhy.webp?raw=true" alt="Bhoothakuzhy Para" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">🪨</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Hidden Gem</h3>
-					<p class="font-semibold font-montserrat text-black">Bhoothakuzhy Para</p>
-					<p class="text-sm font-montserrat  mb-2">A quiet scenic spot perfect for nature lovers and photo ops.</p>
-					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
-				</div>
-
-				<!-- Vengal Viewpoint -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/vengal.webp?raw=true" alt="Vengal Viewpoint" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">🌅</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Sunset Spot</h3>
-					<p class="font-semibold font-montserrat text-black">Vengal Viewpoint</p>
-					<p class="text-sm font-montserrat  mb-2">Catch stunning sunsets and panoramic views over the hills.</p>
-					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
-				</div>
-
-				<!-- Aruvikuzhy Waterfalls -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">💧</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Waterfall Wonder</h3>
-					<p class="font-semibold font-montserrat text-black">Aruvikuzhy Waterfalls</p>
-					<p class="text-sm font-montserrat  mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
-					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				<!-- Uptown Shack -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color:var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">☕</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);"">Favorite Rooftop Cafe</h3>
+					<p class="font-semibold font-montserrat text-black">Uptown Shack</p>
+					<p class="text-sm font-montserrat mb-2">For a rooftop shack dining experience</p>
+					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
 			</div>
 		</div>
@@ -1973,8 +1986,8 @@
 				 * @returns {Promise<string>} - The generated advice
 				 */
 				const generateAdvice = async (query) => {
-					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". The families come in shades of lavender, mauve or green.These colours can be suggested in a very subtle manner. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
-					
+					const fullPrompt = `You are a helpful wedding dress code advisor for a christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. You are employed by Taniya and Aswin to help you dress up nicely for the wedding. The dress code is "formal or festive Indian or western wear". Mundu is also an option as a traditional dress for men. The guests are asking questions about what to wear. Your response should be friendly and helpful. Do not mention your name or model. Give an elaborate response in under 100 words.  Please format the response clearly .Here is the guest's question: "${query}";"`;
+
 					return await GeminiAPI.callWithRetry(fullPrompt);
 				};
 				
