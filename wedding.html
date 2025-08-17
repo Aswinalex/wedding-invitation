@@ -455,16 +455,17 @@
 			font-family: 'Montserrat', sans-serif;
 		}
         /* New: embossed/engraved text that blends with your beige + grain background */
-        .font-embossed-on-beige {
-		font-family: 'Helvetica'; 
-        color: var(--text_col); /* same as page background so the "surface" matches */
-        letter-spacing: 0.5px; /* tiny spacing helps the bevel read cleanly */
+		.font-embossed-on-beige {
+		font-family: 'Allura', cursive;
+		font-weight: 600;
+		color: var(--text_col); /* same as page background so the "surface" matches */
+		letter-spacing: 2px; /* tiny spacing helps the bevel read cleanly */
 
-        /* light hit from top-left + shadow bottom-right (subtle, over grain) */
-        text-shadow:
-            -1px -1px 1px rgba(255, 255, 255, 0.55), /* highlight (top-left) */
-            1px  1px 1px rgba(0,   0,   0,   0.28); /*shadow (bottom-right) */
-        }
+		/* light hit from top-left + shadow bottom-right (subtle, over grain) */
+		text-shadow:
+			-1px -1px 1px rgba(255, 255, 255, 0.55), /* highlight (top-left) */
+			1px  1px 1px rgba(0,   0,   0,   0.28); /*shadow (bottom-right) */
+		}
 
         /* Optional New: slightly deeper cut if the grain is strong */
         .font-embossed-on-beige.deep {
@@ -585,7 +586,7 @@
 				width: 80%;
 			}
 		</style><div class="hero-content glow-border">
-			<p class="text-xl md:text-xl mt-12 ml-3 font-semibold font-montserrat">
+			<p class="text-xl md:text-xl mt-36 ml-3 font-semibold font-montserrat">
 				Together with our families
 			</p>
 			<h1 class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura">Taniya</h1>
@@ -762,9 +763,9 @@
 				From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
 
 			</div>
-			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
+			<div style="display: flex; justify-content: center; align-items: center; position: relative;  width: 100vw; height: 70vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
 				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
-				<div class="relative w-full flex justify-center items-center mt-8">
+				<div class="relative w-full flex justify-center items-center">
 
 					<!-- Framed box -->
 					<style>
@@ -776,7 +777,7 @@
 							margin: 0 auto;
 						}
 						.timeline-frame:hover img {
-							transform: scale(1.5);
+							transform: scale(1.3) translateY(-6%);
 							filter: saturate(1.1) brightness(1.1);
 						}
 						.timeline-frame .shine {
@@ -850,7 +851,7 @@
 										box-shadow:0 3px 10px rgba(0,0,0,0.5);
 								">
 								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									'Surrounded by mountains and a love that feels as grand as the scenery."
+									"Surrounded by mountains and a love that feels as grand as the scenery."
 								</figcaption>
 							</figure>
 						</div>
@@ -875,11 +876,12 @@
 					<p class=" font-embossed-on-beige ">Parents of the Bride</p>
 				</div>
 				<div class="text-center family-member-card">
-					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
+					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center  justify-center">
 						<img 
-							src="https://github.com/Aswinalex/wedding-invitation/blob/main/appa_amma_2.jpg?raw=true" 
+							src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG_4503.jpeg?raw=true" 
 							alt="Parents of the Groom" 
-							class="object-cover w-full h-full"
+							class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"
+							style="transform: translateY(12px);"
 						>
 					</div>
 					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Dr. Salim C Eapen & Mrs. Renu Thomas</h3>
@@ -900,16 +902,8 @@
 					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Dr. Nitty Sara</h3>
 					<p class=" font-embossed-on-beige ">Sister of the Bride</p>
 				</div>
-				<div class="text-center family-member-card">
-					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center" style="background: #4c5831;">
-						<img 
-							src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/ida.jpg?raw=true" 
-							alt="Ida" 
-							class="object-cover w-48 h-48" 
-							style="transform: scale(0.8);"
-						>
-					</div>
-					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Ida Mariam Eapen</h3>
+				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG_6296.jpeg?raw=true" alt="Ida" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Ida Mariam </h3>
 					<p class=" font-embossed-on-beige ">Sister of the Groom</p>
 				</div>
 				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
@@ -1116,7 +1110,7 @@
 			<div class="space-y-4 text-left">
 				<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
 				<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
-				<input type="date" id="travelDate" required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+				<input type="date" id="travelDate"  required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
 				<div class="text-center">
 					<button id="generateItineraryBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Create My Itinerary<span id="itinerarySpinner" class="loading-spinner hidden"></span></button>
 				</div>
@@ -1271,8 +1265,7 @@
 		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
 		
         document.addEventListener('DOMContentLoaded', async () => {
-			
-			// --- Background Music (MP3) ---
+			// --- Background Music (MP3) with robust mobile triggers ---
 			const playPauseBtn = document.getElementById('playPauseBtn');
 			const playIcon = document.getElementById('playIcon');
 			const pauseIcon = document.getElementById('pauseIcon');
@@ -1282,40 +1275,109 @@
 
 			let musicStarted = false;
 			let isMuted = false;
+			let userInteracted = false;
 
+			// Create hidden audio element
 			const bgAudio = document.createElement('audio');
-			bgAudio.src = 'https://github.com/Aswinalex/wedding-invitation/blob/main/wedding-251610.mp3?raw=true';
+			bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
+			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/romantic-wedding-background-music-357203.mp3';
+			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/wedding-251610.mp3';
+
 			bgAudio.loop = true;
 			bgAudio.preload = 'auto';
-			bgAudio.volume = 0.5;
+			bgAudio.volume = 0.1;
 			bgAudio.style.display = 'none';
 			document.body.appendChild(bgAudio);
 
-			const startMusic = () => {
-				if (musicStarted) return;
-				bgAudio.play().catch(() => {});
-				musicStarted = true;
-				playIcon.classList.add('hidden');
-				pauseIcon.classList.remove('hidden');
+			// Optional WebAudio unlock (helps some iOS/Safari versions)
+			let audioCtx;
+			const unlockAudio = async () => {
+				try {
+					const Ctx = window.AudioContext || window.webkitAudioContext;
+					if (!Ctx) return;
+					if (!audioCtx) audioCtx = new Ctx();
+					if (audioCtx.state === 'suspended') await audioCtx.resume();
+					const buffer = audioCtx.createBuffer(1, 1, 22050);
+					const src = audioCtx.createBufferSource();
+					src.buffer = buffer;
+					src.connect(audioCtx.destination);
+					src.start(0);
+				} catch {}
 			};
 
-			document.body.addEventListener('click', (e) => {
-				if (!musicStarted) {
-					startMusic();
-				}
-			}, { once: true });
+			const updatePlayUI = (isPlaying) => {
+				playIcon.classList.toggle('hidden', isPlaying);
+				pauseIcon.classList.toggle('hidden', !isPlaying);
+			};
 
-			playPauseBtn.addEventListener('click', () => {
+			const startMusic = async () => {
+				if (musicStarted) return true;
+				try {
+					await unlockAudio();
+					await bgAudio.play();
+					musicStarted = true;
+					updatePlayUI(true);
+					return true;
+				} catch {
+					return false;
+				}
+			};
+
+			// Global gesture triggers to satisfy mobile autoplay policies
+			const gestureTargets = [];
+			const addGesture = (target, event, opts = {}) => {
+				const handler = async () => {
+					userInteracted = true;
+					const ok = await startMusic();
+					if (ok) removeAllGestures();
+				};
+				target.addEventListener(event, handler, opts);
+				gestureTargets.push({ target, event, handler, opts });
+			};
+			const removeAllGestures = () => {
+				gestureTargets.forEach(({ target, event, handler, opts }) => {
+					target.removeEventListener(event, handler, opts);
+				});
+				gestureTargets.length = 0;
+			};
+
+			// Attach a wide net of first-interaction events
+			[
+				['click', {}],
+				['touchstart', { passive: true }],
+				['touchend', { passive: true }],
+				['pointerdown', { passive: true }],
+				['pointerup', { passive: true }],
+				['mousedown', {}],
+				['mouseup', {}],
+				['keydown', {}],
+			].forEach(([ev, opts]) => {
+				addGesture(window, ev, opts);
+				addGesture(document, ev, opts);
+				addGesture(document.body, ev, opts);
+			});
+
+			// Secondary, non-activation hints (may help in some browsers)
+			window.addEventListener('pageshow', async () => {
+				if (userInteracted && !musicStarted) await startMusic();
+			});
+			document.addEventListener('visibilitychange', async () => {
+				if (document.visibilityState === 'visible' && userInteracted && !musicStarted) {
+					await startMusic();
+				}
+			});
+
+			// Explicit controls
+			playPauseBtn.addEventListener('click', async () => {
+				userInteracted = true;
 				if (!musicStarted) {
-					startMusic();
+					await startMusic();
 				} else if (bgAudio.paused) {
-					bgAudio.play();
-					playIcon.classList.add('hidden');
-					pauseIcon.classList.remove('hidden');
+					await bgAudio.play().catch(() => {});
+					updatePlayUI(true);
 				} else {
 					bgAudio.pause();
-					playIcon.classList.remove('hidden');
-					pauseIcon.classList.add('hidden');
+					updatePlayUI(false);
 				}
 			});
 
