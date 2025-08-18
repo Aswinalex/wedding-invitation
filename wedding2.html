@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>You're Invited! - Taniya & Aswin</title>
+
+	<!-- Thumbnail / Social Media Share Tags -->
+	<meta property="og:title" content="You're Invited! - Taniya & Aswin's Wedding">
+	<meta property="og:description" content="Join us in celebrating the wedding of Taniya and Aswin on January 5th, 2026 in Thiruvalla, Kerala.">
+	<meta property="og:image" content="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg">
+	<meta property="og:url" content="https://aswinalex.github.io/wedding-invitation/">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+
+	<!-- Tailwind CSS CDN -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+		/* Custom styles for the wedding invite */
+		:root {
+			--bg_col:  #327119; /* Defines a global primary color */
+			--bg_col_trans: #48983a54;
+			--bg_col_trans_2: #81a07c18;
+			--bg_col_trans_3: #69b55e76;
+			--shadow_col: #4e5626;
+			--border_col: #ecd391;
+			--text_col: #143e1b;
+			--text_col_2: #ecd391;
+			--text_col_3: #fdfeff;
+			--divider-highlight: #ffd700;
+			--divider-shadow: #023613;
+			--large_font_size: 3rem;
+			--medium_font_size: 2.5rem;
+			--small_font_size: 2rem;
+			--large_line_height: 3rem;
+			--medium_line_height: 2.5rem;
+			--small_line_height: 2rem;
+
+			}	
+		
+
+		body {
+			font-family: 'Allura', 'Helvetica', 'Montserrat';
+			background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bg10.png'); /* small screens */
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+			background-attachment: fixed; /* parallax effect */
+			background-blend-mode: multiply;
+			background-color: var(--bg_col_trans_2); /* fallback color */
+			color: rgb(0, 0, 0);
+			line-height: 1.8; /* readability */
+			overflow-x: hidden;
+		}
+		@media (min-width: 801px) {
+			body {
+				background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bg9.png'); /* large screens */
+			}
+		}
+		/* Hero section */
+        .hero-section {
+			position: relative;
+			min-height: 90vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			color: #fff;
+			text-shadow: 2px 2px 8px var(--shadow_col);
+			/* background: #4c5831; */
+		}
+        
+		.hero-content {
+				position: relative;
+				z-index: 2; 
+				background-color: var(--bg_col_trans_2);
+				/* Increased size */
+				width: min(100%, 100%);
+				max-width: 100rem;
+				min-height: 100vh;
+				max-height: 80vh;
+
+				padding: 2rem;
+				border-radius: 0.75rem;
+				backdrop-filter: none;
+				-webkit-backdrop-filter: none;
+				/* border: 3px solid var(--border_col); */
+				margin: auto;
+				/* box-shadow: 10px 5px 0px 0 var(--shadow_col); */
+				overflow: hidden;
+			}
+			
+		
+        /* Countdown */
+        .animate-flip {
+			animation: flip-number 1s ease-in-out;
+		}
+        
+        /* Event section */
+		.event-box {
+			position: relative;
+			overflow: hidden;
+			color: #fff;
+			text-shadow: 1px 1px 3px var(--shadow_col);
+			background-color: var(--bg_col);
+			backdrop-filter: blur(4px);
+			-webkit-backdrop-filter: blur(4px);
+			padding: 0;
+			border-radius: 1rem;
+			border: 1px solid var(--border_col);
+			box-shadow: 0 8px 32px var(--shadow_col);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			min-height: 400px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.event-box:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 12px 40px var(--shadow_col);
+			border: 1px solid var(--border_col);
+
+		}
+		.event-box-overlay {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to bottom, transparent, var(--bg_col));
+			z-index: 1;
+			transition: opacity 0.3s ease;
+			backdrop-filter: blur(2px);
+			-webkit-backdrop-filter: blur(2px);
+		}
+		.event-box-content {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			padding: 2rem;
+			gap: 0.75rem;
+		}
+		
+		.event-box img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 1rem;
+			display: block;
+		}
+
+		.ceremony-reception-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+        /* Equation section */
+        .equation-section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			min-height: 100vh;
+			background-color: black;
+			width: 100%;
+			
+			text-align: center;
+		}
+		.equation-section .video-bg {
+			display: block;
+			margin: 0 auto;
+			background: black;
+
+			width: 100%;
+			height: auto;
+			
+			
+			
+
+			position: relative;
+			z-index: 1;
+			object-fit: contain;
+		}
+		/* for mobile */
+		@media screen and (max-width: 500px) {
+			.equation-section .video-bg {
+			width: 100vw !important;
+			min-width: 100vw !important;
+			max-width: 100vw !important;
+			left: 1%;
+			right: 1%;
+			margin-left: 0vw;
+			margin-right: 0vw;
+			position: relative;
+			display: block;
+			object-fit: contain;
+			z-index: 3;
+			background-color: black;
+			border-radius: 0 !important;
+			max-height: 300px;
+			}
+			.equation-section .hero-content {
+				margin-top: -30px;
+				background-color: black;
+
+				
+			}
+		}
+		
+		
+        
+        /* Wedding party section */
+        .family-member-card {
+			transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+			cursor: pointer;
+		}
+		.family-member-card:hover {
+			transform: scale(1.05);
+			box-shadow: 0 10px 20px var(--shadow_col);
+			border: 1px solid var(--border_col);
+		}
+        .menu-section, .rsvp-section, .guestbook-section, .dresscode-section, .local-favorites-section, .wedding-party-section {
+			background-color: var(--bg_col);
+			border: 1px solid var(--border_col);
+			border-radius: 1rem;
+			box-shadow: 0 8px 32px 0 var(--shadow_col);
+		}
+        
+        /* Guestbook section */
+
+        #guestbookDisplay {
+			background-color: var(--bg_col_trans_2);
+			border: 1px solid var(--border_col);
+			box-shadow: 0 8px 32px 0 var(--shadow_col);
+			border-radius: 0.5rem;
+			padding: 1.5rem;
+			text-align: left;
+			min-height: 150px;
+			color: rgb(5, 5, 5);
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+		}
+		#guestbookDisplay .message {
+			border-bottom: 1px solid var(--border_col);
+			color: black;
+
+			padding-bottom: 1rem;
+			margin-bottom: 1rem;
+		}
+		#guestbookDisplay .message:last-child {
+			border-bottom: none;
+			color: rgba(0, 0, 0, 0.965);
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+        /* Local favourites section */
+        
+		.local-favorites-section > div > div:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 30px var(--shadow_col);
+			border: 1px solid var(--border_col);
+
+		}
+		
+
+		/* For scroll animations */
+		.fade-in-section {
+			opacity: 0;
+			transform: translateY(60px) scale(0.97);
+			transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 2.4s cubic-bezier(0.4,0,0.2,1);
+			will-change: opacity, transform;
+			background-color: transparent !important;
+		}
+		.fade-in-section.is-visible {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+
+		/* Make the effect more subtle on small screens */
+		@media (max-width: 500px) {
+			.fade-in-section {
+			transform: translateY(24px) scale(0.985);
+			transition: opacity 1.1s ease, transform 1.4s ease;
+			}
+			.fade-in-section.is-visible {
+			transform: translateY(0) scale(1);
+			}
+		}
+        
+        /* Enhanced Section Divider */
+		.section-divider {
+			--divider-base: var(--text_col);
+			--divider-highlight: rgba(255, 255, 255, 0.8);
+			--divider-shadow: rgba(0, 0, 0, 0.4);
+			--divider-accent: var(--text_col_2);
+			--divider-shimmer1: var(--text_col);
+			--divider-shimmer2: var(--text_col_2);
+			--divider-shimmer3: var(--bg_col_trans);
+			position: relative;
+			width: clamp(150px, 55%, 520px);
+			height: 40px;
+			margin: 0.1% auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			isolation: isolate;
+		}
+		.section-divider::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			height: 10%;
+			background: transparent;
+			clip-path: path('M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30');
+			filter: drop-shadow(-2px -2px 4px var(--divider-highlight))
+					drop-shadow(2px 2px 4px var(--divider-shadow));
+		}
+		.section-divider::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			background: linear-gradient(90deg,
+				transparent 0%,
+				var(--divider-shimmer1) 20%,
+				var(--divider-shimmer2) 35%,
+				var(--divider-shimmer3) 50%,
+				var(--divider-shimmer2) 65%,
+				var(--divider-shimmer1) 80%,
+				transparent 100%
+			);
+			background-size: 30% 100%;
+			animation: divider-shimmer 30s ease-in-out infinite;
+			clip-path: path('M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30');
+			opacity: 0.8;
+		}
+        @media (max-width: 500px) {
+			.section-divider {
+		        width: clamp(160px, 70%, 360px);
+		        margin: 1rem auto;
+				height: 40px;
+		    }
+		}
+		
+		@keyframes divider-shimmer {
+			0% { background-position: -200% 0; }
+			100% { background-position: 200% 0; }
+		}
+		
+        /* buttons */
+        .btn-primary {
+			background-color: var(--bg_col_trans_3);
+			font-family: 'Helvetica', sans-serif;
+			color: #ffffff;
+			padding: 0.75rem 1.5rem;
+			border-radius: 9999px;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 15px var(--shadow_col); /* Updated gold accent shadow */
+			font-weight: 600;
+			border: none;
+			backdrop-filter: blur(4px);
+			-webkit-backdrop-filter: blur(4px);
+		}
+		.btn-primary:hover {
+			background: var(--bg_col);
+			color: #ffffff;
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px var(--shadow_col);
+		}
+        .loading-spinner {
+			border: 4px solid var(--border_col);
+			border-top: 4px solid var(--border_col);
+			border-radius: 50%;
+			width: 24px;
+			height: 24px;
+			animation: spin 1s linear infinite;
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 10px;
+		}
+        
+        .object-cover {
+			object-fit: cover;
+		}
+        .font-allura {
+            color: var(--text_col);
+
+			font-family: 'Allura', cursive !important;
+            /* Add glazing effect with text-shadow */
+            /* text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 255, 255, 0.3),
+                2px 2px 4px rgba(0, 0, 0, 0.4);
+            /* Add subtle shine animation */
+            /* animation: shine 2s infinite; */
+        }
+		.font-allura-eqn {
+            color: #ffffff;
+            font-family: 'Helvetica', sans-serif;
+
+            /* Add glazing effect with text-shadow */
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.6),
+                0 0 10px rgba(0, 255, 255, 0.4),
+                1px 1px 2px rgba(0, 255, 255, 0.3);
+            /* Add color transition animation */
+            animation: colorTransition 5s ease-in-out infinite;
+        }
+
+        @keyframes colorTransition {
+            0% {
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(0, 255, 255, 0.8),
+                    1px 1px 8px rgba(0, 255, 255, 0.6);
+            }
+            50% {
+                text-shadow:
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(255, 0, 255, 0.8),
+                    1px 1px 8px rgba(255, 0, 255, 0.6);
+            }
+            100% {
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(0, 255, 255, 0.8),
+                    1px 1px 8px rgba(0, 255, 255, 0.6);
+            }
+        }
+        .font-helvetica {
+            color: #000000;
+            text-align: justify;
+            font-family: 'Helvetica', sans-serif;
+        }
+		/* Bible verse */
+		.bible-verse-ml {
+			color: #000000;
+			font-family: 'Helvetica', sans-serif;
+			line-height: 130%;
+		}
+        .font-montserrat {
+            color: #000000;
+
+			font-family: 'Montserrat', sans-serif;
+		}
+        /* New: embossed/engraved text that blends with your beige + grain background */
+		.font-embossed-on-beige {
+		font-family: 'Allura', cursive;
+		font-weight: 600;
+		color: var(--text_col); /* same as page background so the "surface" matches */
+		letter-spacing: 2px; /* tiny spacing helps the bevel read cleanly */
+
+		/* light hit from top-left + shadow bottom-right (subtle, over grain) */
+		text-shadow:
+			-1px -1px 1px rgba(255, 255, 255, 0.55), /* highlight (top-left) */
+			1px  1px 1px rgba(0,   0,   0,   0.28); /*shadow (bottom-right) */
+		}
+
+        /* Optional New: slightly deeper cut if the grain is strong */
+        .font-embossed-on-beige.deep {
+        text-shadow:
+            -2px -2px 2px rgba(255, 255, 255, 0.45), /* stronger highlight */
+            2px  2px 2px rgba(0,   0,   0,   0.25); 
+        } 
+
+        /* Optional New: raised (opposite of engraved) – flip directions */
+        .font-embossed-on-beige.raised {
+        text-shadow:
+            1px  1px 1px rgba(255, 255, 255, 0.95), /* highlight now bottom-right*/
+            -2px -2px 1px rgba(0,   0,   0,   0.28); 
+        } */
+
+
+        @media (max-width: 500px) {
+			.py-16 {
+				padding-top: 2rem !important;
+				padding-bottom: 2rem !important;
+			}
+			.px-4 {
+				padding-left: 1rem !important;
+				padding-right: 1rem !important;
+			}
+		}
+		/* Removed custom heading size overrides to avoid conflicts with Tailwind's text-* utilities.
+		   Use Tailwind responsive classes like text-2xl md:text-3xl lg:text-4xl in markup instead. */
+		
+
+        
+        .bg-white {background-color: #1A6367;}
+		.bg-gray-200 {background-color: #1A6367;}
+        .text-dark { color: #FFD700; }
+		.text-light { color: white; }
+        .text-black { color: rgb(0, 0, 0); }
+		.text-gray-700 {color: #D4AF37; /* Lighter gold */}
+		.text-gray-600 {color: #ccc;}
+		.text-red-600 {color: #4c5831;}
+		.text-green-600 {color: #38a169;}
+		.border-gray-300 {border-color: white;}
+		.border-dark\/20 {border-color: #fff;}
+		
+        @keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+		
+		@keyframes flip-number {
+			0% { transform: rotateX(0); }
+			50% { transform: rotateX(90deg); }
+			100% { transform: rotateX(0); }
+		}
+		
+		footer {
+			background-color: var(--bg_col_trans);
+			color: white;
+		}
+		footer .text-2xl, footer .text-sm, footer .text-xs {
+			color: rgb(0, 0, 0);
+		}
+    </style>
+	
+</head>
+
+<body class="antialiased">
+    
+
+	<header id="heroSection" class="hero-section text-center">
+		<style>
+			/* Hero background with subtle Ken Burns effect */
+			#heroSection {
+				position: relative;
+				overflow: hidden;
+				background: none; /* handled by ::before */
+			}
+			#heroSection::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg');
+				background-position: center center;
+				background-repeat: no-repeat;
+				/* Wider background on small screens for safer crops */
+				background-size: 140% auto;
+				transform: scale(1.05);
+				animation: kenburns-sm 10s ease-in-out infinite alternate;
+				will-change: transform;
+				backface-visibility: hidden;
+			}
+			@media (min-width: 801px) {
+				#heroSection::before {
+					background-size: 100% auto;
+					animation-name: kenburns-lg;
+				}
+			}
+			@keyframes kenburns-sm {
+				0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+				100% { transform: scale(1.3) translate3d(-1.5%, -1.5%, 0); }
+			}
+			@keyframes kenburns-lg {
+				0%   { transform: scale(1.02) translate3d(0, 0, 0); }
+				100% { transform: scale(1.2) translate3d(-1%, -1%, 0); }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				#heroSection::before { animation: none; transform: none; }
+			}
+
+			/* Decorative boxed hero (no full-viewport overlay) */
+			.hero-card {
+				position: relative;
+				z-index: 2;
+				margin: clamp(2rem, 6vw, 5rem) auto;
+				
+				max-width: 100%;
+				padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 3rem);
+				border-radius: 18px;
+				border: 2px solid var(--border_col);
+				background:
+					linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.28)),
+					var(--bg_col_trans_2);
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+				box-shadow:
+					0 10px 30px rgba(0,0,0,0.4),
+					0 0 0 6px rgba(255,255,255,0.05) inset;
+			}
+			/* Inner dashed accent */
+			.hero-card::after {
+				content: '';
+				position: absolute;
+				inset: 10px;
+				border-radius: 12px;
+				border: 1px dashed rgba(236,211,145,0.55);
+				pointer-events: none;
+			}
+			/* Corner ornaments */
+			.hero-card .corner {
+				position: absolute;
+				width: 28px; height: 28px;
+				pointer-events: none;
+				border-color: var(--border_col);
+			}
+			.hero-card .top-left     { top: -2px;  left: -2px;  border-top: 3px solid; border-left: 3px solid; border-top-left-radius: 12px; }
+			.hero-card .top-right    { top: -2px;  right: -2px; border-top: 3px solid; border-right: 3px solid; border-top-right-radius: 12px; }
+			.hero-card .bottom-left  { bottom: -2px; left: -2px; border-bottom: 3px solid; border-left: 3px solid; border-bottom-left-radius: 12px; }
+			.hero-card .bottom-right { bottom: -2px; right: -2px; border-bottom: 3px solid; border-right: 3px solid; border-bottom-right-radius: 12px; }
+
+			/* Name hover effect inside the box */
+			.hero-card h1.font-allura {
+				position: relative;
+				display: inline-block;
+				transition: transform .3s ease, color .3s ease, text-shadow .3s ease, filter .3s ease;
+				will-change: transform, text-shadow;
+				cursor: default;
+			}
+			.hero-card h1.font-allura::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				bottom: -6px;
+				width: 0;
+				height: 2px;
+				background: linear-gradient(90deg, rgba(236,211,145,0), rgba(236,211,145,0.9), rgba(236,211,145,0));
+				transform: translateX(-50%);
+				transition: width .3s ease;
+				border-radius: 2px;
+			}
+			.hero-card h1.font-allura:hover {
+				color: var(--text_col);
+				text-shadow:
+					0 0 6px rgba(236,211,145,0.9),
+					0 0 14px rgba(236,211,145,0.6),
+					2px 2px 8px rgba(78,86,38,0.55);
+				transform: translateY(-2px) scale(1.03);
+			}
+			.hero-card h1.font-allura:hover::after { width: 80%; }
+		</style>
+
+		<!-- Boxed content with decorative border -->
+		<div class="hero-card">
+			<!-- Corner accents -->
+			<span class="corner top-left"></span>
+			<span class="corner top-right"></span>
+			<span class="corner bottom-left"></span>
+			<span class="corner bottom-right"></span>
+
+			<p class="text-xl md:text-xl mt-6 md:mt-8 font-semibold font-montserrat" style="color:#ffffff;">
+				Together with our families
+			</p>
+
+			<div class="relative inline-block">
+				<h1
+					id="taniyaToggle"
+					class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura cursor-pointer"
+					role="button"
+					tabindex="0"
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="taniyaPopover"
+					style="color:#06ba54;"
+				>
+					Taniya
+				</h1>
+			</div>
+
+			<p class="text-xl md:text-2xl mb-6 font-montserrat" style="color:#ffffff;">
+				D/o Mr. Binny Mathew and Mrs. Laly Binny
+			</p>
+
+			<div class="relative inline-block">
+				<h1
+					id="aswinToggle"
+					class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura cursor-pointer"
+					role="button"
+					tabindex="0"
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="aswinPopover"
+					style="color:#06ba54;"
+				>
+					Aswin
+				</h1>
+			</div>
+
+			<p class="text-xl md:text-2xl mb-4 font-montserrat" style="color:#ffffff;">
+				S/o Dr. Salim C Eapen & Mrs. Renu Thomas
+			</p>
+			<p class="text-xl font-semibold font-montserrat" style="color:#ffffff;">
+				Invite you to join us in celebrating our love
+			</p>
+		</div>
+	</header>
+<!-- Countdown Timer Section -->
+	<section class="py-8 px-4 text-center ">
+		<!-- Replaced gold with a new, class-based color for consistency -->
+		<h2 class="text-4xl md:text-4xl mr-4 mb-4 font-allura ">Counting down to the big day!</h2>
+
+
+		<div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
+			<div>
+				<div id="days" class="text-4xl md:text-5xl font-helvetica ml-2" style="color:var(--text_col);">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-helvetica ml-5 mb-2">Days</div>
+			</div>
+			<div>
+				<div id="hours" class="text-4xl md:text-5xl font-helvetica" style="color:var(--text_col);">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-helvetica">Hours</div>
+			</div>
+			<div>
+				<div id="minutes" class="text-4xl md:text-5xl font-helvetica" style="color:var(--text_col);">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-helvetica">Minutes</div>
+			</div>
+			<div>
+				<div id="seconds" class="text-4xl md:text-5xl font-helvetica" style="color:var(--text_col);">00</div>
+				<div class="font-semibold uppercase tracking-wider text-black font-helvetica">Seconds</div>
+			</div>
+		</div>
+	</section>
+	<!-- Bible Verse Section -->
+	<section class="py-8 px-4 text-center fade-in-section">
+		<div class="max-w-xl mx-auto relative z-10">
+			<!-- Glassy overlay -->
+			<div style="
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+				box-shadow: 5px 5px 0 0 var(--shadow_col);
+				border: 1px solid var(--border_col);
+				border-radius: 0.75rem;
+
+
+			"></div>
+			<div class="relative z-10 bg-transparent rounded-xl p-4 shadow-lg">
+				<p class="italic text-xl font-helvetica">"And over all these virtues put on love, which binds them all together in perfect unity."</p>
+				<p class=" mt-5 mb-1 text-2xl font-embossed-on-beige raised"> - Colossians 3:14</p>
+				<div class="section-divider"></div>
+				<p class=" text-sm bible-verse-ml"><span lang="ml">"ഈ എല്ലാറ്റിനും മീതെ സമ്പൂർണ്ണതയുടെ ബന്ധമായ സ്നേഹം ധരിക്കുക."</span></p>
+				<p class=" mt-5 mb-2 text-xl font-semibold font-embossed-on-beige raised"> - കൊലോസ്യർ 3:14</p>
+			</div>
+		</div>
+	</section>
+	<!-- Details Section (Ceremony & Reception with Directions) -->
+	<section class=" py-16 px-4 text-center fade-in-section">
+		<div class="max-w-4xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised drop-shadow-lg">The Ceremony & Reception</h2>
+
+			<div class="section-divider"></div>
+			<div class="ceremony-reception-grid">
+				<!-- Ceremony -->
+				<div>
+					<p class=" text-xl md:text-xl font-helvetica mb-8">St. Thomas Mar Thoma Church, Thiruvalla — a timeless symbol of faith, tradition, and grace, offering a serene and sacred setting to begin a beautiful journey of love and togetherness.</p>
+					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
+						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/church.jpg" alt="St Thomas Mar Thoma Church" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
+						<!-- Overlay for text clarity -->
+						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
+						<div class="event-box-content" style="position: relative; z-index: 2;">
+							<h3 class="text-4xl md:text-4xl font-montserrat text-white mb-4 drop-shadow-lg">Wedding Ceremony</h3>
+
+							
+							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat text-white drop-shadow-lg mb-4">January 5th, 2026 • 3:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl font-semibold font-montserrat text-white drop-shadow-lg mb-2">St Thomas Mar Thoma Church</p>
+							<p class="text-lg text-3xl font-semibold font-montserrat text-white drop-shadow-lg mb-4">Thiruvalla, Kerala</p>
+							<a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
+						</div>
+					</div>
+				</div>
+				<!-- Reception -->
+				<div>
+					<p class="  text-xl md:text-xl font-helvetica mb-8">Mor Athanasius Yohan Memorial Convention Centre — a stunning venue blending modern elegance with heartfelt tradition, perfect for celebrating our special day with style.</p>
+					<div class="event-box rounded-xl shadow-lg w-full overflow-hidden">
+						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/hall.jpg" alt="Mor Athanasius Yohan Memorial Convention Centre" class="absolute inset-0 w-full h-full object-cover rounded-xl"/>
+						<!-- Overlay for text clarity -->
+						<div class="event-box-overlay" style="background:  #0f0f0f47 ; width: 100%;  top: auto; bottom: 0%; height: 100%; border-radius: 2%; position: absolute; z-index: 0; pointer-events: none;"></div>
+						<div class="event-box-content" style="position: relative; z-index: 2;">
+							<h3 class="text-4xl md:text-4xl font-montserrat text-white mb-4 drop-shadow-lg">Reception</h3>
+							
+							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat text-white drop-shadow-lg mb-4">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat text-white drop-shadow-lg mb-2">Mor Athanasius Yohan Memorial Convention Centre</p>
+							<p class="text-lg text-3xl   font-semibold  font-montserrat text-white drop-shadow-lg mb-4">Kuttappuzha, Thiruvalla</p>
+							<a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Collapsible Travel Directions -->
+			<div class="w-full md:w-auto max-w-6xl mx-auto mt-8 text-left">
+				<button onclick="document.getElementById('travelDirections').classList.toggle('hidden')" 
+					class="w-full text-xl font-helvetica transition p-4 rounded-xl shadow-md text-left">
+					✈️ Journey to Thiruvalla: Airport Arrival & Travel Guide (Tap to Expand)
+				</button>
+				<div id="travelDirections" class="hidden bg-dark/70 rounded-xl p-6 mt-4 shadow-inner font-helvetica" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+					
+					<div class="mb-4">
+						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
+						<ul class="list-disc pl-5 font-helvetica text-md">
+							<li><strong>Taxi:</strong> ~3–3.5 hours (₹3,000–₹4,000) by local Taxi.</li>
+							<li><strong>Train:</strong> Take a cab (~30 min) to Aluva station, then a train to Thiruvalla (~2–2.5 hrs).</li>
+							<li><strong>Bus:</strong> KSRTC buses to Kottayam, then to Thiruvalla (total ~3 hours).</li>
+						</ul>
+					</div>
+					<div>
+						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
+						<ul class="list-disc pl-5 font-helvetica text-md">
+							<li><strong>Taxi:</strong> ~2.5–3 hours (₹2,500–₹3,500) by local Taxi.</li>
+							<li><strong>Train:</strong> Short ride to Trivandrum Central, then train to Thiruvalla (~2.5 hrs).</li>
+							<li><strong>Bus:</strong> Regular KSRTC buses to Thiruvalla (~4 hours, budget-friendly).</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Menu Section -->
+	<section class="py-16 px-4 text-center  fade-in-section">
+		<div class="max-w-4xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">The Wedding Feast</h2>
+			<div class="section-divider"></div>
+			<p class=" text-2xl md:text-2xl font-helvetica mb-8">Experience the irresistible flavors of Kerala—where every bite is a celebration of tradition, vibrant spices, and soulful cooking. Our wedding feast promises a true taste of Kerala’s culinary magic, crafted to delight your senses and create lasting memories.</p>
+		</div>
+	</section>
+
+	<!-- Our Perfect Equation Section -->
+	<section class="equation-section fade-in-section" style="border: none; box-shadow: none;  position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
+		
+
+		<div class=" px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Perfect Equation</h2>
+			<div class="section-divider"></div>
+			
+		</div>
+		
+		<div class="relative w-screen" style="background: linear-gradient(to top, transparent, rgb(0, 0, 0)); z-index: 2;">
+			
+			<style>
+				/* Shorten video on large screens so caption + video fit in viewport */
+				@media (min-width: 1024px) {
+					.equation-section .video-bg { height: 70vh !important; }
+				}
+				@media (min-width: 1280px) {
+					.equation-section .video-bg { height: 65vh !important; }
+				}
+			</style>
+
+			<video
+				class="video-bg w-screen object-cover"
+				autoplay
+				muted
+				loop
+				playsinline
+				style="position: relative; z-index: 1; width: 100vw; margin: 0; padding: 0;"
+			>
+				<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/fotor-video_enhancer-hd-20250817215406.mp4" type="video/mp4">
+				Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
+			</video>
+
+			<div class=" text-base sm:text-xl md:text-2xl lg:text-3xl text-center font-allura-eqn z-10 bg-black"
+					 style="text-shadow: 2px 2px 4px;">
+				From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
+			</div>
+			<div style="display: flex; justify-content: center; align-items: center; position: relative;  width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
+				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
+				<div class="relative w-full flex justify-center items-center">
+
+					<!-- Framed box -->
+					<style>
+						.timeline-frame img {
+							transition: transform 10s cubic-bezier(.2,.6,.2,1), filter 2s ease;
+							object-position: center center;
+							transform-origin: center top;
+							display: block;
+							margin: 0 auto;
+						}
+						.timeline-frame:hover img {
+							transform: scale(1.5) translateY(-5%);
+							filter: saturate(1.1) brightness(1.1);
+						}
+						.timeline-frame .shine {
+							position:absolute;
+							inset:0;
+							background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 50%, transparent 100%);
+							transform: translateX(-120%) skewX(-20deg);
+							opacity:0;
+							pointer-events:none;
+						}
+						.timeline-frame:hover .shine {
+							animation: sweep 4s ease forwards;
+							opacity: 0.8;;
+						}
+						@keyframes sweep {
+							to { transform: translateX(120%) skewX(-20deg) ; }
+						}
+						@media (hover: none) {
+							.timeline-frame:hover { transform: none; }
+							.timeline-frame:hover img { transform: none; }
+							.timeline-frame .shine { display: none; }
+						}
+						/* Center the image/figcaption content inside the frame */
+						.timeline-frame figure {
+							margin: 0;
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							justify-content: center;
+							text-align: center;
+						}
+					</style>
+				
+						<div class="timeline-frame" style="
+							--frame-gap:20px;
+							position:relative;
+							background:rgba(0,0,0,0.32);
+							border:2px solid var(--border_col);
+							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+							border-radius:16px;
+							padding:var(--frame-gap);
+							backdrop-filter:blur(4px);
+							-webkit-backdrop-filter:blur(4px);
+							max-width: 325px;
+							width: 60vw;
+							z-index:2;
+							overflow: hidden;
+						">
+							<!-- Corner accents -->
+							<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+							</span>
+
+							<!-- Sweep shine -->
+							<span class="shine"></span>
+
+							<!-- Image -->
+							<figure style="margin:0;">
+								<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
+									alt="Our Story"
+									style="
+										display:block;
+										width:100%;
+										height:auto;
+										object-fit:contain;
+										object-position:center;
+										border-radius:10px;
+										box-shadow:0 3px 10px rgba(0,0,0,0.5);
+								">
+								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+									"Surrounded by mountains and a love that feels as grand as the scenery."
+								</figcaption>
+							</figure>
+						</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <!-- Wedding Party Section -->
+	<section class="py-16 px-4 text-center fade-in-section">
+		<div class="max-w-5xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Meet Our Family</h2>
+
+			<div class="section-divider"></div>
+			<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+				<div class="text-center family-member-card">
+					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center">
+						<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Daddy_mummy.jpg" alt="Parents of the Bride" class="w-full h-full object-cover">
+					</div>
+					<h3 class="text-sm  mt-4 font-semibold font-montserrat  text-black  ">Mr. Binny Mathew & Mrs. Laly Binny</h3>
+
+					<p class=" font-embossed-on-beige ">Parents of the Bride</p>
+				</div>
+				<div class="text-center family-member-card">
+					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center  justify-center">
+						<img 
+							src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG_4503.jpeg?raw=true" 
+							alt="Parents of the Groom" 
+							class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover"
+							style="transform: translateY(12px);"
+						>
+					</div>
+					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Dr. Salim C Eapen & Mrs. Renu Thomas</h3>
+					<p class=" font-embossed-on-beige ">Parents of the Groom</p>
+				</div>
+				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Nevil%20Bincy.jpg" alt="Brother and Sister-in-Law" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Mr. Nevil Mathew & Mrs. Bincy Nevil</h3>
+					<p class=" font-embossed-on-beige ">Brother & Sister-in-Law</p></div>
+
+				<div class="text-center flex flex-col items-center family-member-card">
+					<div class="w-40 h-40 mx-auto rounded-full shadow-lg overflow-hidden flex items-center justify-center mb-4">
+						<img 
+							src="https://github.com/Aswinalex/wedding-invitation/blob/main/Nitty.jpg?raw=true" 
+							alt="Sister of the Bride" 
+							class="object-cover w-full h-full"
+						>
+					</div>
+					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Dr. Nitty Sara</h3>
+					<p class=" font-embossed-on-beige ">Sister of the Bride</p>
+				</div>
+				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG_6296.jpeg?raw=true" alt="Ida" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+					<h3 class="text-sm font-montserrat font-semibold mt-4 text-black">Ida Mariam </h3>
+					<p class=" font-embossed-on-beige ">Sister of the Groom</p>
+				</div>
+				<div class="text-center family-member-card"><img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/eva%2C%20ema.jpg" alt="Eva & Ema" class="w-40 h-40 mx-auto rounded-full shadow-lg object-cover">
+					<h3 class="text-sm font-semibold font-montserrat mt-4 text-black">Eva & Ema</h3>
+					<p class=" font-embossed-on-beige ">Our beloved nieces</p>
+			</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+	<!-- RSVP Section -->
+	<section class="py-16 px-4 text-center fade-in-section">
+		<style>
+			/* Transparent glass overlays */
+			.rsvp-overlay-card {
+				position: relative;
+				border-radius: 0.75rem;
+				border: 1px solid var(--border_col);
+				box-shadow: 0 8px 32px var(--shadow_col);
+				overflow: hidden;
+				background: transparent;
+			}
+			.rsvp-overlay-card .overlay-bg {
+				position: absolute;
+				inset: 0;
+				background:
+					linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
+					var(--bg_col_trans_2);
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+				z-index: 0;
+			}
+			/* Frosted inputs */
+			.frosted-field {
+				background: rgba(255,255,255,0.9);
+				border: 1px solid var(--border_col);
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+				color: #000 !important;
+			}
+		</style>
+
+		<div class="max-w-2xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">RSVP</h2>
+			<div class="section-divider"></div>
+			<p class="text-xl md:text-xl font-helvetica mb-8">Kindly respond by October 1st, 2025 so we can finalize our arrangements.</p>
+
+			<!-- Form with transparent overlay -->
+			<div class="rsvp-overlay-card p-6 mb-6">
+				<div class="overlay-bg"></div>
+				<form id="rsvpForm" class="relative z-10 text-left font-helvetica space-y-4">
+					<input
+						type="text"
+						name="Name"
+						placeholder="Your Name(s)"
+						required
+						class="w-full p-3 rounded-lg frosted-field focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg"
+					>
+
+					<select
+						name="Attending"
+						required
+						class="w-full p-3 rounded-lg frosted-field focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg"
+						title="Attendance selection"
+					>
+						<option value="" disabled selected>Will you be attending?</option>
+						<option value="Yes, with pleasure!">Yes, with pleasure!</option>
+						<option value="No, with regrets.">No, with regrets.</option>
+					</select>
+
+					<input
+						type="number"
+						name="Guests"
+						placeholder="Number of guests"
+						min="0"
+						required
+						class="w-full p-3 rounded-lg frosted-field focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg"
+					>
+
+					<textarea
+						name="Message"
+						placeholder="Optional message"
+						rows="3"
+						class="w-full p-3 rounded-lg frosted-field focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg"
+					></textarea>
+
+					<div class="text-center">
+						<button type="submit" id="rsvpSubmitBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">
+							Submit RSVP
+							<span id="rsvpLoadingSpinner" class="loading-spinner hidden"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+
+			
+		</div>
+	</section>
+
+	<!-- Guestbook Section -->
+	<section class="py-16 px-4 text-center fade-in-section">
+		<style>
+			/* Shared glass overlay card */
+			.guestbook-overlay-card {
+				position: relative;
+				border-radius: 0.75rem;
+				border: 1px solid var(--border_col);
+				box-shadow: 0 8px 32px var(--shadow_col);
+				overflow: hidden;
+				background: transparent;
+			}
+			.guestbook-overlay-card .overlay-bg {
+				position: absolute;
+				inset: 0;
+				background:
+					linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
+					var(--bg_col_trans_2);
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+				z-index: 0;
+			}
+		</style>
+
+		<div class="max-w-4xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Guestbook</h2>
+			<div class="section-divider"></div>
+			<p class="text-xl md:text-xl font-helvetica mb-8">Leave a message for the happy couple!</p>
+
+			<!-- Box 1: Form with overlay -->
+			<div class="guestbook-overlay-card p-6 mb-8">
+				<div class="overlay-bg"></div>
+				<form id="guestbookForm" class="relative z-10 text-left font-helvetica space-y-4">
+					<input type="text" id="guestName" placeholder="Your Name" required class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
+					<textarea id="guestMessage" placeholder="Your message" required rows="4" class="w-full p-3 rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white"></textarea>
+					<div class="text-center">
+						<button type="submit" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">
+							Post Message
+							<span id="guestbookLoadingSpinner" class="loading-spinner hidden"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- Box 2: Messages with overlay -->
+			<div class="guestbook-overlay-card p-6">
+				<div class="overlay-bg"></div>
+				<div
+					id="guestbookDisplay"
+					class="relative z-10 space-y-4 p-2 rounded-lg font-helvetica text-black"
+					style="background: transparent; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none;"
+				>
+					<p class="font-helvetica">Loading messages...</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- AI Dress Code Advisor Section -->
+	<section class="py-16 px-4 text-center  fade-in-section">
+		<div class="max-w-2xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Wedding Palette</h2>
+			<div class="section-divider"></div>
+			
+			<p class="text-xl md:text-xl font-montserrat mb-8">
+				We come in shades of lavenders, greens, maroons and mauves. We'd love to see you in these, but feel free to wear what makes you feel your best!
+			</p>
+			<img
+				src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pallete_3.png"
+				alt="Wedding palette: shades of lavender, green, mauve, and maroon"
+				class="block mx-auto my-4 rounded-xl shadow-lg border object-contain"
+				style="border-color: var(--border_col); width: clamp(200px, 100vw, 300px); height: auto;"
+			/>
+
+			<style>
+				.dress-overlay-card {
+					position: relative;
+					border-radius: 0.75rem;
+					border: 1px solid var(--border_col);
+					box-shadow: 0 8px 32px var(--shadow_col);
+					overflow: hidden;
+					background: transparent;
+				}
+				.dress-overlay-card .overlay-bg {
+					position: absolute;
+					inset: 0;
+					background:
+						linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
+						var(--bg_col_trans_2);
+					backdrop-filter: blur(4px);
+					-webkit-backdrop-filter: blur(4px);
+					z-index: 0;
+				}
+			</style>
+
+			<div class="dress-overlay-card p-6 mt-6">
+				<div class="overlay-bg"></div>
+				<div class="relative z-10 space-y-6">
+
+					<!-- 2x2 Palette Grid (striped swatches; hover each stripe to preview that shade) -->
+					<div id="paletteContainer" class="relative rounded-xl border border-white/20 overflow-hidden">
+						<!-- Background that changes on hover -->
+						<div id="paletteBg" class="absolute inset-0 transition-all duration-500 pointer-events-none"></div>
+
+						<!-- Palettes -->
+						<div class="relative z-10 grid grid-cols-2 gap-4 p-4">
+							<!-- Lavender -->
+							<div class="palette-box" aria-label="Lavender palette">
+								<button type="button" class="shade-card" data-bg="#f8f5fd" aria-label="Lavender — lightest" style="background:#b9a9d5;"></button>
+								<button type="button" class="shade-card" data-bg="#d9c9f3" aria-label="Lavender — light" style="background:#ad94d5;"></button>
+								<button type="button" class="shade-card" data-bg="#b39fca" aria-label="Lavender — mid" style="background:#8b66b4;"></button>
+								<button type="button" class="shade-card" data-bg="#7258a2" aria-label="Lavender — deep" style="background:#451f8b;"></button>
+								<button type="button" class="shade-card" data-bg="#290865" aria-label="Lavender — deepest" style="background:#290865;"></button>
+							</div>
+
+							<!-- Greens -->
+							<div class="palette-box" aria-label="Deep greens palette">
+								<button type="button" class="shade-card" data-bg="#c2ccb9" aria-label="Green — lightest" style="background:#c2ccb9;"></button>
+								<button type="button" class="shade-card" data-bg="#8eac78" aria-label="Green — light" style="background:#8eac78;"></button>
+								<button type="button" class="shade-card" data-bg="#78a664" aria-label="Green — mid" style="background:#78a664;"></button>
+								<button type="button" class="shade-card" data-bg="#2c6918" aria-label="Green — deep" style="background:#2c6918;"></button>
+								<button type="button" class="shade-card" data-bg="#04421d" aria-label="Green — deepest" style="background:#04421d;"></button>
+							</div>
+
+							<!-- Mauves -->
+							<div class="palette-box" aria-label="Mauves palette">
+								<button type="button" class="shade-card" data-bg="#f4e6ef" aria-label="Mauve — lightest" style="background:#f4e6ef;"></button>
+								<button type="button" class="shade-card" data-bg="#dcb3c4" aria-label="Mauve — light" style="background:#dcb3c4;"></button>
+								<button type="button" class="shade-card" data-bg="#9d5072" aria-label="Mauve — mid" style="background:#9d5072;"></button>
+								<button type="button" class="shade-card" data-bg="#732a4e" aria-label="Mauve — deep" style="background:#732a4e;"></button>
+								<button type="button" class="shade-card" data-bg="#441b30" aria-label="Mauve — deepest" style="background:#441b30;"></button>
+							</div>
+
+							<!-- Maroons -->
+							<div class="palette-box" aria-label="Rich maroons palette">
+								<button type="button" class="shade-card" data-bg="#f0d6d9" aria-label="Maroon — lightest" style="background:#f0d6d9;"></button>
+								<button type="button" class="shade-card" data-bg="#d2939b" aria-label="Maroon — light" style="background:#d2939b;"></button>
+								<button type="button" class="shade-card" data-bg="#743d43" aria-label="Maroon — mid" style="background:#743d43;"></button>
+								<button type="button" class="shade-card" data-bg="#45111b" aria-label="Maroon — deep" style="background:#45111b;"></button>
+								<button type="button" class="shade-card" data-bg="#3e0612" aria-label="Maroon — deepest" style="background:#3e0612;"></button>
+							</div>
+						</div>
+					</div>
+
+					<style>
+						/* Outer box for each palette */
+						.palette-box {
+							position: relative;
+							border-radius: 0.75rem;
+							border: 1px solid var(--border_col);
+							box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+							overflow: hidden;
+							display: grid;
+							grid-template-columns: repeat(5, 1fr);
+							gap: 0;
+							min-height: 120px;
+							background: rgba(0,0,0,0.08);
+							backdrop-filter: blur(2px);
+							-webkit-backdrop-filter: blur(2px);
+						}
+
+						/* Each stripe is a focusable button for accessibility */
+						.shade-card {
+							min-height: 120px;
+							border: 0;
+							border-right: 1px solid rgba(255, 255, 255, 0.15);
+							transition: filter 180ms ease, box-shadow 180ms ease;
+						}
+						.palette-box .shade-card:last-child { border-right: 0; }
+
+						.shade-card:hover,
+						.shade-card:focus-visible {
+							filter: brightness(1.05) saturate(1.05);
+							box-shadow: inset 0 0 0 2px rgba(255,255,255,0.6);
+							outline: none;
+						}
+
+						@media (max-width: 500px) {
+							.palette-box { min-height: 96px; }
+							.shade-card { min-height: 96px; }
+						}
+					</style>
+
+					<script>
+						(() => {
+							const container = document.getElementById('paletteContainer');
+							const bg = document.getElementById('paletteBg');
+							if (!container || !bg) return;
+
+							const defaultBg = 'white';
+							const cards = container.querySelectorAll('.shade-card');
+
+							const setBg = (hex) => {
+								// Soft, glossy backdrop using the selected color
+								bg.style.background = `
+									radial-gradient(1200px 600px at 20% 15%, rgba(255,255,255,0.10), transparent 45%),
+									radial-gradient(900px 500px at 80% 85%, rgba(255,255,255,0.08), transparent 50%),
+									${hex}
+								`;
+							};
+
+							cards.forEach(card => {
+								card.addEventListener('mouseenter', () => setBg(card.dataset.bg));
+								card.addEventListener('focus', () => setBg(card.dataset.bg));
+							});
+
+							container.addEventListener('mouseleave', () => { bg.style.background = defaultBg; });
+							container.addEventListener('focusout', (e) => {
+								if (!container.contains(e.relatedTarget)) bg.style.background = defaultBg;
+							});
+						})();
+					</script>
+
+					<p class="text-xl md:text-xl mt-2 font-montserrat">
+						Have a question about what to wear? Our AI assistant can help! The dress code is formal or festive wear.
+					</p>
+
+					<div class="relative z-10 space-y-4 text-left">
+						<input type="text" id="dressCodeQuery" placeholder="e.g., 'Is a floral summer dress okay?'" class="w-full font-helvetica rounded-lg border border-white focus:ring-2 focus:ring-red-400 focus:border-transparent text-lg text-black bg-white">
+						<div class="text-center">
+							<button id="dressCodeBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Ask Assistant<span id="dressCodeSpinner" class="loading-spinner hidden"></span></button>
+						</div>
+						<div id="dressCodeResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] font-helvetica text-lg">Your answer will appear here...</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Gemini Travel Itinerary Section -->
+	<section class="py-16 px-4 text-center fade-in-section" style="position: relative;">
+		<!-- Foreground content -->
+		<div class="relative z-10">
+			<div class="max-w-2xl mx-auto">
+				<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Personalized Travel Itinerary ✨</h2>
+				<div class="section-divider"></div>
+				<p class="text-xl md:text-xl font-helvetica mb-8">Planning to extend your stay? Let our AI assistant create a custom itinerary for your time in Kerala!</p>
+
+				<style>
+					.itinerary-overlay-card {
+						position: relative;
+						border-radius: 0.75rem;
+						border: 1px solid var(--border_col);
+						box-shadow: 0 8px 32px var(--shadow_col);
+						overflow: hidden;
+						background: transparent;
+					}
+					.itinerary-overlay-card .overlay-bg {
+						position: absolute;
+						inset: 0;
+						background:
+							linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
+							var(--bg_col_trans_2);
+						backdrop-filter: blur(4px);
+						-webkit-backdrop-filter: blur(4px);
+						z-index: 0;
+					}
+				</style>
+
+				<!-- Overlay only around the text boxes -->
+				<div class="itinerary-overlay-card p-6 mt-2 text-left">
+					<div class="overlay-bg"></div>
+					<div class="relative z-10 space-y-4">
+						<input type="text" id="travelInterests" placeholder="e.g., 'beaches, history, spicy food'" class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+						<style>
+							/* ADDED: Hide the native date text when empty (Chromium/WebKit) */
+							#travelDate:required:invalid::-webkit-datetime-edit { color: transparent; }
+
+							/* ADDED: Fallback for other browsers — hide text when empty, keep caret visible */
+							#travelDate:required:invalid { color: transparent; caret-color: black; }
+
+							/* ADDED: Show the selected date normally on focus or when valid */
+							#travelDate:focus,
+							#travelDate:valid { color: #000; }
+						</style>
+						<input
+							type="date"
+							id="travelDate"
+							required
+							class="peer w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white"
+							
+						/>
+
+						<span
+							class="pointer-events-none text-xl font-helvetica absolute left-3 top-20 -translate-y-1/2 text-gray-500 opacity-70 transition-opacity duration-150 peer-focus:opacity-0 peer-valid:opacity-0"
+						>Arrival Date
+						</span>
+							
+						<input type="number" id="travelDays" placeholder="Number of days" min="1" required class="w-full p-3 font-helvetica border border-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg text-black bg-white">
+
+						<div class="text-center">
+							<button id="generateItineraryBtn" class="btn-primary inline-flex items-center text-lg font-semibold shadow-md hover:shadow-lg">Create My Itinerary<span id="itinerarySpinner" class="loading-spinner hidden"></span></button>
+						</div>
+						<div id="itineraryResponse" class="p-4 bg-dark rounded-lg border border-white/20 min-h-[50px] font-helvetica text-lg ">Your itinerary will be generated here...</div>
+
+					</div>
+				
+
+				
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- Local Favorites Section -->
+	<section class="py-16 px-4 text-center fade-in-section">
+		<div class="max-w-6xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Exploring Thiruvalla and Beyond</h2>
+			<div class="section-divider"></div>
+			<p class="text-xl md:text-xl font-montserrat mb-8">From charming local spots to scenic getaways just a few hours’ drive away, here are some of our favorite places to explore in and around Thiruvalla.</p>
+
+			<!-- Grid of attractions -->
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+				
+
+				<!-- Alappuzha Houseboat -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/houseboat.jpeg" alt="Alappuzha Houseboat" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🏞️</div>
+					<h3 class="text-2xl font-montserrat font-semibold"style="color:var(--text_col);">Boat ride</h3>
+					<p class="font-semibold font-montserrat text-black">Alappuzha Houseboat</p>
+					<p class="text-sm font-montserrat mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 34 km</p>
+					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Aruvikuzhy Waterfalls -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aruvikuzhy.webp" alt="Aruvikuzhy Waterfalls" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">💧</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Waterfall Wonder</h3>
+					<p class="font-semibold font-montserrat text-black">Aruvikuzhy Waterfalls</p>
+					<p class="text-sm font-montserrat  mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 35 km</p>
+					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+				
+				<!-- Vagamon Muttakunnu -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Vagamon_2.jpg" alt="Vagamon Verdant hills" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🌅</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Misty Meadows</h3>
+					<p class="font-semibold font-montserrat text-black">Vagamon Muttakunnu</p>
+					<p class="text-sm font-montserrat  mb-2">Catch stunning panoramic views over the hills.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 90 km</p>
+					<a href="https://maps.app.goo.gl/oYfAZdBbaQeBfw2e8" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Gavi forest ride -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gavi%2C_Kerala.jpg" alt="Gavi forest ride" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🪨</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Hidden Gem</h3>
+					<p class="font-semibold font-montserrat text-black">Gavi forest ride</p>
+					<p class="text-sm font-montserrat  mb-2">A quiet scenic ride perfect for nature lovers and photo ops.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 126 km</p>
+					<a href="https://maps.app.goo.gl/wz2Gp6cbmEwmiCTr5" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Kanthari restaurant -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Kanthari.jpg" alt="Kanthari restaurant" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🍽️</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Local Flavors</h3>
+					<p class="font-semibold font-montserrat text-black">Kanthari restaurant</p>
+					<p class="text-sm font-montserrat  mb-2">For authentic and delicious Kerala cuisine.</p>
+
+					<a href="https://www.google.com/maps?q=Kanthari+restaurant+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+				<!-- Uptown Shack -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color:var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/uptowwn%20shack.webp" alt="Uptown Shack" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">☕</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);"">Favorite Rooftop Cafe</h3>
+					<p class="font-semibold font-montserrat text-black">Uptown Shack</p>
+					<p class="text-sm font-montserrat mb-2">For a rooftop shack dining experience</p>
+					<a href="https://www.google.com/maps?q=Uptown+Shack+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Photo Gallery Teaser Section -->
+	<section class="py-16 px-4 text-center  fade-in-section">
+		<div class="max-w-2xl mx-auto">
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Wedding Gallery</h2>
+			<div class="section-divider"></div>
+			<p class="text-xl mb-8 font-helvetica text-black">We'll be sharing photos from our special day here. Please check back after January 5th!</p>
+			<a href="#" class="btn-primary inline-block text-lg font-semibold shadow-md opacity-50 cursor-not-allowed">
+				Coming Soon
+			</a>
+		</div>
+	</section>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50" style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+		<div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
+			<h3 class="text-lg font-helvetica font-semibold mb-4 text-dark">Are you sure?</h3>
+			<p class="font-helvetica mb-6">Do you really want to delete this message? This action cannot be undone.</p>
+			<div class="flex justify-center gap-4">
+				<button id="cancelDelete" class="px-6 py-2 rounded-full font-helvetica text-gray-700 bg-gray-200 hover:bg-gray-300">Cancel</button>
+				<button id="confirmDelete" class="px-6 py-2 rounded-full font-helvetica text-white bg-red-600 hover:bg-red-700">Delete</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="bg-[var(--bg_col_trans)] font-helvetica py-8 px-4 text-center rounded-t-xl">
+		<div class="max-w-4xl mx-auto">
+			<p class="text-4xl font-allura text-black mb-4 drop-shadow-lg">We can't wait to celebrate with you!</p>
+			<p class="text-sm mb-2 text-black">With love from our families</p>
+			<p class="text-sm text-black">© 2026 Taniya & Aswin. All Rights Reserved.</p>
+			<div class="mt-4">
+				<button id="copyUserIdBtn" class="text-xs text-black/50 hover:text-black">Copy Admin ID: <span id="userIdDisplay"></span></button>
+			</div>
+		</div>
+	</footer>
+
+    <!-- Music Control Bar - A new, persistent element at the bottom of the page -->
+	<div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-10 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+		<button id="playPauseBtn" class="btn-primary text-white p-2 rounded-full shadow-md hover:btn-primary transition">
+			<!-- Play icon -->
+			<svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+				<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4.004a1 1 0 001.555.832l3.444-2.002a1 1 0 000-1.664l-3.444-2.002z" clip-rule="evenodd" />
+			</svg>
+			<!-- Pause icon (hidden) -->
+			<svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
+				<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+			</svg>
+		</button>
+		<button id="muteBtn" class="bg-gray-600 text-white p-2 rounded-full shadow-md hover:bg-gray-700 transition">
+			<!-- Speaker icon -->
+			<svg id="speakerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+			<!-- Muted icon (hidden) -->
+			<svg id="mutedIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+		</button>
+	</div>
+
+    <script type="module">
+
+        // --- Firebase Imports (needed for Guestbook only) ---
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+		import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+		import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+		// --- Global Firebase instances and user state ---
+		let db = null;
+		let auth = null;
+		let userId = null;
+		let isAuthReady = false;
+
+		// --- IMPORTANT: Paste your deployed Google Apps Script Web App URL here ---
+		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
+		
+        document.addEventListener('DOMContentLoaded', async () => {
+			// --- Background Music (MP3) with robust mobile triggers ---
+			const playPauseBtn = document.getElementById('playPauseBtn');
+			const playIcon = document.getElementById('playIcon');
+			const pauseIcon = document.getElementById('pauseIcon');
+			const muteBtn = document.getElementById('muteBtn');
+			const speakerIcon = document.getElementById('speakerIcon');
+			const mutedIcon = document.getElementById('mutedIcon');
+
+			let musicStarted = false;
+			let isMuted = false;
+			let userInteracted = false;
+
+			// Create hidden audio element
+			const bgAudio = document.createElement('audio');
+			bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
+			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/romantic-wedding-background-music-357203.mp3';
+			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/wedding-251610.mp3';
+
+			bgAudio.loop = true;
+			bgAudio.preload = 'auto';
+			bgAudio.volume = 0.1;
+			bgAudio.style.display = 'none';
+			document.body.appendChild(bgAudio);
+
+			// Optional WebAudio unlock (helps some iOS/Safari versions)
+			let audioCtx;
+			const unlockAudio = async () => {
+				try {
+					const Ctx = window.AudioContext || window.webkitAudioContext;
+					if (!Ctx) return;
+					if (!audioCtx) audioCtx = new Ctx();
+					if (audioCtx.state === 'suspended') await audioCtx.resume();
+					const buffer = audioCtx.createBuffer(1, 1, 22050);
+					const src = audioCtx.createBufferSource();
+					src.buffer = buffer;
+					src.connect(audioCtx.destination);
+					src.start(0);
+				} catch {}
+			};
+
+			const updatePlayUI = (isPlaying) => {
+				playIcon.classList.toggle('hidden', isPlaying);
+				pauseIcon.classList.toggle('hidden', !isPlaying);
+			};
+
+			const startMusic = async () => {
+				if (musicStarted) return true;
+				try {
+					await unlockAudio();
+					await bgAudio.play();
+					musicStarted = true;
+					updatePlayUI(true);
+					return true;
+				} catch {
+					return false;
+				}
+			};
+
+			// Global gesture triggers to satisfy mobile autoplay policies
+			const gestureTargets = [];
+			const addGesture = (target, event, opts = {}) => {
+				const handler = async () => {
+					userInteracted = true;
+					const ok = await startMusic();
+					if (ok) removeAllGestures();
+				};
+				target.addEventListener(event, handler, opts);
+				gestureTargets.push({ target, event, handler, opts });
+			};
+			const removeAllGestures = () => {
+				gestureTargets.forEach(({ target, event, handler, opts }) => {
+					target.removeEventListener(event, handler, opts);
+				});
+				gestureTargets.length = 0;
+			};
+
+			// Attach a wide net of first-interaction events
+			[
+				['click', {}],
+				['touchstart', { passive: true }],
+				['touchend', { passive: true }],
+				['pointerdown', { passive: true }],
+				['pointerup', { passive: true }],
+				['mousedown', {}],
+				['mouseup', {}],
+				['keydown', {}],
+			].forEach(([ev, opts]) => {
+				addGesture(window, ev, opts);
+				addGesture(document, ev, opts);
+				addGesture(document.body, ev, opts);
+			});
+
+			// Secondary, non-activation hints (may help in some browsers)
+			window.addEventListener('pageshow', async () => {
+				if (userInteracted && !musicStarted) await startMusic();
+			});
+			document.addEventListener('visibilitychange', async () => {
+				if (document.visibilityState === 'visible' && userInteracted && !musicStarted) {
+					await startMusic();
+				}
+			});
+
+			// Explicit controls
+			playPauseBtn.addEventListener('click', async () => {
+				userInteracted = true;
+				if (!musicStarted) {
+					await startMusic();
+				} else if (bgAudio.paused) {
+					await bgAudio.play().catch(() => {});
+					updatePlayUI(true);
+				} else {
+					bgAudio.pause();
+					updatePlayUI(false);
+				}
+			});
+
+			muteBtn.addEventListener('click', () => {
+				isMuted = !isMuted;
+				bgAudio.muted = isMuted;
+				speakerIcon.classList.toggle('hidden', isMuted);
+				mutedIcon.classList.toggle('hidden', !isMuted);
+			});
+
+
+			// --- Countdown Timer with animation ---
+			const countdownDate = new Date("January 5, 2026 15:00:00").getTime();
+			const numberElements = {
+				days: document.getElementById('days'),
+				hours: document.getElementById('hours'),
+				minutes: document.getElementById('minutes'),
+				seconds: document.getElementById('seconds'),
+			};
+
+			// This function has been updated for better reliability on all devices.
+			const animateNumber = (element, newValue) => {
+				const oldValue = element.textContent;
+				if (oldValue !== newValue) {
+					// Update the text content immediately
+					element.textContent = newValue;
+					// Trigger the animation and remove the class after a short delay
+					// This is more robust than waiting for the 'animationend' event
+					element.classList.add('animate-flip');
+					setTimeout(() => {
+						element.classList.remove('animate-flip');
+					}, 500); // The duration matches the CSS animation duration
+				}
+			};
+			
+			/**
+			 * Updates the countdown timer display
+			 * Calculates time remaining until the wedding date and updates the UI
+			 */
+			function updateCountdown() {
+				const now = new Date().getTime();
+				const distance = countdownDate - now;
+				
+				// Check if the wedding day has arrived
+				if (distance < 0) { 
+					clearInterval(countdownInterval); 
+					document.getElementById('countdown').innerHTML = "<p class='col-span-4 text-2xl'>The day is here!</p>"; 
+					return;
+				}
+				
+				// Calculate time units with consistent formatting
+				const timeUnits = {
+					days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+					hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+					minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+					seconds: Math.floor((distance % (1000 * 60)) / 1000)
+				};
+				
+				// Update each time unit with animation
+				Object.entries(timeUnits).forEach(([unit, value]) => {
+					const formattedValue = value.toString().padStart(2, '0');
+					animateNumber(numberElements[unit], formattedValue);
+				});
+			}
+			
+			// Initialize countdown and update every second
+			updateCountdown();
+			const countdownInterval = setInterval(updateCountdown, 1000);
+        
+            // --- Scroll Animations ---
+			/**
+			 * Sets up intersection observer for fade-in animations and video autoplay
+			 * Controls visibility classes and video playback based on viewport visibility
+			 */
+            function setupScrollAnimations() {
+				const animationOptions = { 
+					threshold: 0.1,
+					rootMargin: '0px'
+				};
+				
+				const handleVideoPlayback = (element, isVisible) => {
+					const video = element.querySelector('video');
+					if (!video) return;
+					
+					if (isVisible && video.paused) {
+						// Play video when visible and currently paused
+						video.play().catch(() => {
+							// Silent catch for autoplay restrictions
+						});
+					} else if (!isVisible && !video.paused) {
+						// Pause video when not visible and currently playing
+						video.pause();
+					}
+				};
+				
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						const isVisible = entry.isIntersecting;
+						
+						// Toggle visibility class
+						entry.target.classList.toggle('is-visible', isVisible);
+						
+						// Handle video playback
+						handleVideoPlayback(entry.target, isVisible);
+					});
+				}, animationOptions);
+
+				// Observe all fade-in sections
+				document.querySelectorAll('.fade-in-section').forEach(section => {
+					observer.observe(section);
+				});
+				
+				return observer;
+			}
+			
+			// Initialize scroll animations
+			const scrollObserver = setupScrollAnimations();
+
+            // --- Firebase Initialization and Auth ---
+			// --- Inject Firebase config and app ID FIRST ---
+			window.__firebase_config = JSON.stringify({
+			apiKey: "AIzaSyBpQgp3IPkxMMJAmTy4LRdjFFv5cOdUoyY",
+			
+			authDomain: "wedding-aswin-taniya.firebaseapp.com",
+			projectId: "wedding-aswin-taniya",
+			storageBucket: "wedding-aswin-taniya.firebasestorage.app",
+			messagingSenderId: "310162251053",
+			appId: "1:310162251053:web:1a24dbf68f0bd4679587a4"
+			});
+			window.__app_id = "wedding-aswin-taniya";
+			const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+			const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+			
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        document.getElementById('userIdDisplay').textContent = userId;
+                        setupGuestbookListener();
+                    } else {
+                        try {
+                            await signInAnonymously(auth);
+                        } catch (error) {
+                            console.error("Authentication Error:", error);
+                            displayAuthError();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+                displayAuthError();
+            }
+            function displayAuthError() {
+				const guestbookDisplay = document.getElementById('guestbookDisplay');
+				const rsvpForm = document.getElementById('rsvpForm');
+				if (guestbookDisplay) {
+					guestbookDisplay.innerHTML = '<p class="text-black text-center">Guestbook is currently unavailable. Please try reloading the page.</p>';
+				}
+				const guestbookForm = document.getElementById('guestbookForm');
+				if (guestbookForm) {
+					guestbookForm.style.display = 'none';
+				}
+				if (rsvpForm) {
+					rsvpForm.innerHTML = '<p class="text-black text-center">RSVP feature is currently unavailable. Please try reloading the page.</p>';
+				}
+			}
+
+            // --- RSVP Form Logic with Google Apps Script ---
+			/**
+			 * RSVP form functionality using Google Apps Script
+			 * Handles form submission and response handling
+			 */
+			const RSVPManager = (() => {
+				// DOM elements
+				const elements = {
+					form: document.getElementById('rsvpForm'),
+					message: document.getElementById('rsvpMessage'),
+					loadingSpinner: document.getElementById('rsvpLoadingSpinner'),
+					submitBtn: document.getElementById('rsvpSubmitBtn')
+				};
+				
+				/**
+				 * Shows a status message to the user
+				 * @param {string} text - Message text
+				 * @param {string} type - Message type (success, error)
+				 */
+				const showMessage = (text, type = 'success') => {
+					if (!elements.message) return;
+					
+					elements.message.textContent = text;
+					
+					if (type === 'success') {
+						elements.message.className = 'text-green-600 font-semibold mt-4';
+					} else if (type === 'error') {
+						elements.message.className = 'text-red-600 font-semibold mt-4';
+					} else {
+						elements.message.className = 'text-white font-semibold mt-4';
+					}
+				};
+				
+				/**
+				 * Sets the loading state of the form
+				 * @param {boolean} isLoading - Whether the form is in loading state
+				 */
+				const setLoadingState = (isLoading) => {
+					if (isLoading) {
+						elements.loadingSpinner.classList.remove('hidden');
+						elements.submitBtn.disabled = true;
+					} else {
+						elements.loadingSpinner.classList.add('hidden');
+						elements.submitBtn.disabled = false;
+					}
+				};
+				
+				/**
+				 * Submits the RSVP form data to Google Apps Script
+				 * @param {Object} formData - Form data to submit
+				 * @returns {Promise<Object>} Response data
+				 */
+				const submitRSVP = async (formData) => {
+					const response = await fetch(SCRIPT_URL, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams(formData)
+					});
+					
+					const raw = await response.text();
+					
+					if (!response.ok) {
+						throw new Error('HTTP ' + response.status + ' ' + raw.slice(0, 120));
+					}
+					
+					let json = {};
+					try { 
+						json = JSON.parse(raw); 
+					} catch {
+						throw new Error('Bad JSON: ' + raw.slice(0, 80));
+					}
+					
+					if (!json.success) {
+						throw new Error(json.error || 'Server reported failure');
+					}
+					
+					return json;
+				};
+				
+				/**
+				 * Handles the form submission event
+				 * @param {Event} e - Form submit event
+				 */
+				const handleSubmit = async (e) => {
+					e.preventDefault();
+					setLoadingState(true);
+					
+					try {
+						// Get form data
+						const formData = new FormData(elements.form);
+						const rsvpData = Object.fromEntries(formData.entries());
+						
+						// Submit form data
+						await submitRSVP(rsvpData);
+						
+						// Show success message and reset form
+						showMessage('RSVP received! Thank you.', 'success');
+						elements.form.reset();
+					} catch (error) {
+						console.error("Error submitting RSVP: ", error);
+						showMessage('Error: ' + error.message, 'error');
+					} finally {
+						setLoadingState(false);
+					}
+				};
+				
+				/**
+				 * Initializes the RSVP form functionality
+				 */
+				const init = () => {
+					if (elements.form) {
+						elements.form.addEventListener('submit', handleSubmit);
+					}
+				};
+				
+				return { init };
+			})();
+			
+			// Initialize RSVP form
+			RSVPManager.init();
+
+			// --- Guestbook Logic with Firestore ---
+			/**
+			 * Guestbook functionality using Firebase Firestore
+			 * Handles message display, adding new messages, and message deletion
+			 */
+			const GuestbookManager = (() => {
+				// DOM elements
+				const elements = {
+					form: document.getElementById('guestbookForm'),
+					loadingSpinner: document.getElementById('guestbookLoadingSpinner'),
+					display: document.getElementById('guestbookDisplay'),
+					deleteModal: document.getElementById('deleteModal'),
+					confirmDeleteBtn: document.getElementById('confirmDelete'),
+					cancelDeleteBtn: document.getElementById('cancelDelete'),
+					nameInput: document.getElementById('guestName'),
+					messageInput: document.getElementById('guestMessage')
+				};
+				
+				// State
+				let messageToDeleteId = null;
+				let unsubscribeListener = null;
+				
+				// Firestore reference
+				const getGuestbookRef = () => collection(db, `/artifacts/${appId}/public/data/guestbook`);
+				
+				/**
+				 * Creates a message element from message data
+				 * @param {Object} message - The message data
+				 * @return {HTMLElement} The message element
+				 */
+				const createMessageElement = (message) => {
+					const messageEl = document.createElement('div');
+					messageEl.className = 'message relative';
+					
+					// Add delete button only for user's own messages
+					let deleteButtonHtml = '';
+					if (message.userId === userId) {
+						deleteButtonHtml = `<button data-id="${message.id}" class="delete-btn absolute top-2 right-2 text-white/50 hover:text-red-400 text-2xl leading-none">×</button>`;
+					}
+					
+					// Format timestamp
+					const timestamp = message.timestamp 
+						? new Date(message.timestamp.seconds * 1000).toLocaleString() 
+						: 'Just now';
+					
+					messageEl.innerHTML = `
+						<p class="font-semibold text-xl font-helvetica">${message.name || 'Anonymous'}</p>
+						<p class="font-helvetica pr-6">${message.message || ''}</p>
+						<p class="text-xs text-black/70 mt-2">${timestamp}</p>
+						${deleteButtonHtml}
+					`;
+					
+					return messageEl;
+				};
+				
+				/**
+				 * Renders messages in the guestbook display
+				 * @param {Array} messages - Array of message objects
+				 */
+				const renderMessages = (messages) => {
+					if (!elements.display) return;
+					
+					// Clear current display
+					elements.display.innerHTML = '';
+					
+					// Show placeholder for empty guestbook
+					if (messages.length === 0) { 
+						elements.display.innerHTML = '<p class="text-white">Be the first to leave a message!</p>'; 
+						return;
+					}
+					
+					// Sort messages by timestamp (newest first)
+					messages.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
+					
+					// Create document fragment for better performance
+					const fragment = document.createDocumentFragment();
+					messages.forEach(message => {
+						fragment.appendChild(createMessageElement(message));
+					});
+					
+					// Add all messages to DOM at once
+					elements.display.appendChild(fragment);
+				};
+				
+                /**
+				 * Sets up real-time listener for guestbook messages
+				 */
+				const setupGuestbookListener = () => {
+					if (!elements.display) return;
+					
+					// Unsubscribe from previous listener if exists
+					if (unsubscribeListener) unsubscribeListener();
+					
+					unsubscribeListener = onSnapshot(getGuestbookRef(), (snapshot) => {
+						const messages = [];
+						snapshot.forEach(doc => {
+							messages.push({ ...doc.data(), id: doc.id });
+						});
+						
+						renderMessages(messages);
+					}, (error) => {
+						console.error("Error getting guestbook messages: ", error);
+						if (elements.display) {
+							elements.display.innerHTML = '<p class="text-black">Could not load messages. Please try again later.</p>';
+						}
+					});
+				};
+				
+				
+				/**
+				 * Shows the delete confirmation modal
+				 * @param {string} messageId - ID of the message to delete
+				 */
+				const showDeleteModal = (messageId) => {
+					messageToDeleteId = messageId;
+					elements.deleteModal.classList.remove('hidden');
+					elements.deleteModal.classList.add('flex');
+				};
+				
+				/**
+				 * Hides the delete confirmation modal
+				 */
+				const hideDeleteModal = () => {
+					elements.deleteModal.classList.add('hidden');
+					elements.deleteModal.classList.remove('flex');
+					messageToDeleteId = null;
+				};
+				
+				/**
+				 * Deletes a message from Firestore
+				 */
+				const deleteMessage = async () => {
+					if (!messageToDeleteId) return;
+					
+					try {
+						await deleteDoc(doc(db, `/artifacts/${appId}/public/data/guestbook`, messageToDeleteId));
+					} catch (error) {
+						console.error("Error removing message: ", error);
+					} finally {
+						hideDeleteModal();
+					}
+				};
+				
+				/**
+				 * Adds a new message to the guestbook
+				 * @param {Event} e - Form submit event
+				 */
+				const addMessage = async (e) => {
+					e.preventDefault();
+					elements.loadingSpinner.classList.remove('hidden');
+					
+					try {
+						await addDoc(getGuestbookRef(), { 
+							name: elements.nameInput.value, 
+							message: elements.messageInput.value, 
+							timestamp: serverTimestamp(), 
+							userId: userId 
+						});
+						elements.form.reset();
+					} catch (error) {
+						console.error("Error adding message: ", error);
+					} finally {
+						elements.loadingSpinner.classList.add('hidden');
+					}
+				};
+				
+				/**
+				 * Initializes all guestbook event listeners
+				 */
+				const initEventListeners = () => {
+					// Message deletion click handler
+					if (elements.display) {
+						elements.display.addEventListener('click', (e) => {
+							if (e.target.classList.contains('delete-btn')) {
+								showDeleteModal(e.target.dataset.id);
+							}
+						});
+					}
+					
+					// Cancel delete button
+					if (elements.cancelDeleteBtn) {
+						elements.cancelDeleteBtn.addEventListener('click', hideDeleteModal);
+					}
+					
+					// Confirm delete button
+					if (elements.confirmDeleteBtn) {
+						elements.confirmDeleteBtn.addEventListener('click', deleteMessage);
+					}
+					
+					// Form submission
+					if (elements.form) {
+						elements.form.addEventListener('submit', addMessage);
+					}
+				};
+				
+				/**
+				 * Initializes the guestbook functionality
+				 */
+				const init = () => {
+					setupGuestbookListener();
+					initEventListeners();
+				};
+				
+				return { init };
+            })();
+			
+			
+			// Initialize guestbook
+			GuestbookManager.init();
+
+            /**
+			 * User ID copy functionality
+			 * Allows copying the user ID to clipboard for admin purposes
+			 */
+			const UserIdManager = (() => {
+				const copyBtn = document.getElementById('copyUserIdBtn');
+				
+				/**
+				 * Copies text to clipboard
+				 * @param {string} text - Text to copy
+				 * @returns {boolean} Success status
+				 */
+				const copyToClipboard = (text) => {
+					try {
+						// Modern clipboard API if available
+						if (navigator.clipboard && window.isSecureContext) {
+							navigator.clipboard.writeText(text);
+							return true;
+						}
+						
+						// Fallback to older method
+						const tempInput = document.createElement('input');
+						tempInput.style.position = 'absolute';
+						tempInput.style.left = '-9999px';
+						tempInput.value = text;
+						document.body.appendChild(tempInput);
+						tempInput.select();
+						const success = document.execCommand('copy');
+						document.body.removeChild(tempInput);
+						return success;
+					} catch (err) {
+						console.error('Failed to copy text: ', err);
+						return false;
+					}
+				};
+				
+				/**
+				 * Updates button text temporarily
+				 * @param {HTMLElement} button - Button element
+				 * @param {string} tempText - Temporary text
+				 * @param {string} originalText - Original text to restore
+				 * @param {number} duration - Duration in ms
+				 */
+				const updateButtonTextTemporarily = (button, tempText, originalText, duration = 2000) => {
+					button.textContent = tempText;
+					setTimeout(() => { 
+						button.textContent = originalText; 
+					}, duration);
+				};
+				
+				/**
+				 * Handles the copy button click
+				 */
+				const handleCopyClick = () => {
+					const success = copyToClipboard(userId);
+					
+					if (success) {
+						updateButtonTextTemporarily(
+							copyBtn, 
+							'Copied!', 
+							`Copy Admin ID: ${userId}`
+						);
+					} else {
+						updateButtonTextTemporarily(
+							copyBtn, 
+							'Failed to copy', 
+							`Copy Admin ID: ${userId}`
+						);
+					}
+				};
+				
+				/**
+				 * Initializes the user ID copy functionality
+				 */
+				const init = () => {
+					if (copyBtn) {
+						copyBtn.addEventListener('click', handleCopyClick);
+					}
+				};
+				
+				return { init };
+			})();
+			
+			// Initialize user ID copy functionality
+			UserIdManager.init();
+
+			/**
+			 * GeminiAPI - Handles API calls to Gemini with retry logic
+			 */
+			const GeminiAPI = (() => {
+				/**
+				 * Calls the Gemini API with exponential backoff retry logic
+				 * @param {string} prompt - The prompt to send to Gemini
+				 * @param {number} maxRetries - Maximum number of retry attempts
+				 * @param {number} baseDelay - Base delay in ms between retries
+				 * @returns {Promise<string>} - The response text
+				 */
+				const callWithRetry = async (prompt, maxRetries = 3, baseDelay = 1000) => {
+					const endpoint = "https://us-central1-wedding-aswin-taniya.cloudfunctions.net/geminiProxy";
+					
+					for (let attempt = 0; attempt < maxRetries; attempt++) {
+						try {
+							const res = await fetch(endpoint, {
+								method: "POST",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify({ prompt })
+							});
+							
+							if (!res.ok) throw new Error("Proxy status " + res.status);
+							
+							const data = await res.json();
+							const text = data.text || data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+							
+							if (!text) throw new Error("Empty payload");
+							return text;
+						} catch (e) {
+							console.error("Gemini attempt", attempt + 1, "failed:", e);
+							
+							if (attempt === maxRetries - 1) {
+								return "Service temporarily unavailable. Please try again in a minute.";
+							}
+							
+							await new Promise(r => setTimeout(r, baseDelay * Math.pow(2, attempt)));
+						}
+					}
+				};
+				
+				return {
+					callWithRetry
+				};
+			})();
+
+			/**
+			 * DressCodeAdvisor - Manages the dress code advisor functionality
+			 */
+			const DressCodeAdvisor = (() => {
+				// DOM elements
+				const elements = {
+					button: document.getElementById('dressCodeBtn'),
+					queryInput: document.getElementById('dressCodeQuery'),
+					responseOutput: document.getElementById('dressCodeResponse'),
+					spinner: document.getElementById('dressCodeSpinner')
+				};
+				
+				/**
+				 * Sets the loading state
+				 * @param {boolean} isLoading - Whether the advisor is loading
+				 */
+				const setLoading = (isLoading) => {
+					if (isLoading) {
+						elements.spinner.classList.remove('hidden');
+						elements.button.disabled = true;
+						elements.responseOutput.textContent = 'Thinking...';
+					} else {
+						elements.spinner.classList.add('hidden');
+						elements.button.disabled = false;
+					}
+				};
+				
+				/**
+				 * Generates the dress code advice
+				 * @param {string} query - The user's question
+				 * @returns {Promise<string>} - The generated advice
+				 */
+				const generateAdvice = async (query) => {
+					const fullPrompt = `You are a helpful wedding dress code advisor for a Christian wedding between Taniya and Aswin in Thiruvalla, Kerala on January 5th, 2026. The dress code is "formal or festive Indian or Western wear". Mundu is also an option as a traditional dress for men. Guests ask what to wear. Be friendly and helpful. Do not mention your name or model. Reply in clear, concise GitHub-Flavored Markdown (short heading or bullets), under 100 words. Do not include code fences. Guest's question: "${query}".`;
+
+					const markdown = await GeminiAPI.callWithRetry(fullPrompt);
+
+					// Minimal Markdown -> HTML converter (safe-ish: escapes first)
+					const escapeHtml = (str) =>
+						str.replace(/[&<>"']/g, (ch) => ({
+							"&": "&amp;",
+							"<": "&lt;",
+							">": "&gt;",
+							'"': "&quot;",
+							"'": "&#39;"
+						}[ch]));
+
+					const mdToHtml = (md) => {
+						if (!md) return "";
+						// Extract fenced code blocks to preserve content (shouldn't appear, but safe)
+						const codeBlocks = [];
+						md = md.replace(/```([\s\S]*?)```/g, (_, code) => {
+							const idx = codeBlocks.push(escapeHtml(code.trim())) - 1;
+							return `@@CODE_BLOCK_${idx}@@`;
+						});
+
+						md = md.replace(/\r\n?/g, "\n").trim();
+						const lines = md.split("\n");
+
+						const inline = (s) => {
+							let t = escapeHtml(s);
+							t = t.replace(/`([^`]+)`/g, "<code>$1</code>");
+							t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+							t = t.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+							t = t.replace(/(^|[^*])\*(.+?)\*/g, "$1<em>$2</em>");
+							return t;
+						};
+
+						let html = [];
+						let inUl = false, inOl = false;
+						const closeLists = () => {
+							if (inUl) { html.push("</ul>"); inUl = false; }
+							if (inOl) { html.push("</ol>"); inOl = false; }
+						};
+
+						for (const raw of lines) {
+							const line = raw.trim();
+
+							let m = line.match(/^#{1,3}\s+(.*)$/);
+							if (m) {
+								closeLists();
+								const level = (line.match(/^#+/) || ["#"])[0].length;
+								html.push(`<h${level}>${inline(m[1])}</h${level}>`);
+								continue;
+							}
+
+							m = line.match(/^\d+\.\s+(.+)$/);
+							if (m) {
+								if (!inOl) { closeLists(); html.push("<ol>"); inOl = true; }
+								html.push(`<li>${inline(m[1])}</li>`);
+								continue;
+							}
+
+							m = line.match(/^[-*]\s+(.+)$/);
+							if (m) {
+								if (!inUl) { closeLists(); html.push("<ul>"); inUl = true; }
+								html.push(`<li>${inline(m[1])}</li>`);
+								continue;
+							}
+
+							if (line === "") { closeLists(); html.push(""); continue; }
+
+							closeLists();
+							html.push(`<p>${inline(line)}</p>`);
+						}
+						closeLists();
+
+						let out = html.join("\n");
+						out = out.replace(/@@CODE_BLOCK_(\d+)@@/g, (_, i) => `<pre><code>${codeBlocks[Number(i)]}</code></pre>`);
+						return out;
+					};
+
+					const html = mdToHtml(markdown);
+
+					// Ensure markdown is rendered as HTML after caller sets textContent
+					setTimeout(() => {
+						if (elements && elements.responseOutput) {
+							elements.responseOutput.innerHTML = html;
+						}
+					}, 0);
+
+					// Return raw markdown as fallback
+					return markdown;
+				};
+				
+				/**
+				 * Handles the form submission
+				 */
+				const handleSubmit = async () => {
+					const query = elements.queryInput.value;
+					
+					if (!query) {
+						elements.responseOutput.textContent = "Please enter a question.";
+						return;
+					}
+					
+					setLoading(true);
+					
+					try {
+						const responseText = await generateAdvice(query);
+						elements.responseOutput.textContent = responseText;
+					} catch (error) {
+						console.error('Error generating dress code advice:', error);
+						elements.responseOutput.textContent = 'Sorry, there was an error generating advice. Please try again.';
+					} finally {
+						setLoading(false);
+					}
+				};
+				
+				/**
+				 * Initializes the dress code advisor
+				 */
+				const init = () => {
+					if (elements.button) {
+						elements.button.addEventListener('click', handleSubmit);
+					}
+				};
+				
+				return { init };
+			})();
+			
+			// Initialize the dress code advisor
+			DressCodeAdvisor.init();
+			// --- New Gemini Travel Itinerary Logic ---
+			const generateItineraryBtn = document.getElementById('generateItineraryBtn');
+			const travelInterests = document.getElementById('travelInterests');
+			const travelDays = document.getElementById('travelDays');
+			const travelDate = document.getElementById('travelDate');
+			const itineraryResponse = document.getElementById('itineraryResponse');
+			const itinerarySpinner = document.getElementById('itinerarySpinner');
+			
+			if (generateItineraryBtn) {
+				generateItineraryBtn.addEventListener('click', async () => {
+					const interests = travelInterests.value;
+					const days = travelDays.value;
+					const date = travelDate.value;
+					if (!interests || !days || days < 1 || !date) {
+						itineraryResponse.textContent = "Please enter your interests, the number of days, and your arrival date in Kerala.";
+						return;
+					}
+					
+					itinerarySpinner.classList.remove('hidden');
+					generateItineraryBtn.disabled = true;
+					itineraryResponse.textContent = 'Creating your itinerary...';
+
+					const fullPrompt = `You are a knowledgeable travel agent for Kerala, India. User is in Thiruvalla, Kerala, for the wedding between Taniya and Aswin on January 5th, 2026. The wedding ceremony is at St Thomas Mar Thoma Church in Thiruvalla, Kerala and starts at 3pm in the afternoon and will be followed by a reception at Mor Athanasius Yohan Memorial Convention Centre Kuttappuzha, Thiruvalla  and starts at 5.30pm and go till late night.  You are employed by Taniya and Aswin to help you enjoy Kerala to its fullest. There are no pre-wedding festivities. Dont mention this anywhere in the answer. The transportation and stays are self-paid. Don't mention it in the answer unless user asks specifically.  Based on the user's interests, create a detailed day-by-day itinerary for a trip lasting ${days} days , starting on ${date} taking into account the christian marriage on 5th January. The itinerary should be easy to follow and include local, authentic recommendations. The user's interests are: "${interests}". Please format the response clearly with headings for each day.`;
+					const responseText = await GeminiAPI.callWithRetry(fullPrompt);
+
+					// Minimal, safe Markdown -> HTML formatter
+					const escapeHtml = (str) => str.replace(/[&<>"']/g, ch => ({
+						'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+					}[ch]));
+
+					const mdToHtml = (md) => {
+						if (!md) return '';
+
+						// Extract fenced code blocks first
+						const codeBlocks = [];
+						md = md.replace(/```([\s\S]*?)```/g, (_, code) => {
+							const idx = codeBlocks.push(escapeHtml(code.trim())) - 1;
+							return `@@CODE_BLOCK_${idx}@@`;
+						});
+
+						md = md.replace(/\r\n?/g, '\n').trim();
+						const lines = md.split('\n');
+
+						const inlineFormat = (text) => {
+							let s = escapeHtml(text);
+							// Inline code
+							s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+							// Links [text](url)
+							s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+							// Bold then italic
+							s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+							s = s.replace(/(^|[^*])\*(.+?)\*/g, '$1<em>$2</em>');
+							return s;
+						};
+
+						let html = [];
+						let inUl = false, inOl = false;
+						const closeLists = () => {
+							if (inUl) { html.push('</ul>'); inUl = false; }
+							if (inOl) { html.push('</ol>'); inOl = false; }
+						};
+
+						for (const raw of lines) {
+							const line = raw.trim();
+
+							// Headings ###, ##, #
+							let m = line.match(/^#{1,3}\s+(.*)$/);
+							if (m) {
+								closeLists();
+								const level = (line.match(/^#+/) || ['#'])[0].length;
+								html.push(`<h${level}>${inlineFormat(m[1])}</h${level}>`);
+								continue;
+							}
+
+							// Ordered list "1. item"
+							m = line.match(/^\d+\.\s+(.+)$/);
+							if (m) {
+								if (!inOl) { closeLists(); html.push('<ol>'); inOl = true; }
+								html.push(`<li>${inlineFormat(m[1])}</li>`);
+								continue;
+							}
+
+							// Unordered list "- item" or "* item"
+							m = line.match(/^[-*]\s+(.+)$/);
+							if (m) {
+								if (!inUl) { closeLists(); html.push('<ul>'); inUl = true; }
+								html.push(`<li>${inlineFormat(m[1])}</li>`);
+								continue;
+							}
+
+							// Blank line
+							if (line === '') { closeLists(); html.push(''); continue; }
+
+							// Paragraph
+							closeLists();
+							html.push(`<p>${inlineFormat(line)}</p>`);
+						}
+						closeLists();
+
+						let out = html.join('\n');
+						// Restore code blocks
+						out = out.replace(/@@CODE_BLOCK_(\d+)@@/g, (_, i) => `<pre><code>${codeBlocks[Number(i)]}</code></pre>`);
+						return out;
+					};
+
+					itineraryResponse.innerHTML = mdToHtml(responseText);
+					itinerarySpinner.classList.add('hidden');
+					generateItineraryBtn.disabled = false;
+				});
+			}
+        });
+
+        
+
+	</script>
+</body>
+</html>
