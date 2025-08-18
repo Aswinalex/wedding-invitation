@@ -585,15 +585,140 @@
 			.hero-content h1.font-allura:hover::after {
 				width: 80%;
 			}
-		</style><div class="hero-content glow-border">
-			<p class="text-xl md:text-xl mt-36 ml-3 font-semibold font-montserrat">
+		</style>
+		<div class="hero-content glow-border">
+			<p class="text-xl md:text-xl mt-16 lg:mt-30 ml-3 font-semibold font-montserrat">
 				Together with our families
 			</p>
-			<h1 class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura">Taniya</h1>
+			<div class="relative inline-block">
+				<h1
+					id="taniyaToggle"
+					class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura cursor-pointer"
+					role="button"
+					tabindex="0"
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="taniyaPopover"
+				>
+					Taniya
+				</h1>
+
+				<!-- Small info box -->
+				<div
+					id="taniyaPopover"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] md:w-[36rem] h-100 z-50 rounded-2xl shadow-2xl border overflow-hidden"
+					style="background: var(--bg_col_trans_2); border-color: var(--border_col); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);"
+					hidden
+				>
+					<div class="p-5 flex gap-4 items-start">
+						<div class="w-full flex flex-col items-center text-center">
+							<p class="font-montserrat text-xl font-semibold text-black">
+								Taniya Mary Binny
+							</p>
+							<img
+							src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Kuttu.jpg"
+							alt="Taniya placeholder"
+							class="mt-3 w-56 h-56 md:w-64 md:h-64 rounded-xl object-cover border mx-auto"
+							style="border-color: var(--border_col);"
+						/>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+
+			<script>
+				(() => {
+					const toggle = document.getElementById('taniyaToggle');
+					const pop = document.getElementById('taniyaPopover');
+					if (!toggle || !pop) return;
+
+					let open = false;
+					const setOpen = (v) => {
+						open = v;
+						pop.hidden = !v;
+						toggle.setAttribute('aria-expanded', v ? 'true' : 'false');
+					};
+
+					const onToggle = () => setOpen(!open);
+
+					toggle.addEventListener('click', onToggle);
+					toggle.addEventListener('keydown', (e) => {
+						if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); }
+						if (e.key === 'Escape') setOpen(false);
+					});
+					document.addEventListener('click', (e) => {
+						if (!pop.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+					});
+				})();
+			</script>
 			<p class="text-xl md:text-2xl mb-6 font-montserrat">
 				D/o Mr. Binny Mathew and Mrs. Laly Binny
 			</p>
-			<h1 class="text-7xl md:text-7xl font-bold mb-2 font-allura">Aswin</h1>
+			<div class="relative inline-block">
+				<h1
+					id="aswinToggle"
+					class="text-7xl md:text-7xl font-bold mb-2 mt-2 font-allura cursor-pointer"
+					role="button"
+					tabindex="0"
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="aswinPopover"
+				>
+					Aswin
+				</h1>
+
+				<!-- Small info box -->
+				<div
+					id="aswinPopover"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] md:w-[36rem] h-100 z-50 rounded-2xl shadow-2xl border overflow-hidden"
+					style="background: var(--bg_col_trans_2); border-color: var(--border_col); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);"
+					hidden
+				>
+					<div class="p-5 flex gap-4 items-start">
+						<div class="w-full flex flex-col items-center text-center">
+							<p class="font-montserrat text-xl font-semibold text-black">
+								Aswin Alexander Eapen
+							</p>
+							<img
+								src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/me_2.jpg"
+								alt="Aswin placeholder"
+								class="mt-3 w-56 h-56 md:w-64 md:h-64 rounded-xl object-cover border mx-auto"
+								style="border-color: var(--border_col);"
+							/>
+						</div>
+							
+					
+					</div>
+				</div>
+			</div>
+
+			<script>
+				(() => {
+					const toggle = document.getElementById('aswinToggle');
+					const pop = document.getElementById('aswinPopover');
+					if (!toggle || !pop) return;
+
+					let open = false;
+					const setOpen = (v) => {
+						open = v;
+						pop.hidden = !v;
+						toggle.setAttribute('aria-expanded', v ? 'true' : 'false');
+					};
+
+					const onToggle = () => setOpen(!open);
+
+					toggle.addEventListener('click', onToggle);
+					toggle.addEventListener('keydown', (e) => {
+						if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); }
+						if (e.key === 'Escape') setOpen(false);
+					});
+					document.addEventListener('click', (e) => {
+						if (!pop.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+					});
+				})();
+			</script>
 			<p class="text-xl md:text-2xl mb-4 font-montserrat">
 				S/o Dr. Salim C Eapen & Mrs. Renu Thomas
 			</p>
@@ -707,6 +832,7 @@
 					<div class="mb-4">
 						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Kochi (Cochin) International Airport (COK)</h4>
 						<ul class="list-disc pl-5 font-helvetica text-md">
+							<li><strong>Taxi:</strong> ~3–3.5 hours (₹3,000–₹4,000) by local Taxi.</li>
 							<li><strong>Train:</strong> Take a cab (~30 min) to Aluva station, then a train to Thiruvalla (~2–2.5 hrs).</li>
 							<li><strong>Bus:</strong> KSRTC buses to Kottayam, then to Thiruvalla (total ~3 hours).</li>
 						</ul>
@@ -714,7 +840,7 @@
 					<div>
 						<h4 class="text-lg font-semibold font-helvetica mb-1">✈️ From Trivandrum International Airport (TRV)</h4>
 						<ul class="list-disc pl-5 font-helvetica text-md">
-							
+							<li><strong>Taxi:</strong> ~2.5–3 hours (₹2,500–₹3,500) by local Taxi.</li>
 							<li><strong>Train:</strong> Short ride to Trivandrum Central, then train to Thiruvalla (~2.5 hrs).</li>
 							<li><strong>Bus:</strong> Regular KSRTC buses to Thiruvalla (~4 hours, budget-friendly).</li>
 						</ul>
@@ -771,11 +897,9 @@
 					 style="text-shadow: 2px 2px 4px;">
 				From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
 			</div>
-			<div style="display: flex; justify-content: center; align-items: center; position: relative;  width: 100vw; height: 100vh; overflow: hidden; margin-left: -1rem; margin-right: -1rem;">
-				<!-- Timeline styled framed photo (smaller box + equal padding all around) -->
-				<div class="relative w-full flex justify-center items-center">
-
-					<!-- Framed box -->
+			<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: auto; overflow: visible; margin-left: -1rem; margin-right: -1rem;">
+				<!-- Timeline styled framed photos stacked vertically -->
+				<div class="relative w-full flex flex-col justify-center items-center space-y-8">
 					<style>
 						.timeline-frame img {
 							transition: transform 10s cubic-bezier(.2,.6,.2,1), filter 2s ease;
@@ -818,51 +942,144 @@
 							text-align: center;
 						}
 					</style>
-				
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							overflow: hidden;
-						">
-							<!-- Corner accents -->
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							</span>
+										<!-- Frame 2 -->
+					<div class="timeline-frame" style="
+						--frame-gap:20px;
+						position:relative;
+						background:rgba(0,0,0,0.32);
+						border:2px solid var(--border_col);
+						box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+						border-radius:16px;
+						padding:var(--frame-gap);
+						backdrop-filter:blur(4px);
+						-webkit-backdrop-filter:blur(4px);
+						max-width: 325px;
+						width: 60vw;
+						z-index:2;
+						overflow: hidden;
+					">
+						<!-- Corner accents -->
+						<span style="position:absolute; inset:0; pointer-events:none;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 
-							<!-- Sweep shine -->
-							<span class="shine"></span>
+						<!-- Sweep shine -->
+						<span class="shine"></span>
 
-							<!-- Image -->
-							<figure style="margin:0;">
-								<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
-									alt="Our Story"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Surrounded by mountains and a love that feels as grand as the scenery."
-								</figcaption>
-							</figure>
-						</div>
+						<!-- Image -->
+						<figure style="margin:0;">
+							<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg"
+								alt="Our Story"
+								style="
+									display:block;
+									width:100%;
+									height:auto;
+									object-fit:contain;
+									object-position:center;
+									border-radius:10px;
+									box-shadow:0 3px 10px rgba(0,0,0,0.5);
+							">
+							<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+								"Among the wildflowers, they found the kind of happiness that blooms once in a lifetime."
+							</figcaption>
+						</figure>
+					</div>
+
+					<!-- Frame 1 -->
+					<div class="timeline-frame" style="
+						--frame-gap:20px;
+						position:relative;
+						background:rgba(0,0,0,0.32);
+						border:2px solid var(--border_col);
+						box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+						border-radius:16px;
+						padding:var(--frame-gap);
+						backdrop-filter:blur(4px);
+						-webkit-backdrop-filter:blur(4px);
+						max-width: 325px;
+						width: 60vw;
+						z-index:2;
+						
+						overflow: hidden;
+					">
+						<!-- Corner accents -->
+						<span style="position:absolute; inset:0; pointer-events:none;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+
+						<!-- Sweep shine -->
+						<span class="shine"></span>
+
+						<!-- Image -->
+						<figure style="margin:0;">
+							<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
+								alt="Our Story"
+								style="
+									display:block;
+									width:100%;
+									height:auto;
+									object-fit:contain;
+									object-position:center;
+									border-radius:10px;
+									box-shadow:0 3px 10px rgba(0,0,0,0.5);
+							">
+							<figcaption class="mt-3  text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+								"Surrounded by mountains and a love that feels as grand as the scenery."
+							</figcaption>
+						</figure>
+					</div>
+
+
+
+					<!-- Frame 3 -->
+					<div class="timeline-frame" style="
+						--frame-gap:20px;
+						position:relative;
+						background:rgba(0,0,0,0.32);
+						border:2px solid var(--border_col);
+						box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+						border-radius:16px;
+						padding:var(--frame-gap);
+						backdrop-filter:blur(4px);
+						-webkit-backdrop-filter:blur(4px);
+						max-width: 325px;
+						width: 60vw;
+						z-index:2;
+						margin-bottom: 16px;
+						overflow: hidden;
+					">
+						<!-- Corner accents -->
+						<span style="position:absolute; inset:0; pointer-events:none;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+						<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+
+						<!-- Sweep shine -->
+						<span class="shine"></span>
+
+						<!-- Image -->
+						<figure style="margin:0;">
+							<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg"
+								alt="Our Story"
+								style="
+									display:block;
+									width:100%;
+									height:auto;
+									object-fit:contain;
+									object-position:center;
+									border-radius:10px;
+									box-shadow:0 3px 10px rgba(0,0,0,0.5);
+							">
+							<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+								"Carrying her on his back, he promises to carry her in his heart forever."
+							</figcaption>
+						</figure>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -1074,17 +1291,17 @@
 	<!-- AI Dress Code Advisor Section -->
 	<section class="py-16 px-4 text-center  fade-in-section">
 		<div class="max-w-2xl mx-auto">
-			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Dress Code Advisor</h2>
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Wedding Palette</h2>
 			<div class="section-divider"></div>
 			
 			<p class="text-xl md:text-xl font-montserrat mb-8">
-				Our wedding palette -in various shades of lavenders, greens, maroons and mauves. We'd love to see you in these,but feel free to wear what makes you feel your best!
+				We come in shades of lavenders, greens, maroons and mauves. We'd love to see you in these, but feel free to wear what makes you feel your best!
 			</p>
 			<img
 				src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pallete_3.png"
 				alt="Wedding palette: shades of lavender, green, mauve, and maroon"
 				class="block mx-auto my-4 rounded-xl shadow-lg border object-contain"
-				style="border-color: var(--border_col); width: clamp(250px, 100vw, 450px); height: auto;"
+				style="border-color: var(--border_col); width: clamp(200px, 100vw, 300px); height: auto;"
 			/>
 
 			<style>
@@ -1320,9 +1537,9 @@
 	<!-- Local Favorites Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
 		<div class="max-w-6xl mx-auto">
-			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Local Favorites</h2>
+			<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Exploring Thiruvalla and Beyond</h2>
 			<div class="section-divider"></div>
-			<p class="text-xl md:text-xl font-montserrat mb-8">If you have some extra time, here are a few of our favorite spots near Thiruvalla!</p>
+			<p class="text-xl md:text-xl font-montserrat mb-8">From charming local spots to scenic getaways just a few hours’ drive away, here are some of our favorite places to explore in and around Thiruvalla.</p>
 
 			<!-- Grid of attractions -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -1335,29 +1552,8 @@
 					<h3 class="text-2xl font-montserrat font-semibold"style="color:var(--text_col);">Boat ride</h3>
 					<p class="font-semibold font-montserrat text-black">Alappuzha Houseboat</p>
 					<p class="text-sm font-montserrat mb-2">Sailing through Alappuzha's backwaters on a houseboat feels like drifting inside a living postcard of Kerala's soul.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 34 km</p>
 					<a href="https://maps.app.goo.gl/hbHLkCm5CxF46tQr5" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
-				</div>
-
-				
-
-				<!-- Bhoothakuzhy Para -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gavi%2C_Kerala.jpg" alt="Gavi forest ride" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">🪨</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Hidden Gem</h3>
-					<p class="font-semibold font-montserrat text-black">Gavi forest ride</p>
-					<p class="text-sm font-montserrat  mb-2">A quiet scenic ride perfect for nature lovers and photo ops.</p>
-					<a href="https://www.google.com/maps?q=Bhoothakuzhy+Para" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
-				</div>
-
-				<!-- Vengal Viewpoint -->
-				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Vagamon_2.jpg" alt="Vagamon Verdant hills" class="w-full h-48 object-cover rounded-md mb-4">
-					<div class="text-4xl mb-2 text-black">🌅</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Misty Meadows</h3>
-					<p class="font-semibold font-montserrat text-black">Vagamon Muttakunnu</p>
-					<p class="text-sm font-montserrat  mb-2">Catch stunning panoramic views over the hills.</p>
-					<a href="https://www.google.com/maps?q=Vengal+Viewpoint,+Kerala" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
 
 				<!-- Aruvikuzhy Waterfalls -->
@@ -1367,16 +1563,41 @@
 					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Waterfall Wonder</h3>
 					<p class="font-semibold font-montserrat text-black">Aruvikuzhy Waterfalls</p>
 					<p class="text-sm font-montserrat  mb-2">A refreshing spot for a quick nature escape and waterfall views.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 35 km</p>
 					<a href="https://www.google.com/maps?q=Aruvikuzhy+Waterfalls" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
-				<!-- Avees Puttu House -->
+				
+				<!-- Vagamon Muttakunnu -->
 				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
-					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/aavees.webp" alt="Avees Puttu House" class="w-full h-48 object-cover rounded-md mb-4">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Vagamon_2.jpg" alt="Vagamon Verdant hills" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🌅</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Misty Meadows</h3>
+					<p class="font-semibold font-montserrat text-black">Vagamon Muttakunnu</p>
+					<p class="text-sm font-montserrat  mb-2">Catch stunning panoramic views over the hills.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 90 km</p>
+					<a href="https://maps.app.goo.gl/oYfAZdBbaQeBfw2e8" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Gavi forest ride -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Gavi%2C_Kerala.jpg" alt="Gavi forest ride" class="w-full h-48 object-cover rounded-md mb-4">
+					<div class="text-4xl mb-2 text-black">🪨</div>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Hidden Gem</h3>
+					<p class="font-semibold font-montserrat text-black">Gavi forest ride</p>
+					<p class="text-sm font-montserrat  mb-2">A quiet scenic ride perfect for nature lovers and photo ops.</p>
+					<p class="text-sm font-montserrat  mb-2">Distance from Thiruvalla: 126 km</p>
+					<a href="https://maps.app.goo.gl/wz2Gp6cbmEwmiCTr5" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+				</div>
+
+				<!-- Kanthari restaurant -->
+				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color: var(--bg_col_trans_2);">
+					<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Kanthari.jpg" alt="Kanthari restaurant" class="w-full h-48 object-cover rounded-md mb-4">
 					<div class="text-4xl mb-2 text-black">🍽️</div>
-					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Must-Try Food</h3>
-					<p class="font-semibold font-montserrat text-black">Avees Puttu House</p>
+					<h3 class="text-2xl font-montserrat font-semibold" style="color:var(--text_col);">Local Flavors</h3>
+					<p class="font-semibold font-montserrat text-black">Kanthari restaurant</p>
 					<p class="text-sm font-montserrat  mb-2">For authentic and delicious Kerala cuisine.</p>
-					<a href="https://www.google.com/maps?q=Avees+Puttu+House+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
+
+					<a href="https://www.google.com/maps?q=Kanthari+restaurant+Thiruvalla" target="_blank" class="font-bold text-sm font-montserrat" style="color:gray;">View on Map</a>
 				</div>
 				<!-- Uptown Shack -->
 				<div class="p-6 rounded-xl shadow-lg border border-white text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-[var(--border_col)]" style="background-color:var(--bg_col_trans_2);">
