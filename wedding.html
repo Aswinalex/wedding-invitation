@@ -218,7 +218,26 @@
 		}
 		
 		
-        
+				/* Center timeline frames and images */
+		.equation-section .timeline-frame {
+			margin-left: auto !important;
+			margin-right: auto !important;
+			display: block !important;
+			/* Already has max-width and width set */
+		}
+
+		/* Center the parent flex container */
+		.equation-section .flex.flex-col {
+			align-items: center !important;
+			justify-content: center !important;
+		}
+
+		/* Center images inside figure (if needed) */
+		.equation-section .timeline-frame figure {
+			margin-left: auto !important;
+			margin-right: auto !important;
+			text-align: center;
+		}
         /* Wedding party section */
         .family-member-card {
 			transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -637,8 +656,34 @@
 					let open = false;
 					const setOpen = (v) => {
 						open = v;
-						pop.hidden = !v;
-						toggle.setAttribute('aria-expanded', v ? 'true' : 'false');
+						btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+						btn.textContent = v ? 'Hide photos' : 'Show more photos';
+
+						if (v) {
+							// Opening: from 0 -> scrollHeight
+							more.classList.add('open');
+							more.style.maxHeight = '0px';
+							requestAnimationFrame(() => {
+								more.style.maxHeight = more.scrollHeight + 'px';
+								// --- FIX: Force all timeline frames visible on first open ---
+								document.querySelectorAll('#morePhotos .timeline-frame').forEach(frame => {
+									frame.classList.add('is-visible');
+								});
+							});
+						} else {
+							// Closing: from current height -> 0
+							more.style.maxHeight = more.scrollHeight + 'px';
+							void more.offsetHeight;
+							more.style.maxHeight = '0px';
+
+							const onEnd = (e) => {
+								if (e.propertyName === 'max-height') {
+									more.classList.remove('open');
+									more.removeEventListener('transitionend', onEnd);
+								}
+							};
+							more.addEventListener('transitionend', onEnd);
+						}
 					};
 
 					const onToggle = () => setOpen(!open);
@@ -861,12 +906,9 @@
 
 		<!-- Our Perfect Equation Section -->
 		<section class="equation-section fade-in-section" style="border: none; box-shadow: none;  position: relative; margin: 0; padding: 0; width: 100vw; overflow-x: hidden;">
-			
-
 			<div class=" px-4" style="border: none; box-shadow: none; margin-top: 2rem; position: relative; z-index: 2; width: 100%;">
 				<h2 class="text-4xl font-embossed-on-beige raised mb-4 drop-shadow-lg">Our Perfect Equation</h2>
 				<div class="section-divider"></div>
-				
 			</div>
 			
 			<div class="relative w-screen" style="background: linear-gradient(to top, transparent, rgb(0, 0, 0)); z-index: 2;">
@@ -878,6 +920,54 @@
 					}
 					@media (min-width: 1280px) {
 						.equation-section .video-bg { height: 65vh !important; }
+					}
+
+					/* Smooth slide down/up for hidden photos */
+					#morePhotos.collapsible {
+						max-height: 0;
+						opacity: 0;
+						overflow: hidden;
+						transition:
+							max-height 700ms cubic-bezier(.4,0,.2,1),
+							opacity 400ms ease-in-out;
+						pointer-events: none;
+						/* FIX: Remove flex, use block for vertical stacking */
+						display: block !important;
+						/* FIX: Add padding for breathing room */
+						padding-top: 0;
+						padding-bottom: 0;
+					}
+					#morePhotos.collapsible.open {
+						opacity: 1;
+						pointer-events: auto;
+						/* FIX: Add vertical padding when open */
+						padding-top: 16px;
+						padding-bottom: 16px;
+					}
+
+					/* Fix for timeline-frame inside #morePhotos */
+					#morePhotos .timeline-frame {
+						/* FIX: Ensure full width and spacing */
+						width: 60vw;
+						max-width: 325px;
+						min-height: 260px; /* Increase min-height for less cramping */
+						margin-bottom: 24px;
+						margin-top: 0;
+						/* Remove any conflicting flex/grid styles */
+						display: block !important;
+					}
+
+					/* Responsive: allow images to grow on mobile */
+					@media (max-width: 600px) {
+						#morePhotos .timeline-frame {
+							width: 90vw;
+							max-width: 98vw;
+							min-height: 180px;
+							margin-bottom: 18px;
+						}
+					}
+					@media (prefers-reduced-motion: reduce) {
+						#morePhotos.collapsible { transition: none; }
 					}
 				</style>
 
@@ -893,13 +983,14 @@
 					Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 				</video>
 
-				<div class=" text-base sm:text-xl md:text-2xl lg:text-3xl text-center font-allura-eqn z-10 bg-black"
-						 style="text-shadow: 2px 2px 4px;">
-					From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
+				<div class=" flex items-center justify-center z-20 pointer-events-none">
+					<div class="sm:text-xl md:text-2xl lg:text-3xl text-center bg-black font-allura-eqn rounded-lg ">
+						From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
+					</div>
 				</div>
 				<div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100vw; height: auto; overflow: visible; margin-left: -1rem; margin-right: -1rem;">
 					<!-- Timeline styled framed photos stacked vertically -->
-					<div class="relative w-full flex flex-col justify-center items-center space-y-8">
+					<div class=" w-full mt-16 flex flex-col justify-center items-center space-y-8">
 						<style>
 							.timeline-frame img {
 								transition: transform 10s cubic-bezier(.2,.6,.2,1), filter 2s ease;
@@ -909,7 +1000,7 @@
 								margin: 0 auto;
 							}
 							.timeline-frame:hover img {
-								transform: scale(1.5) translateY(-5%);
+								transform: scale(1.2) translateY(-10%);
 								filter: saturate(1.1) brightness(1.1);
 							}
 							.timeline-frame .shine {
@@ -942,7 +1033,7 @@
 								text-align: center;
 							}
 						</style>
-											<!-- Frame 2 -->
+						<!-- Frame 1 (visible) -->
 						<div class="timeline-frame" style="
 							--frame-gap:20px;
 							position:relative;
@@ -970,94 +1061,6 @@
 
 							<!-- Image -->
 							<figure style="margin:0;">
-								<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg"
-									alt="Our Story"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Among the wildflowers, they found the kind of happiness that blooms once in a lifetime."
-								</figcaption>
-							</figure>
-						</div>
-						
-						<!-- Frame 8 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							margin-bottom: 16px;
-							overflow: hidden;
-						">
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							<span class="shine"></span>
-
-							<figure style="margin:0;">
-								<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425164631~3.jpg?raw=true"
-									alt="Taniya and Aswin photo 5"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Smiles as tall as the Eiffel Tower, love even taller 💕🗼✨"
-								</figcaption>
-							</figure>
-						</div>
-						
-						<!-- Frame 1 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							
-							overflow: hidden;
-						">
-							<!-- Corner accents -->
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-
-							<!-- Sweep shine -->
-							<span class="shine"></span>
-
-							<!-- Image -->
-							<figure style="margin:0;"></figure>
 								<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0029.jpg"
 									alt="Our Story"
 									style="
@@ -1075,224 +1078,344 @@
 							</figure>
 						</div>
 
+						<!-- Toggle button -->
+						<button id="toggleMorePhotos" class="btn-primary mt-2" aria-expanded="false" aria-controls="morePhotos">Show more photos</button>
 
+						<!-- Hidden photos (animated) -->
+						<div id="morePhotos" class="relative w-full flex flex-col justify-center items-center space-y-8">
+							<!-- Frame 2 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								overflow: hidden;
+							">
+								<!-- Corner accents -->
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 
-						
-						<!-- Frame 7 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							overflow: hidden;
-						">
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							<span class="shine"></span>
+								<!-- Sweep shine -->
+								<span class="shine"></span>
 
-							<figure style="margin:0;">
-								<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425153548~3.jpg?raw=true"
-									alt="Taniya and Aswin photo 4"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Love framed by the Louvre — our masterpiece in the making 🎨❤️"
-								</figcaption>
-							</figure>
+								<!-- Image -->
+								<figure style="margin:0;">
+									<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg"
+										alt="Our Story"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+							
+							<!-- Frame 8 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								margin-bottom: 16px;
+								overflow: hidden;
+							">
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+								<span class="shine"></span>
+
+								<figure style="margin:0;">
+									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425164631~3.jpg?raw=true"
+										alt="Taniya and Aswin photo 5"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+							
+							<!-- Frame 7 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								overflow: hidden;
+							">
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+								<span class="shine"></span>
+
+								<figure style="margin:0;"></figure>
+									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425153548~3.jpg?raw=true"
+										alt="Taniya and Aswin photo 4"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+
+							<!-- Frame 4 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								overflow: hidden;
+							">
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+								<span class="shine"></span>
+
+								<figure style="margin:0;"></figure>
+									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/20241230_133743~2.jpg?raw=true"
+										alt="Taniya and Aswin photo 1"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+
+							<!-- Frame 5 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								overflow: hidden;
+							">
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+								<span class="shine"></span>
+
+								<figure style="margin:0;">
+									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/20250421_164130.jpg?raw=true"
+										alt="Taniya and Aswin photo 2"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+
+							<!-- Frame 6 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								overflow: hidden;
+							">
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+								<span class="shine"></span>
+
+								<figure style="margin:0;"></figure>
+									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG-20250502-WA0004~2.jpg?raw=true"
+										alt="Taniya and Aswin photo 3"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
+
+							<!-- Frame 3 -->
+							<div class="timeline-frame" style="
+								--frame-gap:20px;
+								position:relative;
+								background:rgba(0,0,0,0.32);
+								border:2px solid var(--border_col);
+								box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
+								border-radius:16px;
+								padding:var(--frame-gap);
+								backdrop-filter:blur(4px);
+								-webkit-backdrop-filter:blur(4px);
+								max-width: 325px;
+								width: 60vw;
+								z-index:2;
+								margin-bottom: 16px;
+								overflow: hidden;
+							">
+								<!-- Corner accents -->
+								<span style="position:absolute; inset:0; pointer-events:none;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
+								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+
+								<!-- Sweep shine -->
+								<span class="shine"></span>
+
+								<!-- Image -->
+								<figure style="margin:0;"></figure>
+									<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg"
+										alt="Our Story"
+										style="
+											display:block;
+											width:100%;
+											height:auto;
+											object-fit:contain;
+											object-position:center;
+											border-radius:10px;
+											box-shadow:0 3px 10px rgba(0,0,0,0.5);
+									">
+								</figure>
+							</div>
 						</div>
-
-						<!-- Frame 4 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							overflow: hidden;
-						">
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							<span class="shine"></span>
-
-							<figure style="margin:0;">
-								<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/20241230_133743~2.jpg?raw=true"
-									alt="Taniya and Aswin photo 1"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Good company, great vibes, and some artsy bodyguards in the background 😄✨"
-								</figcaption>
-							</figure>
-						</div>
-
-						<!-- Frame 5 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							overflow: hidden;
-						">
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							<span class="shine"></span>
-
-							<figure style="margin:0;">
-								<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/20250421_164130.jpg?raw=true"
-									alt="Taniya and Aswin photo 2"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Lost in the German metro, but found the best travel buddy 🚉"
-								</figcaption>
-							</figure>
-						</div>
-
-						<!-- Frame 6 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							overflow: hidden;
-						">
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-							<span class="shine"></span>
-
-							<figure style="margin:0;">
-								<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG-20250502-WA0004~2.jpg?raw=true"
-									alt="Taniya and Aswin photo 3"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Smiles brighter than the Paris lights ✨❤️ — floating on love at the Seine River"
-								</figcaption>
-							</figure>
-						</div>
-
-
-						<!-- Frame 3 -->
-						<div class="timeline-frame" style="
-							--frame-gap:20px;
-							position:relative;
-							background:rgba(0,0,0,0.32);
-							border:2px solid var(--border_col);
-							box-shadow:0 6px 20px -4px rgba(0,0,0,0.55),0 0 0 4px rgba(255,255,255,0.04);
-							border-radius:16px;
-							padding:var(--frame-gap);
-							backdrop-filter:blur(4px);
-							-webkit-backdrop-filter:blur(4px);
-							max-width: 325px;
-							width: 60vw;
-							z-index:2;
-							margin-bottom: 16px;
-							overflow: hidden;
-						">
-							<!-- Corner accents -->
-							<span style="position:absolute; inset:0; pointer-events:none;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
-							<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
-
-							<!-- Sweep shine -->
-							<span class="shine"></span>
-
-							<!-- Image -->
-							<figure style="margin:0;"></figure>
-								<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg"
-									alt="Our Story"
-									style="
-										display:block;
-										width:100%;
-										height:auto;
-										object-fit:contain;
-										object-position:center;
-										border-radius:10px;
-										box-shadow:0 3px 10px rgba(0,0,0,0.5);
-								">
-								<figcaption class="mt-3 text-center font-helvetica" style="color: var(--text_col_2); font-size: 0.95rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-									"Carrying her on his back, he promises to carry her in his heart forever."
-								</figcaption>
-							</figure>
-						</div>
-
 					</div>
 				</div>
+
+				<script>
+					(() => {
+						const btn = document.getElementById('toggleMorePhotos');
+						const more = document.getElementById('morePhotos');
+						if (!btn || !more) return;
+
+						// Prepare collapsible container
+						more.classList.add('collapsible');
+						let open = false;
+
+						// ...inside the setOpen function for the Show more photos button...
+						const setOpen = (v) => {
+							open = v;
+							btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+							btn.textContent = v ? 'Hide photos' : 'Show more photos';
+
+							if (v) {
+								// Opening: from 0 -> scrollHeight
+								more.classList.add('open');
+								more.style.maxHeight = '0px';
+								requestAnimationFrame(() => {
+									more.style.maxHeight = more.scrollHeight + 'px';
+									// --- FIX: Force all timeline frames visible on first open ---
+									document.querySelectorAll('#morePhotos .timeline-frame').forEach(frame => {
+										frame.classList.add('is-visible');
+									});
+								});
+							} else {
+								// Closing: from current height -> 0
+								more.style.maxHeight = more.scrollHeight + 'px';
+								void more.offsetHeight;
+								more.style.maxHeight = '0px';
+
+								const onEnd = (e) => {
+									if (e.propertyName === 'max-height') {
+										more.classList.remove('open');
+										more.removeEventListener('transitionend', onEnd);
+									}
+								};
+								more.addEventListener('transitionend', onEnd);
+							}
+						};
+
+						btn.addEventListener('click', () => setOpen(!open));
+						window.addEventListener('resize', () => {
+							if (open) more.style.maxHeight = more.scrollHeight + 'px';
+						});
+
+						// Initialize closed
+						setOpen(false);
+					})();
+				</script>
 			</div>
-		</section></figure>
+		</section>
 
     <!-- Wedding Party Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
