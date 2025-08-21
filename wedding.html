@@ -656,34 +656,8 @@
 					let open = false;
 					const setOpen = (v) => {
 						open = v;
-						btn.setAttribute('aria-expanded', v ? 'true' : 'false');
-						btn.textContent = v ? 'Hide photos' : 'Show more photos';
-
-						if (v) {
-							// Opening: from 0 -> scrollHeight
-							more.classList.add('open');
-							more.style.maxHeight = '0px';
-							requestAnimationFrame(() => {
-								more.style.maxHeight = more.scrollHeight + 'px';
-								// --- FIX: Force all timeline frames visible on first open ---
-								document.querySelectorAll('#morePhotos .timeline-frame').forEach(frame => {
-									frame.classList.add('is-visible');
-								});
-							});
-						} else {
-							// Closing: from current height -> 0
-							more.style.maxHeight = more.scrollHeight + 'px';
-							void more.offsetHeight;
-							more.style.maxHeight = '0px';
-
-							const onEnd = (e) => {
-								if (e.propertyName === 'max-height') {
-									more.classList.remove('open');
-									more.removeEventListener('transitionend', onEnd);
-								}
-							};
-							more.addEventListener('transitionend', onEnd);
-						}
+						pop.hidden = !v;
+						toggle.setAttribute('aria-expanded', v ? 'true' : 'false');
 					};
 
 					const onToggle = () => setOpen(!open);
@@ -841,7 +815,7 @@
 							<h3 class="text-4xl md:text-4xl font-montserrat text-white mb-4 drop-shadow-lg">Wedding Ceremony</h3>
 
 							
-							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat text-white drop-shadow-lg mb-4">January 5th, 2026 • 3:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl  font-semibold font-montserrat text-white drop-shadow-lg mb-4">Monday, January 5th, 2026 • 3:00 PM</p>
 							<p class="text-lg text-3xl md:text-xl font-semibold font-montserrat text-white drop-shadow-lg mb-2">St Thomas Mar Thoma Church</p>
 							<p class="text-lg text-3xl font-semibold font-montserrat text-white drop-shadow-lg mb-4">Thiruvalla, Kerala</p>
 							<a href="https://www.google.com/maps/search/?api=1&query=St+Thomas+Mar+Thoma+Church,+Thiruvalla,+Pathanamthitta,+Kerala" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
@@ -858,7 +832,7 @@
 						<div class="event-box-content" style="position: relative; z-index: 2;">
 							<h3 class="text-4xl md:text-4xl font-montserrat text-white mb-4 drop-shadow-lg">Reception</h3>
 							
-							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat text-white drop-shadow-lg mb-4">January 5th, 2026 • 5:30 PM – 10:00 PM</p>
+							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat text-white drop-shadow-lg mb-4">Monday, January 5th, 2026 • 5:30 PM – 10:00 PM</p>
 							<p class="text-lg text-3xl md:text-xl font-semibold  font-montserrat text-white drop-shadow-lg mb-2">Mor Athanasius Yohan Memorial Convention Centre</p>
 							<p class="text-lg text-3xl   font-semibold  font-montserrat text-white drop-shadow-lg mb-4">Kuttappuzha, Thiruvalla</p>
 							<a href="https://www.google.com/maps/search/?api=1&query=Mor+Athanasius+Yohan+Memorial+Convention+Centre,+Kuttappuzha,+Thiruvalla" target="_blank" rel="noopener noreferrer" class="btn-primary mt-3 inline-block">Get Directions</a>
@@ -940,9 +914,7 @@
 					#morePhotos.collapsible.open {
 						opacity: 1;
 						pointer-events: auto;
-						/* FIX: Add vertical padding when open */
-						padding-top: 16px;
-						padding-bottom: 16px;
+						overflow: visible; /* ensure content isn’t clipped after expand */
 					}
 
 					/* Fix for timeline-frame inside #morePhotos */
@@ -983,8 +955,8 @@
 					Your browser does not support the video tag. Please <a href="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Video_Generation_with_Romantic_Voice.mp4" target="_blank" rel="noopener">download the video</a> to view it.
 				</video>
 
-				<div class=" flex items-center justify-center z-20 pointer-events-none">
-					<div class="sm:text-xl md:text-2xl lg:text-3xl text-center bg-black font-allura-eqn rounded-lg ">
+				<div class="w-screen flex items-center justify-center z-20 pointer-events-none"></div>
+					<div class="w-screen sm:text-xl md:text-2xl lg:text-3xl text-center bg-black font-allura-eqn px-4 py-2">
 						From laser physics to molecular biology, our worlds collided to create the perfect chemistry.
 					</div>
 				</div>
@@ -1079,7 +1051,7 @@
 						</div>
 
 						<!-- Toggle button -->
-						<button id="toggleMorePhotos" class="btn-primary mt-2" aria-expanded="false" aria-controls="morePhotos">Show more photos</button>
+						<button id="toggleMorePhotos" class="btn-primary mt-2" aria-expanded="false" aria-controls="morePhotos">More memories</button>
 
 						<!-- Hidden photos (animated) -->
 						<div id="morePhotos" class="relative w-full flex flex-col justify-center items-center space-y-8">
@@ -1099,6 +1071,7 @@
 								z-index:2;
 								overflow: hidden;
 							">
+							
 								<!-- Corner accents -->
 								<span style="position:absolute; inset:0; pointer-events:none;"></span>
 								<span style="position:absolute; width:28px; height:28px; top:0; left:0; border-top:3px solid var(--border_col); border-left:3px solid var(--border_col); border-top-left-radius:12px;"></span>
@@ -1147,8 +1120,11 @@
 								<span style="position:absolute; width:28px; height:28px; top:0; right:0; border-top:3px solid var(--border_col); border-right:3px solid var(--border_col); border-top-right-radius:12px;"></span>
 								<span style="position:absolute; width:28px; height:28px; bottom:0; left:0; border-bottom:3px solid var(--border_col); border-left:3px solid var(--border_col); border-bottom-left-radius:12px;"></span>
 								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
+
+								<!-- Sweep shine -->
 								<span class="shine"></span>
 
+								<!-- Image -->
 								<figure style="margin:0;">
 									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425164631~3.jpg?raw=true"
 										alt="Taniya and Aswin photo 5"
@@ -1187,7 +1163,7 @@
 								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 								<span class="shine"></span>
 
-								<figure style="margin:0;"></figure>
+								<figure style="margin:0;">
 									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG20250425153548~3.jpg?raw=true"
 										alt="Taniya and Aswin photo 4"
 										style="
@@ -1225,7 +1201,7 @@
 								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 								<span class="shine"></span>
 
-								<figure style="margin:0;"></figure>
+								<figure style="margin:0;">
 									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/20241230_133743~2.jpg?raw=true"
 										alt="Taniya and Aswin photo 1"
 										style="
@@ -1301,7 +1277,7 @@
 								<span style="position:absolute; width:28px; height:28px; bottom:0; right:0; border-bottom:3px solid var(--border_col); border-right:3px solid var(--border_col); border-bottom-right-radius:12px;"></span>
 								<span class="shine"></span>
 
-								<figure style="margin:0;"></figure>
+								<figure style="margin:0;">
 									<img src="https://github.com/Aswinalex/wedding-invitation/blob/main/IMG-20250502-WA0004~2.jpg?raw=true"
 										alt="Taniya and Aswin photo 3"
 										style="
@@ -1344,7 +1320,7 @@
 								<span class="shine"></span>
 
 								<!-- Image -->
-								<figure style="margin:0;"></figure>
+								<figure style="margin:0;">
 									<img src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/WhatsApp%20Image%202025-08-01%20at%2014.17.22_e07bf8fc.jpg"
 										alt="Our Story"
 										style="
@@ -1358,64 +1334,105 @@
 									">
 								</figure>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<script>
-					(() => {
+							<script>
+						(() => {
 						const btn = document.getElementById('toggleMorePhotos');
 						const more = document.getElementById('morePhotos');
 						if (!btn || !more) return;
 
-						// Prepare collapsible container
 						more.classList.add('collapsible');
 						let open = false;
+						let moreRO = null; // ResizeObserver for dynamic content
 
-						// ...inside the setOpen function for the Show more photos button...
+						const recalc = () => {
+							if (!open) return;
+							// Recompute height as images/content load
+							more.style.maxHeight = more.scrollHeight + 'px';
+						};
+
+						const attachObservers = () => {
+							// Observe size changes
+							moreRO = new ResizeObserver(recalc);
+							moreRO.observe(more);
+							// Recalc when images finish loading
+							more.querySelectorAll('img').forEach(img => {
+							if (!img.complete) img.addEventListener('load', recalc, { once: true });
+							});
+						};
+
+						const detachObservers = () => {
+							if (moreRO) {
+							moreRO.disconnect();
+							moreRO = null;
+							}
+						};
+
 						const setOpen = (v) => {
 							open = v;
 							btn.setAttribute('aria-expanded', v ? 'true' : 'false');
-							btn.textContent = v ? 'Hide photos' : 'Show more photos';
+							btn.textContent = v ? 'Hide' : 'More memories';
 
 							if (v) {
-								// Opening: from 0 -> scrollHeight
-								more.classList.add('open');
-								more.style.maxHeight = '0px';
-								requestAnimationFrame(() => {
-									more.style.maxHeight = more.scrollHeight + 'px';
-									// --- FIX: Force all timeline frames visible on first open ---
-									document.querySelectorAll('#morePhotos .timeline-frame').forEach(frame => {
-										frame.classList.add('is-visible');
-									});
-								});
-							} else {
-								// Closing: from current height -> 0
-								more.style.maxHeight = more.scrollHeight + 'px';
-								void more.offsetHeight;
-								more.style.maxHeight = '0px';
+							
+							more.classList.add('open');
+							more.style.opacity = '1';
+      						more.style.pointerEvents = 'auto';
+							// Make frames visible immediately
+							document.querySelectorAll('#morePhotos .timeline-frame').forEach(f => f.classList.add('is-visible'));
 
-								const onEnd = (e) => {
-									if (e.propertyName === 'max-height') {
-										more.classList.remove('open');
-										more.removeEventListener('transitionend', onEnd);
-									}
+							// Start collapsed for smooth transition
+							more.style.maxHeight = '0px';
+
+							// Ensure we recalc while content grows
+							attachObservers();
+
+							// Animate to content height
+							requestAnimationFrame(recalc);
+
+							// After the open transition, allow natural growth
+							const onOpened = (e) => {
+								if (e.target !== more || e.propertyName !== 'max-height') return;
+									more.style.maxHeight = 'none'; // no more clipping after first expand
 								};
-								more.addEventListener('transitionend', onEnd);
+								
+							more.addEventListener('transitionend', onOpened, { once: true });
+							} else {
+							// If we had set maxHeight to 'none', snapshot current height before collapsing
+							if (getComputedStyle(more).maxHeight === 'none') {
+								more.style.maxHeight = more.scrollHeight + 'px';
+							}
+							// Force reflow then collapse
+							void more.offsetHeight;
+							more.style.maxHeight = '0px';
+
+							const onClosed = (e) => {
+								if (e.target !== more || e.propertyName !== 'max-height') return;
+								more.classList.remove('open');
+								detachObservers();
+								more.style.maxHeight = '';
+							};
+							more.addEventListener('transitionend', onClosed, { once: true });
 							}
 						};
 
 						btn.addEventListener('click', () => setOpen(!open));
-						window.addEventListener('resize', () => {
-							if (open) more.style.maxHeight = more.scrollHeight + 'px';
-						});
+						window.addEventListener('resize', () => open && recalc());
 
 						// Initialize closed
 						setOpen(false);
-					})();
-				</script>
+						})();
+						</script>
+
+
+						</div>
+					</div>
+				</div>
+
+				
+				
 			</div>
-		</section>
+		</div>
+	</section>
 
     <!-- Wedding Party Section -->
 	<section class="py-16 px-4 text-center fade-in-section">
@@ -1556,6 +1573,7 @@
 						</button>
 					</div>
 				</form>
+				<a download="Taniya-Aswin-Wedding.ics" href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVEVENT%0ASUMMARY:Wedding%20Ceremony%0ADTSTART:20260105T093000Z%0ADTEND:20260105T113000Z%0ALOCATION:St%20Thomas%20Mar%20Thoma%20Church%2C%20Thiruvalla%0ADESCRIPTION:Taniya%20%26%20Aswin%20Wedding%0AEND:VEVENT%0AEND:VCALENDAR" class=" btn-primary text-sm mt-3 inline-block">Add to Calendar</a>
 			</div>
 
 			
@@ -1633,7 +1651,7 @@
 				src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/pallete_3.png"
 				alt="Wedding palette: shades of lavender, green, mauve, and maroon"
 				class="block mx-auto my-4 rounded-xl shadow-lg border object-contain"
-				style="border-color: var(--border_col); width: clamp(200px, 100vw, 300px); height: auto;"
+				style="border-color: var(--border_col); width: clamp(150px, 100vw, 250px); height: auto;"
 			/>
 
 			<style>
@@ -1982,6 +2000,59 @@
 
     <!-- Music Control Bar - A new, persistent element at the bottom of the page -->
 	<div id="musicControls" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-10 backdrop-blur-md p-4 flex items-center justify-center space-x-4 rounded-t-xl shadow-lg" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+		<style>
+			#musicControls { color-scheme: light; }
+
+			#musicControls #volumeSlider {
+			appearance: none;
+			-webkit-appearance: none;
+			width: 7.5rem;
+			height: 22px; /* for better thumb hit area */
+			background: transparent;
+			margin-left: 4px;
+			accent-color: var(--text_col); /* fallback if supported */
+			}
+
+			/* WebKit/Chromium track */
+			#musicControls #volumeSlider::-webkit-slider-runnable-track {
+			height: 8px;
+			border-radius: 999px;
+			background: linear-gradient(90deg, var(--text_col) 0%, #3ba56c 100%);
+			box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+			}
+			/* WebKit/Chromium thumb */
+			#musicControls #volumeSlider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 18px; height: 18px;
+			margin-top: -5px; /* centers on 8px track */
+			border-radius: 50%;
+			background: var(--text_col);
+			border: 2px solid #fff;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+			cursor: pointer;
+			}
+
+			/* Firefox */
+			#musicControls #volumeSlider::-moz-range-track {
+			height: 8px;
+			border-radius: 999px;
+			background: linear-gradient(90deg, var(--text_col) 0%, #3ba56c 100%);
+			box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+			}
+			#musicControls #volumeSlider::-moz-range-thumb {
+			width: 18px; height: 18px;
+			border-radius: 50%;
+			background: var(--text_col);
+			border: 2px solid #fff;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+			cursor: pointer;
+			}
+			#musicControls #volumeSlider:focus { outline: none; }
+
+
+		</style>
+
 		<button id="playPauseBtn" class="btn-primary text-white p-2 rounded-full shadow-md hover:btn-primary transition">
 			<!-- Play icon -->
 			<svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -1998,10 +2069,18 @@
 			<!-- Muted icon (hidden) -->
 			<svg id="mutedIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
 		</button>
+		<!-- Add next to buttons -->
+		<input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.1" class="w-24 accent-[var(--text_col)]">
 	</div>
 
-    <script type="module">
+	<!-- Add smooth visual transitions for the reactive bar -->
+	<style>
+		#musicControls {
+			transition: background 800ms ease, box-shadow 800ms ease, transform 800ms ease, filter 120ms ease;
+		}
+	</style>
 
+	<script type="module">
         // --- Firebase Imports (needed for Guestbook only) ---
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 		import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -2017,130 +2096,186 @@
 		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
 		
         document.addEventListener('DOMContentLoaded', async () => {
-			// --- Background Music (MP3) with robust mobile triggers ---
-			const playPauseBtn = document.getElementById('playPauseBtn');
-			const playIcon = document.getElementById('playIcon');
-			const pauseIcon = document.getElementById('pauseIcon');
-			const muteBtn = document.getElementById('muteBtn');
-			const speakerIcon = document.getElementById('speakerIcon');
-			const mutedIcon = document.getElementById('mutedIcon');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  const muteBtn = document.getElementById('muteBtn');
+  const speakerIcon = document.getElementById('speakerIcon');
+  const mutedIcon = document.getElementById('mutedIcon');
 
-			let musicStarted = false;
-			let isMuted = false;
-			let userInteracted = false;
+  let musicStarted = false;
+  let isMuted = false;
+  let userInteracted = false;
 
-			// Create hidden audio element
-			const bgAudio = document.createElement('audio');
-			bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
-			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/romantic-wedding-background-music-357203.mp3';
-			// bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/wedding-251610.mp3';
+  // Create hidden audio element
+  const bgAudio = document.createElement('audio');
+  bgAudio.crossOrigin = 'anonymous';
+  bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
+  bgAudio.loop = true;
+  bgAudio.preload = 'auto';
+  bgAudio.volume = 0.1;
+  bgAudio.style.display = 'none';
+  document.body.appendChild(bgAudio);
 
-			bgAudio.loop = true;
-			bgAudio.preload = 'auto';
-			bgAudio.volume = 0.1;
-			bgAudio.style.display = 'none';
-			document.body.appendChild(bgAudio);
+  // ADD: declare AudioContext handle and helpers (these were missing)
+  let audioCtx; // Web Audio context shared by analyser
 
-			// Optional WebAudio unlock (helps some iOS/Safari versions)
-			let audioCtx;
-			const unlockAudio = async () => {
-				try {
-					const Ctx = window.AudioContext || window.webkitAudioContext;
-					if (!Ctx) return;
-					if (!audioCtx) audioCtx = new Ctx();
-					if (audioCtx.state === 'suspended') await audioCtx.resume();
-					const buffer = audioCtx.createBuffer(1, 1, 22050);
-					const src = audioCtx.createBufferSource();
-					src.buffer = buffer;
-					src.connect(audioCtx.destination);
-					src.start(0);
-				} catch {}
-			};
+  function updatePlayUI(isPlaying) {
+    playIcon.classList.toggle('hidden', isPlaying);
+    pauseIcon.classList.toggle('hidden', !isPlaying);
+  }
 
-			const updatePlayUI = (isPlaying) => {
-				playIcon.classList.toggle('hidden', isPlaying);
-				pauseIcon.classList.toggle('hidden', !isPlaying);
-			};
+  async function unlockAudio() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      if (!audioCtx) audioCtx = new Ctx();
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
+      // iOS unlock tick
+      const buffer = audioCtx.createBuffer(1, 1, 22050);
+      const src = audioCtx.createBufferSource();
+      src.buffer = buffer;
+      src.connect(audioCtx.destination);
+      src.start(0);
+    } catch {}
+  }
 
-			const startMusic = async () => {
-				if (musicStarted) return true;
-				try {
-					await unlockAudio();
-					await bgAudio.play();
-					musicStarted = true;
-					updatePlayUI(true);
-					return true;
-				} catch {
-					return false;
-				}
-			};
+  async function startMusic() {
+    try {
+      await unlockAudio();
+      await bgAudio.play();
+      musicStarted = true;
+      updatePlayUI(true);
+      return true;
+    } catch (e) {
+      console.warn('Autoplay blocked:', e?.message || e);
+      return false;
+    }
+  }
 
-			// Global gesture triggers to satisfy mobile autoplay policies
-			const gestureTargets = [];
-			const addGesture = (target, event, opts = {}) => {
-				const handler = async () => {
-					userInteracted = true;
-					const ok = await startMusic();
-					if (ok) removeAllGestures();
-				};
-				target.addEventListener(event, handler, opts);
-				gestureTargets.push({ target, event, handler, opts });
-			};
-			const removeAllGestures = () => {
-				gestureTargets.forEach(({ target, event, handler, opts }) => {
-					target.removeEventListener(event, handler, opts);
-				});
-				gestureTargets.length = 0;
-			};
+  // --- Rhythm-driven color for music bar ---
+  const musicBar = document.getElementById('musicControls');
+  let analyser = null, dataArray = null, audioSource = null, rafId = 0;
+  // ...inside DOMContentLoaded after bgAudio creation...
+const vol = parseFloat(localStorage.getItem('musicVol') || '0.1');
+bgAudio.volume = vol; document.getElementById('volumeSlider').value = vol;
+document.getElementById('volumeSlider').addEventListener('input', e => {
+  const v = parseFloat(e.target.value); bgAudio.volume = v; localStorage.setItem('musicVol', String(v));
+});
+  function ensureAnalyser() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      if (!audioCtx) audioCtx = new Ctx();
+      if (analyser) return;
 
-			// Attach a wide net of first-interaction events
-			[
-				['click', {}],
-				['touchstart', { passive: true }],
-				['touchend', { passive: true }],
-				['pointerdown', { passive: true }],
-				['pointerup', { passive: true }],
-				['mousedown', {}],
-				['mouseup', {}],
-				['keydown', {}],
-			].forEach(([ev, opts]) => {
-				addGesture(window, ev, opts);
-				addGesture(document, ev, opts);
-				addGesture(document.body, ev, opts);
-			});
+      audioSource = audioCtx.createMediaElementSource(bgAudio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 1024;
+      analyser.smoothingTimeConstant = 0.65;
 
-			// Secondary, non-activation hints (may help in some browsers)
-			window.addEventListener('pageshow', async () => {
-				if (userInteracted && !musicStarted) await startMusic();
-			});
-			document.addEventListener('visibilitychange', async () => {
-				if (document.visibilityState === 'visible' && userInteracted && !musicStarted) {
-					await startMusic();
-				}
-			});
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-			// Explicit controls
-			playPauseBtn.addEventListener('click', async () => {
-				userInteracted = true;
-				if (!musicStarted) {
-					await startMusic();
-				} else if (bgAudio.paused) {
-					await bgAudio.play().catch(() => {});
-					updatePlayUI(true);
-				} else {
-					bgAudio.pause();
-					updatePlayUI(false);
-				}
-			});
+      audioSource.connect(analyser);
+      audioSource.connect(audioCtx.destination);
 
-			muteBtn.addEventListener('click', () => {
-				isMuted = !isMuted;
-				bgAudio.muted = isMuted;
-				speakerIcon.classList.toggle('hidden', isMuted);
-				mutedIcon.classList.toggle('hidden', !isMuted);
-			});
+      if (!rafId) rafId = requestAnimationFrame(animateBar);
+    } catch (e) {
+      console.warn('Music analyser init failed:', e);
+    }
+  }
 
+  function animateBar() {
+    if (!analyser || !musicBar) return;
+    analyser.getByteFrequencyData(dataArray);
+    let sum = 0;
+    const n = Math.max(8, Math.floor(dataArray.length * 0.25));
+    for (let i = 0; i < n; i++) sum += dataArray[i];
+    const level = (sum / n) / 255;
+    if (!animateBar._v) animateBar._v = level;
+    animateBar._v = animateBar._v * 0.75 + level * 0.25;
+    const v = Math.min(1, Math.pow(animateBar._v, 0.75) * 1.35);
+    const hue = Math.round(150 + 180 * v);
+    const hue2 = (hue + 40) % 360;
+    const alpha = 0.25 + 0.5 * v;
+    const glow = 8 + Math.floor(v * 28);
+	musicBar.style.background = `radial-gradient( circle at 100% 100%, rgba(20,62,27,${Math.min(1, alpha + 0.15)}), rgba(20,62,27,${alpha}))`;
+	musicBar.style.boxShadow = `0 0 ${glow}px rgba(20,62,27,${Math.min(0.9, alpha + 0.1)})`;
+	musicBar.style.filter = `saturate(${1 + v * 0.8}) brightness(${0.95 + v * 0.15})`;
+    musicBar.style.transform = `translateZ(0) scale(${1 + v * 1.3})`;
+    rafId = requestAnimationFrame(animateBar);
+  }
 
+  // Unlock + start audio on any reasonable user gesture
+  function wireGlobalAutoplayUnlockers() {
+    const tryStartOnGesture = async () => {
+      userInteracted = true;
+      const ok = await startMusic();
+      if (ok) {
+        ensureAnalyser();
+        removeUnlockers();
+      }
+    };
+
+    const events = [
+      ['click', document],
+      ['touchstart', document],
+      ['keydown', document],
+      ['mousemove', window],
+      ['scroll', window],
+    ];
+
+    function removeUnlockers() {
+      events.forEach(([ev, target]) => target.removeEventListener(ev, tryStartOnGesture, opts));
+      // Also remove from videos
+      document.querySelectorAll('video').forEach(v => {
+        v.removeEventListener('play', tryStartOnGesture, opts);
+        v.removeEventListener('click', tryStartOnGesture, opts);
+      });
+    }
+
+    const opts = { capture: true, passive: true, once: true };
+    events.forEach(([ev, target]) => target.addEventListener(ev, tryStartOnGesture, opts));
+    // If a user taps the video, start audio too
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('play', tryStartOnGesture, opts);
+      v.addEventListener('click', tryStartOnGesture, opts);
+    });
+
+    // Resume if tab becomes visible again
+    document.addEventListener('visibilitychange', async () => {
+      if (document.visibilityState === 'visible' && musicStarted && bgAudio.paused && !isMuted) {
+        await bgAudio.play().catch(() => {});
+        ensureAnalyser();
+      }
+    });
+  }
+
+  // Wire unlockers now
+  wireGlobalAutoplayUnlockers();
+
+  // Keep existing play/pause/mute handlers
+  playPauseBtn.addEventListener('click', async () => {
+    userInteracted = true;
+    if (!musicStarted) {
+      const ok = await startMusic();
+      if (ok) ensureAnalyser();
+    } else if (bgAudio.paused) {
+      await bgAudio.play().catch(() => {});
+      updatePlayUI(true);
+      ensureAnalyser();
+    } else {
+      bgAudio.pause();
+      updatePlayUI(false);
+    }
+  });
+
+  muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    bgAudio.muted = isMuted;
+    speakerIcon.classList.toggle('hidden', isMuted);
+    mutedIcon.classList.toggle('hidden', !isMuted);
+  });
 			// --- Countdown Timer with animation ---
 			const countdownDate = new Date("January 5, 2026 15:00:00").getTime();
 			const numberElements = {
@@ -2415,7 +2550,7 @@
 				 */
 				const init = () => {
 					if (elements.form) {
-						elements.form.addEventListener('submit', handleSubmit);
+					elements.form.addEventListener('submit', handleSubmit);
 					}
 				};
 				
@@ -2528,7 +2663,7 @@
 					}, (error) => {
 						console.error("Error getting guestbook messages: ", error);
 						if (elements.display) {
-							elements.display.innerHTML = '<p class="text-black">Could not load messages. Please try again later.</p>';
+						elements.display.innerHTML = '<p class="text-black">Could not load messages. Please try again later.</p>';
 						}
 					});
 				};
@@ -2807,11 +2942,7 @@
 					// Minimal Markdown -> HTML converter (safe-ish: escapes first)
 					const escapeHtml = (str) =>
 						str.replace(/[&<>"']/g, (ch) => ({
-							"&": "&amp;",
-							"<": "&lt;",
-							">": "&gt;",
-							'"': "&quot;",
-							"'": "&#39;"
+							'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
 						}[ch]));
 
 					const mdToHtml = (md) => {
@@ -2921,13 +3052,13 @@
 				 */
 				const init = () => {
 					if (elements.button) {
-						elements.button.addEventListener('click', handleSubmit);
+					elements.button.addEventListener('click', handleSubmit);
 					}
 				};
 				
 				return { init };
 			})();
-			
+
 			// Initialize the dress code advisor
 			DressCodeAdvisor.init();
 			// --- New Gemini Travel Itinerary Logic ---
@@ -2999,7 +3130,7 @@
 							let m = line.match(/^#{1,3}\s+(.*)$/);
 							if (m) {
 								closeLists();
-								const level = (line.match(/^#+/) || ['#'])[0].length;
+								const level = (line.match(/^#+/) || ["#"])[0].length;
 								html.push(`<h${level}>${inlineFormat(m[1])}</h${level}>`);
 								continue;
 							}
@@ -3015,7 +3146,7 @@
 							// Unordered list "- item" or "* item"
 							m = line.match(/^[-*]\s+(.+)$/);
 							if (m) {
-								if (!inUl) { closeLists(); html.push('<ul>'); inUl = true; }
+								if (!inUl) { closeLists(); html.push("<ul>"); inUl = true; }
 								html.push(`<li>${inlineFormat(m[1])}</li>`);
 								continue;
 							}
