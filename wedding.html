@@ -2218,195 +2218,213 @@
 		const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyD-0o3VRVCkZbjaxwZVR70soF8-8fFuoiS6xw0fMPFsbUn-PHgDXMZ9zYEgz5dJuvIBg/exec";
 		
         document.addEventListener('DOMContentLoaded', async () => {
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  const playIcon = document.getElementById('playIcon');
-  const pauseIcon = document.getElementById('pauseIcon');
-  const muteBtn = document.getElementById('muteBtn');
-  const speakerIcon = document.getElementById('speakerIcon');
-  const mutedIcon = document.getElementById('mutedIcon');
+		const playPauseBtn = document.getElementById('playPauseBtn');
+		const playIcon = document.getElementById('playIcon');
+		const pauseIcon = document.getElementById('pauseIcon');
+		const muteBtn = document.getElementById('muteBtn');
+		const speakerIcon = document.getElementById('speakerIcon');
+		const mutedIcon = document.getElementById('mutedIcon');
 
-  let musicStarted = false;
-  let isMuted = false;
-  let userInteracted = false;
+		let musicStarted = false;
+		let isMuted = false;
+		let userInteracted = false;
 
-  // Create hidden audio element
-  const bgAudio = document.createElement('audio');
-  bgAudio.crossOrigin = 'anonymous';
-  bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
-  bgAudio.loop = true;
-  bgAudio.preload = 'auto';
-  bgAudio.volume = 0.1;
-  bgAudio.style.display = 'none';
-  document.body.appendChild(bgAudio);
+		// Create hidden audio element
+		const bgAudio = document.createElement('audio');
+		bgAudio.crossOrigin = 'anonymous';
+		bgAudio.src = 'https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/forever-starts-today-a-wedding-song-384989.mp3';
+		bgAudio.loop = true;
+		bgAudio.preload = 'auto';
+		bgAudio.volume = 0.1;
+		bgAudio.style.display = 'none';
+		document.body.appendChild(bgAudio);
 
-  // ADD: declare AudioContext handle and helpers (these were missing)
-  let audioCtx; // Web Audio context shared by analyser
+		// ADD: declare AudioContext handle and helpers (these were missing)
+		let audioCtx; // Web Audio context shared by analyser
 
-  function updatePlayUI(isPlaying) {
-    playIcon.classList.toggle('hidden', isPlaying);
-    pauseIcon.classList.toggle('hidden', !isPlaying);
-  }
+		function updatePlayUI(isPlaying) {
+			playIcon.classList.toggle('hidden', isPlaying);
+			pauseIcon.classList.toggle('hidden', !isPlaying);
+		}
 
-  async function unlockAudio() {
-    try {
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (!Ctx) return;
-      if (!audioCtx) audioCtx = new Ctx();
-      if (audioCtx.state === 'suspended') await audioCtx.resume();
-      // iOS unlock tick
-      const buffer = audioCtx.createBuffer(1, 1, 22050);
-      const src = audioCtx.createBufferSource();
-      src.buffer = buffer;
-      src.connect(audioCtx.destination);
-      src.start(0);
-    } catch {}
-  }
+		async function unlockAudio() {
+			try {
+			const Ctx = window.AudioContext || window.webkitAudioContext;
+			if (!Ctx) return;
+			if (!audioCtx) audioCtx = new Ctx();
+			if (audioCtx.state === 'suspended') await audioCtx.resume();
+			// iOS unlock tick
+			const buffer = audioCtx.createBuffer(1, 1, 22050);
+			const src = audioCtx.createBufferSource();
+			src.buffer = buffer;
+			src.connect(audioCtx.destination);
+			src.start(0);
+			} catch {}
+		}
 
-  async function startMusic() {
-    try {
-      await unlockAudio();
-      await bgAudio.play();
-      musicStarted = true;
-      updatePlayUI(true);
-      return true;
-    } catch (e) {
-      console.warn('Autoplay blocked:', e?.message || e);
-      return false;
-    }
-  }
+		async function startMusic() {
+			try {
+			await unlockAudio();
+			await bgAudio.play();
+			musicStarted = true;
+			updatePlayUI(true);
+			return true;
+			} catch (e) {
+			console.warn('Autoplay blocked:', e?.message || e);
+			return false;
+			}
+		}
 
-  // --- Rhythm-driven color for music bar ---
-  const musicBar = document.getElementById('musicControls');
-  let analyser = null, dataArray = null, audioSource = null, rafId = 0;
-  // ...inside DOMContentLoaded after bgAudio creation...
-const vol = parseFloat(localStorage.getItem('musicVol') || '0.1');
-bgAudio.volume = vol; document.getElementById('volumeSlider').value = vol;
-document.getElementById('volumeSlider').addEventListener('input', e => {
-  const v = parseFloat(e.target.value); bgAudio.volume = v; localStorage.setItem('musicVol', String(v));
-});
-  function ensureAnalyser() {
-    try {
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (!Ctx) return;
-      if (!audioCtx) audioCtx = new Ctx();
-      if (analyser) return;
+		// --- Rhythm-driven color for music bar ---
+		const musicBar = document.getElementById('musicControls');
+		let analyser = null, dataArray = null, audioSource = null, rafId = 0;
+		// ...inside DOMContentLoaded after bgAudio creation...
+		const vol = parseFloat(localStorage.getItem('musicVol') || '0.1');
+		bgAudio.volume = vol; document.getElementById('volumeSlider').value = vol;
+		document.getElementById('volumeSlider').addEventListener('input', e => {
+		const v = parseFloat(e.target.value); bgAudio.volume = v; localStorage.setItem('musicVol', String(v));
+		});
+		function ensureAnalyser() {
+			try {
+			const Ctx = window.AudioContext || window.webkitAudioContext;
+			if (!Ctx) return;
+			if (!audioCtx) audioCtx = new Ctx();
+			if (analyser) return;
 
-      audioSource = audioCtx.createMediaElementSource(bgAudio);
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 1024;
-      analyser.smoothingTimeConstant = 0.65;
+			audioSource = audioCtx.createMediaElementSource(bgAudio);
+			analyser = audioCtx.createAnalyser();
+			analyser.fftSize = 1024;
+			analyser.smoothingTimeConstant = 0.65;
 
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
+			dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-      audioSource.connect(analyser);
-      audioSource.connect(audioCtx.destination);
+			audioSource.connect(analyser);
+			audioSource.connect(audioCtx.destination);
 
-      if (!rafId) rafId = requestAnimationFrame(animateBar);
-    } catch (e) {
-      console.warn('Music analyser init failed:', e);
-    }
-  }
+			if (!rafId) rafId = requestAnimationFrame(animateBar);
+			} catch (e) {
+			console.warn('Music analyser init failed:', e);
+			}
+		}
 
-  function animateBar() {
-    if (!analyser || !musicBar) return;
-    analyser.getByteFrequencyData(dataArray);
-    let sum = 0;
-    const n = Math.max(8, Math.floor(dataArray.length * 0.25));
-    for (let i = 0; i < n; i++) sum += dataArray[i];
-    const level = (sum / n) / 255;
-    if (!animateBar._v) animateBar._v = level;
-    animateBar._v = animateBar._v * 0.75 + level * 0.25;
-    const v = Math.min(1, Math.pow(animateBar._v, 0.75) * 1.35);
-    const hue = Math.round(150 + 180 * v);
-    const hue2 = (hue + 40) % 360;
-    const alpha = 0.25 + 0.5 * v;
-    const glow = 8 + Math.floor(v * 28);
-	musicBar.style.background = `radial-gradient( circle at 100% 100%, rgba(20,62,27,${Math.min(1, alpha + 0.15)}), rgba(20,62,27,${alpha}))`;
-	musicBar.style.boxShadow = `0 0 ${glow}px rgba(20,62,27,${Math.min(0.9, alpha + 0.1)})`;
-	musicBar.style.filter = `saturate(${1 + v * 0.8}) brightness(${0.95 + v * 0.15})`;
-	// Responsive scaling: milder on small screens, stronger on large screens
-	const w = window.innerWidth;
-	let intensity = 1.0;
-	if (w < 480) intensity = 1.1;
-	else if (w < 768) intensity = 1.2;
-	else if (w < 1280) intensity = 1.8;
-	else intensity = 1.9;
+		function animateBar() {
+			if (!analyser || !musicBar) return;
+			analyser.getByteFrequencyData(dataArray);
 
-	const scale = Math.min(1.6, 1 + v * intensity);
-	musicBar.style.transform = `translateZ(0) scale(${scale})`;
-    rafId = requestAnimationFrame(animateBar);
-  }
+			// Average low-frequency energy (rhythm)
+			let sum = 0;
+			const n = Math.max(8, Math.floor(dataArray.length * 0.25));
+			for (let i = 0; i < n; i++) sum += dataArray[i];
+			const level = (sum / n) / 255;
 
-  // Unlock + start audio on any reasonable user gesture
-  function wireGlobalAutoplayUnlockers() {
-    const tryStartOnGesture = async () => {
-      userInteracted = true;
-      const ok = await startMusic();
-      if (ok) {
-        ensureAnalyser();
-        removeUnlockers();
-      }
-    };
+			// Smooth amplitude
+			if (!animateBar._v) animateBar._v = level;
+			animateBar._v = animateBar._v * 0.75 + level * 0.25;
+			const v = Math.min(1, Math.pow(animateBar._v, 0.75) * 1.35);
 
-    const events = [
-      ['click', document],
-      ['touchstart', document],
-      ['keydown', document],
-      ['mousemove', window],
-      ['scroll', window],
-    ];
+			// Visual glow/color
+			const alpha = 0.25 + 0.5 * v;
+			const glow = 8 + Math.floor(v * 28);
+			musicBar.style.background = `radial-gradient(circle at 100% 100%, rgba(20,62,27,${Math.min(1, alpha + 0.15)}), rgba(20,62,27,${alpha}))`;
+			musicBar.style.boxShadow = `0 0 ${glow}px rgba(20,62,27,${Math.min(0.9, alpha + 0.1)})`;
+			musicBar.style.filter = `saturate(${1 + v * 0.8}) brightness(${0.95 + v * 0.15})`;
 
-    function removeUnlockers() {
-      events.forEach(([ev, target]) => target.removeEventListener(ev, tryStartOnGesture, opts));
-      // Also remove from videos
-      document.querySelectorAll('video').forEach(v => {
-        v.removeEventListener('play', tryStartOnGesture, opts);
-        v.removeEventListener('click', tryStartOnGesture, opts);
-      });
-    }
+			// Height pulse driven by rhythm (smaller range on smaller screens)
+			if (!animateBar._baseH) {
+				const rect = musicBar.getBoundingClientRect();
+				animateBar._baseH = Math.max(48, rect.height || 64); // ensure a sensible base
+				animateBar._h = animateBar._baseH;
+			}
+			const w = window.innerWidth;
+			let maxRise; // extra pixels to add over base height
+			if (w < 480)       maxRise = 10;
+			else if (w < 768)  maxRise = 14;
+			else if (w < 1024) maxRise = 18;
+			else if (w < 1440) maxRise = 22;
+			else               maxRise = 26;
 
-    const opts = { capture: true, passive: true, once: true };
-    events.forEach(([ev, target]) => target.addEventListener(ev, tryStartOnGesture, opts));
-    // If a user taps the video, start audio too
-    document.querySelectorAll('video').forEach(v => {
-      v.addEventListener('play', tryStartOnGesture, opts);
-      v.addEventListener('click', tryStartOnGesture, opts);
-    });
+			const targetH = animateBar._baseH + (v * maxRise);
+			// Smooth height to avoid jitter
+			animateBar._h = animateBar._h * 0.85 + targetH * 0.15;
+			musicBar.style.height = `${animateBar._h.toFixed(1)}px`;
 
-    // Resume if tab becomes visible again
-    document.addEventListener('visibilitychange', async () => {
-      if (document.visibilityState === 'visible' && musicStarted && bgAudio.paused && !isMuted) {
-        await bgAudio.play().catch(() => {});
-        ensureAnalyser();
-      }
-    });
-  }
+			// Keep transform GPU hint, avoid extra scaling (height already responds)
+			musicBar.style.transformOrigin = 'bottom center';
+			musicBar.style.transform = 'translateZ(0)';
 
-  // Wire unlockers now
-  wireGlobalAutoplayUnlockers();
+			rafId = requestAnimationFrame(animateBar);
+		}
 
-  // Keep existing play/pause/mute handlers
-  playPauseBtn.addEventListener('click', async () => {
-    userInteracted = true;
-    if (!musicStarted) {
-      const ok = await startMusic();
-      if (ok) ensureAnalyser();
-    } else if (bgAudio.paused) {
-      await bgAudio.play().catch(() => {});
-      updatePlayUI(true);
-      ensureAnalyser();
-    } else {
-      bgAudio.pause();
-      updatePlayUI(false);
-    }
-  });
+		// Unlock + start audio on any reasonable user gesture
+		function wireGlobalAutoplayUnlockers() {
+			const tryStartOnGesture = async () => {
+			userInteracted = true;
+			const ok = await startMusic();
+			if (ok) {
+				ensureAnalyser();
+				removeUnlockers();
+			}
+			};
 
-  muteBtn.addEventListener('click', () => {
-    isMuted = !isMuted;
-    bgAudio.muted = isMuted;
-    speakerIcon.classList.toggle('hidden', isMuted);
-    mutedIcon.classList.toggle('hidden', !isMuted);
-  });
+			const events = [
+			['click', document],
+			['touchstart', document],
+			['keydown', document],
+			['mousemove', window],
+			['scroll', window],
+			];
+
+			function removeUnlockers() {
+			events.forEach(([ev, target]) => target.removeEventListener(ev, tryStartOnGesture, opts));
+			// Also remove from videos
+			document.querySelectorAll('video').forEach(v => {
+				v.removeEventListener('play', tryStartOnGesture, opts);
+				v.removeEventListener('click', tryStartOnGesture, opts);
+			});
+			}
+
+			const opts = { capture: true, passive: true, once: true };
+			events.forEach(([ev, target]) => target.addEventListener(ev, tryStartOnGesture, opts));
+			// If a user taps the video, start audio too
+			document.querySelectorAll('video').forEach(v => {
+			v.addEventListener('play', tryStartOnGesture, opts);
+			v.addEventListener('click', tryStartOnGesture, opts);
+			});
+
+			// Resume if tab becomes visible again
+			document.addEventListener('visibilitychange', async () => {
+			if (document.visibilityState === 'visible' && musicStarted && bgAudio.paused && !isMuted) {
+				await bgAudio.play().catch(() => {});
+				ensureAnalyser();
+			}
+			});
+		}
+
+		// Wire unlockers now
+		wireGlobalAutoplayUnlockers();
+
+		// Keep existing play/pause/mute handlers
+		playPauseBtn.addEventListener('click', async () => {
+			userInteracted = true;
+			if (!musicStarted) {
+			const ok = await startMusic();
+			if (ok) ensureAnalyser();
+			} else if (bgAudio.paused) {
+			await bgAudio.play().catch(() => {});
+			updatePlayUI(true);
+			ensureAnalyser();
+			} else {
+			bgAudio.pause();
+			updatePlayUI(false);
+			}
+		});
+
+		muteBtn.addEventListener('click', () => {
+			isMuted = !isMuted;
+			bgAudio.muted = isMuted;
+			speakerIcon.classList.toggle('hidden', isMuted);
+			mutedIcon.classList.toggle('hidden', !isMuted);
+		});
 			// --- Countdown Timer with animation ---
 			const countdownDate = new Date("January 5, 2026 15:00:00").getTime();
 			const numberElements = {
