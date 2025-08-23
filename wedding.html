@@ -584,7 +584,7 @@
 	<video
 		class="site-bg-video-large"
 		autoplay muted loop playsinline preload="auto"
-		style=" position:fixed; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; pointer-events:none; filter:brightness(0.88);"
+		style=" position:fixed; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; pointer-events:none; filter:brightness(0.88); display: none;"
 	>
 		<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Untitled%20video%20(3)-vmake.mp4" type="video/mp4">
 	</video>
@@ -612,7 +612,7 @@
 
         /* Large screens: show videos; remove hero bg image */
         @media (min-width: 800px) {
-            .site-bg-video-large,
+            .site-bg-video-large { display: block !important; }
             .hero-bg-video-large { display: block !important; }
             #heroSection { background-image: none !important; }
 			body {
