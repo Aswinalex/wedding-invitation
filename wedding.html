@@ -22,6 +22,13 @@
 	<meta name="twitter:title" content="You're Invited! - Taniya &amp; Aswin's Wedding">
 	<meta name="twitter:description" content="Join us in celebrating the wedding of Taniya and Aswin on January 5th, 2026 in Thiruvalla, Kerala.">
 	<meta name="twitter:image" content="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/IMG-20250427-WA0089.jpg">
+	<style>
+		/* Make the event boxes (image + text) taller */
+		.event-box { min-height: 560px !important; }
+		@media (max-width: 640px) {
+			.event-box { min-height: 460px !important; }
+		}
+	</style>
 
 	<!-- Tailwind CSS CDN -->
 	<script src="https://cdn.tailwindcss.com"></script>
@@ -125,14 +132,17 @@
 			border: 1px solid var(--border_col);
 			box-shadow: 0 8px 32px var(--shadow_col);
 			transition: transform 0.3s ease, box-shadow 0.3s ease;
-			min-height: 400px;
+			min-height: 420px !important; /* Reduced height (overrides earlier rule) */
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 		}
+		@media (max-width: 640px) {
+			.event-box { min-height: 360px !important; } /* Reduced mobile height */
+		}
 		.event-box:hover {
-			transform: translateY(-5px);
+			transform: translateY(-10px);
 			box-shadow: 0 12px 40px var(--shadow_col);
 			border: 1px solid var(--border_col);
 
