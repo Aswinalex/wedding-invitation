@@ -556,29 +556,88 @@
 		footer .text-2xl, footer .text-sm, footer .text-xs {
 			color: rgb(0, 0, 0);
 		}
+		#countdown {
+			position: relative;
+			z-index: 5;
+			perspective: 1000px; /* supports the flip effect */
+			}
+		#countdown .animate-flip {
+			backface-visibility: hidden;
+			transform-style: preserve-3d;
+			}
     </style>
 	
 </head>
 
 <body class="antialiased">
     
+	<style>
+		.site-bg-video-large { display: none; }
+		.site-bg-video-small { display: block; }
+		.hero-bg-video-large { display: none; }
+		.hero-bg-video-small { display: block; }
+		@media (min-width: 800px) {
+		.site-bg-video-large { display: block; }
+		.site-bg-video-small { display: none; }
+		.hero-bg-video-large { display: block; }
+		.hero-bg-video-small { display: none; }
+		}
+		/* Remove old hero background image */
+		#heroSection { background-image: none !important; }
+		@media (min-width: 800px) {
+		#heroSection { background-image: none !important; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+		.site-bg-video-large,.site-bg-video-small, .hero-bg-video-large, .hero-bg-video-small { display: none !important; }
+		}
+  	</style>
+	 <!-- Large-screen background -->
+  	<video
+		class="site-bg-video-large"
+		autoplay muted loop playsinline preload="auto"
+		style="position:fixed; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; pointer-events:none; filter:brightness(0.88);"
+	>
+		<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Untitled%20video%20(3)-vmake.mp4" type="video/mp4">
+	</video>
 
+	<!-- Small-screen background -->
+	<video
+		class="site-bg-video-small"
+		autoplay muted loop playsinline preload="auto"
+		style="position:fixed; top:0; left:0; right:0; bottom:0; width:100vw; height:250vh; min-width:100vw;z-index:-1; object-fit:cover; object-position:center center; z-index:0; pointer-events:none; filter:brightness(0.9);"
+	>
+		<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Untitled%20video%20(2)-vmake.mp4" type="video/mp4">
+	</video>
 	<header id="heroSection" class="hero-section text-center">
-	
+		 <video
+			class="hero-bg-video-large"
+			autoplay muted loop playsinline preload="auto"
+		style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; pointer-events:none; filter:brightness(0.9);"
+		>
+			<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/fotor-video_enhancer-hd-20250823102830-vmake.mp4" type="video/mp4">
+		</video>
+
+		<video
+			class="hero-bg-video-small"
+			autoplay muted loop playsinline preload="auto"
+			style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;  pointer-events:none; filter:brightness(0.9);"
+		>
+			<source src="https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/Image%20to%20video%20%E4%B8%A8%20Add%20subtle%20motion%20such%20that%20the%20folds%20move%20as%20if%20a%20gentle%20breez-vmake.mp4" type="video/mp4">
+		</video>
 		<!-- Foreground content -->
 		<style>
 			/* Put the hero image as the header background */
 			#heroSection {
-				background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bg5.png');
+				background-image: none !important;
 				background-size: cover;
 				background-position: center center;
 				background-repeat: no-repeat;
-				background-attachment: fixed; /* Parallax effect */
+				background-attachment: scroll; /* Parallax effect */
 			}
 
 			@media (min-width: 801px) {
 				#heroSection {
-					background-image: url('https://raw.githubusercontent.com/Aswinalex/wedding-invitation/main/bg7.png');
+					background-image: none !important;
 				}
 			}
 
@@ -758,13 +817,13 @@
 	</header>
 <!-- Countdown Timer Section -->
 	<section class="py-8 px-4 text-center ">
-		<!-- Replaced gold with a new, class-based color for consistency -->
+		<!-- Replaced gold wi</section>th a new, class-based color for consistency -->
 		<h2 class="text-4xl md:text-4xl mr-4 mb-4 font-allura ">Counting down to the big day!</h2>
 
 
 		<div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto text-center">
 			<div>
-				<div id="days" class="text-4xl md:text-5xl font-helvetica ml-2" style="color:var(--text_col);">00</div>
+				<div id="days" class="text-4xl md:text-5xl font-helvetica ml-2" style=" z-index: 10; color:var(--text_col);">00</div>
 				<div class="font-semibold uppercase tracking-wider text-black font-helvetica ml-5 mb-2">Days</div>
 			</div>
 			<div>
